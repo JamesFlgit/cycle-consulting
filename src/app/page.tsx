@@ -1,65 +1,101 @@
-import Image from "next/image";
+import Link from "next/link";
+import SectionHeading from "@/components/ui/SectionHeading";
+import OfferCard from "@/components/ui/OfferCard";
+import PartnerLogo from "@/components/ui/PartnerLogo";
+import TestimonialCard from "@/components/ui/TestimonialCard";
+import { offres } from "@/data/offres";
+import { partenaires } from "@/data/partenaires";
+import { temoignages } from "@/data/temoignages";
+import { entreprise } from "@/data/entreprise";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <section className="bg-page-hero bg-office-gradient">
+        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-white/60">
+            Conseil &amp; Services IT
           </p>
+          <h1 className="mt-4 max-w-3xl text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+            {entreprise.slogan}
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
+            Cycle Consulting accompagne les décideurs d&apos;entreprise avec des consultants experts en
+            formations, service managé, infogérance, business &amp; stratégie, ingénierie IT et logistique.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              href="/contact"
+              className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-anthracite transition-colors hover:bg-white/90"
+            >
+              Nous contacter
+            </Link>
+            <Link
+              href="/partenaires"
+              className="rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+            >
+              Découvrir nos partenaires
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Nos offres"
+          title="Cinq pôles d'expertise au service de votre performance"
+          description="Des consultants référencés et disponibles pour vous accompagner à chaque étape de vos projets."
+        />
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {offres.map((offre) => (
+            <OfferCard key={offre.titre} offre={offre} />
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="bg-surface-alt py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading eyebrow="Ils nous font confiance" title="Nos partenaires" center />
+          <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            {partenaires.map((p) => (
+              <PartnerLogo key={p.nom} nom={p.nom} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow="Livre d'or" title="Ce que nos clients disent de nous" center />
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {temoignages.map((t) => (
+            <TestimonialCard key={t.auteur} temoignage={t} />
+          ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link
+            href="/livre-or"
+            className="text-sm font-semibold text-anthracite underline-offset-4 hover:underline"
+          >
+            Voir tous les témoignages →
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-anthracite">
+        <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-white sm:text-3xl">
+            Un projet ? Parlons-en avec un consultant Cycle.
+          </h2>
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              className="inline-block rounded-md bg-white px-6 py-3 text-sm font-semibold text-anthracite transition-colors hover:bg-white/90"
+            >
+              Nous contacter
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cycle Consulting — Site vitrine
 
-## Getting Started
+Site vitrine de l'ESN **Cycle Consulting** ("Apprendre, Comprendre, Entreprendre").
 
-First, run the development server:
+## Stack technique
+
+- [Next.js 16](https://nextjs.org/) (App Router, TypeScript, `src/` dir)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- Polices : Inter (texte courant) via `next/font/google`, Georgia en serif pour le wordmark du logo
+- Aucune base de données ni CMS : le contenu texte est centralisé dans `src/data/*.ts`
+
+## Démarrer en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Le site est servi sur http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # build de production
+npm run start   # sert le build de production
+npm run lint    # ESLint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure du projet
 
-## Learn More
+```
+src/
+  app/                     routes (App Router) — une page par pôle d'activité
+  components/
+    layout/Header.tsx       en-tête + navigation (menu mobile inclus)
+    layout/Footer.tsx       pied de page (wordmark, coordonnées, liens)
+    ui/                     composants réutilisables (cartes, colonnes, formulaire, hero, etc.)
+  data/                     contenu du site (offres, coordonnées, navigation, témoignages...)
+public/
+  cycle-consulting-logo.svg           symbole seul — utilisé dans le header
+  cycle-consulting-logo-wordmark.svg  symbole + texte — utilisé dans le footer et la page contact
+```
 
-To learn more about Next.js, take a look at the following resources:
+Pour mettre à jour un texte (accroche d'une offre, item d'une colonne de service, coordonnées...),
+il suffit d'éditer le fichier correspondant dans `src/data/` — aucune page n'a besoin d'être touchée.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contenu à compléter
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Toutes les informations factuelles non fournies dans le brief (adresse, téléphone, e-mail, horaires,
+SIRET) sont indiquées par des placeholders `[À COMPLÉTER — ...]` dans `src/data/entreprise.ts`.
+Les logos partenaires (Ollium, Syker, Insiders, Microsoft) et clients (Malakoff Humanis, Burger King,
+Gordon E., DBV) sont représentés par des vignettes texte génériques en attendant les visuels officiels
+du client — voir `src/data/partenaires.ts` et le composant `PartnerLogo`.
 
-## Deploy on Vercel
+Les liens "Voir brochure" des pages de services pointent vers `#` (ancre placeholder) : ils sont prêts
+à être remplacés par de vrais liens ou fichiers PDF.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Formulaire de contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Le formulaire de la page `/contact` (`src/components/ui/ContactForm.tsx`) est **statique** : il affiche
+un message de confirmation côté client mais n'envoie aucune donnée pour l'instant (pas de backend).
+
+Pour le rendre fonctionnel sans back-end à maintenir, l'option la plus simple est
+[Formspree](https://formspree.io/) (ou [Resend](https://resend.com/) si un envoi d'e-mail transactionnel
+depuis une route API Next.js est préféré) : créer un formulaire Formspree, remplacer le `onSubmit` du
+composant par un `fetch` vers l'endpoint fourni, et supprimer le `preventDefault` équivalent si vous
+utilisez l'action HTML native du formulaire.
