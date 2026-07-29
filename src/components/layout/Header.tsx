@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { polesNav } from "@/data/nav";
+import NavLogoMark from "@/components/layout/NavLogoMark";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -13,15 +13,13 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border-subtle bg-surface/95 backdrop-blur supports-backdrop-blur:bg-surface/80">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
-          <Image
-            src="/cycle-consulting-logo.svg"
-            alt="Cycle Consulting"
-            width={40}
-            height={20}
-            className="h-9 w-auto"
-            priority
-          />
+        <Link
+          href="/"
+          className="flex shrink-0 items-center"
+          onClick={() => setOpen(false)}
+          aria-label="Cycle Consulting — Accueil"
+        >
+          <NavLogoMark className="h-9 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
