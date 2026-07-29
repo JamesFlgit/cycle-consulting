@@ -13,7 +13,7 @@ export default function OfferCard({ offre }: { offre: Offre }) {
         </div>
         <Link
           href="/contact"
-          className="block w-full rounded-md bg-anthracite px-4 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-anthracite-soft"
+          className="cta-primary cta-primary-on-light block w-full rounded-md px-4 py-2 text-center text-sm font-bold"
         >
           Demander un devis
         </Link>

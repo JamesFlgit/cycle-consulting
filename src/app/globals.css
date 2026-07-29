@@ -46,3 +46,65 @@ body {
   background: linear-gradient(160deg, var(--color-anthracite) 0%, var(--color-anthracite-soft) 55%, #55585e 100%);
 }
 
+/* Primary CTA: filled at rest with the logo's static brand gradient (no
+   animation). On hover the fill becomes transparent and a thin gradient
+   border appears, drifting very slowly. Add `cta-primary-on-light` as well
+   for instances sitting on a white/light surface, so hover text stays dark
+   (legible) instead of white. */
+.cta-primary {
+  position: relative;
+  /* Softened, muted tints of the brand pink/cyan only hint at the corners;
+     dark blue holds a wide flat plateau in the middle, reading as a soft,
+     delicate fill rather than a saturated rainbow band. */
+  background-image: linear-gradient(
+    115deg,
+    #9a4fb8 0%,
+    #5f4bc0 12%,
+    #132bdd 38%,
+    #132bdd 62%,
+    #2a63c9 88%,
+    #4f9ecf 100%
+  );
+  color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(115deg, #fa11f7, #871eea, #132bdd, #0f7cee, #0bceff, #fa11f7);
+  background-size: 220% 220%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cta-primary:hover,
+.cta-primary:focus-visible {
+  background: transparent;
+  color: #ffffff;
+}
+
+.cta-primary:hover::before,
+.cta-primary:focus-visible::before {
+  opacity: 1;
+  animation: cta-gradient-pan 16s linear infinite;
+}
+
+.cta-primary.cta-primary-on-light:hover,
+.cta-primary.cta-primary-on-light:focus-visible {
+  color: var(--color-anthracite);
+}
+
+@keyframes cta-gradient-pan {
+  to {
+    background-position: 220% 50%;
+  }
+}
+

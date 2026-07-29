@@ -102,7 +102,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="w-full rounded-md bg-anthracite px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-anthracite-soft sm:w-auto"
+        className="cta-primary cta-primary-on-light w-full rounded-md px-4 py-2.5 text-sm font-bold sm:w-auto"
       >
         Envoyer
       </button>

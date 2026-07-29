@@ -1,20 +1,14 @@
 import Link from "next/link";
-import Image from "next/image";
 import { polesNav, secondaryNav } from "@/data/nav";
 import { entreprise } from "@/data/entreprise";
+import FooterLogoReveal from "@/components/layout/FooterLogoReveal";
 
 export default function Footer() {
   return (
     <footer className="border-t border-border-subtle bg-anthracite text-white/80">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-2">
-          <Image
-            src="/cycle-consulting-logo-wordmark.svg"
-            alt="Cycle Consulting"
-            width={220}
-            height={144}
-            className="h-24 w-auto brightness-0 invert"
-          />
+          <FooterLogoReveal className="h-24 w-auto" />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
             {entreprise.slogan} — ESN française spécialisée en formations, service managé, infogérance,
             business &amp; stratégie, ingénierie IT et logistique.

@@ -24,15 +24,12 @@ export default function Home() {
             formations, service managé, infogérance, business &amp; stratégie, ingénierie IT et logistique.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-anthracite transition-colors hover:bg-white/90"
-            >
+            <Link href="/contact" className="cta-primary rounded-md px-6 py-3 text-sm font-bold">
               Nous contacter
             </Link>
             <Link
               href="/partenaires"
-              className="rounded-md border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+              className="rounded-md border border-white/30 px-6 py-3 text-sm font-bold text-white transition-colors hover:border-transparent hover:bg-white hover:text-anthracite"
             >
               Découvrir nos partenaires
             </Link>
@@ -89,7 +86,7 @@ export default function Home() {
           <div className="mt-8">
             <Link
               href="/contact"
-              className="inline-block rounded-md bg-white px-6 py-3 text-sm font-semibold text-anthracite transition-colors hover:bg-white/90"
+              className="cta-primary inline-block rounded-md px-6 py-3 text-sm font-bold"
             >
               Nous contacter
             </Link>

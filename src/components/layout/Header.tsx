@@ -13,13 +13,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border-subtle bg-surface/95 backdrop-blur supports-backdrop-blur:bg-surface/80">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="flex shrink-0 items-center"
-          onClick={() => setOpen(false)}
-          aria-label="Cycle Consulting — Accueil"
-        >
+        <Link href="/" className="flex shrink-0 items-center gap-2.5" onClick={() => setOpen(false)}>
           <NavLogoMark className="h-9 w-auto" />
+          <span className="font-serif text-lg tracking-wide text-anthracite">Cycle Consulting</span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -44,7 +40,7 @@ export default function Header() {
         <div className="hidden items-center gap-2 lg:flex">
           <Link
             href="/contact"
-            className="ml-2 inline-flex items-center gap-2 rounded-md bg-anthracite px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-anthracite-soft"
+            className="cta-primary cta-primary-on-light ml-2 inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-bold"
           >
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
@@ -94,7 +90,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-md bg-anthracite px-3 py-2 text-center text-sm font-semibold text-white hover:bg-anthracite-soft"
+                className="cta-primary cta-primary-on-light flex items-center justify-center gap-2 rounded-md px-3 py-2 text-center text-sm font-bold"
               >
                 <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                   <rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" strokeWidth="1.4" />
