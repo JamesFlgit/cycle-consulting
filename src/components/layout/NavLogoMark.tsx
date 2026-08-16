@@ -11,6 +11,7 @@ import {
   GRAD_CX,
   GRAD_CY,
   GRADIENT_STOPS,
+  GRADIENT_STOPS_LIGHT,
   clamp,
   easeInOutCubic,
   wedgePath,
@@ -19,7 +20,13 @@ import {
 const DRAW_DUR = 1.3;
 const CYCLE_MS = 30000;
 
-export default function NavLogoMark({ className }: { className?: string }) {
+export default function NavLogoMark({
+  className,
+  variant = "color",
+}: {
+  className?: string;
+  variant?: "color" | "white" | "light";
+}) {
   const [elapsed, setElapsed] = useState<number | null>(null);
   const startRef = useRef<number | null>(null);
   const rafRef = useRef(0);
@@ -63,23 +70,27 @@ export default function NavLogoMark({ className }: { className?: string }) {
   const ring2Rot = RING2.twist * (1 - easedT);
   const ring1Sweep = RING1.sweepDeg * t;
   const ring2Sweep = RING2.sweepDeg * t;
+  const fill = variant === "white" ? "#ffffff" : `url(#${gradId})`;
+  const stops = variant === "light" ? GRADIENT_STOPS_LIGHT : GRADIENT_STOPS;
 
   return (
     <svg viewBox="0 0 1456 731" className={className} aria-hidden="true" focusable="false">
       <defs>
-        <linearGradient
-          id={gradId}
-          gradientUnits="userSpaceOnUse"
-          x1="1206"
-          y1="3450"
-          x2="13390"
-          y2="3450"
-          gradientTransform={`rotate(${gradAngle} ${GRAD_CX} ${GRAD_CY})`}
-        >
-          {GRADIENT_STOPS.map((stop) => (
-            <stop key={stop.offset} offset={stop.offset} stopColor={stop.color} />
-          ))}
-        </linearGradient>
+        {(variant === "color" || variant === "light") && (
+          <linearGradient
+            id={gradId}
+            gradientUnits="userSpaceOnUse"
+            x1="1206"
+            y1="3450"
+            x2="13390"
+            y2="3450"
+            gradientTransform={`rotate(${gradAngle} ${GRAD_CX} ${GRAD_CY})`}
+          >
+            {stops.map((stop) => (
+              <stop key={stop.offset} offset={stop.offset} stopColor={stop.color} />
+            ))}
+          </linearGradient>
+        )}
         <mask id={mask1Id}>
           <path d={wedgePath(RING1.cx, RING1.cy, RING1.r, RING1.startDeg, ring1Sweep)} fill="#ffffff" />
         </mask>
@@ -89,22 +100,22 @@ export default function NavLogoMark({ className }: { className?: string }) {
       </defs>
       <g transform={MARK_TRANSFORM}>
         <g transform={`rotate(${ring1Rot} ${RING1.cx} ${RING1.cy})`}>
-          <path d={RING1.d} fill={`url(#${gradId})`} mask={`url(#${mask1Id})`} />
+          <path d={RING1.d} fill={fill} mask={`url(#${mask1Id})`} />
         </g>
         <g transform={`rotate(${ring2Rot} ${RING2.cx} ${RING2.cy})`}>
-          <path d={RING2.d} fill={`url(#${gradId})`} mask={`url(#${mask2Id})`} />
+          <path d={RING2.d} fill={fill} mask={`url(#${mask2Id})`} />
         </g>
         <g
           transform={`translate(${DOT_CENTER.x},${DOT_CENTER.y}) scale(${dotScale}) translate(${-DOT_CENTER.x},${-DOT_CENTER.y})`}
           opacity={dotP}
         >
-          <path d={LOGO_PATHS.DOT_D} fill={`url(#${gradId})`} />
+          <path d={LOGO_PATHS.DOT_D} fill={fill} />
         </g>
         <g
           transform={`translate(${DASH_CENTER.x},${DASH_CENTER.y}) scale(${dashScale}) translate(${-DASH_CENTER.x},${-DASH_CENTER.y})`}
           opacity={dashP}
         >
-          <path d={LOGO_PATHS.DASH_D} fill={`url(#${gradId})`} />
+          <path d={LOGO_PATHS.DASH_D} fill={fill} />
         </g>
       </g>
     </svg>

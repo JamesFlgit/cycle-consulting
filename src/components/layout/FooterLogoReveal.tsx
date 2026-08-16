@@ -8,6 +8,9 @@ import {
   DOT_CENTER,
   DASH_CENTER,
   MARK_TRANSFORM,
+  GRAD_CX,
+  GRAD_CY,
+  GRADIENT_STOPS_LIGHT,
   clamp,
   easeInOutCubic,
   easeOutCubic,
@@ -17,11 +20,12 @@ import {
 const DRAW_DUR = 1.3;
 const REVEAL_DUR = 0.9;
 const TOTAL_DUR = DRAW_DUR + REVEAL_DUR;
-const RULE_Y = 801;
-const RULE_X1 = 80;
-const RULE_X2 = 1376;
+// Lockup proportions (rule width, gaps, wordmark size) match the business card artwork.
+const RULE_Y = 814;
+const RULE_X1 = 0;
+const RULE_X2 = 1456;
 const TEXT_X = 728;
-const TEXT_Y = 881;
+const TEXT_Y = 1013;
 const WHITE = "#ffffff";
 
 type Phase = "pending" | "playing" | "done";
@@ -32,6 +36,7 @@ export default function FooterLogoReveal({ className }: { className?: string }) 
   const svgRef = useRef<SVGSVGElement>(null);
   const startRef = useRef<number | null>(null);
   const rafRef = useRef(0);
+  const gradId = useId();
   const mask1Id = useId();
   const mask2Id = useId();
 
@@ -108,8 +113,21 @@ export default function FooterLogoReveal({ className }: { className?: string }) 
   const ruleHalfW = ((RULE_X2 - RULE_X1) / 2) * ruleT;
 
   return (
-    <svg ref={svgRef} viewBox="0 0 1456 951" className={className} role="img" aria-label="Cycle Consulting" focusable="false">
+    <svg ref={svgRef} viewBox="-70 0 1596 1084" className={className} role="img" aria-label="Cycle Consulting" focusable="false">
       <defs>
+        <linearGradient
+          id={gradId}
+          gradientUnits="userSpaceOnUse"
+          x1="1206"
+          y1="3450"
+          x2="13390"
+          y2="3450"
+          gradientTransform={`rotate(0 ${GRAD_CX} ${GRAD_CY})`}
+        >
+          {GRADIENT_STOPS_LIGHT.map((stop) => (
+            <stop key={stop.offset} offset={stop.offset} stopColor={stop.color} />
+          ))}
+        </linearGradient>
         <mask id={mask1Id}>
           <path d={wedgePath(RING1.cx, RING1.cy, RING1.r, RING1.startDeg, ring1Sweep)} fill="#ffffff" />
         </mask>
@@ -119,22 +137,22 @@ export default function FooterLogoReveal({ className }: { className?: string }) 
       </defs>
       <g transform={MARK_TRANSFORM}>
         <g transform={`rotate(${ring1Rot} ${RING1.cx} ${RING1.cy})`}>
-          <path d={RING1.d} fill={WHITE} mask={`url(#${mask1Id})`} />
+          <path d={RING1.d} fill={`url(#${gradId})`} mask={`url(#${mask1Id})`} />
         </g>
         <g transform={`rotate(${ring2Rot} ${RING2.cx} ${RING2.cy})`}>
-          <path d={RING2.d} fill={WHITE} mask={`url(#${mask2Id})`} />
+          <path d={RING2.d} fill={`url(#${gradId})`} mask={`url(#${mask2Id})`} />
         </g>
         <g
           transform={`translate(${DOT_CENTER.x},${DOT_CENTER.y}) scale(${dotScale}) translate(${-DOT_CENTER.x},${-DOT_CENTER.y})`}
           opacity={dotP}
         >
-          <path d={LOGO_PATHS.DOT_D} fill={WHITE} />
+          <path d={LOGO_PATHS.DOT_D} fill={`url(#${gradId})`} />
         </g>
         <g
           transform={`translate(${DASH_CENTER.x},${DASH_CENTER.y}) scale(${dashScale}) translate(${-DASH_CENTER.x},${-DASH_CENTER.y})`}
           opacity={dashP}
         >
-          <path d={LOGO_PATHS.DASH_D} fill={WHITE} />
+          <path d={LOGO_PATHS.DASH_D} fill={`url(#${gradId})`} />
         </g>
       </g>
       {ruleT > 0 && (
@@ -144,20 +162,20 @@ export default function FooterLogoReveal({ className }: { className?: string }) 
           x2={ruleCx + ruleHalfW}
           y2={RULE_Y}
           stroke={WHITE}
-          strokeWidth={3}
+          strokeWidth={16.9}
         />
       )}
       <text
         x={TEXT_X}
         y={TEXT_Y}
         opacity={textOpacity}
-        fontFamily="Georgia, 'Times New Roman', serif"
-        fontSize={80}
-        letterSpacing="2px"
+        fontFamily="Arial, Helvetica, sans-serif"
+        fontSize={145.6}
+        letterSpacing="3.8px"
         textAnchor="middle"
         fill={WHITE}
       >
-        Cycle Consulting
+        CYCLE CONSULTING
       </text>
     </svg>
   );

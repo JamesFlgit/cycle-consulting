@@ -25,6 +25,15 @@ export const GRADIENT_STOPS: { offset: string; color: string }[] = [
   { offset: "98.8%", color: "#0bceff" },
 ];
 
+/** Charte graphique — "Dégradé clair / bleu nuit": logo variant for dark/navy backgrounds. */
+export const GRADIENT_STOPS_LIGHT: { offset: string; color: string }[] = [
+  { offset: "1.3%", color: "#f77bf0" },
+  { offset: "17.6%", color: "#b878f0" },
+  { offset: "51.7%", color: "#6f8cf5" },
+  { offset: "84.9%", color: "#4fc3f7" },
+  { offset: "98.8%", color: "#7ef0ff" },
+];
+
 export const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 export const easeInOutCubic = (x: number) => (x < 0.5 ? 4 * x ** 3 : 1 - (-2 * x + 2) ** 3 / 2);
 export const easeOutCubic = (x: number) => 1 - (1 - x) ** 3;

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
-import ServiceColumns from "@/components/ui/ServiceColumns";
-import { businessStrategieColonnes } from "@/data/business-strategie";
+import ArticleBlocks from "@/components/ui/ArticleBlocks";
+import { businessStrategieArticle } from "@/data/articles/business-strategie";
 
 export const metadata: Metadata = {
   title: "Business & Stratégie — Cycle Consulting",
@@ -14,12 +14,12 @@ export default function BusinessStrategiePage() {
     <>
       <PageHero
         eyebrow="Business & Stratégie"
-        title="Développez votre activité à chaque étape de votre croissance"
-        description="Une meilleure connaissance de vos enjeux grâce à des Consultants expérimentés et disponibles pour vous accompagner avec Cycle Consulting."
+        title="Transformer les ambitions en résultats durables"
+        description="Conseil en Business & Stratégie."
       />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <ServiceColumns colonnes={businessStrategieColonnes} />
+      <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+        <ArticleBlocks blocks={businessStrategieArticle} />
       </section>
     </>
   );

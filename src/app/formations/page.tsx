@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import ServiceColumns from "@/components/ui/ServiceColumns";
-import { formationsColonnes } from "@/data/formations";
+import ArticleBlocks from "@/components/ui/ArticleBlocks";
+import { formationsArticle } from "@/data/articles/formations";
 
 export const metadata: Metadata = {
   title: "Formations — Cycle Consulting",
@@ -15,16 +15,16 @@ export default function FormationsPage() {
     <>
       <PageHero
         eyebrow="Formations"
-        title="Montez en compétence avec l'expertise des Consultants Cycle"
-        description="Augmentez vos performances professionnelles et personnelles grâce à des formations ciblées sur les outils du quotidien et les processus métiers."
+        title="Façonner les compétences qui accélèrent la transformation des entreprises"
+        description="L'excellence au service du développement des talents."
       >
         <div className="mt-8">
           <Breadcrumb items={["Apprendre", "Comprendre", "Entreprendre"]} />
         </div>
       </PageHero>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <ServiceColumns colonnes={formationsColonnes} withBrochure />
+      <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+        <ArticleBlocks blocks={formationsArticle} />
       </section>
     </>
   );

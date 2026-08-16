@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PageHero from "@/components/ui/PageHero";
 import ContactForm from "@/components/ui/ContactForm";
+import Slogan from "@/components/ui/Slogan";
 import { entreprise } from "@/data/entreprise";
 
 export const metadata: Metadata = {
@@ -19,16 +20,21 @@ export default function ContactPage() {
       />
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-5">
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-5">
+          <div className="md:col-span-2">
             <Image
               src="/cycle-consulting-logo-wordmark.svg"
               alt="Cycle Consulting"
-              width={220}
-              height={144}
+              width={241}
+              height={164}
               className="h-20 w-auto"
             />
+            <Slogan variant="dark" className="mt-4 text-lg font-semibold text-anthracite" />
             <div className="mt-8 space-y-4 text-sm text-anthracite-soft">
+              <div>
+                <p className="font-semibold text-anthracite">Contact</p>
+                <p>{entreprise.contact}</p>
+              </div>
               <div>
                 <p className="font-semibold text-anthracite">Adresse</p>
                 <p>{entreprise.adresse}</p>
@@ -42,14 +48,10 @@ export default function ContactPage() {
                 <p className="font-semibold text-anthracite">E-mail</p>
                 <p>{entreprise.email}</p>
               </div>
-              <div>
-                <p className="font-semibold text-anthracite">Horaires</p>
-                <p>{entreprise.horaires}</p>
-              </div>
             </div>
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="md:col-span-3">
             <h2 className="text-lg font-semibold text-anthracite">Nous contacter</h2>
             <p className="mt-2 text-sm text-anthracite-mist">
               Les champs marqués d&apos;un astérisque (*) sont obligatoires.

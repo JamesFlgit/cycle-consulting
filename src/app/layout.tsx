@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -8,6 +8,13 @@ import IntroLogoReveal from "@/components/layout/IntroLogoReveal";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const sora = Sora({
+  variable: "--font-sora",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -33,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} h-full antialiased`}>
+    <html lang="fr" className={`${inter.variable} ${sora.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <IntroLogoReveal />
         <Header />

@@ -1,12 +1,13 @@
 export const entreprise = {
   nom: "Cycle Consulting",
   slogan: "Apprendre, Comprendre, Entreprendre",
-  adresse: "[À COMPLÉTER — adresse]",
-  codePostalVille: "[À COMPLÉTER — code postal / ville]",
-  telephone: "[À COMPLÉTER — téléphone]",
-  email: "[À COMPLÉTER — email]",
-  siret: "[À COMPLÉTER — SIRET]",
-  horaires: "[À COMPLÉTER — horaires d'ouverture]",
+  contact: "Eric Zacarias",
+  adresse: "50 avenue des Champs-Élysées",
+  codePostalVille: "75008 Paris",
+  telephone: "07 66 44 40 51",
+  email: "eric.zacarias@cycle-consulting.fr",
+  siteWeb: "www.cycle-consulting.fr",
+  siren: "108 393 810",
 };
 
 export const indicatifsPays = [

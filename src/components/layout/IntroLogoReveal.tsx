@@ -24,8 +24,10 @@ const CENTER = { x: STAGE_W / 2, y: STAGE_H / 2 };
 const FINAL_POS = { x: CENTER.x, y: CENTER.y - 100 };
 const MARK_W = 1456;
 const MARK_H = 731;
-const RULE_Y = CENTER.y + 65;
-const RULE_HALF_W = 320;
+// Lockup proportions (rule width, gaps, wordmark size) match the business card artwork,
+// computed at FINAL_SCALE where the mark settles.
+const RULE_Y = CENTER.y + 52.5;
+const RULE_HALF_W = (MARK_W * FINAL_SCALE) / 2;
 const TEXT_Y = CENTER.y + 120;
 const SPIN_SPEED = 40;
 const DRAW_DUR = 1.3;
@@ -190,7 +192,7 @@ export default function IntroLogoReveal() {
             x2={CENTER.x + RULE_HALF_W * ruleT}
             y2={RULE_Y}
             stroke={MARK_COLOR}
-            strokeWidth={2}
+            strokeWidth={5.7}
           />
         )}
 
@@ -198,13 +200,13 @@ export default function IntroLogoReveal() {
           x={CENTER.x}
           y={TEXT_Y}
           opacity={textOpacity}
-          fontFamily="Georgia, 'Times New Roman', serif"
-          fontSize={46}
-          letterSpacing="2px"
+          fontFamily="Arial, Helvetica, sans-serif"
+          fontSize={49.5}
+          letterSpacing="1.3px"
           textAnchor="middle"
           fill={MARK_COLOR}
         >
-          Cycle Consulting
+          CYCLE CONSULTING
         </text>
       </svg>
     </div>
