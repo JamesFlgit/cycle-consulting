@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import OfferCard from "@/components/ui/OfferCard";
+import OffresCarousel from "@/components/ui/OffresCarousel";
 import PartnerLogo from "@/components/ui/PartnerLogo";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import StatItem from "@/components/ui/StatItem";
@@ -58,7 +59,7 @@ export default function Home() {
             description="Des consultants référencés et disponibles pour vous accompagner à chaque étape de vos projets."
           />
         </Reveal>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:hidden">
           {poles
             .filter((pole) => pole.visible)
             .map((pole, index) => (
@@ -67,6 +68,9 @@ export default function Home() {
               </Reveal>
             ))}
         </div>
+        <Reveal className="mt-10 hidden lg:block">
+          <OffresCarousel poles={poles.filter((pole) => pole.visible)} />
+        </Reveal>
       </section>
 
       <section className="bg-anthracite">
