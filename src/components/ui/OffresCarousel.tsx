@@ -6,7 +6,23 @@ import OfferCard from "@/components/ui/OfferCard";
 import type { Pole } from "@/data/poles";
 
 const AUTOPLAY_INTERVAL_MS = 5000;
-const MAX_VISIBLE_DEPTH = 2;
+
+type BreakpointKey = "mobile" | "tablet" | "desktop";
+
+const GEOMETRY: Record<
+  BreakpointKey,
+  { cardWidth: number; height: number; offset1: number; offset2: number; maxVisibleDepth: number; edgeGutter: number }
+> = {
+  mobile: { cardWidth: 280, height: 480, offset1: 180, offset2: 300, maxVisibleDepth: 1, edgeGutter: 4 },
+  tablet: { cardWidth: 280, height: 460, offset1: 220, offset2: 380, maxVisibleDepth: 2, edgeGutter: 0 },
+  desktop: { cardWidth: 280, height: 460, offset1: 230, offset2: 400, maxVisibleDepth: 2, edgeGutter: 0 },
+};
+
+function getBreakpoint(width: number): BreakpointKey {
+  if (width < 640) return "mobile";
+  if (width < 1024) return "tablet";
+  return "desktop";
+}
 
 /** Shortest signed distance from `index` to the active card, in either rotation direction. */
 function getOffset(index: number, activeIndex: number, length: number) {
@@ -17,13 +33,13 @@ function getOffset(index: number, activeIndex: number, length: number) {
   return diff;
 }
 
-function transformForOffset(offset: number) {
+function transformForOffset(offset: number, geometry: (typeof GEOMETRY)[BreakpointKey]) {
   const abs = Math.abs(offset);
   const dir = Math.sign(offset);
-  if (abs > MAX_VISIBLE_DEPTH) {
-    return { x: dir * 640, scale: 0.5, opacity: 0, zIndex: 0 };
+  if (abs > geometry.maxVisibleDepth) {
+    return { x: dir * (geometry.offset2 + geometry.cardWidth), scale: 0.5, opacity: 0, zIndex: 0 };
   }
-  const x = dir * (abs === 1 ? 230 : 400);
+  const x = dir * (abs === 1 ? geometry.offset1 : geometry.offset2);
   const scale = 1 - abs * 0.16;
   const opacity = abs === 0 ? 1 : abs === 1 ? 0.85 : 0.5;
   const zIndex = 30 - abs * 10;
@@ -33,7 +49,16 @@ function transformForOffset(offset: number) {
 export default function OffresCarousel({ poles }: { poles: Pole[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [breakpoint, setBreakpoint] = useState<BreakpointKey>("desktop");
+  const geometry = GEOMETRY[breakpoint];
   const length = poles.length;
+
+  useEffect(() => {
+    const updateBreakpoint = () => setBreakpoint(getBreakpoint(window.innerWidth));
+    updateBreakpoint();
+    window.addEventListener("resize", updateBreakpoint);
+    return () => window.removeEventListener("resize", updateBreakpoint);
+  }, []);
 
   const goTo = useCallback((direction: 1 | -1) => {
     setActiveIndex((current) => current + direction);
@@ -49,7 +74,7 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
 
   return (
     <div
-      className="relative mx-auto hidden max-w-5xl lg:block"
+      className="relative mx-auto max-w-5xl"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onKeyDown={(event) => {
@@ -57,20 +82,20 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
         if (event.key === "ArrowRight") goTo(1);
       }}
     >
-      <div className="relative h-[460px] overflow-x-hidden">
+      <div className="relative overflow-x-hidden" style={{ height: geometry.height }}>
         {poles.map((pole, index) => {
           const offset = getOffset(index, activeIndex, length);
-          const { x, scale, opacity, zIndex } = transformForOffset(offset);
+          const { x, scale, opacity, zIndex } = transformForOffset(offset, geometry);
           const isActive = offset === 0;
           return (
             <div
               key={pole.slug}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-              style={{ zIndex, pointerEvents: Math.abs(offset) > MAX_VISIBLE_DEPTH ? "none" : "auto" }}
+              style={{ zIndex, pointerEvents: Math.abs(offset) > geometry.maxVisibleDepth ? "none" : "auto" }}
               aria-hidden={!isActive}
             >
               <motion.div
-                className="w-[280px]"
+                style={{ width: geometry.cardWidth }}
                 animate={{ x, scale, opacity }}
                 transition={{ type: "spring", stiffness: 240, damping: 28 }}
               >
@@ -84,17 +109,19 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
           type="button"
           aria-label="Offre précédente"
           onClick={() => goTo(-1)}
-          className="absolute left-0 top-1/2 z-40 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border-subtle bg-surface shadow-sm transition-colors hover:bg-surface-alt"
+          className="absolute top-1/2 z-40 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border-subtle bg-surface shadow-sm transition-colors hover:bg-surface-alt sm:h-11 sm:w-11"
+          style={{ left: geometry.edgeGutter }}
         >
-          <ChevronIcon className="h-5 w-5 rotate-180" />
+          <ChevronIcon className="h-4 w-4 rotate-180 sm:h-5 sm:w-5" />
         </button>
         <button
           type="button"
           aria-label="Offre suivante"
           onClick={() => goTo(1)}
-          className="absolute right-0 top-1/2 z-40 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border-subtle bg-surface shadow-sm transition-colors hover:bg-surface-alt"
+          className="absolute top-1/2 z-40 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border-subtle bg-surface shadow-sm transition-colors hover:bg-surface-alt sm:h-11 sm:w-11"
+          style={{ right: geometry.edgeGutter }}
         >
-          <ChevronIcon className="h-5 w-5" />
+          <ChevronIcon className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
       </div>
 

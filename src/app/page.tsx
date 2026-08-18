@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
-import OfferCard from "@/components/ui/OfferCard";
+import BrochureCallout from "@/components/ui/BrochureCallout";
 import OffresCarousel from "@/components/ui/OffresCarousel";
 import PartnerLogo from "@/components/ui/PartnerLogo";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
@@ -59,16 +59,7 @@ export default function Home() {
             description="Des consultants référencés et disponibles pour vous accompagner à chaque étape de vos projets."
           />
         </Reveal>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:hidden">
-          {poles
-            .filter((pole) => pole.visible)
-            .map((pole, index) => (
-              <Reveal key={pole.slug} delay={index * 0.08} className="h-full">
-                <OfferCard pole={pole} />
-              </Reveal>
-            ))}
-        </div>
-        <Reveal className="mt-10 hidden lg:block">
+        <Reveal className="mt-10">
           <OffresCarousel poles={poles.filter((pole) => pole.visible)} />
         </Reveal>
       </section>
@@ -92,12 +83,17 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>
-          <SectionHeading eyebrow="Références" title="Nos cas clients" center />
+          <SectionHeading
+            eyebrow="Références"
+            title="Nos cas clients"
+            description="Références présentées de façon anonymisée pour des raisons de confidentialité contractuelle — enjeux et résultats réels, nom du client non communiqué."
+            center
+          />
         </Reveal>
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {casClientsApercu.map((casClient, index) => (
-            <Reveal key={casClient.slug} delay={index * 0.08}>
-              <CasClientCard casClient={casClient} />
+            <Reveal key={casClient.slug} delay={index * 0.08} className="h-full">
+              <CasClientCard casClient={casClient} imageHeader />
             </Reveal>
           ))}
         </div>
@@ -189,6 +185,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <BrochureCallout />
     </>
   );
 }

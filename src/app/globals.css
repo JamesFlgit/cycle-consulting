@@ -119,6 +119,15 @@ body {
   pointer-events: none;
 }
 
+/* Light fill variant — the "dégradé clair / bleu nuit" logo gradient, for CTAs
+   sitting on a dark navy (bleu-nuit) surface. Dark text at rest for contrast
+   against the pale fill; the shared hover rule below switches it back to
+   white once the fill turns transparent. */
+.cta-primary-light {
+  background-image: linear-gradient(115deg, #f77bf0 0%, #b878f0 25%, #6f8cf5 50%, #4fc3f7 75%, #7ef0ff 100%);
+  color: var(--color-bleu-nuit);
+}
+
 .cta-primary:hover,
 .cta-primary:focus-visible {
   background: transparent;

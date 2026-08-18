@@ -33,6 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# locally captured leads (contains personal data — never commit)
+/data/
+
 # vercel
 .vercel
 

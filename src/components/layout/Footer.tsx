@@ -12,7 +12,7 @@ const GRADIENT_TEXT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff
 export default function Footer() {
   return (
     <footer className="border-t border-border-subtle bg-bleu-nuit text-white">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-5 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-6 lg:px-8">
         <div className="md:col-span-2">
           <FooterLogoReveal className="h-24 w-auto" />
           <Slogan variant="light" className="mt-4 text-base font-semibold text-white" />
@@ -57,7 +57,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="lg:col-span-2">
           <h3 className={`text-sm font-semibold uppercase tracking-wide ${GRADIENT_TEXT}`}>Coordonnées</h3>
           <div className="mt-4 space-y-2 text-sm text-white">
             <div className="flex items-start gap-2">
@@ -70,15 +70,15 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-2">
               <PhoneIcon className="h-4 w-4 shrink-0" />
-              <p>{entreprise.telephone}</p>
+              <p className="whitespace-nowrap">{entreprise.telephone}</p>
             </div>
             <div className="flex items-center gap-2">
               <EmailIcon className="h-4 w-4 shrink-0" />
-              <p>{entreprise.email}</p>
+              <p className="whitespace-nowrap">{entreprise.email}</p>
             </div>
             <div className="flex items-center gap-2">
               <GlobeIcon className="h-4 w-4 shrink-0" />
-              <p>{entreprise.siteWeb}</p>
+              <p className="whitespace-nowrap">{entreprise.siteWeb}</p>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ export const entreprise = {
   adresse: "50 avenue des Champs-Élysées",
   codePostalVille: "75008 Paris",
   telephone: "07 66 44 40 51",
-  email: "eric.zacarias@cycle-consulting.fr",
+  email: "contact@cycle-consulting.fr",
   siteWeb: "www.cycle-consulting.fr",
   siren: "108 393 810",
 };
