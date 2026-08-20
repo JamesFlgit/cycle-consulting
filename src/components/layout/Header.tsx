@@ -83,6 +83,7 @@ export default function Header() {
               <NavDropdown
                 key={section.key}
                 label={section.label}
+                href={section.hubHref}
                 groups={section.groups}
                 isOpen={openDesktopKey === section.key}
                 onToggle={() => setOpenDesktopKey((current) => (current === section.key ? null : section.key))}
@@ -156,30 +157,39 @@ export default function Header() {
               const isGroupOpen = openMobileKey === section.key;
               return (
                 <li key={section.key}>
-                  <button
-                    type="button"
-                    onClick={() => setOpenMobileKey((current) => (current === section.key ? null : section.key))}
-                    aria-expanded={isGroupOpen}
-                    className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-anthracite-soft hover:bg-surface-alt hover:text-anthracite"
-                  >
-                    {section.label}
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      aria-hidden="true"
-                      className={`transition-transform ${isGroupOpen ? "rotate-180" : ""}`}
+                  <div className="flex w-full items-center justify-between rounded-md text-sm font-medium text-anthracite-soft hover:bg-surface-alt hover:text-anthracite">
+                    {section.hubHref ? (
+                      <Link href={section.hubHref} onClick={closeAll} className="flex-1 px-3 py-2">
+                        {section.label}
+                      </Link>
+                    ) : (
+                      <span className="flex-1 px-3 py-2">{section.label}</span>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setOpenMobileKey((current) => (current === section.key ? null : section.key))}
+                      aria-expanded={isGroupOpen}
+                      aria-label={`Afficher le sous-menu ${section.label}`}
+                      className="px-3 py-2"
                     >
-                      <path
-                        d="m5 8 5 5 5-5"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        aria-hidden="true"
+                        className={`transition-transform ${isGroupOpen ? "rotate-180" : ""}`}
+                      >
+                        <path
+                          d="m5 8 5 5 5-5"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                   {isGroupOpen && (
                     <div className="pl-3">
                       {section.groups.map((group) => {

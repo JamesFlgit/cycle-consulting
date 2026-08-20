@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import OfferCard from "@/components/ui/OfferCard";
 import type { Pole } from "@/data/poles";
 
-const AUTOPLAY_INTERVAL_MS = 5000;
-
 type BreakpointKey = "mobile" | "tablet" | "desktop";
 
 const GEOMETRY: Record<
@@ -47,8 +45,7 @@ function transformForOffset(offset: number, geometry: (typeof GEOMETRY)[Breakpoi
 }
 
 export default function OffresCarousel({ poles }: { poles: Pole[] }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(() => Math.max(0, poles.findIndex((p) => p.slug === "formations")));
   const [breakpoint, setBreakpoint] = useState<BreakpointKey>("desktop");
   const geometry = GEOMETRY[breakpoint];
   const length = poles.length;
@@ -64,19 +61,11 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
     setActiveIndex((current) => current + direction);
   }, []);
 
-  useEffect(() => {
-    if (isPaused || length <= 1) return;
-    const id = setInterval(() => goTo(1), AUTOPLAY_INTERVAL_MS);
-    return () => clearInterval(id);
-  }, [isPaused, length, goTo]);
-
   const activeMod = ((activeIndex % length) + length) % length;
 
   return (
     <div
       className="relative mx-auto max-w-5xl"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       onKeyDown={(event) => {
         if (event.key === "ArrowLeft") goTo(-1);
         if (event.key === "ArrowRight") goTo(1);
@@ -125,7 +114,39 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
         </button>
       </div>
 
-      <div className="mt-8 flex justify-center gap-2">
+      {/* Card-style navigation — only from sm up; too wide for a phone screen. */}
+      <div className="mt-8 hidden flex-wrap justify-center gap-3 sm:flex">
+        {poles.map((pole, index) => {
+          const isActive = index === activeMod;
+          return (
+            <button
+              key={pole.slug}
+              type="button"
+              aria-label={`Aller à l'offre ${pole.navLabel}`}
+              aria-current={isActive}
+              onClick={() => setActiveIndex(index)}
+              className={
+                isActive
+                  ? "rounded-xl bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] p-[1.5px] shadow-sm transition-shadow"
+                  : "rounded-xl border border-border-subtle bg-surface p-[1.5px] transition-colors hover:border-anthracite"
+              }
+            >
+              <span
+                className={`flex min-w-32 flex-col items-center justify-center rounded-[calc(0.75rem-1.5px)] px-4 py-6 text-center text-sm font-semibold ${
+                  isActive
+                    ? "bg-gradient-to-br from-bleu-nuit to-[#16305e] text-white"
+                    : "text-anthracite-mist hover:text-anthracite"
+                }`}
+              >
+                {pole.navLabel}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Dots — mobile only. */}
+      <div className="mt-8 flex justify-center gap-2 sm:hidden">
         {poles.map((pole, index) => (
           <button
             key={pole.slug}

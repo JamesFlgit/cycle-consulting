@@ -50,6 +50,11 @@ export default function Footer() {
                 </li>
               ))}
             <li>
+              <Link href="/faq" className="text-sm text-white transition-colors hover:underline">
+                Questions fréquentes
+              </Link>
+            </li>
+            <li>
               <Link href="/contact" className="text-sm text-white transition-colors hover:underline">
                 Nous contacter
               </Link>

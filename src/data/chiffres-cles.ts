@@ -1,6 +1,7 @@
 export type ChiffreCle = {
   valeur: string;
   libelle: string;
+  suffix?: string;
 };
 
 export const chiffresCles: ChiffreCle[] = [

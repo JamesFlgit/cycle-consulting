@@ -24,7 +24,7 @@ export type NavItemGroup = { category: string; items: NavItem[] };
 export type RenderableSection =
   | { key: string; label: string; mode: "hidden" }
   | { key: string; label: string; mode: "link"; href: string }
-  | { key: string; label: string; mode: "dropdown"; groups: NavItemGroup[] };
+  | { key: string; label: string; mode: "dropdown"; groups: NavItemGroup[]; hubHref?: string };
 
 const navSections: NavSection[] = [
   { key: "expertises", label: "Expertises", items: poles },
@@ -46,6 +46,13 @@ const navSections: NavSection[] = [
 /** Sections that always link straight to their hub page instead of listing items in a dropdown. */
 const HUB_LINK_SECTIONS: Record<string, string> = {
   "cas-clients": "/cas-clients",
+};
+
+/** Sections that keep their dropdown of sub-items but whose label also links
+ * straight to a hub page — clicking the label navigates there, the chevron
+ * still opens the sub-item list. */
+const DROPDOWN_HUB_HREF: Record<string, string> = {
+  entreprise: "/a-propos",
 };
 
 export function getRenderableSections(): RenderableSection[] {
@@ -77,6 +84,7 @@ export function getRenderableSections(): RenderableSection[] {
       label: section.label,
       mode: "dropdown",
       groups: [...byCategory.entries()].map(([category, items]) => ({ category, items })),
+      hubHref: DROPDOWN_HUB_HREF[section.key],
     };
   });
 }

@@ -7,18 +7,39 @@ import PartnerLogo from "@/components/ui/PartnerLogo";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import StatItem from "@/components/ui/StatItem";
 import ContactForm from "@/components/ui/ContactForm";
-import CasClientCard from "@/components/ui/CasClientCard";
+import { EmailIcon } from "@/components/icons/card-icons";
+// import CasClientCard from "@/components/ui/CasClientCard"; // "Nos cas clients" section — see below
 import Reveal from "@/components/ui/Reveal";
 import Slogan from "@/components/ui/Slogan";
+import DonutChart from "@/components/ui/DonutChart";
+import InternationalHighlight from "@/components/ui/InternationalHighlight";
+import FaqAccordion from "@/components/ui/FaqAccordion";
 import { poles } from "@/data/poles";
 import { partenaires } from "@/data/partenaires";
 import { temoignages } from "@/data/temoignages";
 import { entreprise } from "@/data/entreprise";
 import { chiffresCles } from "@/data/chiffres-cles";
-import { casClients } from "@/data/cas-clients";
+// import { casClients } from "@/data/cas-clients"; // "Nos cas clients" section — see below
+import { repartitionPractices, repartitionGenre } from "@/data/repartitions";
+import { faqThemes } from "@/data/faq";
+
+const homepageFaq = { theme: "Questions fréquentes", items: faqThemes.flatMap((t) => t.items).filter((item) => item.highlight) };
+
+// Brand gradient, light variant — see Slogan.tsx — reused here on the dark
+// "chiffres" section for the same on-brand accent treatment.
+const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+// Brand gradient, dark variant — see Slogan.tsx — for the same accent on the
+// page's light sections.
+const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
+
+const satisfaction: (typeof chiffresCles)[number] = {
+  valeur: "98",
+  suffix: "%",
+  libelle: "taux de satisfaction client",
+};
 
 export default function Home() {
-  const casClientsApercu = casClients.filter((c) => c.visible).slice(0, 3);
+  // const casClientsApercu = casClients.filter((c) => c.visible).slice(0, 3); // "Nos cas clients" section — see below
 
   return (
     <>
@@ -55,7 +76,11 @@ export default function Home() {
         <Reveal>
           <SectionHeading
             eyebrow="Nos offres"
-            title="Cinq pôles d'expertise au service de votre performance"
+            title={
+              <>
+                Cinq pôles d&apos;expertise au service de <span className={GRADIENT_DARK}>votre performance</span>
+              </>
+            }
             description="Des consultants référencés et disponibles pour vous accompagner à chaque étape de vos projets."
           />
         </Reveal>
@@ -64,23 +89,57 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <section className="bg-anthracite">
+      <section className="bg-chiffres-section">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <Reveal>
-            <p className="text-center text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
-              Cycle Consulting en chiffres
-            </p>
+            <h2 className="text-center text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              Cycle Consulting en <span className={GRADIENT_LIGHT}>chiffres</span>
+            </h2>
           </Reveal>
-          <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-3">
-            {chiffresCles.map((chiffre, index) => (
+
+          <div className="mt-10 grid grid-cols-2 gap-10 lg:grid-cols-4">
+            {[...chiffresCles, satisfaction].map((chiffre, index) => (
               <Reveal key={chiffre.libelle} delay={index * 0.1}>
                 <StatItem chiffre={chiffre} />
               </Reveal>
             ))}
           </div>
+
+          <Reveal className="mt-24">
+            <InternationalHighlight />
+          </Reveal>
+
+          <div className="mt-24 grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <Reveal>
+              <h3 className={`text-center text-sm font-semibold uppercase tracking-wide ${GRADIENT_LIGHT}`}>
+                Nos effectifs par pôle d&apos;expertise
+              </h3>
+              <div className="mt-6">
+                <DonutChart
+                  data={repartitionPractices}
+                  ariaLabel="Répartition des effectifs par pôle d'expertise : Service Managé 31%, Infogérance 26%, Business et Stratégie 22%, Centre Logistique 14%, Formations 7%"
+                />
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h3 className={`text-center text-sm font-semibold uppercase tracking-wide ${GRADIENT_LIGHT}`}>
+                Parité au sein de nos équipes
+              </h3>
+              <div className="mt-6">
+                <DonutChart
+                  data={repartitionGenre}
+                  ariaLabel="Répartition Hommes / Femmes des effectifs : Hommes 62%, Femmes 38%"
+                />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
+      {/* "Nos cas clients" section — removed from the homepage at the client's
+          request, kept here (and the casClientsApercu/CasClientCard wiring
+          below) so it can be restored by uncommenting if they want it back. */}
+      {/*
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
@@ -106,11 +165,16 @@ export default function Home() {
           </Link>
         </div>
       </section>
+      */}
 
       <section className="bg-surface-alt py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionHeading eyebrow="Ils nous font confiance" title="Nos partenaires" center />
+            <SectionHeading
+              eyebrow={<span className={GRADIENT_DARK}>Ils nous font confiance</span>}
+              title="Nos partenaires"
+              center
+            />
           </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
             {partenaires.map((p, index) => (
@@ -145,7 +209,14 @@ export default function Home() {
       <section className="bg-surface-alt py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionHeading title="Un projet ? Parlons-en avec un consultant Cycle." center />
+            <SectionHeading
+              title={
+                <>
+                  Un projet ? <span className={GRADIENT_DARK}>Parlons-en</span> avec un consultant Cycle.
+                </>
+              }
+              center
+            />
           </Reveal>
           <div className="mt-10 grid grid-cols-1 gap-12 md:grid-cols-5">
             <Reveal className="md:col-span-2">
@@ -157,20 +228,13 @@ export default function Home() {
                 className="h-20 w-auto"
               />
               <Slogan variant="dark" className="mt-4 text-lg font-semibold text-anthracite" />
-              <div className="mt-8 space-y-4 text-sm text-anthracite-soft">
-                <div>
-                  <p className="font-semibold text-anthracite">Contact</p>
-                  <p>{entreprise.contact}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-anthracite">Téléphone</p>
-                  <p>{entreprise.telephone}</p>
-                </div>
-                <div>
-                  <p className="font-semibold text-anthracite">E-mail</p>
-                  <p>{entreprise.email}</p>
-                </div>
-              </div>
+              <a
+                href={`mailto:${entreprise.email}`}
+                className="mt-8 inline-flex items-center gap-2.5 rounded-md border border-border-subtle bg-surface-alt px-4 py-3 text-sm font-semibold text-anthracite transition-colors hover:border-anthracite"
+              >
+                <EmailIcon className="h-5 w-5 shrink-0 text-anthracite-mist" />
+                {entreprise.email}
+              </a>
             </Reveal>
 
             <Reveal className="md:col-span-3" delay={0.1}>
@@ -184,6 +248,20 @@ export default function Home() {
             </Reveal>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
+        <Reveal>
+          <SectionHeading eyebrow="FAQ" title="Questions fréquentes" center />
+        </Reveal>
+        <Reveal className="mt-10">
+          <FaqAccordion theme={homepageFaq} />
+        </Reveal>
+        <Reveal className="mt-8 text-center">
+          <Link href="/faq" className="text-sm font-semibold text-anthracite underline-offset-4 hover:underline">
+            Voir toutes les questions →
+          </Link>
+        </Reveal>
       </section>
 
       <BrochureCallout />

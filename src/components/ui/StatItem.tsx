@@ -6,6 +6,7 @@ export default function StatItem({ chiffre }: { chiffre: ChiffreCle }) {
     <div className="text-center">
       <p className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
         <Counter to={parseInt(chiffre.valeur, 10)} />
+        {chiffre.suffix}
       </p>
       <p className="mt-2 text-xs font-medium uppercase tracking-wide text-white/70 sm:text-sm">{chiffre.libelle}</p>
     </div>

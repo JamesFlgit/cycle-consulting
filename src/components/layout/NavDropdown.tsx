@@ -6,6 +6,7 @@ import type { NavItemGroup } from "@/data/nav-sections";
 
 export default function NavDropdown({
   label,
+  href,
   groups,
   isOpen,
   onToggle,
@@ -16,6 +17,8 @@ export default function NavDropdown({
   transparent = false,
 }: {
   label: string;
+  /** When set, the label itself links straight to this hub page — the chevron stays a separate toggle for the dropdown. */
+  href?: string;
   groups: NavItemGroup[];
   isOpen: boolean;
   onToggle: () => void;
@@ -58,12 +61,8 @@ export default function NavDropdown({
 
   return (
     <div ref={rootRef} className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-haspopup="true"
-        aria-expanded={isOpen}
-        className={`flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+      <div
+        className={`flex items-center rounded-md text-sm font-medium transition-colors ${
           transparent
             ? isActive || isOpen
               ? "bg-white/10 text-white"
@@ -73,18 +72,33 @@ export default function NavDropdown({
               : "text-anthracite-soft hover:bg-surface-alt hover:text-anthracite"
         }`}
       >
-        {label}
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 20 20"
-          fill="none"
-          aria-hidden="true"
-          className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+        {href ? (
+          <Link href={href} onClick={onClose} className="py-2 pl-3">
+            {label}
+          </Link>
+        ) : (
+          <span className="py-2 pl-3">{label}</span>
+        )}
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-haspopup="true"
+          aria-expanded={isOpen}
+          aria-label={`Afficher le sous-menu ${label}`}
+          className="flex items-center py-2 pr-3 pl-1.5"
         >
-          <path d="m5 8 5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 20 20"
+            fill="none"
+            aria-hidden="true"
+            className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+          >
+            <path d="m5 8 5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
 
       {isOpen && (
         <div className="absolute left-0 top-full z-50 mt-2 w-72 rounded-xl border border-border-subtle bg-surface p-3 shadow-lg">
