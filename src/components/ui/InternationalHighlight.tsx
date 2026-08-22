@@ -5,9 +5,6 @@ import { motion, useInView } from "framer-motion";
 import RotatingGlobe, { REGIONS, ACCENT } from "@/components/ui/RotatingGlobe";
 
 const DWELL_MS = 4500;
-// Brand gradient, light variant — see Slogan.tsx — reused here on the dark
-// "chiffres" section for the same on-brand accent treatment.
-const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export default function InternationalHighlight() {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,12 +19,9 @@ export default function InternationalHighlight() {
   }, [activeIndex]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center pt-4 pb-6 sm:pt-8 sm:pb-10">
-      <p className={`text-center text-lg font-semibold ${GRADIENT_LIGHT}`}>Dimension internationale</p>
-      <p className="mt-1 text-center text-sm text-white/60">Une présence déployée sur 3 continents</p>
-
+    <div ref={ref} className="flex flex-col items-center">
       <motion.div
-        className="mt-8 w-full"
+        className="w-full"
         initial={{ opacity: 0, scale: 0.92 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.7, ease: "easeOut" }}

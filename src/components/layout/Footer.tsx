@@ -11,7 +11,7 @@ const GRADIENT_TEXT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border-subtle bg-bleu-nuit text-white">
+    <footer className="border-t border-[#16305e] bg-bleu-nuit text-white">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-6 lg:px-8">
         <div className="md:col-span-2">
           <FooterLogoReveal className="h-24 w-auto" />
@@ -49,11 +49,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-            <li>
-              <Link href="/faq" className="text-sm text-white transition-colors hover:underline">
-                Questions fréquentes
-              </Link>
-            </li>
             <li>
               <Link href="/contact" className="text-sm text-white transition-colors hover:underline">
                 Nous contacter

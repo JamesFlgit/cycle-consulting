@@ -16,6 +16,7 @@ export const entrepriseNavItems: NavItem[] = [
   },
   { slug: "equipe", href: "/a-propos#equipe", navLabel: "L'équipe", visible: true },
   { slug: "rejoignez-nous", href: "/rejoignez-nous", navLabel: "Rejoignez-nous", visible: true },
+  { slug: "faq", href: "/faq", navLabel: "Questions fréquentes", visible: true },
   { slug: "partenaires", href: "/partenaires", navLabel: "Nos partenaires", visible: true, showInNav: false },
   { slug: "livre-or", href: "/livre-or", navLabel: "Livre d'or", visible: true, showInNav: false },
 ];

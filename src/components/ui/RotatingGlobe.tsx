@@ -266,7 +266,7 @@ export default function RotatingGlobe({ active }: { active: ContinentKey | null 
     <div className="relative mx-auto aspect-square w-full max-w-md">
       <div
         className="absolute inset-[-8%] rounded-full opacity-25 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(255,255,255,0.9) 0%, transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(126,240,255,0.9) 0%, transparent 65%)" }}
       />
 
       <div
@@ -283,7 +283,7 @@ export default function RotatingGlobe({ active }: { active: ContinentKey | null 
 
       <div
         ref={labelRef}
-        className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full border px-3 py-1 text-xs font-semibold whitespace-nowrap text-white sm:text-sm"
+        className="pointer-events-none absolute max-w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border px-3 py-1 text-center text-xs font-semibold text-white sm:max-w-none sm:whitespace-nowrap sm:text-sm"
         style={{
           transition: "opacity 0.3s ease, left 0.05s linear, top 0.05s linear",
           borderColor: ACCENT,

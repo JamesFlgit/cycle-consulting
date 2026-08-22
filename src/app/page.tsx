@@ -11,8 +11,6 @@ import { EmailIcon } from "@/components/icons/card-icons";
 // import CasClientCard from "@/components/ui/CasClientCard"; // "Nos cas clients" section — see below
 import Reveal from "@/components/ui/Reveal";
 import Slogan from "@/components/ui/Slogan";
-import DonutChart from "@/components/ui/DonutChart";
-import InternationalHighlight from "@/components/ui/InternationalHighlight";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import { poles } from "@/data/poles";
 import { partenaires } from "@/data/partenaires";
@@ -20,7 +18,6 @@ import { temoignages } from "@/data/temoignages";
 import { entreprise } from "@/data/entreprise";
 import { chiffresCles } from "@/data/chiffres-cles";
 // import { casClients } from "@/data/cas-clients"; // "Nos cas clients" section — see below
-import { repartitionPractices, repartitionGenre } from "@/data/repartitions";
 import { faqThemes } from "@/data/faq";
 
 const homepageFaq = { theme: "Questions fréquentes", items: faqThemes.flatMap((t) => t.items).filter((item) => item.highlight) };
@@ -31,6 +28,9 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 // Brand gradient, dark variant — see Slogan.tsx — for the same accent on the
 // page's light sections.
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
+// Deeper/darker take on the same gradient (stops dimmed ~30%) for headings
+// that need more contrast against a light background.
+const GRADIENT_DARK_DEEP = "bg-gradient-to-r from-[#af0cad] via-[#0d1e9b] to-[#0890b3] bg-clip-text text-transparent";
 
 const satisfaction: (typeof chiffresCles)[number] = {
   valeur: "98",
@@ -45,12 +45,12 @@ export default function Home() {
     <>
       <section className="bg-home-hero flex min-h-screen items-center">
         <div className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/60 sm:text-sm">
+          <h1 className="max-w-3xl text-lg font-bold text-white sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl">
             Conseil &amp; Services IT
-          </p>
-          <h1 className="mt-4 max-w-3xl text-lg font-bold text-white sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl">
-            <Slogan variant="light" />
           </h1>
+          <h2 className="mt-4 text-xs font-semibold uppercase tracking-[0.25em] text-white/60 sm:text-sm">
+            <Slogan variant="light" />
+          </h2>
           <p className="mt-10 max-w-2xl text-base leading-relaxed text-white sm:mt-12 sm:text-lg">
             Cycle Consulting accompagne les décideurs d&apos;entreprise avec des consultants experts en
             formations, service managé, infogérance, business &amp; stratégie, ingénierie IT et logistique.
@@ -78,7 +78,8 @@ export default function Home() {
             eyebrow="Nos offres"
             title={
               <>
-                Cinq pôles d&apos;expertise au service de <span className={GRADIENT_DARK}>votre performance</span>
+                Cinq pôles d&apos;expertise au service de{" "}
+                <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>votre performance</span>
               </>
             }
             description="Des consultants référencés et disponibles pour vous accompagner à chaque étape de vos projets."
@@ -103,35 +104,6 @@ export default function Home() {
                 <StatItem chiffre={chiffre} />
               </Reveal>
             ))}
-          </div>
-
-          <Reveal className="mt-24">
-            <InternationalHighlight />
-          </Reveal>
-
-          <div className="mt-24 grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <Reveal>
-              <h3 className={`text-center text-sm font-semibold uppercase tracking-wide ${GRADIENT_LIGHT}`}>
-                Nos effectifs par pôle d&apos;expertise
-              </h3>
-              <div className="mt-6">
-                <DonutChart
-                  data={repartitionPractices}
-                  ariaLabel="Répartition des effectifs par pôle d'expertise : Service Managé 31%, Infogérance 26%, Business et Stratégie 22%, Centre Logistique 14%, Formations 7%"
-                />
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h3 className={`text-center text-sm font-semibold uppercase tracking-wide ${GRADIENT_LIGHT}`}>
-                Parité au sein de nos équipes
-              </h3>
-              <div className="mt-6">
-                <DonutChart
-                  data={repartitionGenre}
-                  ariaLabel="Répartition Hommes / Femmes des effectifs : Hommes 62%, Femmes 38%"
-                />
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
@@ -171,7 +143,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeading
-              eyebrow={<span className={GRADIENT_DARK}>Ils nous font confiance</span>}
+              eyebrow={<span className={GRADIENT_DARK_DEEP}>Ils nous font confiance</span>}
               title="Nos partenaires"
               center
             />
@@ -250,6 +222,8 @@ export default function Home() {
         </div>
       </section>
 
+      <BrochureCallout />
+
       <section className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading eyebrow="FAQ" title="Questions fréquentes" center />
@@ -263,8 +237,6 @@ export default function Home() {
           </Link>
         </Reveal>
       </section>
-
-      <BrochureCallout />
     </>
   );
 }

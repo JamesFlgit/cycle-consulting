@@ -91,6 +91,16 @@ body {
   background-size: cover, cover, 60px 60px;
 }
 
+/* Light pastel wash of the brand gradient (magenta/blue/cyan, heavily
+   diluted) on a near-white base — for the callout section's "stand out"
+   treatment, paired with dark gradient text instead of light-on-dark. */
+.bg-callout-light {
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(250, 17, 247, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(11, 206, 255, 0.14) 0%, transparent 50%),
+    linear-gradient(160deg, #fdf4fe 0%, #f5f6ff 50%, #eefbff 100%);
+}
+
 /* Primary CTA: filled at rest with the logo's static brand gradient (no
    animation). On hover the fill becomes transparent and a thin gradient
    border appears, drifting very slowly. Add `cta-primary-on-light` as well

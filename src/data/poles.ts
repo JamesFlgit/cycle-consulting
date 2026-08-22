@@ -7,11 +7,14 @@ export type Pole = {
   teaser: { accroche: string; apartirde: string };
   metaTitle: string;
   metaDescription: string;
+  /** Card header photo — see public/images/offres/. */
+  image: string;
 };
 
 export const poles: Pole[] = [
   {
     slug: "formations",
+    image: "/images/offres/formations.jpg",
     href: "/formations",
     navLabel: "Formations",
     category: "Formations & Certifications",
@@ -27,6 +30,7 @@ export const poles: Pole[] = [
   },
   {
     slug: "service-manage",
+    image: "/images/offres/service-manage.jpg",
     href: "/service-manage",
     navLabel: "Service Managé",
     category: "Pilotage & Support",
@@ -42,6 +46,7 @@ export const poles: Pole[] = [
   },
   {
     slug: "business-strategie",
+    image: "/images/offres/business-strategie.jpg",
     href: "/business-strategie",
     navLabel: "Business & Stratégie",
     category: "Conseil & Stratégie",
@@ -57,6 +62,7 @@ export const poles: Pole[] = [
   },
   {
     slug: "ingenierie-it-support",
+    image: "/images/offres/ingenierie-it-support.jpg",
     href: "/ingenierie-it-support",
     navLabel: "Ingénierie & IT Support",
     category: "Ingénierie IT",
@@ -72,6 +78,7 @@ export const poles: Pole[] = [
   },
   {
     slug: "centre-logistique",
+    image: "/images/offres/centre-logistique.jpg",
     href: "/centre-logistique",
     navLabel: "Centre Logistique",
     category: "Logistique IT",

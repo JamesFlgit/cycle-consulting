@@ -100,7 +100,7 @@ export default function DonutChart({
           initial={{ opacity: 0, y: 6 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: 0.65 + i * 0.15, ease: "easeOut" }}
-          className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 whitespace-nowrap text-center text-xs sm:text-sm"
+          className="absolute flex w-20 -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-0 text-center text-xs sm:w-auto sm:whitespace-nowrap sm:text-sm"
           style={{ left: `${(seg.tag[0] / SIZE) * 100}%`, top: `${(seg.tag[1] / SIZE) * 100}%` }}
         >
           <span className="text-white/70">{seg.label}</span>

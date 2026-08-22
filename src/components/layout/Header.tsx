@@ -67,7 +67,7 @@ export default function Header() {
                     transparent
                       ? active
                         ? "bg-white/10 text-white"
-                        : "text-white/80 hover:bg-white/10 hover:text-white"
+                        : "text-white hover:bg-white/10"
                       : active
                         ? "bg-surface-alt text-anthracite"
                         : "text-anthracite-soft hover:bg-surface-alt hover:text-anthracite"

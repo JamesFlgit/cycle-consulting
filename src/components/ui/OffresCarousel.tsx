@@ -9,11 +9,19 @@ type BreakpointKey = "mobile" | "tablet" | "desktop";
 
 const GEOMETRY: Record<
   BreakpointKey,
-  { cardWidth: number; height: number; offset1: number; offset2: number; maxVisibleDepth: number; edgeGutter: number }
+  {
+    cardWidth: number;
+    activeScale: number;
+    height: number;
+    offset1: number;
+    offset2: number;
+    maxVisibleDepth: number;
+    edgeGutter: number;
+  }
 > = {
-  mobile: { cardWidth: 280, height: 480, offset1: 180, offset2: 300, maxVisibleDepth: 1, edgeGutter: 4 },
-  tablet: { cardWidth: 280, height: 460, offset1: 220, offset2: 380, maxVisibleDepth: 2, edgeGutter: 0 },
-  desktop: { cardWidth: 280, height: 460, offset1: 230, offset2: 400, maxVisibleDepth: 2, edgeGutter: 0 },
+  mobile: { cardWidth: 280, activeScale: 1.1, height: 520, offset1: 190, offset2: 300, maxVisibleDepth: 1, edgeGutter: 4 },
+  tablet: { cardWidth: 280, activeScale: 1.22, height: 520, offset1: 240, offset2: 380, maxVisibleDepth: 2, edgeGutter: 0 },
+  desktop: { cardWidth: 280, activeScale: 1.22, height: 520, offset1: 250, offset2: 400, maxVisibleDepth: 2, edgeGutter: 0 },
 };
 
 function getBreakpoint(width: number): BreakpointKey {
@@ -35,13 +43,12 @@ function transformForOffset(offset: number, geometry: (typeof GEOMETRY)[Breakpoi
   const abs = Math.abs(offset);
   const dir = Math.sign(offset);
   if (abs > geometry.maxVisibleDepth) {
-    return { x: dir * (geometry.offset2 + geometry.cardWidth), scale: 0.5, opacity: 0, zIndex: 0 };
+    return { x: dir * (geometry.offset2 + geometry.cardWidth), scale: 0.5, opacity: 0, filter: "none", zIndex: 0 };
   }
   const x = dir * (abs === 1 ? geometry.offset1 : geometry.offset2);
-  const scale = 1 - abs * 0.16;
-  const opacity = abs === 0 ? 1 : abs === 1 ? 0.85 : 0.5;
+  const scale = abs === 0 ? geometry.activeScale : 1 - abs * 0.16;
   const zIndex = 30 - abs * 10;
-  return { x, scale, opacity, zIndex };
+  return { x, scale, opacity: 1, filter: "none", zIndex };
 }
 
 export default function OffresCarousel({ poles }: { poles: Pole[] }) {
@@ -71,10 +78,10 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
         if (event.key === "ArrowRight") goTo(1);
       }}
     >
-      <div className="relative overflow-x-hidden" style={{ height: geometry.height }}>
+      <div className="relative overflow-x-hidden overflow-y-visible" style={{ height: geometry.height }}>
         {poles.map((pole, index) => {
           const offset = getOffset(index, activeIndex, length);
-          const { x, scale, opacity, zIndex } = transformForOffset(offset, geometry);
+          const { x, scale, opacity, filter, zIndex } = transformForOffset(offset, geometry);
           const isActive = offset === 0;
           return (
             <div
@@ -85,10 +92,19 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
             >
               <motion.div
                 style={{ width: geometry.cardWidth }}
-                animate={{ x, scale, opacity }}
+                animate={{ x, scale, opacity, filter }}
                 transition={{ type: "spring", stiffness: 240, damping: 28 }}
+                drag={isActive ? "x" : false}
+                dragElastic={0.85}
+                dragConstraints={{ left: -geometry.cardWidth * 1.2, right: geometry.cardWidth * 1.2 }}
+                dragTransition={{ bounceStiffness: 400, bounceDamping: 40 }}
+                onDragEnd={(_, info) => {
+                  const threshold = geometry.cardWidth * 0.25;
+                  if (info.offset.x < -threshold || info.velocity.x < -500) goTo(1);
+                  else if (info.offset.x > threshold || info.velocity.x > 500) goTo(-1);
+                }}
               >
-                <OfferCard pole={pole} />
+                <OfferCard pole={pole} active={isActive} />
               </motion.div>
             </div>
           );
