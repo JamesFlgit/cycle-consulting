@@ -159,7 +159,7 @@ export default function AProposPage() {
       <section className="bg-chiffres-section">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-            Une vision différente de <span className={GRADIENT_LIGHT}>l&apos;ESN</span>
+            Une vision différente de <span className={`whitespace-nowrap ${GRADIENT_LIGHT}`}>l&apos;ESN</span>
           </h2>
 
           <div className="mt-10 grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
@@ -497,7 +497,7 @@ export default function AProposPage() {
       <section className="bg-chiffres-section">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            Une ESN <span className={GRADIENT_LIGHT}>différente par conviction</span>
+            Une ESN <span className={`whitespace-nowrap ${GRADIENT_LIGHT}`}>différente par conviction</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-white/80">
             <p>

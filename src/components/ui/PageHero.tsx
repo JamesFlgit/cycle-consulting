@@ -1,14 +1,20 @@
 import Image from "next/image";
 
+const DEFAULT_TITLE_CLASSNAME = "mt-3 max-w-3xl text-3xl font-bold text-white sm:text-4xl lg:text-5xl xl:text-6xl";
+
 export default function PageHero({
   eyebrow,
   title,
+  titleClassName = DEFAULT_TITLE_CLASSNAME,
   description,
   children,
   image,
 }: {
   eyebrow?: React.ReactNode;
   title: string;
+  /** Override the title's size/width — for a long title that wraps too many
+   * lines at the default (large) sizing on wide screens. */
+  titleClassName?: string;
   description?: React.ReactNode;
   children?: React.ReactNode;
   /** Optional background photo — replaces the default abstract gradient. */
@@ -31,7 +37,7 @@ export default function PageHero({
             {eyebrow}
           </p>
         )}
-        <h1 className="mt-3 max-w-3xl text-3xl font-bold text-white sm:text-4xl lg:text-5xl xl:text-6xl">{title}</h1>
+        <h1 className={titleClassName}>{title}</h1>
         {description && (
           <p
             className={`mt-10 max-w-2xl text-base leading-relaxed sm:mt-5 sm:text-lg ${image ? "text-white" : "text-white/70"}`}
