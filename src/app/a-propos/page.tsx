@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -91,6 +92,30 @@ const CULTURE_INTERNATIONALE = [
   "Le développement des compétences dans des environnements internationaux",
 ];
 
+const SIGNATURE = [
+  { mot: "Apprendre", texte: "Parce que les technologies, les organisations et les métiers évoluent en permanence." },
+  { mot: "Comprendre", texte: "Parce qu'une bonne solution commence toujours par une bonne compréhension du problème." },
+  {
+    mot: "Entreprendre",
+    texte: "Parce que comprendre ne suffit pas. La valeur naît lorsque les idées deviennent des actions et les actions deviennent des résultats.",
+  },
+];
+
+function SignatureChevron({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M9 5l7 7-7 7"
+        fill="none"
+        stroke="url(#signature-chevron-gradient)"
+        strokeWidth={2.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function AProposPage() {
   return (
     <>
@@ -109,7 +134,7 @@ export default function AProposPage() {
       />
 
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow="Notre histoire" title="Qui sommes-nous ?" />
+        <SectionHeading eyebrow={<span className={GRADIENT_DARK}>Notre histoire</span>} title="Qui sommes-nous ?" />
         <div className="mt-8 space-y-4 text-sm leading-relaxed text-anthracite-soft">
           <p>
             L&apos;informatique est devenue indispensable à la performance des entreprises. Pourtant, pour de
@@ -158,7 +183,7 @@ export default function AProposPage() {
                 environnement numérique.
               </p>
 
-              <h3 className="pt-2 text-base font-semibold text-white">Une ambition internationale</h3>
+              <h3 className={`pt-2 text-base font-semibold ${GRADIENT_LIGHT}`}>Une ambition internationale</h3>
               <p>
                 CYCLE CONSULTING porte une forte appétence de développement à l&apos;international. Notre ancrage et
                 notre développement s&apos;inscrivent autour de la France et de l&apos;Europe, notre vision est
@@ -185,7 +210,7 @@ export default function AProposPage() {
                 culturelles deviennent une force collective.
               </p>
 
-              <h3 className="pt-2 text-base font-semibold text-white">Une ambition : construire un CYCLE international</h3>
+              <h3 className={`pt-2 text-base font-semibold ${GRADIENT_LIGHT}`}>Une ambition : construire un CYCLE international</h3>
               <p>Notre développement international s&apos;inscrit dans la même philosophie que notre modèle humain.</p>
               <p>
                 <span className="font-semibold text-white">Apprendre</span> de nouvelles cultures et de nouvelles
@@ -431,28 +456,40 @@ export default function AProposPage() {
               <p className="font-semibold text-anthracite">CYCLE CONSULTING souhaite être cet environnement.</p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-12">
-            <h3 className="text-lg font-semibold text-anthracite">Apprendre. Comprendre. Entreprendre.</h3>
-            <p className="mt-2 text-sm leading-relaxed text-anthracite-soft">Notre signature résume notre philosophie.</p>
-            <div className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite-soft">
-              <p>
-                <span className="font-bold text-anthracite">APPRENDRE</span>
-                <br />
-                Parce que les technologies, les organisations et les métiers évoluent en permanence.
-              </p>
-              <p>
-                <span className="font-bold text-anthracite">COMPRENDRE</span>
-                <br />
-                Parce qu&apos;une bonne solution commence toujours par une bonne compréhension du problème.
-              </p>
-              <p>
-                <span className="font-bold text-anthracite">ENTREPRENDRE</span>
-                <br />
-                Parce que comprendre ne suffit pas. La valeur naît lorsque les idées deviennent des actions et les
-                actions deviennent des résultats.
-              </p>
-            </div>
+      <section className="bg-callout-light">
+        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+          <svg width="0" height="0" aria-hidden="true">
+            <defs>
+              <linearGradient id="signature-chevron-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#fa11f7" />
+                <stop offset="50%" stopColor="#132bdd" />
+                <stop offset="100%" stopColor="#0bceff" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <div className="text-center">
+            <h3 className="whitespace-nowrap text-sm font-bold text-anthracite sm:text-2xl lg:text-3xl">
+              <Slogan variant="dark" />
+            </h3>
+            <p className="mt-2 text-sm text-anthracite-mist">Notre signature résume notre philosophie.</p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:gap-6">
+            {SIGNATURE.map((item, index) => (
+              <Fragment key={item.mot}>
+                {index > 0 && (
+                  <SignatureChevron className="mx-auto h-8 w-8 rotate-90 self-center lg:h-6 lg:w-6 lg:rotate-0" />
+                )}
+                <div className="flex h-full w-full flex-col rounded-xl bg-surface/70 p-6 text-center shadow-sm">
+                  <p className={`text-lg font-bold uppercase tracking-wide ${GRADIENT_DARK}`}>{item.mot}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-anthracite-soft">{item.texte}</p>
+                </div>
+              </Fragment>
+            ))}
           </div>
         </div>
       </section>

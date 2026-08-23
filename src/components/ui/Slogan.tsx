@@ -20,7 +20,7 @@ export default function Slogan({
     <span className={className}>
       {words.map((word, index) => (
         <span key={word}>
-          {index > 0 && <span className={`mx-2 font-bold ${gradient}`}>&gt;</span>}
+          {index > 0 && <span className={`mx-1 font-bold sm:mx-2 ${gradient}`}>&gt;</span>}
           {word}
         </span>
       ))}
