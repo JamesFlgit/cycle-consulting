@@ -140,6 +140,35 @@
   }
 }
 
+/* Compact — same reduced sizing as the mobile breakpoint above, offered as a
+   plain modifier so it can also be used at desktop widths (e.g. next to a
+   shorter block of text) without waiting for the viewport to narrow. */
+.compact.chain {
+  width: 12.5rem;
+}
+
+.compact .loop {
+  width: 10.5rem;
+  height: 10.5rem;
+}
+
+.compact .row {
+  height: 5.5rem;
+}
+
+.compact .row:last-child {
+  height: 10.5rem;
+}
+
+.compact .loopRight {
+  left: 2rem;
+}
+
+.compact .label {
+  padding: 0 2.25rem;
+  font-size: 0.6875rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .loop {
     opacity: 1;

@@ -23,6 +23,9 @@ type Props = {
   steps?: string[];
   title?: string;
   eyebrow?: string;
+  /** Smaller ring/spacing (same sizing used at the mobile breakpoint) — for
+   * placement next to a shorter block of text, at any viewport width. */
+  compact?: boolean;
 };
 
 /**
@@ -30,7 +33,7 @@ type Props = {
  * ring drawn as a near-full circle (SVG arc) with an arrowhead, alternating
  * left/right down the column.
  */
-export default function BoucleVertueuse({ steps = STEPS, title = "", eyebrow = "" }: Props) {
+export default function BoucleVertueuse({ steps = STEPS, title = "", eyebrow = "", compact = false }: Props) {
   const gradientId = `cc-loop-gradient-${useId().replace(/[^a-zA-Z0-9-]/g, "")}`;
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
@@ -77,7 +80,7 @@ export default function BoucleVertueuse({ steps = STEPS, title = "", eyebrow = "
         </defs>
       </svg>
 
-      <ol className={styles.chain}>
+      <ol className={compact ? `${styles.chain} ${styles.compact}` : styles.chain}>
         {steps.map((label, i) => {
           const isRight = i % 2 === 0;
           const isLast = i === steps.length - 1;

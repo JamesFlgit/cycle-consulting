@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Slogan from "@/components/ui/Slogan";
@@ -10,6 +11,9 @@ import { repartitionPractices, repartitionGenre } from "@/data/repartitions";
 // Brand gradient, light variant — see Slogan.tsx — for accents on the dark
 // "chiffres" section.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+// Brand gradient, dark variant — for eyebrows and title accents on this
+// page's light sections (and the dark hero, per the logo's own treatment).
+const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
   title: "À propos de Cycle Consulting — Cycle Consulting",
@@ -91,14 +95,17 @@ export default function AProposPage() {
   return (
     <>
       <PageHero
-        eyebrow="L'entreprise"
+        eyebrow={<span className={GRADIENT_LIGHT}>L&apos;entreprise</span>}
         title="À propos de Cycle Consulting"
         description={
           <>
-            <Slogan variant="light" />. Transformer la complexité IT en performance. Révéler les talents qui la
-            rendent possible.
+            <Slogan variant="light" />
+            <span className="mt-3 block">
+              Transformer la complexité IT en performance. Révéler les talents qui la rendent possible.
+            </span>
           </>
         }
+        image="/images/a-propos/hero.jpg"
       />
 
       <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
@@ -239,7 +246,11 @@ export default function AProposPage() {
       <section id="nos-valeurs-et-engagements" className="mx-auto max-w-4xl scroll-mt-18 px-4 py-16 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Nos valeurs"
-          title="Nos valeurs et engagements"
+          title={
+            <>
+              Nos <span className={GRADIENT_DARK}>valeurs</span> et <span className={GRADIENT_DARK}>engagements</span>
+            </>
+          }
           description="Les principes qui guident Cycle Consulting au quotidien, dans ses missions comme dans ses relations clients."
         />
 
@@ -284,43 +295,47 @@ export default function AProposPage() {
 
         <div className="mt-12">
           <h3 className="text-lg font-semibold text-anthracite">Une ESN qui souhaite aller au-delà du modèle traditionnel</h3>
-          <p className="mt-2 text-sm leading-relaxed text-anthracite-soft">
-            Nous ne souhaitons pas construire une organisation dans laquelle les collaborateurs sont considérés comme
-            de simples ressources. Notre ambition est de construire une communauté de professionnels capables de
-            grandir avec CYCLE CONSULTING et de faire grandir leurs clients et se définit par ce CYCLE vertueux :
-          </p>
-          <div className="mt-8">
-            <BoucleVertueuse steps={CYCLE_VERTUEUX} />
-          </div>
-          <p className="mt-6 text-sm leading-relaxed text-anthracite-soft">
-            C&apos;est ce que nous appelons le Cycle CYCLE CONSULTING.
-          </p>
-        </div>
+          <div className="mt-6 grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <div className="space-y-4 text-sm leading-relaxed text-anthracite-soft">
+                <p>
+                  Nous ne souhaitons pas construire une organisation dans laquelle les collaborateurs sont considérés
+                  comme de simples ressources. Notre ambition est de construire une communauté de professionnels
+                  capables de grandir avec CYCLE CONSULTING et de faire grandir leurs clients et se définit par ce
+                  CYCLE vertueux :
+                </p>
+                <p>C&apos;est ce que nous appelons le Cycle CYCLE CONSULTING.</p>
+              </div>
 
-        <div className="mt-12">
-          <h3 className="text-lg font-semibold text-anthracite">De la compétence à la valeur</h3>
-          <p className="mt-2 text-sm leading-relaxed text-anthracite-soft">
-            Notre approche commerciale repose également sur cette philosophie. Nous ne cherchons pas simplement à
-            proposer un profil disponible. Nous cherchons à comprendre le problème que notre client souhaite
-            résoudre.
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-anthracite-soft">
-            Nos équipes commerciales sont donc volontairement proches de leurs clients et engagées dans une logique
-            de résultat.
-          </p>
-          <ol className="mt-6 space-y-2">
-            {COMPETENCE_A_LA_VALEUR.map((step, index) => (
-              <li key={step} className="flex items-start gap-3 text-sm text-anthracite-soft">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface-alt text-[11px] font-bold text-anthracite">
-                  {index + 1}
-                </span>
-                {step}
-              </li>
-            ))}
-          </ol>
-          <p className="mt-6 text-sm leading-relaxed text-anthracite-soft">
-            Notre objectif n&apos;est pas de vendre des journées-hommes, notre objectif est de créer de la valeur.
-          </p>
+              <h3 className="mt-10 text-lg font-semibold text-anthracite">De la compétence à la valeur</h3>
+              <p className="mt-2 text-sm leading-relaxed text-anthracite-soft">
+                Notre approche commerciale repose également sur cette philosophie. Nous ne cherchons pas simplement à
+                proposer un profil disponible. Nous cherchons à comprendre le problème que notre client souhaite
+                résoudre.
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-anthracite-soft">
+                Nos équipes commerciales sont donc volontairement proches de leurs clients et engagées dans une
+                logique de résultat.
+              </p>
+              <ol className="mt-6 space-y-2">
+                {COMPETENCE_A_LA_VALEUR.map((step, index) => (
+                  <li key={step} className="flex items-start gap-3 text-sm text-anthracite-soft">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface-alt text-[11px] font-bold text-anthracite">
+                      {index + 1}
+                    </span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-6 text-sm leading-relaxed text-anthracite-soft">
+                Notre objectif n&apos;est pas de vendre des journées-hommes, notre objectif est de créer de la
+                valeur.
+              </p>
+            </div>
+            <div className="flex justify-center lg:sticky lg:top-24">
+              <BoucleVertueuse steps={CYCLE_VERTUEUX} compact />
+            </div>
+          </div>
         </div>
 
         <div className="mt-12">
@@ -358,7 +373,11 @@ export default function AProposPage() {
         <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
           <SectionHeading
             eyebrow="Nos atouts"
-            title="Nos atouts et différences"
+            title={
+              <>
+                Nos <span className={GRADIENT_DARK}>atouts</span> et <span className={GRADIENT_DARK}>différences</span>
+              </>
+            }
             description="Ce qui distingue Cycle Consulting dans l'accompagnement de ses clients et la réalisation de ses missions."
           />
 
@@ -456,6 +475,12 @@ export default function AProposPage() {
           <p className="mt-8 text-lg font-semibold text-white">
             <Slogan variant="light" />
           </p>
+          <Link
+            href="/contact"
+            className="cta-primary mt-8 inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+          >
+            Demander un devis
+          </Link>
         </div>
       </section>
     </>
