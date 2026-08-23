@@ -68,8 +68,6 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
     setActiveIndex((current) => current + direction);
   }, []);
 
-  const activeMod = ((activeIndex % length) + length) % length;
-
   return (
     <div
       className="relative mx-auto max-w-5xl"
@@ -128,53 +126,6 @@ export default function OffresCarousel({ poles }: { poles: Pole[] }) {
         >
           <ChevronIcon className="h-4 w-4 sm:h-5 sm:w-5" />
         </button>
-      </div>
-
-      {/* Card-style navigation — only from sm up; too wide for a phone screen. */}
-      <div className="mt-8 hidden flex-wrap justify-center gap-3 sm:flex">
-        {poles.map((pole, index) => {
-          const isActive = index === activeMod;
-          return (
-            <button
-              key={pole.slug}
-              type="button"
-              aria-label={`Aller à l'offre ${pole.navLabel}`}
-              aria-current={isActive}
-              onClick={() => setActiveIndex(index)}
-              className={
-                isActive
-                  ? "rounded-xl bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] p-[1.5px] shadow-sm transition-shadow"
-                  : "rounded-xl border border-border-subtle bg-surface p-[1.5px] transition-colors hover:border-anthracite"
-              }
-            >
-              <span
-                className={`flex min-w-32 flex-col items-center justify-center rounded-[calc(0.75rem-1.5px)] px-4 py-6 text-center text-sm font-semibold ${
-                  isActive
-                    ? "bg-gradient-to-br from-bleu-nuit to-[#16305e] text-white"
-                    : "text-anthracite-mist hover:text-anthracite"
-                }`}
-              >
-                {pole.navLabel}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Dots — mobile only. */}
-      <div className="mt-8 flex justify-center gap-2 sm:hidden">
-        {poles.map((pole, index) => (
-          <button
-            key={pole.slug}
-            type="button"
-            aria-label={`Aller à l'offre ${pole.navLabel}`}
-            aria-current={index === activeMod}
-            onClick={() => setActiveIndex(index)}
-            className={`h-2.5 w-2.5 rounded-full transition-colors ${
-              index === activeMod ? "bg-anthracite" : "bg-border-subtle hover:bg-accent"
-            }`}
-          />
-        ))}
       </div>
     </div>
   );

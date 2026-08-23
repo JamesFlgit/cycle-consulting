@@ -45,10 +45,10 @@ export default function Home() {
     <>
       <section className="bg-home-hero flex min-h-screen items-center">
         <div className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <h1 className="max-w-3xl text-lg font-bold text-white sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl">
+          <h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
             Conseil &amp; Services IT
           </h1>
-          <h2 className="mt-4 text-xs font-semibold uppercase tracking-[0.25em] text-white/60 sm:text-sm">
+          <h2 className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-xs sm:tracking-[0.25em] md:text-sm">
             <Slogan variant="light" />
           </h2>
           <p className="mt-10 max-w-2xl text-base leading-relaxed text-white sm:mt-12 sm:text-lg">

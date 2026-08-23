@@ -160,6 +160,11 @@ export default function RotatingGlobe({ active }: { active: ContinentKey | null 
     // directly under the cursor instead of easing toward the carousel target.
     // The carousel keeps ticking in the background and simply resumes easing
     // toward its next target — from wherever the drag left off — once released.
+    // Skipped entirely on touch/coarse-pointer devices: capturing touch drags
+    // here would also block the page's own vertical scroll over the globe.
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    container.style.touchAction = isCoarsePointer ? "auto" : "none";
+
     let dragging = false;
     let lastX = 0;
     let lastY = 0;
@@ -187,11 +192,13 @@ export default function RotatingGlobe({ active }: { active: ContinentKey | null 
       container.style.cursor = "grab";
       if (container.hasPointerCapture(e.pointerId)) container.releasePointerCapture(e.pointerId);
     };
-    container.style.cursor = "grab";
-    container.addEventListener("pointerdown", onPointerDown);
-    container.addEventListener("pointermove", onPointerMove);
-    container.addEventListener("pointerup", onPointerUp);
-    container.addEventListener("pointercancel", onPointerUp);
+    if (!isCoarsePointer) {
+      container.style.cursor = "grab";
+      container.addEventListener("pointerdown", onPointerDown);
+      container.addEventListener("pointermove", onPointerMove);
+      container.addEventListener("pointerup", onPointerUp);
+      container.addEventListener("pointercancel", onPointerUp);
+    }
 
     let placedFor: ContinentKey | null = null;
     let frame = 0;
@@ -273,7 +280,7 @@ export default function RotatingGlobe({ active }: { active: ContinentKey | null 
         ref={containerRef}
         role="img"
         aria-label="Globe animé : présence en Amérique du Nord, Europe et Afrique"
-        className="relative h-full w-full touch-none"
+        className="relative h-full w-full"
       />
 
       <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full">
