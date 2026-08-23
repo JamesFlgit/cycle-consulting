@@ -11,7 +11,7 @@ export default function PageHero({
   image,
 }: {
   eyebrow?: React.ReactNode;
-  title: string;
+  title: React.ReactNode;
   /** Override the title's size/width — for a long title that wraps too many
    * lines at the default (large) sizing on wide screens. */
   titleClassName?: string;

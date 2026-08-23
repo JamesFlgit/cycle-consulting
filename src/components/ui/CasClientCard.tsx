@@ -13,18 +13,20 @@ export default function CasClientCard({
   return (
     <Link
       href={casClient.href}
-      className="flex h-full flex-col overflow-hidden rounded-xl border border-border-subtle bg-surface shadow-sm transition-shadow hover:shadow-md"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-border-subtle bg-surface shadow-sm transition-shadow hover:shadow-md"
     >
       {imageHeader && (
-        <div className="relative h-40 shrink-0">
+        <div className="relative h-40 shrink-0 overflow-hidden">
           {casClient.image ? (
-            <Image
-              src={casClient.image}
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              className="object-cover"
-            />
+            <div className="absolute inset-0 px-3">
+              <Image
+                src={casClient.image}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
           ) : (
             <div className="card-header-frame h-full w-full" />
           )}
@@ -43,7 +45,7 @@ export default function CasClientCard({
         <h3 className={`text-lg font-semibold text-anthracite ${imageHeader ? "" : "mt-4"}`}>{casClient.navLabel}</h3>
         {casClient.environnement && <p className="mt-1 text-xs text-anthracite-mist">{casClient.environnement}</p>}
         <p className="mt-3 flex-1 text-sm leading-relaxed text-anthracite-mist">{casClient.resume}</p>
-        <span className="mt-6 text-sm font-semibold text-anthracite underline-offset-4 hover:underline">
+        <span className="mt-6 text-sm font-semibold text-[#132bdd] underline-offset-4 hover:underline">
           Découvrir le cas client →
         </span>
       </div>

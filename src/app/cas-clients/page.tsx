@@ -3,6 +3,10 @@ import PageHero from "@/components/ui/PageHero";
 import CasClientCard from "@/components/ui/CasClientCard";
 import { casClients } from "@/data/cas-clients";
 
+// Brand gradient, light variant — see Slogan.tsx — for the accent on this
+// page's dark hero.
+const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+
 export const metadata: Metadata = {
   title: "Cas clients — Cycle Consulting",
   description: "Découvrez comment Cycle Consulting accompagne ses clients, tous secteurs confondus.",
@@ -14,8 +18,12 @@ export default function CasClientsPage() {
   return (
     <>
       <PageHero
-        eyebrow="Cas clients"
-        title="Ils nous font confiance sur des enjeux similaires aux vôtres"
+        eyebrow={<span className={GRADIENT_LIGHT}>Cas clients</span>}
+        title={
+          <>
+            Ils nous font confiance sur <span className={GRADIENT_LIGHT}>des enjeux similaires aux vôtres</span>
+          </>
+        }
         description="Pour des raisons de confidentialité contractuelle, nos références sont présentées de façon anonymisée : les enjeux, l'intervention et les résultats décrits sont réels, seul le nom du client n'est pas communiqué."
       />
 

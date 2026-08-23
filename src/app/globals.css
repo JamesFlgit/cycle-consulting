@@ -81,8 +81,10 @@ body {
   background: linear-gradient(to bottom, rgba(7, 20, 46, 0.05) 0%, rgba(7, 20, 46, 0.3) 100%);
 }
 
+/* Same dark-blue recipe as .bg-home-hero/.bg-chiffres-section — was ending on
+   a flat grey stop, breaking the "all dark blues" look used everywhere else. */
 .bg-page-hero {
-  background: linear-gradient(160deg, var(--color-anthracite) 0%, var(--color-anthracite-soft) 55%, #55585e 100%);
+  background: linear-gradient(160deg, #0e1230 0%, #0a0e24 45%, #060814 75%, #05060f 100%);
 }
 
 .bg-home-hero {
