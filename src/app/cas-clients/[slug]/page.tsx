@@ -13,6 +13,13 @@ import {
   type CasClientSection,
 } from "@/data/cas-clients";
 
+// Brand gradient, dark variant — for the "Apprendre / Comprendre / Entreprendre /
+// Résultats" section eyebrows on this page's light background.
+const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
+// Brand gradient, light variant — for the citation attribution on this
+// section's dark background.
+const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+
 export function generateStaticParams() {
   return casClients.filter((c) => c.visible).map((c) => ({ slug: c.slug }));
 }
@@ -37,7 +44,6 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
   if (!casClient || !casClient.visible) notFound();
 
   const autresCas = getAutresCasClients(casClient.slug, 3);
-  const resultatsNumero = casClient.actions ? "04" : "03";
   const resultatsLabel = casClient.actions ? "Résultats" : "Entreprendre";
 
   return (
@@ -88,15 +94,15 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
         </section>
       )}
 
-      <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="lg:grid lg:grid-cols-5 lg:gap-12">
-          <div className="space-y-16 lg:col-span-3">
-            <div className="lg:hidden">
+      <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 md:max-w-7xl lg:px-8">
+        <div className="md:grid md:grid-cols-5 md:gap-12">
+          <div className="space-y-16 md:col-span-3">
+            <div className="md:hidden">
               <ConversionCard casClient={casClient} />
             </div>
 
             <div>
-              <SectionEyebrow numero="01" label="Apprendre" />
+              <SectionEyebrow label="Apprendre" />
               <h2 className="mt-3 text-2xl font-bold text-anthracite sm:text-3xl">Le contexte</h2>
               <div className="mt-5 space-y-4 text-sm leading-relaxed text-anthracite-soft sm:text-base">
                 {casClient.contexte.map((paragraphe, index) => (
@@ -120,36 +126,36 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
             </div>
 
             <div>
-              <SectionEyebrow numero="02" label="Comprendre" />
+              <SectionEyebrow label="Comprendre" />
               <h2 className="mt-3 text-2xl font-bold text-anthracite sm:text-3xl">Notre intervention</h2>
-              <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                {casClient.intervention.map((item, index) => (
-                  <NumberedCard key={item.titre} numero={index + 1} item={item} />
+              <div className="mt-6 space-y-6">
+                {casClient.intervention.map((item) => (
+                  <BarItem key={item.titre} item={item} />
                 ))}
               </div>
             </div>
 
             {casClient.actions && (
               <div>
-                <SectionEyebrow numero="03" label="Entreprendre" />
+                <SectionEyebrow label="Entreprendre" />
                 <h2 className="mt-3 text-2xl font-bold text-anthracite sm:text-3xl">Notre mise en œuvre</h2>
-                <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  {casClient.actions.map((item, index) => (
-                    <NumberedCard key={item.titre} numero={index + 1} item={item} />
+                <div className="mt-6 space-y-6">
+                  {casClient.actions.map((item) => (
+                    <BarItem key={item.titre} item={item} />
                   ))}
                 </div>
               </div>
             )}
 
             <div>
-              <SectionEyebrow numero={resultatsNumero} label={resultatsLabel} />
+              <SectionEyebrow label={resultatsLabel} />
               <h2 className="mt-3 text-2xl font-bold text-anthracite sm:text-3xl">Les résultats</h2>
               {casClient.resultatsIntro && (
                 <p className="mt-5 text-sm leading-relaxed text-anthracite-soft sm:text-base">{casClient.resultatsIntro}</p>
               )}
-              <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <div className="mt-6 space-y-6">
                 {casClient.resultats.map((item) => (
-                  <ResultCard key={item.titre} item={item} />
+                  <BarItem key={item.titre} item={item} checked />
                 ))}
               </div>
             </div>
@@ -159,8 +165,8 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
                 <p className="text-lg font-medium italic leading-relaxed text-white sm:text-xl">
                   &laquo;&nbsp;{casClient.citation.texte}&nbsp;&raquo;
                 </p>
-                <footer className="mt-4 text-sm font-semibold text-white/70">
-                  — {casClient.citation.attribution ?? "Cycle Consulting"}
+                <footer className={`mt-4 text-sm font-semibold ${GRADIENT_LIGHT}`}>
+                  {casClient.citation.attribution ?? "Cycle Consulting"}
                 </footer>
               </blockquote>
             )}
@@ -176,14 +182,14 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
             </p>
           </div>
 
-          <aside className="hidden lg:col-span-2 lg:block">
+          <aside className="hidden md:col-span-2 md:block">
             <div className="sticky top-24">
               <ConversionCard casClient={casClient} />
             </div>
           </aside>
         </div>
 
-        <div className="mt-16 rounded-xl border border-border-subtle bg-surface-alt p-8 text-center sm:p-10">
+        <div className="bg-callout-light mt-16 rounded-xl p-8 text-center sm:p-10">
           <h3 className="text-xl font-bold text-anthracite sm:text-2xl">Envie d&apos;aller plus loin ?</h3>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-anthracite-mist">
             Téléchargez notre brochure pour découvrir l&apos;ensemble de nos offres, ou parcourez nos autres
@@ -226,34 +232,21 @@ function MetaItem({ label, value }: { label: string; value: string }) {
   );
 }
 
-function SectionEyebrow({ numero, label }: { numero: string; label: string }) {
-  return (
-    <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-anthracite-mist">
-      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-anthracite text-[10px] text-white">
-        {numero}
-      </span>
-      {label}
-    </p>
-  );
+function SectionEyebrow({ label }: { label: string }) {
+  return <p className={`text-xs font-semibold uppercase tracking-[0.2em] ${GRADIENT_DARK}`}>{label}</p>;
 }
 
-function NumberedCard({ numero, item }: { numero: number; item: CasClientSection }) {
+/** Vertical gradient-bar row — see the Expertises pages for the same pattern. */
+function BarItem({ item, checked = false }: { item: CasClientSection; checked?: boolean }) {
   return (
-    <div className="rounded-xl border border-border-subtle bg-surface p-5">
-      <span className="text-xs font-semibold text-anthracite-mist">{String(numero).padStart(2, "0")}</span>
-      <h3 className="mt-2 text-sm font-semibold text-anthracite">{item.titre}</h3>
-      {item.description && <p className="mt-2 text-sm leading-relaxed text-anthracite-mist">{item.description}</p>}
-    </div>
-  );
-}
-
-function ResultCard({ item }: { item: CasClientSection }) {
-  return (
-    <div className="flex gap-3 rounded-xl border border-border-subtle bg-surface p-5">
-      <CheckIcon className="mt-0.5 h-5 w-5 shrink-0 text-anthracite" />
-      <div>
-        <h3 className="text-sm font-semibold text-anthracite">{item.titre}</h3>
-        {item.description && <p className="mt-2 text-sm leading-relaxed text-anthracite-mist">{item.description}</p>}
+    <div className="flex gap-4 sm:gap-5">
+      <span className="w-1.5 shrink-0 self-stretch rounded-full bg-gradient-to-b from-[#fa11f7] via-[#132bdd] to-[#0bceff]" />
+      <div className="flex-1">
+        <h3 className="flex items-start gap-2 text-sm font-semibold text-anthracite sm:text-base">
+          {checked && <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#132bdd]" />}
+          {item.titre}
+        </h3>
+        {item.description && <p className="mt-1.5 text-sm leading-relaxed text-anthracite-mist">{item.description}</p>}
       </div>
     </div>
   );
@@ -311,7 +304,7 @@ function ConversionCard({ casClient }: { casClient: CasClient }) {
           </p>
           <Link
             href="/contact"
-            className="cta-primary cta-primary-light mt-4 block w-full rounded-md px-5 py-3 text-center text-base font-bold uppercase tracking-wide"
+            className="cta-primary cta-primary-light mt-4 block w-full rounded-md px-4 py-2.5 text-center text-sm font-bold uppercase tracking-wide"
           >
             Discuter de mon projet
           </Link>

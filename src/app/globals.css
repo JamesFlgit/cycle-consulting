@@ -32,7 +32,10 @@
 }
 
 html {
-  overflow-x: hidden;
+  /* clip (not hidden) — doesn't establish a scroll container or trigger the
+     overflow-x/y auto-promotion quirk, so it can't interfere with
+     position: sticky/fixed descendants anywhere on the site. */
+  overflow-x: clip;
 }
 
 body {
@@ -40,12 +43,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   /* Safety net against any element pushing wider than the viewport (a fixed
-     px width, an off-canvas animation, a long unbroken string) — paired
-     with an explicit overflow-y so this axis alone doesn't get silently
-     promoted to its own scroll container (the CSS2.1 overflow-x/y quirk),
-     which would break position: fixed/sticky scroll tracking. */
-  overflow-x: hidden;
-  overflow-y: visible;
+     px width, an off-canvas animation, a long unbroken string). clip (not
+     hidden) so this never turns body into its own scroll container, which
+     would break position: sticky/fixed elements tracking the real window
+     scroll (the header, the case-study/entreprise sticky sidebars). */
+  overflow-x: clip;
 }
 
 .bg-office-gradient {
