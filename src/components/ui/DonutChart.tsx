@@ -105,7 +105,7 @@ export default function DonutChart({
         >
           <span className="text-white/70">{seg.label}</span>
           <span className="font-semibold text-white">
-            <Counter to={seg.value} duration={1.1} />%
+            <Counter to={seg.value} duration={1.1} start={isInView} />%
           </span>
         </motion.div>
       ))}

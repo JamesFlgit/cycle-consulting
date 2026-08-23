@@ -19,6 +19,6 @@ export const repartitionPractices: RepartitionItem[] = [
 
 /** Répartition Hommes / Femmes des effectifs. */
 export const repartitionGenre: RepartitionItem[] = [
-  { label: "Hommes", value: 62, color: c3 },
-  { label: "Femmes", value: 38, color: c1 },
+  { label: "Hommes", value: 54, color: c3 },
+  { label: "Femmes", value: 46, color: c1 },
 ];

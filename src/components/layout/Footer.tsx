@@ -4,7 +4,7 @@ import { entrepriseNavItems } from "@/data/entreprise-nav";
 import { entreprise } from "@/data/entreprise";
 import FooterLogoReveal from "@/components/layout/FooterLogoReveal";
 import Slogan from "@/components/ui/Slogan";
-import { PhoneIcon, EmailIcon, GlobeIcon, MapPinIcon } from "@/components/icons/card-icons";
+import { EmailIcon, GlobeIcon, MapPinIcon } from "@/components/icons/card-icons";
 
 // Brand gradient (light variant, for use on dark backgrounds) — matches the business card artwork.
 const GRADIENT_TEXT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
@@ -67,10 +67,6 @@ export default function Footer() {
                 <br />
                 {entreprise.codePostalVille}
               </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <PhoneIcon className="h-4 w-4 shrink-0" />
-              <p className="whitespace-nowrap">{entreprise.telephone}</p>
             </div>
             <div className="flex items-center gap-2">
               <EmailIcon className="h-4 w-4 shrink-0" />

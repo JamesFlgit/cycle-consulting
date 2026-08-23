@@ -121,8 +121,8 @@ export default function AProposPage() {
             de simplicité et de confiance.
           </p>
           <p>
-            Créée en 2026 sur la base d&apos;une expertise et d&apos;une expérience développées depuis 2022, CYCLE
-            CONSULTING est une ESN et société de conseil qui accompagne ses clients dans la transformation, le
+            Créée sur la base d&apos;une expertise et d&apos;une expérience développées depuis plusieurs années,
+            CYCLE CONSULTING est une ESN et société de conseil qui accompagne ses clients dans la transformation, le
             pilotage et l&apos;exploitation de leurs environnements numériques.
           </p>
           <p className="font-semibold text-anthracite">
@@ -212,31 +212,6 @@ export default function AProposPage() {
               </h3>
               <div className="mt-6">
                 <InternationalHighlight />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <h3 className={`text-center text-sm font-semibold uppercase tracking-wide ${GRADIENT_LIGHT}`}>
-                Nos effectifs par pôle d&apos;expertise
-              </h3>
-              <div className="mt-6">
-                <DonutChart
-                  data={repartitionPractices}
-                  ariaLabel="Répartition des effectifs par pôle d'expertise : Service Managé 31%, Infogérance 26%, Business et Stratégie 22%, Centre Logistique 14%, Formations 7%"
-                />
-              </div>
-            </div>
-            <div>
-              <h3 className={`text-center text-sm font-semibold uppercase tracking-wide ${GRADIENT_LIGHT}`}>
-                Parité au sein de nos équipes
-              </h3>
-              <div className="mt-6">
-                <DonutChart
-                  data={repartitionGenre}
-                  ariaLabel="Répartition Hommes / Femmes des effectifs : Hommes 62%, Femmes 38%"
-                />
               </div>
             </div>
           </div>
@@ -365,6 +340,35 @@ export default function AProposPage() {
                 <p className="mt-2 text-xs leading-relaxed text-anthracite-mist">{valeur.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-chiffres-section">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <h3 className={`text-center text-sm font-semibold uppercase tracking-wide ${GRADIENT_LIGHT}`}>
+                Nos effectifs par pôle d&apos;expertise
+              </h3>
+              <div className="mt-6">
+                <DonutChart
+                  data={repartitionPractices}
+                  ariaLabel="Répartition des effectifs par pôle d'expertise : Service Managé 31%, Infogérance 26%, Business et Stratégie 22%, Centre Logistique 14%, Formations 7%"
+                />
+              </div>
+            </div>
+            <div>
+              <h3 className={`text-center text-sm font-semibold uppercase tracking-wide ${GRADIENT_LIGHT}`}>
+                Parité au sein de nos équipes
+              </h3>
+              <div className="mt-6">
+                <DonutChart
+                  data={repartitionGenre}
+                  ariaLabel="Répartition Hommes / Femmes des effectifs : Hommes 54%, Femmes 46%"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
