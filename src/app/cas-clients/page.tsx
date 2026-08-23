@@ -21,9 +21,13 @@ export default function CasClientsPage() {
         eyebrow={<span className={GRADIENT_LIGHT}>Cas clients</span>}
         title={
           <>
-            Ils nous font confiance sur <span className={GRADIENT_LIGHT}>des enjeux similaires aux vôtres</span>
+            Ils nous font confiance{" "}
+            <span className="whitespace-nowrap">
+              sur <span className={GRADIENT_LIGHT}>des enjeux similaires aux vôtres</span>
+            </span>
           </>
         }
+        titleClassName="mt-3 max-w-3xl text-2xl font-bold text-white sm:text-4xl lg:max-w-5xl lg:text-5xl"
         description="Pour des raisons de confidentialité contractuelle, nos références sont présentées de façon anonymisée : les enjeux, l'intervention et les résultats décrits sont réels, seul le nom du client n'est pas communiqué."
       />
 
