@@ -11,6 +11,7 @@ import { EmailIcon } from "@/components/icons/card-icons";
 // import CasClientCard from "@/components/ui/CasClientCard"; // "Nos cas clients" section — see below
 import Reveal from "@/components/ui/Reveal";
 import Slogan from "@/components/ui/Slogan";
+import HeroSchemaVideo from "@/components/ui/HeroSchemaVideo";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import { poles } from "@/data/poles";
 import { partenaires } from "@/data/partenaires";
@@ -43,19 +44,31 @@ export default function Home() {
 
   return (
     <>
-      <section className="bg-home-hero flex min-h-screen items-center">
-        <div className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-            Conseil &amp; Services IT
-          </h1>
-          <h2 className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-xs sm:tracking-[0.25em] md:text-sm">
-            <Slogan variant="light" />
-          </h2>
-          <p className="mt-10 max-w-2xl text-base leading-relaxed text-white sm:mt-12 sm:text-lg">
-            Cycle Consulting accompagne les décideurs d&apos;entreprise avec des consultants experts en
-            formations, service managé, infogérance, business &amp; stratégie, ingénierie IT et logistique.
-          </p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+      <section className="bg-home-hero relative flex min-h-screen items-center overflow-hidden">
+        {/* Desktop-only copy: positioned against the <section> itself (the
+            full viewport width), not the max-w text container, so it can be
+            enlarged and centered on the right half of the screen independent
+            of how wide the text column is. The in-flow copy below handles
+            mobile/tablet instead. */}
+        <HeroSchemaVideo className="pointer-events-none absolute top-1/2 right-[7%] hidden w-[50vw] max-w-4xl -translate-y-1/2 lg:block" />
+
+        <div className="hero-grid mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-[96rem] lg:px-8">
+          <div className="hero-grid-text">
+            <h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+              Conseil &amp; Services IT
+            </h1>
+            <h2 className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-xs sm:tracking-[0.25em] md:text-sm">
+              <Slogan variant="light" />
+            </h2>
+            <p className="mt-10 max-w-2xl text-base leading-relaxed text-white sm:mt-12 sm:text-lg">
+              Cycle Consulting accompagne les décideurs d&apos;entreprise avec des consultants experts en
+              formations, service managé, infogérance, business &amp; stratégie, ingénierie IT et logistique.
+            </p>
+          </div>
+
+          <HeroSchemaVideo className="hero-grid-video max-w-sm justify-self-center lg:hidden" />
+
+          <div className="hero-grid-cta flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <Link
               href="/contact"
               className="cta-primary w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"

@@ -87,12 +87,73 @@ body {
   background: linear-gradient(160deg, #0e1230 0%, #0a0e24 45%, #060814 75%, #05060f 100%);
 }
 
+/* Layered hero background, back (last) to front (first):
+   1. Grid texture (unchanged).
+   2. Base diagonal navy gradient (unchanged).
+   3. Two low-opacity brand-gradient accents (magenta, cyan — from the same
+      pink/blue/cyan family used in the logo and CTA gradients) placed on
+      the LEFT side only, small spread, so they read as a subtle nod to the
+      brand palette without ever reaching the video's zone on the right.
+   4. The right-side radial glow — DO NOT move/recolor this one on its own:
+      it's a precise flat-color match to the current hero video's own
+      background (see HeroSchemaVideo.tsx), tuned so the video's square
+      edges disappear into it. Any future video swap should re-sample that
+      video's background color and update stop 1/2 here to match, exactly
+      as done previously — the brand accents above are independent of it. */
 .bg-home-hero {
   background-image:
-    radial-gradient(circle at 75% 35%, rgba(19, 43, 221, 0.32) 0%, transparent 50%),
+    radial-gradient(circle at 14% 18%, rgba(250, 17, 247, 0.16) 0%, transparent 38%),
+    radial-gradient(circle at 18% 86%, rgba(11, 206, 255, 0.13) 0%, transparent 40%),
+    radial-gradient(
+      circle at 72% 50%,
+      rgba(55, 28, 89, 1) 0%,
+      rgba(55, 28, 89, 1) 50%,
+      rgba(36, 18, 58, 0.7) 65%,
+      rgba(19, 10, 30, 0.35) 80%,
+      transparent 95%
+    ),
     linear-gradient(160deg, #0e1230 0%, #0a0e24 45%, #060814 75%, #05060f 100%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M0 40h400M0 80h400M0 120h400M0 160h400M0 200h400M0 240h400M0 280h400M0 320h400M0 360h400'/%3E%3Cpath d='M40 0v400M80 0v400M120 0v400M160 0v400M200 0v400M240 0v400M280 0v400M320 0v400M360 0v400'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: cover, cover, 60px 60px;
+  background-size: cover, cover, cover, cover, 60px 60px;
+}
+
+/* Hero layout: heading/paragraph, the looping schema video, and the CTA
+   row reflow between breakpoints via named grid areas rather than DOM
+   order — on mobile the video sits in-flow between the paragraph and the
+   CTAs. From lg up, that in-flow copy is hidden and a second copy of the
+   video (rendered as .hero-float-video, a direct sibling of this grid
+   positioned absolutely against the hero <section>) takes over instead —
+   sized and centered against the viewport's right half rather than boxed
+   into a grid column, so it can be enlarged independently of the text
+   column's width. See HeroSchemaVideo usage in page.tsx. */
+.hero-grid {
+  display: grid;
+  grid-template-areas: "text" "video" "cta";
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-areas: "text" "cta";
+    /* Kept narrower than the floating video's left edge (see the
+       HeroSchemaVideo instance in page.tsx: right-7% w-50vw) so the two
+       never overlap — the video is a positioned element and would always
+       paint over in-flow text regardless of DOM order. */
+    grid-template-columns: minmax(0, 30rem);
+  }
+}
+
+.hero-grid-text {
+  grid-area: text;
+}
+
+.hero-grid-video {
+  grid-area: video;
+}
+
+.hero-grid-cta {
+  grid-area: cta;
 }
 
 /* Same recipe as .bg-home-hero (dark diagonal gradient + faint grid), with the
