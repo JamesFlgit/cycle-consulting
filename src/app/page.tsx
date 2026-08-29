@@ -50,34 +50,42 @@ export default function Home() {
             enlarged and centered on the right half of the screen independent
             of how wide the text column is. The in-flow copy below handles
             mobile/tablet instead. */}
-        <HeroSchemaVideo className="pointer-events-none absolute top-1/2 right-[7%] hidden w-[50vw] max-w-4xl -translate-y-1/2 lg:block" />
+        {/* Centered on 75% (the midpoint of the right half), not anchored
+            to the right edge — with a capped max-width, a right-edge
+            anchor drags the video toward the edge on very wide screens
+            instead of keeping it centered in the right half. */}
+        {/* Centered on 75% with width capped at 44vw (not 50): at exactly
+            half the distance from center to the viewport edge, 50vw would
+            put the video's right edge flush against the viewport edge with
+            zero margin at any size where max-w isn't yet the constraint. */}
+        <HeroSchemaVideo className="pointer-events-none absolute top-1/2 left-[75%] hidden w-[44vw] max-w-4xl -translate-x-1/2 -translate-y-1/2 lg:block 2xl:max-w-6xl" />
 
         <div className="hero-grid mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-[96rem] lg:px-8">
           <div className="hero-grid-text">
-            <h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+            <h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">
               Conseil &amp; Services IT
             </h1>
-            <h2 className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-xs sm:tracking-[0.25em] md:text-sm">
+            <h2 className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-xs sm:tracking-[0.25em] md:text-sm lg:text-base 2xl:text-lg">
               <Slogan variant="light" />
             </h2>
-            <p className="mt-10 max-w-2xl text-base leading-relaxed text-white sm:mt-12 sm:text-lg">
+            <p className="mt-10 max-w-2xl text-base leading-relaxed text-white sm:mt-12 sm:text-lg lg:text-xl 2xl:text-2xl">
               Cycle Consulting accompagne les décideurs d&apos;entreprise avec des consultants experts en
               formations, service managé, infogérance, business &amp; stratégie, ingénierie IT et logistique.
             </p>
           </div>
 
-          <HeroSchemaVideo className="hero-grid-video max-w-sm justify-self-center lg:hidden" />
+          <HeroSchemaVideo className="hero-grid-video w-full lg:hidden" />
 
           <div className="hero-grid-cta flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <Link
               href="/contact"
-              className="cta-primary w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+              className="cta-primary w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto lg:px-8 lg:py-4 lg:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
             >
               Demander un devis
             </Link>
             <Link
               href="#offres"
-              className="w-full rounded-md border border-white/30 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:border-transparent hover:bg-white hover:text-anthracite sm:w-auto"
+              className="w-full rounded-md border border-white/30 px-6 py-3 text-center text-sm font-bold text-white transition-colors hover:border-transparent hover:bg-white hover:text-anthracite sm:w-auto lg:px-8 lg:py-4 lg:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
             >
               Découvrir nos services
             </Link>

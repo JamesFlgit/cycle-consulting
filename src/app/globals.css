@@ -137,10 +137,26 @@ body {
   .hero-grid {
     grid-template-areas: "text" "cta";
     /* Kept narrower than the floating video's left edge (see the
-       HeroSchemaVideo instance in page.tsx: right-7% w-50vw) so the two
-       never overlap — the video is a positioned element and would always
-       paint over in-flow text regardless of DOM order. */
+       HeroSchemaVideo instance in page.tsx: centered at left-75%, w-50vw)
+       so the two never overlap — the video is a positioned element and
+       would always paint over in-flow text regardless of DOM order. At
+       50vw wide and centered on 75%, its left edge sits at ~50vw, so the
+       column widens at xl/2xl to use more of that safe space as the text
+       itself grows on those breakpoints (see the h1/h2/p/CTA classes in
+       page.tsx). */
     grid-template-columns: minmax(0, 30rem);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 34rem);
+  }
+}
+
+@media (min-width: 1536px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 40rem);
   }
 }
 
