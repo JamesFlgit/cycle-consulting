@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import type { FaqTheme } from "@/data/faq";
 
@@ -44,9 +45,20 @@ export default function FaqAccordion({ theme }: { theme: FaqTheme }) {
                   transition={{ duration: 0.25, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="px-5 pb-5 text-sm leading-relaxed whitespace-pre-line text-anthracite-mist">
-                    {item.reponse}
-                  </p>
+                  <div className="px-5 pb-5">
+                    <p className="text-sm leading-relaxed whitespace-pre-line text-anthracite-mist">
+                      {item.reponse}
+                    </p>
+                    <Link
+                      href="/contact"
+                      className="cta-primary cta-primary-on-light mt-4 inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-bold"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M3 5.5 10 11l7-5.5M3 5h14v10H3z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      Nous contacter
+                    </Link>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
