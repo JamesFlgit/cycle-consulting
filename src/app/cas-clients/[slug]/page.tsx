@@ -33,7 +33,7 @@ export async function generateMetadata({
   const casClient = getCasClientBySlug(slug);
   if (!casClient) return {};
   return {
-    title: casClient.metaTitle ?? `${casClient.navLabel} — Cycle Consulting`,
+    title: casClient.metaTitle ?? `${casClient.navLabel} | Cycle Consulting`,
     description: casClient.metaDescription ?? casClient.resume,
   };
 }
@@ -73,7 +73,7 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
         <div className="mt-6 inline-flex items-start gap-2 rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-xs leading-relaxed text-white/80 sm:text-sm">
           <LockIcon className="mt-0.5 h-4 w-4 shrink-0" />
           <span>
-            Cas client anonymisé — les enjeux et résultats présentés sont réels, seul le nom du client n&apos;est
+            Cas client anonymisé : les enjeux et résultats présentés sont réels, seul le nom du client n&apos;est
             pas communiqué, pour des raisons de confidentialité contractuelle.
           </span>
         </div>

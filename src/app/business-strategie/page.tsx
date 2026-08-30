@@ -8,7 +8,7 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
-  title: "Business & Stratégie — Cycle Consulting",
+  title: "Business & Stratégie | Cycle Consulting",
   description:
     "Web Services et Business Services : développez votre activité avec l'accompagnement des Consultants Cycle Consulting.",
 };
@@ -79,7 +79,7 @@ export default function BusinessStrategiePage() {
     <>
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Business &amp; Stratégie</span>}
-        title="Transformer les ambitions en résultats durables"
+        title={<>Transformer les ambitions <span className={GRADIENT_LIGHT}>en résultats</span> durables</>}
         description="Conseil en Business & Stratégie."
       />
 

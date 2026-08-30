@@ -9,7 +9,7 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
-  title: "Formations — Cycle Consulting",
+  title: "Formations | Cycle Consulting",
   description:
     "Montez en compétence sur les outils Microsoft (Office, O365) et les processus Cycle Forms avec les Consultants Cycle Consulting.",
 };
@@ -48,7 +48,7 @@ const PROGRAMMES = [
       "Nos programmes s'adressent aussi bien aux managers de proximité qu'aux cadres dirigeants souhaitant faire évoluer leurs pratiques vers un management plus agile, collaboratif et orienté résultats.",
   },
   {
-    title: "ITIL® — Faire de l'IT un moteur de création de valeur",
+    title: "ITIL® : faire de l'IT un moteur de création de valeur",
     intro:
       "La Direction des Systèmes d'Information est aujourd'hui un acteur stratégique de la performance de l'entreprise. Les formations ITIL® proposées par Cycle Consulting permettent aux équipes IT de maîtriser les meilleures pratiques internationales en matière de gestion des services numériques. Nos programmes couvrent notamment :",
     items: [
@@ -63,7 +63,7 @@ const PROGRAMMES = [
       "Ces formations s'adressent aux responsables de production, Service Delivery Managers, responsables d'exploitation, chefs de projets, équipes support et plus largement à tous les acteurs impliqués dans la qualité des services numériques.",
   },
   {
-    title: "PRINCE2® — Piloter les projets avec méthode et maîtrise",
+    title: "PRINCE2® : piloter les projets avec méthode et maîtrise",
     intro:
       "La réussite d'un projet repose autant sur la qualité de sa gouvernance que sur la maîtrise de son exécution. Les formations PRINCE2® dispensées par Cycle Consulting permettent aux chefs de projets, PMO, managers et responsables de programmes d'acquérir une méthode internationalement reconnue pour structurer, piloter et sécuriser leurs projets. Nos formations permettent notamment de :",
     items: [
@@ -101,7 +101,7 @@ export default function FormationsPage() {
     <>
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Formations</span>}
-        title="Façonner les compétences qui accélèrent la transformation des entreprises"
+        title={<>Façonner les compétences qui <span className={GRADIENT_LIGHT}>accélèrent la transformation</span> des entreprises</>}
         titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl xl:text-5xl"
         description="L'excellence au service du développement des talents."
       >

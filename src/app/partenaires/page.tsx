@@ -4,7 +4,7 @@ import PartnerLogo from "@/components/ui/PartnerLogo";
 import { partenaires } from "@/data/partenaires";
 
 export const metadata: Metadata = {
-  title: "Nos partenaires — Cycle Consulting",
+  title: "Nos partenaires | Cycle Consulting",
   description: "Découvrez les partenaires technologiques et métiers de Cycle Consulting.",
 };
 
@@ -24,7 +24,7 @@ export default function PartenairesPage() {
           ))}
         </div>
         <p className="mt-8 text-sm text-anthracite-mist">
-          Logos présentés à titre indicatif — visuels officiels à intégrer par le client.
+          Logos présentés à titre indicatif. Visuels officiels à intégrer par le client.
         </p>
       </section>
     </>

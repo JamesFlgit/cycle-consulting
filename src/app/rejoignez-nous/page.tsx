@@ -3,7 +3,7 @@ import PageHero from "@/components/ui/PageHero";
 import ContactForm from "@/components/ui/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Rejoignez-nous — Cycle Consulting",
+  title: "Rejoignez-nous | Cycle Consulting",
   description: "Consultants, techniciens, experts IT : rejoignez les équipes de Cycle Consulting.",
 };
 
@@ -24,7 +24,7 @@ export default function RejoignezNousPage() {
             compétence, sur l&apos;ensemble de ses pôles d&apos;expertise.
           </p>
           <p>
-            Envoyez-nous votre candidature via le formulaire ci-dessous — un consultant Cycle vous
+            Envoyez-nous votre candidature via le formulaire ci-dessous. Un consultant Cycle vous
             recontactera pour échanger sur vos disponibilités et les missions en cours.
           </p>
         </div>

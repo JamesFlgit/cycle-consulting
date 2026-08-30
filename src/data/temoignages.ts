@@ -8,7 +8,7 @@ export type Temoignage = {
 export const temoignages: Temoignage[] = [
   {
     auteur: "Burger King",
-    citation: "[À COMPLÉTER — témoignage Burger King]",
+    citation: "[À COMPLÉTER : témoignage Burger King]",
     logo: "/logos-clients/burger-king.png",
   },
   {
@@ -28,33 +28,33 @@ export const temoignages: Temoignage[] = [
   },
   {
     auteur: "Equans",
-    citation: "[À COMPLÉTER — témoignage Equans]",
+    citation: "[À COMPLÉTER : témoignage Equans]",
     logo: "/logos-clients/equans.jpg",
   },
   {
     auteur: "DBV Technologies",
-    citation: "[À COMPLÉTER — témoignage DBV Technologies]",
+    citation: "[À COMPLÉTER : témoignage DBV Technologies]",
     logo: "/logos-clients/dbv.png",
   },
   {
     auteur: "GES 360",
-    citation: "[À COMPLÉTER — témoignage GES 360]",
+    citation: "[À COMPLÉTER : témoignage GES 360]",
     logo: "/logos-clients/ges-360.jpg",
   },
   {
     auteur: "Kankou Traiteur",
-    citation: "[À COMPLÉTER — témoignage Kankou Traiteur]",
+    citation: "[À COMPLÉTER : témoignage Kankou Traiteur]",
     logo: "/logos-clients/kankou-traiteur.png",
   },
   {
     auteur: "Team Body",
-    citation: "[À COMPLÉTER — témoignage Team Body]",
+    citation: "[À COMPLÉTER : témoignage Team Body]",
     logo: "/logos-clients/team-body.png",
     logoScale: 1.15,
   },
   {
     auteur: "Les Merveilles d'Alice",
-    citation: "[À COMPLÉTER — témoignage Les Merveilles d'Alice]",
+    citation: "[À COMPLÉTER : témoignage Les Merveilles d'Alice]",
     logo: "/logos-clients/merveilles-alice.png",
   },
 ];

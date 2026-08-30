@@ -24,7 +24,7 @@ export const poles: Pole[] = [
         "Montez en compétence et formez-vous sur les outils Microsoft et autres avec l'expertise des Consultants Cycle. Augmentez vos performances professionnelles et personnelles.",
       apartirde: "4h/pers.",
     },
-    metaTitle: "Formations — Cycle Consulting",
+    metaTitle: "Formations | Cycle Consulting",
     metaDescription:
       "Montez en compétence sur les outils Microsoft (Office, O365) et les processus Cycle Forms avec les Consultants Cycle Consulting.",
   },
@@ -40,7 +40,7 @@ export const poles: Pole[] = [
         "Du Technicien au Responsable de Production, Cycle Consulting vous accompagne quel que soit le niveau de service à intégrer et l'expertise à solliciter.",
       apartirde: "1 consultation",
     },
-    metaTitle: "Service Managé — Cycle Consulting",
+    metaTitle: "Service Managé | Cycle Consulting",
     metaDescription:
       "Service Delivery, infogérance et veille technologique : pilotez votre entreprise avec les meilleurs outils grâce aux Consultants Cycle Consulting.",
   },
@@ -56,7 +56,7 @@ export const poles: Pole[] = [
         "Développez votre activité avec une meilleure connaissance de vos enjeux grâce à des Consultants expérimentés et disponibles pour vous accompagner à chaque étape avec Cycle Consulting.",
       apartirde: "1 consultation",
     },
-    metaTitle: "Business & Stratégie — Cycle Consulting",
+    metaTitle: "Business & Stratégie | Cycle Consulting",
     metaDescription:
       "Web Services et Business Services : développez votre activité avec l'accompagnement des Consultants Cycle Consulting.",
   },
@@ -72,7 +72,7 @@ export const poles: Pole[] = [
         "De l'opérateur au responsable de production, Cycle Consulting met à votre disposition des profils qualifiés pour vos infrastructures et votre support IT.",
       apartirde: "1 consultation",
     },
-    metaTitle: "Ingénierie & IT Support — Cycle Consulting",
+    metaTitle: "Ingénierie & IT Support | Cycle Consulting",
     metaDescription:
       "OSS, IT Support et Ingénierie IT : des consultants qualifiés pour renforcer vos équipes techniques et vos infrastructures.",
   },
@@ -88,7 +88,7 @@ export const poles: Pole[] = [
         "Stockage, livraison nationale et internationale, expertises métiers : Cycle Consulting sécurise l'ensemble de votre chaîne logistique IT.",
       apartirde: "1 journée",
     },
-    metaTitle: "Centre Logistique — Cycle Consulting",
+    metaTitle: "Centre Logistique | Cycle Consulting",
     metaDescription: "Stockage, livraison et expertises métiers : Cycle Consulting gère votre logistique IT de bout en bout.",
   },
 ];

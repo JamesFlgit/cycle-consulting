@@ -5,7 +5,7 @@ import Slogan from "@/components/ui/Slogan";
 import { faqThemes } from "@/data/faq";
 
 export const metadata: Metadata = {
-  title: "Questions fréquentes — Cycle Consulting",
+  title: "Questions fréquentes | Cycle Consulting",
   description: "Les réponses aux questions les plus fréquentes sur Cycle Consulting : nos missions, nos consultants, nos Services Managés et notre logistique IT.",
 };
 
@@ -17,7 +17,7 @@ export default function FaqPage() {
         title="Questions fréquentes"
         description={
           <>
-            <Slogan variant="light" /> — les réponses aux questions que l&apos;on nous pose le plus souvent.
+            <Slogan variant="light" />. Les réponses aux questions que l&apos;on nous pose le plus souvent.
           </>
         }
       />

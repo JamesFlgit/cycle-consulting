@@ -8,7 +8,7 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
-  title: "Centre Logistique — Cycle Consulting",
+  title: "Centre Logistique | Cycle Consulting",
   description:
     "Stockage, livraison et expertises métiers : Cycle Consulting gère votre logistique IT de bout en bout.",
 };
@@ -120,7 +120,7 @@ export default function CentreLogistiquePage() {
     <>
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Centre Logistique</span>}
-        title="Une chaîne logistique intégrée au service de votre performance"
+        title={<>Une chaîne logistique intégrée au service de <span className={GRADIENT_LIGHT}>votre performance</span></>}
         description="Centre de Services Logistiques & Industrialisation IT."
       />
 

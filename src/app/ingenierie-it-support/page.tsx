@@ -8,7 +8,7 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
-  title: "Ingénierie & IT Support — Cycle Consulting",
+  title: "Ingénierie & IT Support | Cycle Consulting",
   description:
     "OSS, IT Support et Ingénierie IT : des consultants qualifiés pour renforcer vos équipes techniques et vos infrastructures.",
 };
@@ -108,7 +108,7 @@ export default function IngenierieItSupportPage() {
     <>
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Ingénierie &amp; IT Support</span>}
-        title="Piloter la performance des services numériques avec une expertise de haut niveau"
+        title={<><span className={GRADIENT_LIGHT}>Piloter la performance</span> des services numériques avec une expertise de haut niveau</>}
         titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl xl:text-5xl"
         description="Conseil en Infogérance & Gouvernance des Services IT."
       />

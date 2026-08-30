@@ -19,7 +19,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "Cycle Consulting — Apprendre, Comprendre, Entreprendre",
+  title: "Cycle Consulting | Apprendre, Comprendre, Entreprendre",
   description:
     "Cycle Consulting, ESN française : formations, service managé, infogérance, business & stratégie, ingénierie IT et logistique. Des consultants experts au service de votre performance.",
   robots: {

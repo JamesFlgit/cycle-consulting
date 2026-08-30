@@ -6,7 +6,7 @@ import { temoignages } from "@/data/temoignages";
 import { clientsLivreOr } from "@/data/partenaires";
 
 export const metadata: Metadata = {
-  title: "Livre d'or — Cycle Consulting",
+  title: "Livre d'or | Cycle Consulting",
   description: "Retrouvez les témoignages des clients de Cycle Consulting.",
 };
 

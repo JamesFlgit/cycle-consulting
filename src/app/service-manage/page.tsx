@@ -8,7 +8,7 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
-  title: "Service Managé — Cycle Consulting",
+  title: "Service Managé | Cycle Consulting",
   description:
     "Service Delivery, infogérance et veille technologique : pilotez votre entreprise avec les meilleurs outils grâce aux Consultants Cycle Consulting.",
 };
@@ -97,7 +97,7 @@ export default function ServiceManagePage() {
     <>
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Service Managé</span>}
-        title="Des experts de proximité au service de votre performance opérationnelle"
+        title={<>Des experts de proximité au service de <span className={GRADIENT_LIGHT}>votre performance</span> opérationnelle</>}
         titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl xl:text-5xl"
         description="L'excellence des services managés sur site."
       />

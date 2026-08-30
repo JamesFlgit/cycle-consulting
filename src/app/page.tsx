@@ -143,7 +143,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Références"
             title="Nos cas clients"
-            description="Références présentées de façon anonymisée pour des raisons de confidentialité contractuelle — enjeux et résultats réels, nom du client non communiqué."
+            description="Références présentées de façon anonymisée pour des raisons de confidentialité contractuelle : enjeux et résultats réels, nom du client non communiqué."
             center
           />
         </Reveal>

@@ -17,7 +17,7 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
-  title: "À propos de Cycle Consulting — Cycle Consulting",
+  title: "À propos de Cycle Consulting | Cycle Consulting",
   description:
     "Découvrez Cycle Consulting, société de conseil et de services IT : notre histoire, notre vision internationale, nos valeurs et nos atouts.",
 };

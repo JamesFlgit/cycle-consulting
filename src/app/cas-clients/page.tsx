@@ -8,7 +8,7 @@ import { casClients } from "@/data/cas-clients";
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
-  title: "Cas clients — Cycle Consulting",
+  title: "Cas clients | Cycle Consulting",
   description: "Découvrez comment Cycle Consulting accompagne ses clients, tous secteurs confondus.",
 };
 

@@ -4,9 +4,10 @@ import PageHero from "@/components/ui/PageHero";
 import ContactForm from "@/components/ui/ContactForm";
 import Slogan from "@/components/ui/Slogan";
 import { entreprise } from "@/data/entreprise";
+import { EmailIcon } from "@/components/icons/card-icons";
 
 export const metadata: Metadata = {
-  title: "Infos & Réservation — Cycle Consulting",
+  title: "Infos & Réservation | Cycle Consulting",
   description: "Contactez les Consultants Cycle Consulting pour vos projets IT, formations et stratégie.",
 };
 
@@ -30,25 +31,13 @@ export default function ContactPage() {
               className="h-20 w-auto"
             />
             <Slogan variant="dark" className="mt-4 text-lg font-semibold text-anthracite" />
-            <div className="mt-8 space-y-4 text-sm text-anthracite-soft">
-              <div>
-                <p className="font-semibold text-anthracite">Contact</p>
-                <p>{entreprise.contact}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-anthracite">Adresse</p>
-                <p>{entreprise.adresse}</p>
-                <p>{entreprise.codePostalVille}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-anthracite">Téléphone</p>
-                <p>{entreprise.telephone}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-anthracite">E-mail</p>
-                <p>{entreprise.email}</p>
-              </div>
-            </div>
+            <a
+              href={`mailto:${entreprise.email}`}
+              className="mt-8 inline-flex items-center gap-2.5 rounded-md border border-border-subtle bg-surface-alt px-4 py-3 text-sm font-semibold text-anthracite transition-colors hover:border-anthracite"
+            >
+              <EmailIcon className="h-5 w-5 shrink-0 text-anthracite-mist" />
+              {entreprise.email}
+            </a>
           </div>
 
           <div className="md:col-span-3">

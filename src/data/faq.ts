@@ -201,12 +201,12 @@ Les formations peuvent être adaptées au niveau des participants et aux objecti
         highlight: true,
         reponse: `Nous privilégions une démarche en plusieurs étapes :
 
-1. Comprendre — analyse de votre environnement, de vos enjeux et de vos objectifs.
-2. Diagnostiquer — identification des points de friction, risques et opportunités d'amélioration.
-3. Construire — définition d'une organisation, d'une gouvernance ou d'un dispositif adapté.
-4. Entreprendre — mise en œuvre opérationnelle des actions définies.
-5. Mesurer — suivi des KPI, SLA et résultats obtenus.
-6. Améliorer — mise en place d'une démarche d'amélioration continue.
+1. Comprendre : analyse de votre environnement, de vos enjeux et de vos objectifs.
+2. Diagnostiquer : identification des points de friction, risques et opportunités d'amélioration.
+3. Construire : définition d'une organisation, d'une gouvernance ou d'un dispositif adapté.
+4. Entreprendre : mise en œuvre opérationnelle des actions définies.
+5. Mesurer : suivi des KPI, SLA et résultats obtenus.
+6. Améliorer : mise en place d'une démarche d'amélioration continue.
 
 Cette démarche traduit directement notre signature : Apprendre. Comprendre. Entreprendre.`,
       },
@@ -256,11 +256,11 @@ Notre objectif est de rendre la valeur créée mesurable et visible.`,
         reponse: `Notre positionnement repose sur une conviction simple : la valeur d'une ESN ne réside pas uniquement dans les compétences qu'elle met à disposition, mais dans sa capacité à produire des résultats.
 
 CYCLE CONSULTING associe :
-• Expertise — des consultants expérimentés
-• Proximité — des équipes accessibles et proches des enjeux clients
-• Engagement — une implication dans la réussite des missions
-• Performance — des objectifs et indicateurs mesurables
-• Transformation — une capacité à faire évoluer durablement les organisations`,
+• Expertise : des consultants expérimentés
+• Proximité : des équipes accessibles et proches des enjeux clients
+• Engagement : une implication dans la réussite des missions
+• Performance : des objectifs et indicateurs mesurables
+• Transformation : une capacité à faire évoluer durablement les organisations`,
       },
       {
         question: "Comment CYCLE CONSULTING accompagne-t-il l'amélioration continue ?",
