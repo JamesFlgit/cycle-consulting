@@ -15,7 +15,9 @@ export default function ArticleCard({ article }: { article: Article }) {
       <div className="flex flex-1 flex-col p-6">
         <h3 className="text-lg font-semibold text-anthracite">{article.titre}</h3>
         <p className="mt-3 flex-1 text-sm leading-relaxed text-anthracite-mist">{article.extrait}</p>
-        <span className="mt-6 flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-anthracite-mist">
+        <span className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-medium uppercase tracking-wide text-anthracite-mist">
+          <time dateTime={article.dateISO}>{article.dateLabel}</time>
+          <span aria-hidden="true">·</span>
           {article.tempsLecture}
           <span aria-hidden="true">·</span>
           <span className="text-[#132bdd] group-hover:underline">Lire l&apos;article</span>

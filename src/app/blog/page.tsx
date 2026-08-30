@@ -16,7 +16,9 @@ export const metadata: Metadata = {
     "Le blog de Cycle Consulting : analyses, retours d'expérience et repères concrets sur les métiers de l'IT.",
 };
 
-const articlesVisibles = articles.filter((article) => article.visible);
+const articlesVisibles = articles
+  .filter((article) => article.visible)
+  .sort((a, b) => b.dateISO.localeCompare(a.dateISO));
 
 export default function BlogPage() {
   return (
