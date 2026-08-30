@@ -14,21 +14,21 @@ export default function HeroSchemaVideo({ className }: { className?: string }) {
           position utility belongs to the caller (see note above), so it
           can't be `relative` itself. */}
       <div className="relative h-full w-full">
-        {/* "Run" / "Build" captions, coloured to echo the yellow ("Run")
-            and green ("Build") neon signs inside the video. */}
+        {/* "Build" / "Run" captions, coloured to echo the yellow ("Build")
+            and green ("Run") neon signs inside the video. */}
         <span
           className="pointer-events-none absolute inset-x-0 top-[3%] text-center text-[9px] font-semibold uppercase tracking-[0.35em] sm:text-[11px] lg:text-xs"
           style={{ color: "#f9ba5c", textShadow: "0 0 12px rgba(249, 186, 92, 0.55)" }}
           aria-hidden="true"
         >
-          Run
+          Build
         </span>
         <span
           className="pointer-events-none absolute inset-x-0 bottom-[3%] text-center text-[9px] font-semibold uppercase tracking-[0.35em] sm:text-[11px] lg:text-xs"
           style={{ color: "#5cf2ab", textShadow: "0 0 12px rgba(92, 242, 171, 0.55)" }}
           aria-hidden="true"
         >
-          Build
+          Run
         </span>
         <video
           className="h-full w-full object-contain"

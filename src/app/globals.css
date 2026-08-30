@@ -87,6 +87,41 @@ body {
   background: linear-gradient(160deg, #0e1230 0%, #0a0e24 45%, #060814 75%, #05060f 100%);
 }
 
+/* Expertise-page hero: a light field on the left (where the dark copy sits)
+   that ramps up to full strength under the 3D illustration docked on the
+   right, so the image dissolves into it with no seam. Every stop is mixed
+   from --hero-tint — the illustration's own dominant background colour, set
+   per page — so each hero's gradient is tuned to its own image. See
+   PageHero `tint`. */
+.bg-expertise-hero {
+  --hero-tint: #6a61df;
+  background: linear-gradient(
+    120deg,
+    #ffffff 0%,
+    color-mix(in srgb, var(--hero-tint) 6%, #ffffff) 55%,
+    color-mix(in srgb, var(--hero-tint) 16%, #ffffff) 100%
+  );
+}
+
+/* The docked illustration's own left edge is an arc (clipped), bowing toward
+   the copy at mid-height — that curve is the split, no fade. */
+.hero-arc-photo {
+  clip-path: ellipse(96% 180% at 100% 50%);
+}
+
+/* Mobile expertise hero: fade the illustration's top and bottom edges into
+   the field. */
+.hero-photo-fade-y {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 9%, #000 90%, transparent 100%);
+}
+
+/* Desktop expertise hero: fade only the bottom edge into the field. */
+.hero-photo-fade-bottom {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+}
+
 /* Layered hero background, back (last) to front (first):
    1. Grid texture (unchanged).
    2. Base diagonal navy gradient (unchanged).

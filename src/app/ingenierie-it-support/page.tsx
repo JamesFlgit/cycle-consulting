@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
+import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
 
 // Brand gradient, dark variant — for accents on light sections.
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
@@ -107,10 +108,28 @@ export default function IngenierieItSupportPage() {
   return (
     <>
       <PageHero
-        eyebrow={<span className={GRADIENT_LIGHT}>Ingénierie &amp; IT Support</span>}
-        title={<><span className={GRADIENT_LIGHT}>Piloter la performance</span> des services numériques avec une expertise de haut niveau</>}
-        titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl xl:text-5xl"
+        eyebrow={<span className={GRADIENT_DARK}>Ingénierie &amp; IT Support</span>}
+        title={<><span className={GRADIENT_DARK}>Piloter la performance</span> des services numériques avec une expertise de haut niveau</>}
+        titleClassName="mt-3 text-2xl font-bold text-balance text-anthracite sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="Conseil en Infogérance & Gouvernance des Services IT."
+        image="/images/offres/ingenierie-it-support-dark.webp"
+        imageSide="right"
+        tint="#122130"
+        caption="Run"
+        captionColor="green"
+        badges={[
+          { icon: <HeadsetIcon className="h-full w-full" />, label: "Ingénierie" },
+          { icon: <GearIcon className="h-full w-full" />, label: "Gouvernance" },
+          { icon: <GraduationCapIcon className="h-full w-full" />, label: "Performance" },
+        ]}
+        cta={
+          <Link
+            href="#expertises"
+            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+          >
+            Découvrir nos expertises
+          </Link>
+        }
       />
 
       <section className="bg-surface">
@@ -138,7 +157,7 @@ export default function IngenierieItSupportPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 pt-8 pb-16 sm:pt-10 sm:px-6 lg:px-8">
+      <section id="expertises" className="mx-auto max-w-5xl scroll-mt-24 px-4 pt-8 pb-16 sm:pt-10 sm:px-6 lg:px-8">
         <h2 className="text-center text-xl font-bold text-anthracite sm:text-2xl lg:text-3xl">
           Une gouvernance IT{" "}
           <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>au service de vos ambitions</span>
@@ -163,6 +182,15 @@ export default function IngenierieItSupportPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-14 text-center">
+          <Link
+            href="/contact"
+            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+          >
+            Nous contacter
+          </Link>
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import { GraduationCapIcon, UsersThreeIcon, GearIcon } from "@/components/icons/card-icons";
 
 // Brand gradient, dark variant — for accents on light sections.
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
@@ -100,13 +101,30 @@ export default function FormationsPage() {
   return (
     <>
       <PageHero
-        eyebrow={<span className={GRADIENT_LIGHT}>Formations</span>}
-        title={<>Façonner les compétences qui <span className={GRADIENT_LIGHT}>accélèrent la transformation</span> des entreprises</>}
-        titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl xl:text-5xl"
+        eyebrow={<span className={GRADIENT_DARK}>Formations</span>}
+        title={<>Façonner les compétences qui <span className={GRADIENT_DARK}>accélèrent la transformation</span> des entreprises</>}
+        titleClassName="mt-3 text-2xl font-bold text-balance text-anthracite sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="L'excellence au service du développement des talents."
+        image="/images/offres/formations-dark.webp"
+        imageSide="right"
+        tint="#55588e"
+        caption="Build"
+        badges={[
+          { icon: <GraduationCapIcon className="h-full w-full" />, label: "Formations" },
+          { icon: <UsersThreeIcon className="h-full w-full" />, label: "Impact" },
+          { icon: <GearIcon className="h-full w-full" />, label: "Résultats" },
+        ]}
+        cta={
+          <Link
+            href="#programmes"
+            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+          >
+            Découvrir les formations
+          </Link>
+        }
       >
-        <div className="mt-8">
-          <Breadcrumb items={["Apprendre", "Comprendre", "Entreprendre"]} />
+        <div className="mt-6">
+          <Breadcrumb items={["Apprendre", "Comprendre", "Entreprendre"]} tone="onLight" />
         </div>
       </PageHero>
 
@@ -134,7 +152,7 @@ export default function FormationsPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 pt-8 pb-16 sm:pt-10 sm:px-6 lg:px-8">
+      <section id="programmes" className="mx-auto max-w-5xl scroll-mt-24 px-4 pt-8 pb-16 sm:pt-10 sm:px-6 lg:px-8">
         <h2 className="text-center text-xl font-bold text-anthracite sm:text-2xl lg:text-3xl">
           Des formations conçues pour répondre aux{" "}
           <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>défis de l&apos;entreprise moderne</span>
@@ -161,6 +179,15 @@ export default function FormationsPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-14 text-center">
+          <Link
+            href="/contact"
+            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+          >
+            Nous contacter
+          </Link>
         </div>
       </section>
 
