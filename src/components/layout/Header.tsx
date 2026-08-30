@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { getRenderableSections } from "@/data/nav-sections";
 import NavLogoMark from "@/components/layout/NavLogoMark";
@@ -14,6 +14,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const sections = getRenderableSections();
+  const mobileNavRef = useRef<HTMLElement>(null);
+  const burgerBtnRef = useRef<HTMLButtonElement>(null);
 
   const isHome = pathname === "/";
   const transparent = isHome && !scrolled;
@@ -33,6 +35,18 @@ export default function Header() {
     setOpenDesktopKey(null);
     setOpenMobileKey(null);
   }
+
+  useEffect(() => {
+    if (!open) return;
+    function handlePointerDown(e: PointerEvent) {
+      const target = e.target as Node;
+      if (mobileNavRef.current?.contains(target) || burgerBtnRef.current?.contains(target)) return;
+      setOpen(false);
+      setOpenMobileKey(null);
+    }
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [open]);
 
   return (
     <header
@@ -111,6 +125,7 @@ export default function Header() {
         </div>
 
         <button
+          ref={burgerBtnRef}
           type="button"
           aria-label="Ouvrir le menu"
           aria-expanded={open}
@@ -135,7 +150,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t border-border-subtle bg-surface px-4 py-3 lg:hidden">
+        <nav ref={mobileNavRef} className="border-t border-border-subtle bg-surface px-4 py-3 lg:hidden">
           <ul className="flex flex-col gap-1">
             {sections.map((section) => {
               if (section.mode === "hidden") return null;
@@ -159,11 +174,29 @@ export default function Header() {
                 <li key={section.key}>
                   <div className="flex w-full items-center justify-between rounded-md text-sm font-medium text-anthracite-soft hover:bg-surface-alt hover:text-anthracite">
                     {section.hubHref ? (
-                      <Link href={section.hubHref} onClick={closeAll} className="flex-1 px-3 py-2">
+                      <Link
+                        href={section.hubHref}
+                        onClick={(e) => {
+                          if (!isGroupOpen) {
+                            e.preventDefault();
+                            setOpenMobileKey(section.key);
+                          } else {
+                            closeAll();
+                          }
+                        }}
+                        className="flex-1 px-3 py-2"
+                      >
                         {section.label}
                       </Link>
                     ) : (
-                      <span className="flex-1 px-3 py-2">{section.label}</span>
+                      <button
+                        type="button"
+                        onClick={() => setOpenMobileKey((current) => (current === section.key ? null : section.key))}
+                        aria-expanded={isGroupOpen}
+                        className="flex-1 px-3 py-2 text-left"
+                      >
+                        {section.label}
+                      </button>
                     )}
                     <button
                       type="button"
