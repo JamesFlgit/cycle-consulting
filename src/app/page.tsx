@@ -60,17 +60,22 @@ export default function Home() {
             zero margin at any size where max-w isn't yet the constraint. */}
         <HeroSchemaVideo className="pointer-events-none absolute top-1/2 left-[75%] hidden w-[44vw] max-w-4xl -translate-x-1/2 -translate-y-1/2 lg:block 2xl:max-w-6xl" />
 
-        <div className="hero-grid mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-[96rem] lg:px-8">
+        <div className="hero-grid mx-auto w-full max-w-7xl px-4 pt-24 pb-10 sm:px-6 sm:py-32 lg:max-w-[96rem] lg:px-8">
           <div className="hero-grid-text">
-            <h1 className="max-w-3xl text-3xl font-bold text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">
-              Conseil &amp; Services IT
+            <h1 className="text-[1.75rem] font-bold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-6xl">
+              Transformer la complexité IT{" "}
+              <span className={GRADIENT_LIGHT}>en performance</span>
             </h1>
-            <h2 className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-xs sm:tracking-[0.25em] md:text-sm lg:text-base 2xl:text-lg">
+            <p className="mt-2 max-w-2xl text-[9px] leading-relaxed text-white/70 sm:text-[11px] md:text-xs lg:mt-3 lg:text-sm 2xl:text-[15px]">
+              Révéler les talents qui la rendent possible
+            </p>
+            <h2 className="mt-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-xs sm:tracking-[0.25em] md:text-sm lg:mt-8 lg:text-base 2xl:text-lg">
               <Slogan variant="light" />
             </h2>
-            <p className="mt-10 max-w-2xl text-base leading-relaxed text-white sm:mt-12 sm:text-lg lg:text-xl 2xl:text-2xl">
-              Cycle Consulting accompagne les décideurs d&apos;entreprise avec des consultants experts en
-              formations, service managé, infogérance, business &amp; stratégie, ingénierie IT et logistique.
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white sm:mt-10 sm:text-base lg:text-lg 2xl:text-xl">
+              CYCLE CONSULTING accompagne les entreprises dans la transformation, le pilotage et
+              l&apos;exploitation de leurs environnements IT, en combinant expertise technologique,
+              excellence opérationnelle et proximité humaine.
             </p>
           </div>
 

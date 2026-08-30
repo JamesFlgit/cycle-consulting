@@ -1,8 +1,15 @@
 "use client";
 
 export default function HeroSchemaVideo({ className }: { className?: string }) {
+  // No hardcoded `w-full`/position here — every caller passes its own width
+  // and position classes (mobile: w-full in-flow; desktop: w-[44vw] absolute).
+  // A hardcoded width or position utility here would fight the caller's for
+  // the same CSS property, and which one wins is decided by Tailwind's
+  // internal utility ordering (not by className string order), which isn't
+  // guaranteed stable across dev-server rebuilds — see the earlier
+  // relative/absolute bug this same component had.
   return (
-    <div className={`aspect-square w-full ${className ?? ""}`}>
+    <div className={`aspect-square ${className ?? ""}`}>
       <video
         className="h-full w-full object-contain"
         style={{

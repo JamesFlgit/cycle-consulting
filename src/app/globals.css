@@ -128,9 +128,80 @@ body {
    column's width. See HeroSchemaVideo usage in page.tsx. */
 .hero-grid {
   display: grid;
+  /* Mobile: copy, then the illustration, then the CTAs pinned at the bottom. */
   grid-template-areas: "text" "video" "cta";
   grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 1.75rem;
+}
+
+/* Mobile: let the hero grid fill the viewport and push the CTA row to the
+   bottom edge, so the buttons land at the bottom of the screen below the
+   illustration rather than floating mid-page. The illustration keeps its
+   natural full-width square size — space is freed by compressing the copy,
+   never the schema. */
+@media (max-width: 639px) {
+  .bg-home-hero {
+    align-items: stretch;
+    /* svh so the CTA row sits above the mobile browser chrome, not under it */
+    min-height: 100svh;
+  }
+  .hero-grid {
+    grid-template-rows: auto auto 1fr;
+    gap: 1rem;
+  }
+  .hero-grid-cta {
+    align-self: end;
+  }
+}
+
+/* Extra-short viewports (iPhone SE, small Androids): compress the text block
+   — sizes, line-height, internal margins, and a line clamp on the intro
+   paragraph — so the copy + full-size schema + CTAs all stay above the fold
+   on first load. The <video> is left untouched. */
+@media (max-width: 639px) and (max-height: 740px) {
+  .hero-grid {
+    gap: 0.625rem;
+    padding-top: 4.75rem;
+    padding-bottom: 1rem;
+  }
+  .hero-grid-text h1 {
+    font-size: 1.375rem;
+    line-height: 1.15;
+  }
+  .hero-grid-text > p:first-of-type {
+    margin-top: 0.25rem;
+  }
+  .hero-grid-text > h2 {
+    margin-top: 0.5rem;
+  }
+  .hero-grid-text > p:last-of-type {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1.35;
+    /* keep the intro short on tiny screens so the CTAs stay visible */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+  /* Buttons side by side rather than stacked, to save a full row of height. */
+  .hero-grid-cta {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .hero-grid-cta > a {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-grid {
+    gap: 2.5rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -144,19 +215,19 @@ body {
        column widens at xl/2xl to use more of that safe space as the text
        itself grows on those breakpoints (see the h1/h2/p/CTA classes in
        page.tsx). */
-    grid-template-columns: minmax(0, 30rem);
+    grid-template-columns: minmax(0, 32rem);
   }
 }
 
 @media (min-width: 1280px) {
   .hero-grid {
-    grid-template-columns: minmax(0, 34rem);
+    grid-template-columns: minmax(0, 36rem);
   }
 }
 
 @media (min-width: 1536px) {
   .hero-grid {
-    grid-template-columns: minmax(0, 40rem);
+    grid-template-columns: minmax(0, 44rem);
   }
 }
 
