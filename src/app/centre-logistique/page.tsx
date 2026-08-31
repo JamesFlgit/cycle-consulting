@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GearIcon, HeadsetIcon, PackageIcon } from "@/components/icons/card-icons";
 
 // Brand gradient, dark variant — for accents on light sections.
@@ -120,9 +122,9 @@ export default function CentreLogistiquePage() {
   return (
     <>
       <PageHero
-        eyebrow={<span className={GRADIENT_DARK}>Centre Logistique</span>}
-        title={<>Une chaîne logistique intégrée au service de <span className={GRADIENT_DARK}>votre performance</span></>}
-        titleClassName="mt-3 text-2xl font-bold text-balance text-anthracite sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
+        eyebrow={<span className={GRADIENT_LIGHT}>Centre Logistique</span>}
+        title={<>Une chaîne logistique intégrée au service de <span className={GRADIENT_LIGHT}>votre performance</span></>}
+        titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="Centre de Services Logistiques & Industrialisation IT."
         image="/images/offres/centre-logistique-dark.webp"
         imageSide="right"
@@ -130,19 +132,25 @@ export default function CentreLogistiquePage() {
         caption="Run"
         captionColor="green"
         badges={[
-          { icon: <PackageIcon className="h-full w-full" />, label: "Logistique" },
-          { icon: <GearIcon className="h-full w-full" />, label: "Industrialisation" },
-          { icon: <HeadsetIcon className="h-full w-full" />, label: "Fiabilité" },
+          { icon: <PackageIcon className="h-full w-full" tone="light" />, label: "Logistique" },
+          { icon: <GearIcon className="h-full w-full" tone="light" />, label: "Industrialisation" },
+          { icon: <HeadsetIcon className="h-full w-full" tone="light" />, label: "Fiabilité" },
         ]}
         cta={
           <Link
             href="#domaines"
-            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+            className="cta-primary cta-primary-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
           >
             Découvrir nos services
           </Link>
         }
-      />
+      >
+        <div className="mt-6">
+          <Breadcrumb
+            items={["Apprendre", "Comprendre", <span key="e" className={`font-semibold ${GRADIENT_LIGHT}`}>Entreprendre</span>]}
+          />
+        </div>
+      </PageHero>
 
       <section className="bg-surface">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
@@ -235,7 +243,7 @@ export default function CentreLogistiquePage() {
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-              Qualité, traçabilité et <span className={GRADIENT_DARK}>excellence opérationnelle</span>
+              Qualité, traçabilité et <span className={GRADIENT_LIGHT}>excellence opérationnelle</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-anthracite-soft">
               Chez Cycle Consulting, chaque équipement est suivi tout au long de son cycle de vie. Nos processus
@@ -263,7 +271,7 @@ export default function CentreLogistiquePage() {
       <section className="bg-callout-light">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-            L&apos;excellence industrielle <span className={GRADIENT_DARK}>au service de votre IT</span>
+            L&apos;excellence industrielle <span className={GRADIENT_LIGHT}>au service de votre IT</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite-soft">
             <p>
@@ -288,6 +296,8 @@ export default function CentreLogistiquePage() {
           </Link>
         </div>
       </section>
+
+      <RelatedExpertises currentSlug="centre-logistique" />
     </>
   );
 }

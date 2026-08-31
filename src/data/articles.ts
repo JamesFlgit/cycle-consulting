@@ -27,6 +27,8 @@ export type Article = {
   extrait: string;
   metaTitle: string;
   metaDescription: string;
+  /** Illustration (bandeau) — carte de la liste et hero de l'article. */
+  image: string;
   dateLabel: string;
   dateISO: string;
   tempsLecture: string;
@@ -41,7 +43,8 @@ export type Article = {
 export const articles: Article[] = [
   {
     slug: "service-it-degrade-signes-causes-reprise-en-main",
-    href: "/blog/service-it-degrade-signes-causes-reprise-en-main",
+    href: "/service-it-degrade-signes-causes-reprise-en-main",
+    image: "/images/ressources/service-it-degrade-signes-causes-reprise-en-main.webp",
     categorie: "Production IT",
     titre: "Un service IT qui se dégrade : reconnaître les signes, comprendre les causes, reprendre le contrôle",
     extrait:
@@ -195,7 +198,8 @@ export const articles: Article[] = [
   },
   {
     slug: "gouvernance-ia-entreprise-cadrer-sans-bloquer",
-    href: "/blog/gouvernance-ia-entreprise-cadrer-sans-bloquer",
+    href: "/gouvernance-ia-entreprise-cadrer-sans-bloquer",
+    image: "/images/ressources/gouvernance-ia-entreprise-cadrer-sans-bloquer.webp",
     categorie: "Transformation",
     titre: "Gouvernance de l'IA en entreprise : cadrer l'usage sans bloquer les équipes",
     extrait:
@@ -338,7 +342,8 @@ export const articles: Article[] = [
   },
   {
     slug: "modele-prestation-it-regie-forfait-centre-de-services",
-    href: "/blog/modele-prestation-it-regie-forfait-centre-de-services",
+    href: "/modele-prestation-it-regie-forfait-centre-de-services",
+    image: "/images/ressources/modele-prestation-it-regie-forfait-centre-de-services.webp",
     categorie: "Stratégie",
     titre: "Régie, forfait, centre de services ou engagement de résultat : quel modèle de prestation IT choisir",
     extrait:
@@ -461,7 +466,8 @@ export const articles: Article[] = [
   },
   {
     slug: "heberger-donnees-entreprise-2026-souverainete-reversibilite",
-    href: "/blog/heberger-donnees-entreprise-2026-souverainete-reversibilite",
+    href: "/heberger-donnees-entreprise-2026-souverainete-reversibilite",
+    image: "/images/ressources/heberger-donnees-entreprise-2026-souverainete-reversibilite.webp",
     categorie: "Cybersécurité",
     titre: "Où héberger vos données en 2026 : souveraineté, interopérabilité, réversibilité",
     extrait:

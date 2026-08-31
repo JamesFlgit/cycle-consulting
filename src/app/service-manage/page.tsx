@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
 
 // Brand gradient, dark variant — for accents on light sections.
@@ -97,28 +99,34 @@ export default function ServiceManagePage() {
   return (
     <>
       <PageHero
-        eyebrow={<span className={GRADIENT_DARK}>Service Managé</span>}
-        title={<>Des experts de proximité au service de <span className={GRADIENT_DARK}>votre performance</span> opérationnelle</>}
-        titleClassName="mt-3 text-2xl font-bold text-balance text-anthracite sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
+        eyebrow={<span className={GRADIENT_LIGHT}>Service Managé</span>}
+        title={<>Des experts de proximité au service de <span className={GRADIENT_LIGHT}>votre performance</span> opérationnelle</>}
+        titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="L'excellence des services managés sur site."
         image="/images/offres/service-manage-dark.webp"
         imageSide="right"
         tint="#331d42"
         caption="Run"
         badges={[
-          { icon: <GearIcon className="h-full w-full" />, label: "Service managé" },
-          { icon: <HeadsetIcon className="h-full w-full" />, label: "Impact" },
-          { icon: <GraduationCapIcon className="h-full w-full" />, label: "Résultats" },
+          { icon: <GearIcon className="h-full w-full" tone="light" />, label: "Service managé" },
+          { icon: <HeadsetIcon className="h-full w-full" tone="light" />, label: "Impact" },
+          { icon: <GraduationCapIcon className="h-full w-full" tone="light" />, label: "Résultats" },
         ]}
         cta={
           <Link
             href="#domaines"
-            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+            className="cta-primary cta-primary-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
           >
             Découvrir nos services
           </Link>
         }
-      />
+      >
+        <div className="mt-6">
+          <Breadcrumb
+            items={["Apprendre", <span key="c" className={`font-semibold ${GRADIENT_LIGHT}`}>Comprendre</span>, "Entreprendre"]}
+          />
+        </div>
+      </PageHero>
 
       <section className="bg-surface">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
@@ -210,7 +218,7 @@ export default function ServiceManagePage() {
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-              Pourquoi choisir <span className={GRADIENT_DARK}>Cycle Consulting ?</span>
+              Pourquoi choisir <span className={GRADIENT_LIGHT}>Cycle Consulting ?</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-anthracite-soft">
               Choisir Cycle Consulting, c&apos;est faire le choix d&apos;un partenaire engagé dans la réussite de
@@ -239,7 +247,7 @@ export default function ServiceManagePage() {
       <section className="bg-callout-light">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-            Votre partenaire <span className={GRADIENT_DARK}>des services managés</span>
+            Votre partenaire <span className={GRADIENT_LIGHT}>des services managés</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite-soft">
             <p>
@@ -260,6 +268,8 @@ export default function ServiceManagePage() {
           </Link>
         </div>
       </section>
+
+      <RelatedExpertises currentSlug="service-manage" />
     </>
   );
 }

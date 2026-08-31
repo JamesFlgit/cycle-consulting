@@ -3,25 +3,34 @@
 import { useId } from "react";
 import { GRADIENT_STOPS } from "@/components/logo/logo-geometry";
 
-type IconProps = { className?: string };
+type IconProps = { className?: string; tone?: "brand" | "light" };
 
-/** Brand gradient (dark variant, per the charte graphique) used for the service icons. */
-function ServiceIconGradient({ id }: { id: string }) {
+/** Light variant of the logo gradient — for icons sitting on a dark surface. */
+const LIGHT_STOPS = [
+  { offset: "0%", color: "#f77bf0" },
+  { offset: "50%", color: "#6f8cf5" },
+  { offset: "100%", color: "#7ef0ff" },
+];
+
+/** Brand gradient (dark variant, per the charte graphique) for the service
+ * icons; pass tone="light" for the light logo gradient on dark surfaces. */
+function ServiceIconGradient({ id, tone = "brand" }: { id: string; tone?: "brand" | "light" }) {
+  const stops = tone === "light" ? LIGHT_STOPS : GRADIENT_STOPS;
   return (
     <linearGradient id={id} x1="4.68%" y1="28.87%" x2="95.32%" y2="71.13%">
-      {GRADIENT_STOPS.map((stop) => (
+      {stops.map((stop) => (
         <stop key={stop.offset} offset={stop.offset} stopColor={stop.color} />
       ))}
     </linearGradient>
   );
 }
 
-export function GraduationCapIcon({ className }: IconProps) {
+export function GraduationCapIcon({ className, tone }: IconProps) {
   const id = useId();
   return (
     <svg viewBox="0 0 256 256" className={className} aria-hidden="true">
       <defs>
-        <ServiceIconGradient id={id} />
+        <ServiceIconGradient id={id} tone={tone} />
       </defs>
       <path
         fill={`url(#${id})`}
@@ -36,12 +45,12 @@ export function GraduationCapIcon({ className }: IconProps) {
   );
 }
 
-export function UsersThreeIcon({ className }: IconProps) {
+export function UsersThreeIcon({ className, tone }: IconProps) {
   const id = useId();
   return (
     <svg viewBox="0 0 256 256" className={className} aria-hidden="true">
       <defs>
-        <ServiceIconGradient id={id} />
+        <ServiceIconGradient id={id} tone={tone} />
       </defs>
       <path
         fill={`url(#${id})`}
@@ -56,12 +65,12 @@ export function UsersThreeIcon({ className }: IconProps) {
   );
 }
 
-export function GearIcon({ className }: IconProps) {
+export function GearIcon({ className, tone }: IconProps) {
   const id = useId();
   return (
     <svg viewBox="0 0 256 256" className={className} aria-hidden="true">
       <defs>
-        <ServiceIconGradient id={id} />
+        <ServiceIconGradient id={id} tone={tone} />
       </defs>
       <path
         fill={`url(#${id})`}
@@ -76,12 +85,12 @@ export function GearIcon({ className }: IconProps) {
   );
 }
 
-export function HeadsetIcon({ className }: IconProps) {
+export function HeadsetIcon({ className, tone }: IconProps) {
   const id = useId();
   return (
     <svg viewBox="0 0 256 256" className={className} aria-hidden="true">
       <defs>
-        <ServiceIconGradient id={id} />
+        <ServiceIconGradient id={id} tone={tone} />
       </defs>
       <path
         fill={`url(#${id})`}
@@ -96,12 +105,12 @@ export function HeadsetIcon({ className }: IconProps) {
   );
 }
 
-export function PackageIcon({ className }: IconProps) {
+export function PackageIcon({ className, tone }: IconProps) {
   const id = useId();
   return (
     <svg viewBox="0 0 256 256" className={className} aria-hidden="true">
       <defs>
-        <ServiceIconGradient id={id} />
+        <ServiceIconGradient id={id} tone={tone} />
       </defs>
       <path
         fill={`url(#${id})`}

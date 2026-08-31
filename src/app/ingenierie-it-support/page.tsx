@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
 
 // Brand gradient, dark variant — for accents on light sections.
@@ -108,9 +110,9 @@ export default function IngenierieItSupportPage() {
   return (
     <>
       <PageHero
-        eyebrow={<span className={GRADIENT_DARK}>Ingénierie &amp; IT Support</span>}
-        title={<><span className={GRADIENT_DARK}>Piloter la performance</span> des services numériques avec une expertise de haut niveau</>}
-        titleClassName="mt-3 text-2xl font-bold text-balance text-anthracite sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
+        eyebrow={<span className={GRADIENT_LIGHT}>Ingénierie &amp; IT Support</span>}
+        title={<><span className={GRADIENT_LIGHT}>Piloter la performance</span> des services numériques avec une expertise de haut niveau</>}
+        titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="Conseil en Infogérance & Gouvernance des Services IT."
         image="/images/offres/ingenierie-it-support-dark.webp"
         imageSide="right"
@@ -118,19 +120,25 @@ export default function IngenierieItSupportPage() {
         caption="Run"
         captionColor="green"
         badges={[
-          { icon: <HeadsetIcon className="h-full w-full" />, label: "Ingénierie" },
-          { icon: <GearIcon className="h-full w-full" />, label: "Gouvernance" },
-          { icon: <GraduationCapIcon className="h-full w-full" />, label: "Performance" },
+          { icon: <HeadsetIcon className="h-full w-full" tone="light" />, label: "Ingénierie" },
+          { icon: <GearIcon className="h-full w-full" tone="light" />, label: "Gouvernance" },
+          { icon: <GraduationCapIcon className="h-full w-full" tone="light" />, label: "Performance" },
         ]}
         cta={
           <Link
             href="#expertises"
-            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+            className="cta-primary cta-primary-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
           >
             Découvrir nos expertises
           </Link>
         }
-      />
+      >
+        <div className="mt-6">
+          <Breadcrumb
+            items={["Apprendre", "Comprendre", <span key="e" className={`font-semibold ${GRADIENT_LIGHT}`}>Entreprendre</span>]}
+          />
+        </div>
+      </PageHero>
 
       <section className="bg-surface">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
@@ -223,7 +231,7 @@ export default function IngenierieItSupportPage() {
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-              Pourquoi choisir <span className={GRADIENT_DARK}>Cycle Consulting ?</span>
+              Pourquoi choisir <span className={GRADIENT_LIGHT}>Cycle Consulting ?</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-anthracite-soft">
               Notre différence réside dans la combinaison de trois expertises complémentaires :
@@ -253,7 +261,7 @@ export default function IngenierieItSupportPage() {
       <section className="bg-callout-light">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-            Le partenaire <span className={GRADIENT_DARK}>de vos opérations stratégiques</span>
+            Le partenaire <span className={GRADIENT_LIGHT}>de vos opérations stratégiques</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite-soft">
             <p>
@@ -275,6 +283,8 @@ export default function IngenierieItSupportPage() {
           </Link>
         </div>
       </section>
+
+      <RelatedExpertises currentSlug="ingenierie-it-support" />
     </>
   );
 }

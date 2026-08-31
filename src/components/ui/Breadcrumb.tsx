@@ -1,10 +1,10 @@
 export default function Breadcrumb({
   items,
   /** "onDark" (default) for light text on a dark hero; "onLight" for dark
-   * text on a light hero (the expertise pages). */
+   * text on a light hero. */
   tone = "onDark",
 }: {
-  items: string[];
+  items: React.ReactNode[];
   tone?: "onDark" | "onLight";
 }) {
   const onLight = tone === "onLight";
@@ -12,14 +12,8 @@ export default function Breadcrumb({
     <nav aria-label="Fil d'ariane" className="text-sm">
       <ol className={`flex flex-wrap items-center gap-2 ${onLight ? "text-anthracite-mist" : "text-white/60"}`}>
         {items.map((item, i) => (
-          <li key={item} className="flex items-center gap-2">
-            <span
-              className={
-                i === items.length - 1 ? `font-semibold ${onLight ? "text-anthracite" : "text-white"}` : ""
-              }
-            >
-              {item}
-            </span>
+          <li key={i} className="flex items-center gap-2">
+            <span>{item}</span>
             {i < items.length - 1 && <span aria-hidden="true">›</span>}
           </li>
         ))}

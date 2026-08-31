@@ -87,19 +87,16 @@ body {
   background: linear-gradient(160deg, #0e1230 0%, #0a0e24 45%, #060814 75%, #05060f 100%);
 }
 
-/* Expertise-page hero: a light field on the left (where the dark copy sits)
-   that ramps up to full strength under the 3D illustration docked on the
-   right, so the image dissolves into it with no seam. Every stop is mixed
-   from --hero-tint — the illustration's own dominant background colour, set
-   per page — so each hero's gradient is tuned to its own image. See
-   PageHero `tint`. */
+/* Expertise-page hero: a bleu-nuit (charte) field carrying the light copy,
+   its far end pulled slightly toward the illustration's own dominant colour
+   (--hero-tint, set per page) so the docked photo blends into it. */
 .bg-expertise-hero {
-  --hero-tint: #6a61df;
+  --hero-tint: #172533;
   background: linear-gradient(
     120deg,
-    #ffffff 0%,
-    color-mix(in srgb, var(--hero-tint) 6%, #ffffff) 55%,
-    color-mix(in srgb, var(--hero-tint) 16%, #ffffff) 100%
+    #07142e 0%,
+    #07142e 45%,
+    color-mix(in srgb, var(--hero-tint) 55%, #07142e) 100%
   );
 }
 

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, UsersThreeIcon, GearIcon } from "@/components/icons/card-icons";
 
 // Brand gradient, dark variant — for accents on light sections.
@@ -79,27 +81,33 @@ export default function BusinessStrategiePage() {
   return (
     <>
       <PageHero
-        eyebrow={<span className={GRADIENT_DARK}>Business &amp; Stratégie</span>}
-        title={<>Transformer les ambitions <span className={GRADIENT_DARK}>en résultats</span> durables</>}
-        titleClassName="mt-3 text-2xl font-bold text-balance text-anthracite sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
+        eyebrow={<span className={GRADIENT_LIGHT}>Business &amp; Stratégie</span>}
+        title={<>Transformer les ambitions <span className={GRADIENT_LIGHT}>en résultats</span> durables</>}
+        titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="Conseil en Business & Stratégie."
         image="/images/offres/business-strategie-dark.webp"
         imageSide="right"
         tint="#172533"
         badges={[
-          { icon: <UsersThreeIcon className="h-full w-full" />, label: "Stratégie" },
-          { icon: <GraduationCapIcon className="h-full w-full" />, label: "Impact" },
-          { icon: <GearIcon className="h-full w-full" />, label: "Résultats" },
+          { icon: <UsersThreeIcon className="h-full w-full" tone="light" />, label: "Stratégie" },
+          { icon: <GraduationCapIcon className="h-full w-full" tone="light" />, label: "Impact" },
+          { icon: <GearIcon className="h-full w-full" tone="light" />, label: "Résultats" },
         ]}
         cta={
           <Link
             href="#piliers"
-            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+            className="cta-primary cta-primary-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
           >
             Découvrir l&apos;accompagnement
           </Link>
         }
-      />
+      >
+        <div className="mt-6">
+          <Breadcrumb
+            items={["Apprendre", <span key="c" className={`font-semibold ${GRADIENT_LIGHT}`}>Comprendre</span>, "Entreprendre"]}
+          />
+        </div>
+      </PageHero>
 
       <section className="bg-surface">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
@@ -192,7 +200,7 @@ export default function BusinessStrategiePage() {
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-              Un partenaire <span className={GRADIENT_DARK}>engagé dans votre réussite</span>
+              Un partenaire <span className={GRADIENT_LIGHT}>engagé dans votre réussite</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-anthracite-soft">
               Choisir Cycle Consulting, c&apos;est choisir un cabinet qui privilégie les relations durables plutôt
@@ -222,7 +230,7 @@ export default function BusinessStrategiePage() {
       <section className="bg-callout-light">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-            Votre partenaire <span className={GRADIENT_DARK}>Business &amp; Stratégie</span>
+            Votre partenaire <span className={GRADIENT_LIGHT}>Business &amp; Stratégie</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite-soft">
             <p>
@@ -244,6 +252,8 @@ export default function BusinessStrategiePage() {
           </Link>
         </div>
       </section>
+
+      <RelatedExpertises currentSlug="business-strategie" />
     </>
   );
 }

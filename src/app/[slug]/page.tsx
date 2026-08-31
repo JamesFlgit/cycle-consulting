@@ -48,6 +48,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         title={article.titre}
         titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
         description={article.chapo}
+        image={article.image}
       >
         <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-white/15 pt-6 text-xs text-white/60 sm:text-sm">
           <time dateTime={article.dateISO}>{article.dateLabel}</time>
@@ -57,8 +58,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <span>Rédaction Cycle Consulting</span>
         </div>
         <div className="mt-6">
-          <Link href="/blog" className="text-sm font-semibold text-white underline-offset-4 hover:underline">
-            ← Tous les articles
+          <Link href="/ressources" className="text-sm font-semibold text-white underline-offset-4 hover:underline">
+            ← Toutes les ressources
           </Link>
         </div>
       </PageHero>
@@ -107,7 +108,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         )}
 
         <p className="mt-10 border-t border-border-subtle pt-6 text-xs text-anthracite-mist">
-          Article de blog à visée informative. Les recommandations générales présentées ici ne remplacent pas une
+          Ressource à visée informative. Les recommandations générales présentées ici ne remplacent pas une
           analyse de votre contexte par un consultant.
         </p>
       </article>

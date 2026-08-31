@@ -11,26 +11,28 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = {
-  title: "Blog | Cycle Consulting",
+  title: "Ressources | Cycle Consulting",
   description:
-    "Le blog de Cycle Consulting : analyses, retours d'expérience et repères concrets sur les métiers de l'IT.",
+    "Analyses, retours d'expérience et repères concrets sur les métiers de l'IT, par les consultants Cycle Consulting.",
 };
 
 const articlesVisibles = articles
   .filter((article) => article.visible)
   .sort((a, b) => b.dateISO.localeCompare(a.dateISO));
 
-export default function BlogPage() {
+export default function RessourcesPage() {
   return (
     <>
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Ressources</span>}
-        title="Le blog de Cycle Consulting"
+        title="Comprendre les enjeux de votre IT"
         titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl xl:text-5xl"
         description="Des analyses et des retours d'expérience concrets sur les métiers de l'IT, écrits par les consultants qui les pratiquent."
       >
         <div className="mt-8">
-          <Breadcrumb items={["Décrypter", "Partager", "Progresser"]} />
+          <Breadcrumb
+            items={["Apprendre", <span key="c" className={`font-semibold ${GRADIENT_LIGHT}`}>Comprendre</span>, "Entreprendre"]}
+          />
         </div>
       </PageHero>
 
@@ -38,8 +40,8 @@ export default function BlogPage() {
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
           <p className="text-lg leading-relaxed font-medium text-anthracite sm:text-xl">
             Nos consultants accompagnent chaque jour des entreprises dans leurs projets de transformation,
-            d&apos;optimisation des processus et d&apos;amélioration de la performance. Le blog est l&apos;endroit où
-            nous partageons ce que nous en retenons.
+            d&apos;optimisation des processus et d&apos;amélioration de la performance. Cet espace rassemble ce que
+            nous en retenons.
           </p>
           <div className="mt-8 space-y-5 text-sm leading-relaxed text-anthracite-soft sm:text-base">
             <p>
@@ -56,7 +58,7 @@ export default function BlogPage() {
 
       <section className="mx-auto max-w-3xl px-4 pt-8 pb-16 sm:pt-10 sm:px-6 lg:px-8">
         <h2 className="text-xl font-bold text-anthracite sm:text-2xl lg:text-3xl">
-          À lire sur le <span className={GRADIENT_DARK}>blog</span>
+          À lire <span className={GRADIENT_DARK}>en ce moment</span>
         </h2>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">

@@ -52,7 +52,7 @@ export default function PageHero({
     split ? "text-anthracite-mist" : onPhoto ? "text-white" : "text-white/60"
   }`;
   const descriptionClass = split
-    ? "mt-4 max-w-2xl text-base leading-relaxed text-anthracite-soft"
+    ? "mt-4 max-w-2xl text-base leading-relaxed text-white/70"
     : `mt-10 max-w-2xl text-base leading-relaxed sm:mt-5 sm:text-lg ${
         onPhoto ? "text-white" : "text-white/70"
       }`;
@@ -66,8 +66,8 @@ export default function PageHero({
     <>
       {eyebrow &&
         (split ? (
-          <span className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] shadow-sm ring-1 ring-black/5 sm:text-[13px]">
-            <span className="h-1.5 w-1.5 rounded-full bg-linear-to-r from-[#fa11f7] to-[#0bceff]" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-white/15 sm:text-[13px]">
+            <span className="h-1.5 w-1.5 rounded-full bg-linear-to-r from-[#f77bf0] to-[#7ef0ff]" />
             {eyebrow}
           </span>
         ) : (
@@ -79,7 +79,7 @@ export default function PageHero({
           {badges.map((badge) => (
             <li
               key={badge.label}
-              className="flex items-center gap-1.5 rounded-full border border-black/10 bg-white/70 py-1 pr-3 pl-1.5 text-xs font-semibold text-anthracite-soft"
+              className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 py-1 pr-3 pl-1.5 text-xs font-semibold text-white/80"
             >
               <span className="flex h-5 w-5 items-center justify-center">{badge.icon}</span>
               {badge.label}
@@ -166,12 +166,11 @@ export default function PageHero({
   }
 
   return (
-    <section className={`relative overflow-hidden ${onPhoto ? "" : "bg-page-hero bg-office-gradient"}`}>
+    <section className="bg-page-hero bg-office-gradient relative overflow-hidden">
       {onPhoto && (
         <>
           <Image src={image!} alt="" fill priority sizes="100vw" className="object-cover" />
-          <div className="absolute inset-0 bg-black/55 sm:hidden" />
-          <div className="absolute inset-0 hidden bg-linear-to-r from-black/70 via-black/35 to-transparent sm:block" />
+          <div className="absolute inset-0 bg-[#0a0e24]/78" />
         </>
       )}
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
