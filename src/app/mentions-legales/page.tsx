@@ -128,8 +128,12 @@ export default function MentionsLegalesPage() {
           .
         </p>
         <p>
-          Le site n&apos;utilise aucun cookie ni traceur publicitaire ou de mesure d&apos;audience. Aucun
-          consentement n&apos;est donc requis à ce titre.
+          Le site utilise un outil de mesure d&apos;audience (Google Analytics 4, chargé via Google Tag
+          Manager) qui dépose des cookies <strong>uniquement après votre consentement</strong>, recueilli
+          via la bannière affichée à votre arrivée. Vous pouvez revenir sur votre choix à tout moment par
+          le lien « Gérer mes cookies » en bas de page. Le site n&apos;utilise aucun cookie publicitaire ni
+          de réseau social. Les finalités, durées et destinataires sont détaillés dans la politique de
+          confidentialité.
         </p>
       </LegalSection>
 

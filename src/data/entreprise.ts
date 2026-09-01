@@ -62,7 +62,41 @@ export const sousTraitants = [
     lieu: "France (Union européenne)",
     garanties: "Traitement au sein de l'UE",
   },
+  {
+    nom: "Google Ireland Limited (Google Analytics 4, Google Tag Manager)",
+    role: "Mesure d'audience du site, uniquement après consentement",
+    lieu: "Irlande (Union européenne), avec transferts vers Google LLC aux États-Unis",
+    garanties:
+      "Clauses contractuelles types de la Commission européenne et adhésion de Google LLC au Data Privacy Framework UE / États-Unis",
+  },
 ];
+
+/**
+ * Cookies déposés par la mesure d'audience (Google Analytics 4), uniquement
+ * après consentement via la bannière. Utilisé par la politique de confidentialité.
+ */
+export const cookiesMesureAudience = [
+  {
+    nom: "_ga",
+    finalite: "Distinguer les visiteurs (identifiant anonyme)",
+    duree: "13 mois",
+  },
+  {
+    nom: "_ga_CLPVQ71TNN",
+    finalite: "Maintenir l'état de la session pour Google Analytics 4",
+    duree: "13 mois",
+  },
+];
+
+/**
+ * Choix de consentement mémorisé côté navigateur (pas un cookie : stockage local).
+ * Décrit dans la politique de confidentialité.
+ */
+export const stockageConsentement = {
+  cle: "cc-consent",
+  finalite: "Mémoriser votre choix d'accepter ou de refuser la mesure d'audience",
+  duree: "6 mois",
+};
 
 export const indicatifsPays = [
   { code: "+33", pays: "France" },

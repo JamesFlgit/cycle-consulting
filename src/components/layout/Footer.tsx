@@ -3,6 +3,7 @@ import { poles } from "@/data/poles";
 import { entrepriseNavItems } from "@/data/entreprise-nav";
 import { entreprise } from "@/data/entreprise";
 import FooterLogoReveal from "@/components/layout/FooterLogoReveal";
+import ManageConsentButton from "@/components/analytics/ManageConsentButton";
 import Slogan from "@/components/ui/Slogan";
 import { EmailIcon, GlobeIcon, MapPinIcon } from "@/components/icons/card-icons";
 
@@ -93,6 +94,8 @@ export default function Footer() {
           <Link href="/politique-de-confidentialite" className="transition-colors hover:underline">
             Politique de confidentialité
           </Link>
+          <span className="hidden sm:inline">·</span>
+          <ManageConsentButton className="text-white transition-colors hover:underline" />
         </div>
       </div>
     </footer>

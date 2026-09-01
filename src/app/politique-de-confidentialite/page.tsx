@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalDocument, { LegalSection, LegalList } from "@/components/ui/LegalDocument";
-import { entreprise, mentionsLegales as m, sousTraitants } from "@/data/entreprise";
+import {
+  entreprise,
+  mentionsLegales as m,
+  sousTraitants,
+  cookiesMesureAudience,
+  stockageConsentement,
+} from "@/data/entreprise";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité | Cycle Consulting",
@@ -34,7 +40,10 @@ export default function PolitiqueConfidentialitePage() {
       </LegalSection>
 
       <LegalSection title="2. Données collectées, finalités et bases légales">
-        <p>Nous ne collectons que les données que vous nous transmettez volontairement via le site.</p>
+        <p>
+          Nous collectons les données que vous nous transmettez volontairement via les formulaires, ainsi
+          que des données techniques et de mesure d&apos;audience décrites plus bas.
+        </p>
 
         <p className="font-semibold text-anthracite">a. Formulaire de contact et formulaire de candidature</p>
         <LegalList
@@ -64,17 +73,64 @@ export default function PolitiqueConfidentialitePage() {
             "Les formulaires utilisent un dispositif anti-spam interne (champ piège et jeton horodaté signé). Aucun service tiers de type captcha n'est sollicité.",
           ]}
         />
+
+        <p className="font-semibold text-anthracite">d. Mesure d&apos;audience</p>
+        <LegalList
+          items={[
+            "Données : pages vues, provenance de la visite, type d'appareil et de navigateur, identifiant de mesure. Google Analytics 4 n'enregistre pas votre adresse IP.",
+            "Finalité : mesurer la fréquentation du site et améliorer son contenu, au moyen de Google Analytics 4.",
+            "Base légale : votre consentement, recueilli via la bannière affichée à votre arrivée. Aucun cookie de mesure n'est déposé tant que vous n'avez pas accepté.",
+            "Vous pouvez accepter, refuser puis revenir sur votre choix à tout moment via le lien « Gérer mes cookies » en bas de chaque page.",
+          ]}
+        />
       </LegalSection>
 
       <LegalSection title="3. Cookies et traceurs">
         <p>
-          Le site <strong>n&apos;utilise aucun cookie</strong> de mesure d&apos;audience, de publicité ou de
-          suivi. Il n&apos;y a donc pas de bandeau de consentement.
+          À votre arrivée sur le site, une bannière vous permet d&apos;<strong>accepter ou de refuser</strong>{" "}
+          les cookies de mesure d&apos;audience. Refuser est aussi simple qu&apos;accepter. Tant que vous
+          n&apos;avez pas accepté, <strong>aucun cookie de mesure n&apos;est déposé</strong> et aucune donnée
+          n&apos;est transmise à Google.
         </p>
         <p>
-          Un espace de stockage technique du navigateur (<em>sessionStorage</em>) est utilisé uniquement pour
-          ne pas rejouer l&apos;animation d&apos;accueil à chaque page pendant votre visite. Cette information
-          reste sur votre appareil, n&apos;est pas un cookie et n&apos;est jamais transmise à Cycle Consulting.
+          Si vous acceptez, les cookies suivants sont déposés par Google Analytics 4 :
+        </p>
+        <div className="overflow-x-auto">
+          <table className="mt-2 w-full min-w-[28rem] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-border-subtle text-left">
+                <th className="py-2 pr-4 font-semibold text-anthracite">Cookie</th>
+                <th className="py-2 pr-4 font-semibold text-anthracite">Finalité</th>
+                <th className="py-2 font-semibold text-anthracite">Durée</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cookiesMesureAudience.map((c) => (
+                <tr key={c.nom} className="border-b border-border-subtle align-top text-anthracite-soft">
+                  <td className="py-2 pr-4 font-mono text-xs">{c.nom}</td>
+                  <td className="py-2 pr-4">{c.finalite}</td>
+                  <td className="py-2 whitespace-nowrap">{c.duree}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Le chargement de la mesure d&apos;audience est géré via Google Tag Manager, lui aussi bloqué tant
+          que vous n&apos;avez pas donné votre accord. Le site n&apos;utilise <strong>aucun cookie
+          publicitaire</strong> ni aucun cookie de réseau social.
+        </p>
+        <p>
+          Pour mémoriser votre choix, une information (<code>{stockageConsentement.cle}</code>) est conservée{" "}
+          {stockageConsentement.duree} dans le stockage local de votre navigateur. Ce n&apos;est pas un cookie,
+          elle reste sur votre appareil et n&apos;est jamais transmise à Cycle Consulting. Un espace de stockage
+          technique (<em>sessionStorage</em>) sert par ailleurs à ne pas rejouer l&apos;animation d&apos;accueil
+          à chaque page pendant votre visite.
+        </p>
+        <p>
+          Vous pouvez revenir sur votre choix à tout moment via le lien{" "}
+          <strong>« Gérer mes cookies »</strong> en bas de chaque page. Le retrait du consentement entraîne la
+          suppression des cookies de mesure.
         </p>
       </LegalSection>
 
@@ -110,8 +166,10 @@ export default function PolitiqueConfidentialitePage() {
           </table>
         </div>
         <p>
-          Lorsqu&apos;un transfert de données a lieu hors de l&apos;Union européenne (hébergement), il est
-          encadré par les clauses contractuelles types de la Commission européenne.
+          Lorsqu&apos;un transfert de données a lieu hors de l&apos;Union européenne (hébergement du site,
+          mesure d&apos;audience), il est encadré par les clauses contractuelles types de la Commission
+          européenne et, pour Google, par l&apos;adhésion de Google LLC au Data Privacy Framework UE /
+          États-Unis.
         </p>
       </LegalSection>
 
@@ -121,6 +179,7 @@ export default function PolitiqueConfidentialitePage() {
             "Demandes de contact et candidatures : jusqu'à 3 ans après le dernier échange, sauf relation contractuelle établie (les données sont alors conservées pour la durée de la relation puis selon les obligations légales).",
             "Liste « brochure » : jusqu'au retrait de votre consentement ou, à défaut d'interaction, 3 ans après le dernier contact.",
             "Journaux techniques de l'hébergeur : environ 12 mois.",
+            "Mesure d'audience (Google Analytics 4) : cookies conservés 13 mois au maximum ; données d'audience conservées 14 mois.",
           ]}
         />
       </LegalSection>

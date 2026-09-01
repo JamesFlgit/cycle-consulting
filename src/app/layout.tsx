@@ -5,6 +5,9 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import IntroLogoReveal from "@/components/layout/IntroLogoReveal";
 import JsonLd from "@/components/seo/JsonLd";
+import ConsentDefaults from "@/components/analytics/ConsentDefaults";
+import Analytics from "@/components/analytics/Analytics";
+import ConsentBanner from "@/components/analytics/ConsentBanner";
 import { SITE_URL, DEFAULT_OG_IMAGE, organizationJsonLd, websiteJsonLd } from "@/lib/site";
 
 const inter = Inter({
@@ -61,12 +64,15 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${sora.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <ConsentDefaults />
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={websiteJsonLd} />
         <IntroLogoReveal />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
+        <ConsentBanner />
       </body>
     </html>
   );
