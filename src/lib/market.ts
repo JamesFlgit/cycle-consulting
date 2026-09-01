@@ -7,18 +7,18 @@
  * à un fournisseur avec contrat (Twelve Data, Finnhub, Financial Modeling Prep),
  * il suffit de réécrire `fetchMarketQuote()` : la forme de `MarketQuote` ne bouge pas.
  *
- * Valeur suivie : ETF iShares STOXX Europe 600 Technology (EUR), utilisé comme
- * proxy de l'indice des valeurs technologiques européennes.
+ * Valeur suivie : ETF Xtrackers MSCI World Information Technology (EUR), utilisé
+ * comme proxy d'un indice technologique mondial (marchés US, Europe, Asie).
  */
 
 /** Symbole Yahoo Finance de la valeur suivie. */
-export const MARKET_SYMBOL = "EXV3.DE";
+export const MARKET_SYMBOL = "XDWT.MI";
 
 /** Libellé court affiché dans la pastille. */
-export const MARKET_SHORT_LABEL = "Tech Europe";
+export const MARKET_SHORT_LABEL = "Secteur Tech";
 
 /** Libellé complet (infobulle). */
-export const MARKET_FULL_LABEL = "STOXX Europe 600 Technology";
+export const MARKET_FULL_LABEL = "MSCI World, technologies de l'information";
 
 /** Durée de mise en cache côté serveur, en secondes (cours différés : 10 min suffisent). */
 export const MARKET_REVALIDATE_SECONDS = 600;
