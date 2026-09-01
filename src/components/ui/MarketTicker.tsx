@@ -124,7 +124,9 @@ export default function MarketTicker({
       title={detail}
       aria-label={`${quote.fullLabel} : ${pct} sur la séance`}
     >
-      {variant === "full" && <span className={`uppercase tracking-[0.14em] ${labelColor}`}>{quote.label}</span>}
+      <span className={`uppercase tracking-[0.14em] ${labelColor}`}>
+        {variant === "full" ? quote.label : "IT"}
+      </span>
       {variant === "full" && <Sparkline series={quote.series} color={color} />}
       <Arrow pct={quote.changePercent} color={color} />
       <span style={{ color }}>{pct}</span>
