@@ -121,7 +121,7 @@ export default function ServiceManagePage() {
         imageAlt={pole.imageAlt}
         imageSide="right"
         tint="#331d42"
-        caption="Run"
+        caption="Build"
         badges={[
           { icon: <GearIcon className="h-full w-full" tone="light" />, label: "Service managé" },
           { icon: <HeadsetIcon className="h-full w-full" tone="light" />, label: "Impact" },
