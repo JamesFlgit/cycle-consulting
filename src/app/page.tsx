@@ -13,6 +13,7 @@ import { EmailIcon } from "@/components/icons/card-icons";
 import Reveal from "@/components/ui/Reveal";
 import Slogan from "@/components/ui/Slogan";
 import HeroSchemaVideo from "@/components/ui/HeroSchemaVideo";
+import MarketTicker from "@/components/ui/MarketTicker";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import { poles } from "@/data/poles";
 import { partenaires } from "@/data/partenaires";
@@ -85,6 +86,9 @@ export default function Home() {
               l&apos;exploitation de leurs environnements IT, en combinant expertise technologique,
               excellence opérationnelle et proximité humaine.
             </p>
+            <div className="mt-6 sm:mt-8">
+              <MarketTicker />
+            </div>
           </div>
 
           <HeroSchemaVideo className="hero-grid-video w-full lg:hidden" />
