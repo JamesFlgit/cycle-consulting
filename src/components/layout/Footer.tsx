@@ -81,10 +81,18 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-2 px-4 py-6 text-center text-xs text-white sm:flex-row sm:justify-center sm:gap-3 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-x-3 gap-y-2 px-4 py-6 text-center text-xs text-white sm:flex-row sm:flex-wrap sm:justify-center sm:px-6 lg:px-8">
           <p>&copy; {new Date().getFullYear()} Cycle Consulting. Tous droits réservés.</p>
           <span className="hidden sm:inline">·</span>
           <p>SIREN {entreprise.siren}</p>
+          <span className="hidden sm:inline">·</span>
+          <Link href="/mentions-legales" className="transition-colors hover:underline">
+            Mentions légales
+          </Link>
+          <span className="hidden sm:inline">·</span>
+          <Link href="/politique-de-confidentialite" className="transition-colors hover:underline">
+            Politique de confidentialité
+          </Link>
         </div>
       </div>
     </footer>

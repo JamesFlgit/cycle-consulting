@@ -10,6 +10,60 @@ export const entreprise = {
   siren: "108 393 810",
 };
 
+/**
+ * Identité légale de l'éditeur (mentions légales).
+ * Source : extrait Kbis (RCS Paris 2026B39281) + fiche societe.com du 01/09/2026
+ * (SIRET, TVA, code APE relevés sur societe.com/societe/cycle-consulting-108393810.html).
+ * numeroTva confirmé par Eric le 01/09/2026 : société assujettie à la TVA.
+ */
+export const mentionsLegales = {
+  raisonSociale: "CYCLE CONSULTING",
+  formeJuridique: "Société par actions simplifiée à associé unique (SASU)",
+  capitalSocial: "30 €",
+  rcs: "R.C.S. Paris 108 393 810",
+  siren: "108 393 810",
+  siret: "108 393 810 00016",
+  numeroTva: "FR 00 108 393 810",
+  codeApe: "6201Z : Programmation informatique",
+  siege: "50 avenue des Champs-Élysées, 75008 Paris",
+  domiciliation: "Société domiciliée chez Kandbaz (R.C.S. Paris 497 933 408)",
+  immatriculationDate: "4 août 2026",
+  directeurPublication: "Éric-Zola Zacarias, en sa qualité de Président",
+};
+
+/** Hébergeur du site (déploiement Vercel ; DNS et messagerie chez Hostinger). */
+export const hebergeur = {
+  nom: "Vercel Inc.",
+  adresse: "340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis",
+  siteWeb: "https://vercel.com",
+  contact: "privacy@vercel.com",
+};
+
+/**
+ * Destinataires / sous-traitants qui traitent des données pour le compte de
+ * Cycle Consulting (politique de confidentialité).
+ */
+export const sousTraitants = [
+  {
+    nom: "Vercel Inc.",
+    role: "Hébergement du site et journaux techniques",
+    lieu: "États-Unis",
+    garanties: "Clauses contractuelles types de la Commission européenne",
+  },
+  {
+    nom: "Hostinger International Ltd",
+    role: "Service de messagerie : réception des demandes envoyées via les formulaires",
+    lieu: "Chypre (Union européenne)",
+    garanties: "Traitement au sein de l'UE",
+  },
+  {
+    nom: "Brevo (Sendinblue SAS)",
+    role: "Envoi d'e-mails et gestion de la liste de diffusion « brochure »",
+    lieu: "France (Union européenne)",
+    garanties: "Traitement au sein de l'UE",
+  },
+];
+
 export const indicatifsPays = [
   { code: "+33", pays: "France" },
   { code: "+32", pays: "Belgique" },

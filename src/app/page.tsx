@@ -6,6 +6,7 @@ import OffresCarousel from "@/components/ui/OffresCarousel";
 import PartnerLogo from "@/components/ui/PartnerLogo";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import StatItem from "@/components/ui/StatItem";
+import ArticleCard from "@/components/ui/ArticleCard";
 import ContactForm from "@/components/ui/ContactForm";
 import { EmailIcon } from "@/components/icons/card-icons";
 // import CasClientCard from "@/components/ui/CasClientCard"; // "Nos cas clients" section — see below
@@ -18,6 +19,7 @@ import { partenaires } from "@/data/partenaires";
 import { temoignages } from "@/data/temoignages";
 import { entreprise } from "@/data/entreprise";
 import { chiffresCles } from "@/data/chiffres-cles";
+import { articles } from "@/data/articles";
 // import { casClients } from "@/data/cas-clients"; // "Nos cas clients" section — see below
 import { faqThemes } from "@/data/faq";
 
@@ -38,6 +40,12 @@ const satisfaction: (typeof chiffresCles)[number] = {
   suffix: "%",
   libelle: "taux de satisfaction client",
 };
+
+// Les 3 ressources les plus récentes, pour la section blog de la home.
+const derniersArticles = articles
+  .filter((article) => article.visible)
+  .sort((a, b) => b.dateISO.localeCompare(a.dateISO))
+  .slice(0, 3);
 
 export default function Home() {
   // const casClientsApercu = casClients.filter((c) => c.visible).slice(0, 3); // "Nos cas clients" section — see below
@@ -205,6 +213,34 @@ export default function Home() {
       </section>
 
       <section className="bg-surface-alt py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeading
+              eyebrow={<span className={GRADIENT_DARK_DEEP}>Ressources</span>}
+              title="Comprendre les enjeux de votre IT"
+              description="Analyses et retours d'expérience concrets sur les métiers de l'IT, écrits par les consultants qui les pratiquent."
+              center
+            />
+          </Reveal>
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {derniersArticles.map((article, index) => (
+              <Reveal key={article.slug} delay={index * 0.08} className="h-full">
+                <ArticleCard article={article} />
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <Link
+              href="/ressources"
+              className="text-sm font-semibold text-anthracite underline-offset-4 hover:underline"
+            >
+              Voir toutes les ressources →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeading

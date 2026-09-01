@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { entreprise } from "@/data/entreprise";
 
 type Challenge = { a: number; b: number; issuedAt: number; token: string };
@@ -215,6 +216,14 @@ export default function ContactForm() {
       >
         {status === "loading" ? "Envoi…" : "Envoyer"}
       </button>
+
+      <p className="text-xs leading-relaxed text-anthracite-mist">
+        Les informations transmises sont utilisées uniquement pour traiter votre demande. Voir notre{" "}
+        <Link href="/politique-de-confidentialite" className="underline underline-offset-2">
+          politique de confidentialité
+        </Link>
+        .
+      </p>
     </form>
   );
 }

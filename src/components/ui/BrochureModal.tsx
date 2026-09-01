@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 
 type Challenge = { a: number; b: number; issuedAt: number; token: string };
@@ -236,7 +237,10 @@ function BrochureForm({ onClose }: { onClose: () => void }) {
         />
         <span>
           J&apos;accepte que Cycle Consulting conserve mon e-mail pour me recontacter au sujet de ses offres.{" "}
-          <span className="text-red-600">*</span>
+          <span className="text-red-600">*</span>{" "}
+          <Link href="/politique-de-confidentialite" className="underline underline-offset-2" target="_blank">
+            En savoir plus
+          </Link>
         </span>
       </label>
 
