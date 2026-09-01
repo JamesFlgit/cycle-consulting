@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import IntroLogoReveal from "@/components/layout/IntroLogoReveal";
+import JsonLd from "@/components/seo/JsonLd";
+import { SITE_URL, DEFAULT_OG_IMAGE, organizationJsonLd, websiteJsonLd } from "@/lib/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,10 +20,27 @@ const sora = Sora({
   display: "swap",
 });
 
+const description =
+  "Cycle Consulting, ESN française : formations, service managé, infogérance, business & stratégie, ingénierie IT et logistique. Des consultants experts au service de votre performance.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Cycle Consulting | Apprendre, Comprendre, Entreprendre",
-  description:
-    "Cycle Consulting, ESN française : formations, service managé, infogérance, business & stratégie, ingénierie IT et logistique. Des consultants experts au service de votre performance.",
+  description,
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "Cycle Consulting",
+    title: "Cycle Consulting | Apprendre, Comprendre, Entreprendre",
+    description,
+    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: "Cycle Consulting" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cycle Consulting | Apprendre, Comprendre, Entreprendre",
+    description,
+    images: [DEFAULT_OG_IMAGE],
+  },
   robots: {
     index: false,
     follow: false,
@@ -42,6 +61,8 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} ${sora.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
         <IntroLogoReveal />
         <Header />
         <main className="flex-1">{children}</main>

@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 type Challenge = { a: number; b: number; issuedAt: number; token: string };
 type Status = "idle" | "loading" | "success" | "error";
 
-const PDF_URL = "/brochure-cycle-consulting.pdf";
+const PDF_URL = "/Cycle-Consulting_Brochure.pdf";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function BrochureModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {

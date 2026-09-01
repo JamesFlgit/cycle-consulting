@@ -8,7 +8,7 @@ export default function TestimonialCard({ temoignage }: { temoignage: Temoignage
         {temoignage.logo ? (
           <Image
             src={temoignage.logo}
-            alt={temoignage.auteur}
+            alt={`Logo ${temoignage.auteur}`}
             width={240}
             height={112}
             className="h-full w-full object-contain"

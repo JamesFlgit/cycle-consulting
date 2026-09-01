@@ -4,6 +4,11 @@ import PageHero from "@/components/ui/PageHero";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
+import JsonLd from "@/components/seo/JsonLd";
+import { serviceJsonLd } from "@/lib/site";
+import { getPoleBySlug } from "@/data/poles";
+
+const pole = getPoleBySlug("ingenierie-it-support")!;
 
 // Brand gradient, dark variant — for accents on light sections.
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
@@ -109,12 +114,22 @@ function CheckMark() {
 export default function IngenierieItSupportPage() {
   return (
     <>
+      <JsonLd
+        data={serviceJsonLd({
+          name: pole.navLabel,
+          description: pole.metaDescription,
+          path: pole.href,
+          image: pole.image,
+          imageAlt: pole.imageAlt,
+        })}
+      />
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Ingénierie &amp; IT Support</span>}
         title={<><span className={GRADIENT_LIGHT}>Piloter la performance</span> des services numériques avec une expertise de haut niveau</>}
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="Conseil en Infogérance & Gouvernance des Services IT."
         image="/images/offres/ingenierie-it-support-dark.webp"
+        imageAlt={pole.imageAlt}
         imageSide="right"
         tint="#122130"
         caption="Run"

@@ -22,8 +22,10 @@ export type CasClient = {
   metaDescription?: string;
   /** Short teaser used on listing cards and the homepage preview. */
   resume: string;
-  /** Path to an illustration for the card header, e.g. "/cas-clients/xxx.jpg". Optional — falls back to a branded placeholder frame. */
+  /** Path to an illustration for the card header, e.g. "/cas-clients/xxx.webp". Optional — falls back to a branded placeholder frame. */
   image?: string;
+  /** Texte alternatif de `image` (accessibilite + SEO). Laisser vide si l'illustration est purement decorative. */
+  imageAlt?: string;
   /** 2-3 line summary of the challenge, for the sticky conversion card. */
   resumeDefi?: string;
   /** 2-3 line summary of the solution/outcome, for the sticky conversion card. */
@@ -51,7 +53,8 @@ export const casClients: CasClient[] = [
     href: "/cas-clients/transformation-centre-de-services-industrie",
     navLabel: "Transformation et industrialisation d'un Centre de Services",
     secteur: "Industrie",
-    image: "/images/cas-clients/transformation-centre-de-services-industrie.jpg",
+    image: "/images/cas-clients/transformation-centre-de-services-industrie.webp",
+    imageAlt: "Pictogramme d'un engrenage connecte a un circuit, symbole d'industrialisation d'un centre de services",
     environnement: "Centre de Services / IT Operations",
     expertise: "Transformation, gouvernance et performance opérationnelle",
     visible: true,
@@ -152,7 +155,8 @@ export const casClients: CasClient[] = [
     href: "/cas-clients/pilotage-service-delivery-retail",
     navLabel: "Pilotage et redressement d'un Service Delivery",
     secteur: "Retail",
-    image: "/images/cas-clients/pilotage-service-delivery-retail.jpg",
+    image: "/images/cas-clients/pilotage-service-delivery-retail.webp",
+    imageAlt: "Pictogramme d'un chariot de course associe a une fleche de croissance, secteur retail",
     expertise: "Service Delivery Management",
     profilMobilise: "Account Delivery Manager",
     enjeuxTags: ["Qualité de service", "Satisfaction client", "SLA / KPI", "Transformation opérationnelle"],
@@ -255,7 +259,8 @@ export const casClients: CasClient[] = [
     href: "/cas-clients/migration-it-internationale-banque-assurance",
     navLabel: "Migration et convergence IT à l'international",
     secteur: "Banque & Assurances",
-    image: "/images/cas-clients/migration-it-internationale-banque-assurance.jpg",
+    image: "/images/cas-clients/migration-it-internationale-banque-assurance.webp",
+    imageAlt: "Pictogramme d'un bouclier abritant un reseau mondial, migration IT securisee a l'international",
     environnement: "International • Multi-pays • Réglementé",
     expertise: "Transformation IT & Program Management",
     enjeuxTags: ["Convergence IT", "Standardisation", "Migration", "Gouvernance", "Performance"],
@@ -353,7 +358,8 @@ export const casClients: CasClient[] = [
     href: "/cas-clients/support-n3-b2b-restauration-rapide",
     navLabel: "Structuration d'un Support N3 B2B",
     secteur: "QSR • Restauration rapide",
-    image: "/images/cas-clients/support-n3-b2b-restauration-rapide.jpg",
+    image: "/images/cas-clients/support-n3-b2b-restauration-rapide.webp",
+    imageAlt: "Pictogramme d'une bulle de conversation contenant un trace de monitoring, support N3 B2B",
     environnement: "Grands comptes • Support N3 • HO/HNO • Multi-niveaux",
     expertise: "IT Service Management & Support B2B",
     enjeuxTags: ["Continuité de service", "Expertise", "MCO", "Performance", "Montée en compétences"],
@@ -461,7 +467,8 @@ export const casClients: CasClient[] = [
     href: "/cas-clients/pilotage-service-delivery-grand-compte-it",
     navLabel: "Pilotage Service Delivery Manager sur un grand compte IT",
     secteur: "Ingénierie IT",
-    image: "/images/cas-clients/pilotage-service-delivery-grand-compte-it.jpg",
+    image: "/images/cas-clients/pilotage-service-delivery-grand-compte-it.webp",
+    imageAlt: "Pictogramme d'une baie de serveurs au centre d'un maillage de noeuds, pilotage d'un grand compte IT",
     environnement: "Grand compte • Infogérance / Service Managé • Écosystème Microsoft",
     expertise: "Service Delivery Management",
     enjeuxTags: [

@@ -9,13 +9,13 @@ export const temoignages: Temoignage[] = [
   {
     auteur: "Burger King",
     citation: "[À COMPLÉTER : témoignage Burger King]",
-    logo: "/logos-clients/burger-king.png",
+    logo: "/logos-clients/burger-king.webp",
   },
   {
     auteur: "Afro Délice",
     citation:
       "Rapide et efficace. Cycle Consulting a su nous conseiller et augmenter notre force de vente. Un grand merci !",
-    logo: "/logos-clients/afro-delices.png",
+    logo: "/logos-clients/afro-delices.webp",
   },
   {
     auteur: "Lemon Juice",
@@ -44,17 +44,17 @@ export const temoignages: Temoignage[] = [
   {
     auteur: "Kankou Traiteur",
     citation: "[À COMPLÉTER : témoignage Kankou Traiteur]",
-    logo: "/logos-clients/kankou-traiteur.png",
+    logo: "/logos-clients/kankou-traiteur.webp",
   },
   {
     auteur: "Team Body",
     citation: "[À COMPLÉTER : témoignage Team Body]",
-    logo: "/logos-clients/team-body.png",
+    logo: "/logos-clients/team-body.webp",
     logoScale: 1.15,
   },
   {
     auteur: "Les Merveilles d'Alice",
     citation: "[À COMPLÉTER : témoignage Les Merveilles d'Alice]",
-    logo: "/logos-clients/merveilles-alice.png",
+    logo: "/logos-clients/merveilles-alice.webp",
   },
 ];

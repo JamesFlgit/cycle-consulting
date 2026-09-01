@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ArticleCard from "@/components/ui/ArticleCard";
+import JsonLd from "@/components/seo/JsonLd";
+import { SITE_URL, absoluteUrl } from "@/lib/site";
 import {
   articles,
   getArticleBySlug,
@@ -31,6 +33,20 @@ export async function generateMetadata({
   return {
     title: article.metaTitle,
     description: article.metaDescription,
+    alternates: { canonical: article.href },
+    openGraph: {
+      type: "article",
+      title: article.metaTitle,
+      description: article.metaDescription,
+      url: article.href,
+      images: [{ url: article.image, alt: article.imageAlt ?? article.titre }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.metaTitle,
+      description: article.metaDescription,
+      images: [article.image],
+    },
   };
 }
 
@@ -41,14 +57,29 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   const autresArticles = getAutresArticles(article.slug, 2);
 
+  const articleJsonLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.titre,
+    description: article.metaDescription,
+    image: absoluteUrl(article.image),
+    datePublished: article.dateISO,
+    inLanguage: "fr-FR",
+    author: { "@type": "Organization", name: "Cycle Consulting" },
+    publisher: { "@type": "Organization", name: "Cycle Consulting" },
+    mainEntityOfPage: `${SITE_URL}${article.href}`,
+  };
+
   return (
     <>
+      <JsonLd data={articleJsonLd} />
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>{article.categorie}</span>}
         title={article.titre}
         titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
         description={article.chapo}
         image={article.image}
+        imageAlt={article.imageAlt ?? ""}
       >
         <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-white/15 pt-6 text-xs text-white/60 sm:text-sm">
           <time dateTime={article.dateISO}>{article.dateLabel}</time>

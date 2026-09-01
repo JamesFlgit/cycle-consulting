@@ -4,6 +4,11 @@ import PageHero from "@/components/ui/PageHero";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GearIcon, HeadsetIcon, PackageIcon } from "@/components/icons/card-icons";
+import JsonLd from "@/components/seo/JsonLd";
+import { serviceJsonLd } from "@/lib/site";
+import { getPoleBySlug } from "@/data/poles";
+
+const pole = getPoleBySlug("centre-logistique")!;
 
 // Brand gradient, dark variant — for accents on light sections.
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
@@ -121,12 +126,22 @@ function CheckMark() {
 export default function CentreLogistiquePage() {
   return (
     <>
+      <JsonLd
+        data={serviceJsonLd({
+          name: pole.navLabel,
+          description: pole.metaDescription,
+          path: pole.href,
+          image: pole.image,
+          imageAlt: pole.imageAlt,
+        })}
+      />
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Centre Logistique</span>}
         title={<>Une chaîne logistique intégrée au service de <span className={GRADIENT_LIGHT}>votre performance</span></>}
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="Centre de Services Logistiques & Industrialisation IT."
         image="/images/offres/centre-logistique-dark.webp"
+        imageAlt={pole.imageAlt}
         imageSide="right"
         tint="#29304b"
         caption="Run"

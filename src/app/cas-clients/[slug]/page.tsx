@@ -32,9 +32,17 @@ export async function generateMetadata({
   const { slug } = await params;
   const casClient = getCasClientBySlug(slug);
   if (!casClient) return {};
+  const title = casClient.metaTitle ?? `${casClient.navLabel} | Cycle Consulting`;
+  const description = casClient.metaDescription ?? casClient.resume;
+  const images = casClient.image
+    ? [{ url: casClient.image, alt: casClient.imageAlt ?? casClient.navLabel }]
+    : undefined;
   return {
-    title: casClient.metaTitle ?? `${casClient.navLabel} | Cycle Consulting`,
-    description: casClient.metaDescription ?? casClient.resume,
+    title,
+    description,
+    alternates: { canonical: casClient.href },
+    openGraph: { type: "article", title, description, url: casClient.href, images },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 

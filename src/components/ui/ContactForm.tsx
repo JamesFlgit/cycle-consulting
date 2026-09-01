@@ -1,16 +1,88 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { entreprise } from "@/data/entreprise";
+
+type Challenge = { a: number; b: number; issuedAt: number; token: string };
+type Status = "idle" | "loading" | "success" | "error";
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ContactForm() {
-  const [envoye, setEnvoye] = useState(false);
+  const [prenom, setPrenom] = useState("");
+  const [nom, setNom] = useState("");
+  const [entrepriseNom, setEntrepriseNom] = useState("");
+  const [email, setEmail] = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot — must stay empty
+  const [challenge, setChallenge] = useState<Challenge | null>(null);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setEnvoye(true);
+  function fetchChallenge() {
+    fetch("/api/captcha")
+      .then((res) => res.json())
+      .then(setChallenge)
+      .catch(() => setChallenge(null));
   }
 
-  if (envoye) {
+  useEffect(() => {
+    fetchChallenge();
+  }, []);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!challenge) return;
+
+    if (!EMAIL_REGEX.test(email)) {
+      setErrorMessage("Merci de renseigner une adresse e-mail valide.");
+      return;
+    }
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prenom,
+          nom,
+          entreprise: entrepriseNom,
+          email,
+          telephone,
+          message,
+          website,
+          a: challenge.a,
+          b: challenge.b,
+          issuedAt: challenge.issuedAt,
+          token: challenge.token,
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        setStatus("error");
+        setErrorMessage(
+          "Votre message n'a pas pu être envoyé. Merci de réessayer dans un instant, ou de nous écrire directement.",
+        );
+        fetchChallenge();
+        return;
+      }
+
+      setStatus("success");
+    } catch {
+      setStatus("error");
+      setErrorMessage(
+        "Une erreur est survenue. Merci de réessayer dans un instant, ou de nous écrire directement.",
+      );
+      fetchChallenge();
+    }
+  }
+
+  if (status === "success") {
     return (
       <div className="rounded-xl border border-border-subtle bg-surface-alt p-8 text-center">
         <p className="text-lg font-semibold text-anthracite">Merci pour votre message !</p>
@@ -23,6 +95,20 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border-subtle bg-surface p-6 sm:p-8">
+      {/* Honeypot: invisible to real visitors, off-screen and unreachable by tab — bots fill it, humans never do. */}
+      <div className="absolute left-[-9999px] top-auto" aria-hidden="true">
+        <label htmlFor="contact-website">Site web</label>
+        <input
+          id="contact-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+
       <div>
         <label htmlFor="prenom" className="block text-sm font-medium text-anthracite">
           Prénom <span className="text-red-600">*</span>
@@ -32,6 +118,8 @@ export default function ContactForm() {
           name="prenom"
           type="text"
           required
+          value={prenom}
+          onChange={(e) => setPrenom(e.target.value)}
           className="mt-1.5 block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"
         />
       </div>
@@ -45,6 +133,8 @@ export default function ContactForm() {
           name="nom"
           type="text"
           required
+          value={nom}
+          onChange={(e) => setNom(e.target.value)}
           className="mt-1.5 block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"
         />
       </div>
@@ -57,6 +147,8 @@ export default function ContactForm() {
           id="entreprise"
           name="entreprise"
           type="text"
+          value={entrepriseNom}
+          onChange={(e) => setEntrepriseNom(e.target.value)}
           className="mt-1.5 block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"
         />
       </div>
@@ -70,6 +162,8 @@ export default function ContactForm() {
           name="email"
           type="email"
           required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="mt-1.5 block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"
         />
       </div>
@@ -84,6 +178,8 @@ export default function ContactForm() {
             name="telephone"
             type="tel"
             placeholder="06 12 34 56 78"
+            value={telephone}
+            onChange={(e) => setTelephone(e.target.value)}
             className="block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"
           />
         </div>
@@ -97,15 +193,27 @@ export default function ContactForm() {
           id="message"
           name="message"
           rows={5}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           className="mt-1.5 block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"
         />
       </div>
 
+      {errorMessage && (
+        <p className="text-sm text-red-600">
+          {errorMessage}{" "}
+          <a href={`mailto:${entreprise.email}`} className="font-semibold underline">
+            {entreprise.email}
+          </a>
+        </p>
+      )}
+
       <button
         type="submit"
-        className="cta-primary cta-primary-on-light w-full rounded-md px-4 py-2.5 text-sm font-bold sm:w-auto"
+        disabled={status === "loading" || !challenge}
+        className="cta-primary cta-primary-on-light w-full rounded-md px-4 py-2.5 text-sm font-bold disabled:opacity-60 sm:w-auto"
       >
-        Envoyer
+        {status === "loading" ? "Envoi…" : "Envoyer"}
       </button>
     </form>
   );

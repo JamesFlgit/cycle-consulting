@@ -9,12 +9,16 @@ export type Pole = {
   metaDescription: string;
   /** Card header photo — see public/images/offres/. */
   image: string;
+  /** Texte alternatif de `image`, pour l'accessibilite et le SEO. */
+  imageAlt?: string;
 };
 
 export const poles: Pole[] = [
   {
     slug: "formations",
     image: "/images/offres/formations-dark.webp",
+    imageAlt:
+      "Formatrice en fauteuil roulant et formateur analysant ensemble des tableaux de bord de donnees",
     href: "/formations",
     navLabel: "Formations",
     category: "Formations & Certifications",
@@ -31,6 +35,7 @@ export const poles: Pole[] = [
   {
     slug: "service-manage",
     image: "/images/offres/service-manage-dark.webp",
+    imageAlt: "Deux consultants supervisant un service IT gere sur des ecrans de pilotage",
     href: "/service-manage",
     navLabel: "Service Managé",
     category: "Pilotage & Support",
@@ -47,6 +52,8 @@ export const poles: Pole[] = [
   {
     slug: "business-strategie",
     image: "/images/offres/business-strategie-dark.webp",
+    imageAlt:
+      "Deux consultants Cycle Consulting analysant des indicateurs de croissance autour d'une table",
     href: "/business-strategie",
     navLabel: "Business & Stratégie",
     category: "Conseil & Stratégie",
@@ -63,6 +70,7 @@ export const poles: Pole[] = [
   {
     slug: "ingenierie-it-support",
     image: "/images/offres/ingenierie-it-support-dark.webp",
+    imageAlt: "Ingenieure et technicien Cycle Consulting intervenant sur une baie de serveurs ouverte",
     href: "/ingenierie-it-support",
     navLabel: "Ingénierie & IT Support",
     category: "Ingénierie IT",
@@ -79,6 +87,7 @@ export const poles: Pole[] = [
   {
     slug: "centre-logistique",
     image: "/images/offres/centre-logistique-dark.webp",
+    imageAlt: "Deux operateurs manipulant des colis devant un rayonnage de centre logistique IT",
     href: "/centre-logistique",
     navLabel: "Centre Logistique",
     category: "Logistique IT",
@@ -92,3 +101,7 @@ export const poles: Pole[] = [
     metaDescription: "Stockage, livraison et expertises métiers : Cycle Consulting gère votre logistique IT de bout en bout.",
   },
 ];
+
+export function getPoleBySlug(slug: string): Pole | undefined {
+  return poles.find((p) => p.slug === slug);
+}

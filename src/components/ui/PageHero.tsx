@@ -10,6 +10,7 @@ export default function PageHero({
   description,
   children,
   image,
+  imageAlt = "",
   imageSide,
   tint,
   caption,
@@ -26,6 +27,8 @@ export default function PageHero({
   children?: React.ReactNode;
   /** Optional background photo — replaces the default abstract gradient. */
   image?: string;
+  /** Alt text for `image`. Leave empty for a purely decorative background. */
+  imageAlt?: string;
   /** When set alongside `image`, the photo is docked to this side on desktop
    * (lg+) and shown whole, its inner edge dissolving into a light field that
    * carries the copy. Below lg the photo drops in-flow under the copy. */
@@ -115,7 +118,7 @@ export default function PageHero({
           <div className="relative -mx-6 mt-8 sm:-mx-8 xl:hidden">
             <Image
               src={image!}
-              alt=""
+              alt={imageAlt}
               width={1678}
               height={937}
               priority
@@ -144,7 +147,7 @@ export default function PageHero({
           <div className="hero-arc-photo relative aspect-video w-full">
             <Image
               src={image!}
-              alt=""
+              alt={imageAlt}
               fill
               priority
               sizes="50vw"
@@ -169,7 +172,7 @@ export default function PageHero({
     <section className="bg-page-hero bg-office-gradient relative overflow-hidden">
       {onPhoto && (
         <>
-          <Image src={image!} alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src={image!} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-[#0a0e24]/78" />
         </>
       )}

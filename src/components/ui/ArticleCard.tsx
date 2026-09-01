@@ -11,7 +11,7 @@ export default function ArticleCard({ article }: { article: Article }) {
       <div className="relative h-32 shrink-0 overflow-hidden bg-[#07142e]">
         <Image
           src={article.image}
-          alt=""
+          alt={article.imageAlt ?? ""}
           fill
           sizes="(min-width: 768px) 384px, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"

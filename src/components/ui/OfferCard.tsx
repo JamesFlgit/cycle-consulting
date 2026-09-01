@@ -27,7 +27,13 @@ export default function OfferCard({ pole, active = true }: { pole: Pole; active?
     >
       <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(0.75rem-1px)] bg-surface transition-shadow hover:shadow-md">
         <div className="relative aspect-video">
-          <Image src={pole.image} alt="" fill sizes="280px" className="object-cover" />
+          <Image
+            src={pole.image}
+            alt={pole.imageAlt ?? ""}
+            fill
+            sizes="(min-width:1024px) 300px, (min-width:640px) 45vw, 90vw"
+            className="object-cover"
+          />
           {/* Scrim for the icon/title's legibility — confined to the bottom band they sit
               in; the rest of the photo stays fully clear, not tinted. */}
           <div
