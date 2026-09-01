@@ -4,29 +4,23 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { MarketQuote } from "@/lib/market";
 
 const REFRESH_MS = 5 * 60 * 1000;
-const SPARK_W = 60;
-const SPARK_H = 18;
+const SPARK_W = 56;
+const SPARK_H = 16;
 
-const UP = "#5cf2ab";
-const DOWN = "#ff8592";
-const FLAT = "rgba(255,255,255,0.55)";
+const TREND = {
+  light: { up: "#5cf2ab", down: "#ff8592", flat: "rgba(255,255,255,0.55)" },
+  dark: { up: "#0a7d43", down: "#c23934", flat: "#6b6f76" },
+} as const;
 
 const pctFmt = new Intl.NumberFormat("fr-FR", {
   signDisplay: "exceptZero",
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
-const priceFmt = new Intl.NumberFormat("fr-FR", {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-});
+const priceFmt = new Intl.NumberFormat("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const timeFmt = new Intl.DateTimeFormat("fr-FR", { hour: "2-digit", minute: "2-digit" });
 
-function trendColor(pct: number) {
-  if (pct > 0) return UP;
-  if (pct < 0) return DOWN;
-  return FLAT;
-}
+type Tone = "light" | "dark";
 
 function Sparkline({ series, color }: { series: number[]; color: string }) {
   if (series.length < 2) return null;
@@ -41,27 +35,13 @@ function Sparkline({ series, color }: { series: number[]; color: string }) {
     })
     .join(" ");
   return (
-    <svg
-      width={SPARK_W}
-      height={SPARK_H}
-      viewBox={`0 0 ${SPARK_W} ${SPARK_H}`}
-      className="hidden shrink-0 sm:block"
-      aria-hidden="true"
-    >
-      <polyline
-        points={points}
-        fill="none"
-        stroke={color}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg width={SPARK_W} height={SPARK_H} viewBox={`0 0 ${SPARK_W} ${SPARK_H}`} className="hidden shrink-0 sm:block" aria-hidden="true">
+      <polyline points={points} fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
 function Arrow({ pct, color }: { pct: number; color: string }) {
-  // Flèche diagonale : haut-droite si hausse, bas-droite si baisse, trait si stable.
   const d = pct > 0 ? "M6 14 14 6M8 6h6v6" : pct < 0 ? "M6 6 14 14M14 8v6h-6" : "M5 10h10";
   return (
     <svg viewBox="0 0 20 20" className="h-3.5 w-3.5 shrink-0" aria-hidden="true">
@@ -71,11 +51,22 @@ function Arrow({ pct, color }: { pct: number; color: string }) {
 }
 
 /**
- * Pastille "indicateur de marché" pour les héros. Cours différés (voir
- * `src/lib/market.ts`). Se met à jour toutes les 5 min et garde sa dernière
- * valeur connue si un rafraîchissement échoue.
+ * Pastille "indicateur de marché" pour la barre de navigation. Cours différés
+ * (voir `src/lib/market.ts`). Se met à jour toutes les 5 min et garde sa
+ * dernière valeur connue si un rafraîchissement échoue.
+ *
+ * @param variant "full" (libellé + sparkline + variation) ou "compact" (variation seule, mobile).
+ * @param tone    "light" sur fond sombre/transparent, "dark" sur fond clair.
  */
-export default function MarketTicker({ className = "" }: { className?: string }) {
+export default function MarketTicker({
+  variant = "full",
+  tone = "dark",
+  className = "",
+}: {
+  variant?: "full" | "compact";
+  tone?: Tone;
+  className?: string;
+}) {
   const [quote, setQuote] = useState<MarketQuote | null>(null);
   const timer = useRef<number | undefined>(undefined);
 
@@ -90,8 +81,6 @@ export default function MarketTicker({ className = "" }: { className?: string })
   }, []);
 
   useEffect(() => {
-    // `setTimeout` : on ne déclenche pas le fetch (donc le setState) en synchrone
-    // dans le corps de l'effet.
     const first = window.setTimeout(load, 0);
     timer.current = window.setInterval(load, REFRESH_MS);
     const onVisible = () => {
@@ -105,22 +94,28 @@ export default function MarketTicker({ className = "" }: { className?: string })
     };
   }, [load]);
 
-  const base =
-    "inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 " +
-    "text-xs font-semibold text-white backdrop-blur-sm";
+  const shell =
+    tone === "light"
+      ? "border-white/15 bg-white/10 text-white backdrop-blur-sm"
+      : "border-border-subtle bg-surface-alt text-anthracite";
+  const pad = variant === "compact" ? "gap-1 px-2 py-1" : "gap-2 px-3 py-1.5";
+  const base = `inline-flex items-center rounded-full border text-xs font-semibold ${shell} ${pad}`;
 
   if (!quote) {
+    const bar = tone === "light" ? "bg-white/20" : "bg-anthracite/10";
     return (
       <span className={`${base} ${className}`} aria-hidden="true">
-        <span className="h-3.5 w-3.5 shrink-0 animate-pulse rounded-full bg-white/25" />
-        <span className="h-3 w-24 animate-pulse rounded bg-white/15" />
+        <span className={`h-3.5 w-3.5 shrink-0 animate-pulse rounded-full ${bar}`} />
+        {variant === "full" && <span className={`h-3 w-20 animate-pulse rounded ${bar}`} />}
       </span>
     );
   }
 
-  const color = trendColor(quote.changePercent);
+  const colors = TREND[tone];
+  const color = quote.changePercent > 0 ? colors.up : quote.changePercent < 0 ? colors.down : colors.flat;
   const pct = `${pctFmt.format(quote.changePercent)} %`;
   const detail = `${quote.fullLabel} · ${priceFmt.format(quote.price)} ${quote.currency} · cours différé, mis à jour à ${timeFmt.format(new Date(quote.asOf))}`;
+  const labelColor = tone === "light" ? "text-white/70" : "text-anthracite-mist";
 
   return (
     <span
@@ -129,8 +124,8 @@ export default function MarketTicker({ className = "" }: { className?: string })
       title={detail}
       aria-label={`${quote.fullLabel} : ${pct} sur la séance`}
     >
-      <span className="uppercase tracking-[0.14em] text-white/70">{quote.label}</span>
-      <Sparkline series={quote.series} color={color} />
+      {variant === "full" && <span className={`uppercase tracking-[0.14em] ${labelColor}`}>{quote.label}</span>}
+      {variant === "full" && <Sparkline series={quote.series} color={color} />}
       <Arrow pct={quote.changePercent} color={color} />
       <span style={{ color }}>{pct}</span>
     </span>

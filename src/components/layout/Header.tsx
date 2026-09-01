@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { getRenderableSections } from "@/data/nav-sections";
 import NavLogoMark from "@/components/layout/NavLogoMark";
 import NavDropdown from "@/components/layout/NavDropdown";
+import MarketTicker from "@/components/ui/MarketTicker";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -56,6 +57,15 @@ export default function Header() {
           : "border-border-subtle bg-surface/95 backdrop-blur supports-backdrop-blur:bg-surface/80"
       }`}
     >
+      {/* Indicateur de marché : dans la gouttière droite, hors du conteneur
+          centré. N'apparaît qu'à partir de 1600px, là où la gouttière est
+          assez large pour ne pas chevaucher le CTA. */}
+      <div className="pointer-events-none absolute inset-y-0 right-8 hidden items-center min-[1600px]:flex">
+        <span className="pointer-events-auto">
+          <MarketTicker tone={transparent ? "light" : "dark"} />
+        </span>
+      </div>
+
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5" onClick={closeAll}>
           <NavLogoMark className="h-9 w-auto" variant={transparent ? "light" : "color"} />
@@ -124,29 +134,32 @@ export default function Header() {
           </Link>
         </div>
 
-        <button
-          ref={burgerBtnRef}
-          type="button"
-          aria-label="Ouvrir le menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className={`flex h-10 w-10 items-center justify-center rounded-md border transition-colors lg:hidden ${
-            transparent ? "border-white/30 text-white" : "border-border-subtle text-anthracite"
-          }`}
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            {open ? (
-              <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-            ) : (
-              <path
-                d="M2.5 5h15M2.5 10h15M2.5 15h15"
-                stroke="currentColor"
-                strokeWidth="1.7"
-                strokeLinecap="round"
-              />
-            )}
-          </svg>
-        </button>
+        <div className="flex items-center gap-2.5 lg:hidden">
+          <MarketTicker variant="compact" tone={transparent ? "light" : "dark"} />
+          <button
+            ref={burgerBtnRef}
+            type="button"
+            aria-label="Ouvrir le menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className={`flex h-10 w-10 items-center justify-center rounded-md border transition-colors ${
+              transparent ? "border-white/30 text-white" : "border-border-subtle text-anthracite"
+            }`}
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              {open ? (
+                <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+              ) : (
+                <path
+                  d="M2.5 5h15M2.5 10h15M2.5 15h15"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {open && (

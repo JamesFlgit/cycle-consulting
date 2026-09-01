@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import MarketTicker from "@/components/ui/MarketTicker";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
@@ -149,11 +148,10 @@ export default function IngenierieItSupportPage() {
           </Link>
         }
       >
-        <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3">
+        <div className="mt-6">
           <Breadcrumb
             items={["Apprendre", "Comprendre", <span key="e" className={`font-semibold ${GRADIENT_LIGHT}`}>Entreprendre</span>]}
           />
-          <MarketTicker />
         </div>
       </PageHero>
 
