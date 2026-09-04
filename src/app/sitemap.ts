@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: abs("/a-propos"), lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: abs("/ressources"), lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: abs("/cas-clients"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: abs("/evenements"), lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: abs("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.7 },
     { url: abs("/faq"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: abs("/rejoignez-nous"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
