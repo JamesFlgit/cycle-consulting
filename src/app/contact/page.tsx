@@ -5,11 +5,14 @@ import ContactForm from "@/components/ui/ContactForm";
 import Slogan from "@/components/ui/Slogan";
 import { entreprise } from "@/data/entreprise";
 import { EmailIcon } from "@/components/icons/card-icons";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Infos & Réservation | Cycle Consulting",
-  description: "Contactez les Consultants Cycle Consulting pour vos projets IT, formations et stratégie.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Contact",
+  description:
+    "Une question, un projet, une demande de devis ? Contactez les consultants Cycle Consulting : réponse rapide, à Paris et partout en France.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

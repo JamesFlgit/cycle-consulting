@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, UsersThreeIcon, GearIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
-import { serviceJsonLd } from "@/lib/site";
+import { serviceJsonLd, pageMetadata } from "@/lib/site";
 import { getPoleBySlug } from "@/data/poles";
 
 const pole = getPoleBySlug("business-strategie")!;
@@ -15,11 +15,12 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 // Brand gradient, light variant — for accents on dark sections.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
-export const metadata: Metadata = {
-  title: "Business & Stratégie | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "Business & Stratégie",
   description:
-    "Web Services et Business Services : développez votre activité avec l'accompagnement des Consultants Cycle Consulting.",
-};
+    "Business Managers et consultants expérimentés pour accompagner votre développement et vos transformations : une relation de confiance et une culture du résultat.",
+  path: "/business-strategie",
+});
 
 const PILIERS = [
   {

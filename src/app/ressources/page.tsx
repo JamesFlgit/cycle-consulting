@@ -4,17 +4,19 @@ import PageHero from "@/components/ui/PageHero";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import ArticleCard from "@/components/ui/ArticleCard";
 import { articles } from "@/data/articles";
+import { pageMetadata } from "@/lib/site";
 
 // Brand gradient, dark variant — for accents on light sections.
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
 // Brand gradient, light variant — for accents on dark sections.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
-export const metadata: Metadata = {
-  title: "Ressources | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "Blog",
   description:
-    "Analyses, retours d'expérience et repères concrets sur les métiers de l'IT, par les consultants Cycle Consulting.",
-};
+    "Analyses, retours d'expérience et repères concrets sur les métiers de l'IT, écrits par les consultants Cycle Consulting qui les pratiquent au quotidien.",
+  path: "/ressources",
+});
 
 const articlesVisibles = articles
   .filter((article) => article.visible)
@@ -56,9 +58,9 @@ export default function RessourcesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 pt-8 pb-16 sm:pt-10 sm:px-6 lg:px-8">
+      <section id="blog" className="mx-auto max-w-3xl px-4 pt-8 pb-16 sm:pt-10 sm:px-6 lg:px-8">
         <h2 className="text-xl font-bold text-anthracite sm:text-2xl lg:text-3xl">
-          À lire <span className={GRADIENT_DARK}>en ce moment</span>
+          À lire <span className={GRADIENT_DARK}>en ce moment</span> sur notre blog
         </h2>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">

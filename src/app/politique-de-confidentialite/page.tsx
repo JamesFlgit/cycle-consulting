@@ -8,13 +8,14 @@ import {
   cookiesMesureAudience,
   stockageConsentement,
 } from "@/data/entreprise";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Politique de confidentialité | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "Politique de confidentialité",
   description:
     "Comment Cycle Consulting collecte et traite vos données personnelles via le site cycle-consulting.fr : finalités, durées de conservation, destinataires et droits RGPD.",
-  alternates: { canonical: "/politique-de-confidentialite" },
-};
+  path: "/politique-de-confidentialite",
+});
 
 export default function PolitiqueConfidentialitePage() {
   return (

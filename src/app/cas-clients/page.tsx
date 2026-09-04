@@ -2,15 +2,18 @@ import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import CasClientCard from "@/components/ui/CasClientCard";
 import { casClients } from "@/data/cas-clients";
+import { pageMetadata } from "@/lib/site";
 
 // Brand gradient, light variant — see Slogan.tsx — for the accent on this
 // page's dark hero.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
-export const metadata: Metadata = {
-  title: "Cas clients | Cycle Consulting",
-  description: "Découvrez comment Cycle Consulting accompagne ses clients, tous secteurs confondus.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Cas clients",
+  description:
+    "Transformation de centres de services, pilotage du service delivery, migration IT internationale, support N3 : les missions menées par Cycle Consulting.",
+  path: "/cas-clients",
+});
 
 export default function CasClientsPage() {
   const visibles = casClients.filter((c) => c.visible);

@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
-import { serviceJsonLd } from "@/lib/site";
+import { serviceJsonLd, pageMetadata } from "@/lib/site";
 import { getPoleBySlug } from "@/data/poles";
 
 const pole = getPoleBySlug("ingenierie-it-support")!;
@@ -15,11 +15,12 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 // Brand gradient, light variant — for accents on dark sections.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
-export const metadata: Metadata = {
-  title: "Ingénierie & IT Support | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "Ingénierie & IT Support",
   description:
-    "OSS, IT Support et Ingénierie IT : des consultants qualifiés pour renforcer vos équipes techniques et vos infrastructures.",
-};
+    "OSS, IT support et gouvernance des services : des consultants seniors pour renforcer vos équipes techniques, vos infrastructures et vos dispositifs d'infogérance.",
+  path: "/ingenierie-it-support",
+});
 
 const EXPERTISES = [
   {

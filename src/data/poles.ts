@@ -30,7 +30,7 @@ export const poles: Pole[] = [
     },
     metaTitle: "Formations | Cycle Consulting",
     metaDescription:
-      "Montez en compétence sur les outils Microsoft (Office, O365) et les processus Cycle Forms avec les Consultants Cycle Consulting.",
+      "Formations aux outils Microsoft (Word, Excel, Power BI, Teams) et aux certifications ITIL et PRINCE2, animées par des consultants praticiens.",
   },
   {
     slug: "service-manage",
@@ -47,7 +47,7 @@ export const poles: Pole[] = [
     },
     metaTitle: "Service Managé | Cycle Consulting",
     metaDescription:
-      "Service Delivery, infogérance et veille technologique : pilotez votre entreprise avec les meilleurs outils grâce aux Consultants Cycle Consulting.",
+      "Service delivery, infogérance, support de proximité et veille technologique : Cycle Consulting pilote vos environnements IT et vos engagements de service.",
   },
   {
     slug: "business-strategie",
@@ -65,7 +65,7 @@ export const poles: Pole[] = [
     },
     metaTitle: "Business & Stratégie | Cycle Consulting",
     metaDescription:
-      "Web Services et Business Services : développez votre activité avec l'accompagnement des Consultants Cycle Consulting.",
+      "Business Managers et consultants expérimentés pour accompagner votre développement et vos transformations : une relation de confiance et une culture du résultat.",
   },
   {
     slug: "ingenierie-it-support",
@@ -82,7 +82,7 @@ export const poles: Pole[] = [
     },
     metaTitle: "Ingénierie & IT Support | Cycle Consulting",
     metaDescription:
-      "OSS, IT Support et Ingénierie IT : des consultants qualifiés pour renforcer vos équipes techniques et vos infrastructures.",
+      "OSS, IT support et gouvernance des services : des consultants seniors pour renforcer vos équipes techniques, vos infrastructures et vos dispositifs d'infogérance.",
   },
   {
     slug: "centre-logistique",
@@ -98,7 +98,8 @@ export const poles: Pole[] = [
       apartirde: "1 journée",
     },
     metaTitle: "Centre Logistique | Cycle Consulting",
-    metaDescription: "Stockage, livraison et expertises métiers : Cycle Consulting gère votre logistique IT de bout en bout.",
+    metaDescription:
+      "Réception, stockage, préparation, expédition et logistique retour : Cycle Consulting gère le cycle de vie de vos équipements IT, en France et à l'international.",
   },
 ];
 

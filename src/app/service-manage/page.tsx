@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
-import { serviceJsonLd } from "@/lib/site";
+import { serviceJsonLd, pageMetadata } from "@/lib/site";
 import { getPoleBySlug } from "@/data/poles";
 
 const pole = getPoleBySlug("service-manage")!;
@@ -15,11 +15,12 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 // Brand gradient, light variant — for accents on dark sections.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
-export const metadata: Metadata = {
-  title: "Service Managé | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "Service Managé",
   description:
-    "Service Delivery, infogérance et veille technologique : pilotez votre entreprise avec les meilleurs outils grâce aux Consultants Cycle Consulting.",
-};
+    "Service delivery, infogérance, support de proximité et veille technologique : Cycle Consulting pilote vos environnements IT et vos engagements de service.",
+  path: "/service-manage",
+});
 
 const DOMAINES = [
   {

@@ -8,6 +8,7 @@ import DonutChart from "@/components/ui/DonutChart";
 import InternationalHighlight from "@/components/ui/InternationalHighlight";
 import BoucleVertueuse from "@/components/ui/BoucleVertueuse";
 import { repartitionPractices, repartitionGenre } from "@/data/repartitions";
+import { pageMetadata } from "@/lib/site";
 
 // Brand gradient, light variant — see Slogan.tsx — for accents on the dark
 // "chiffres" section.
@@ -16,11 +17,12 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 // page's light sections (and the dark hero, per the logo's own treatment).
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
 
-export const metadata: Metadata = {
-  title: "À propos de Cycle Consulting | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "À propos",
   description:
-    "Découvrez Cycle Consulting, société de conseil et de services IT : notre histoire, notre vision internationale, nos valeurs et nos atouts.",
-};
+    "Notre histoire, notre modèle humain, notre ambition internationale et nos valeurs : découvrez l'ESN Cycle Consulting et sa vision du métier.",
+  path: "/a-propos",
+});
 
 const CYCLE_VERTUEUX = [
   "Identifier les talents",
@@ -124,7 +126,7 @@ export default function AProposPage() {
         title="À propos de Cycle Consulting"
         description={
           <>
-            <Slogan variant="light" />
+            <Slogan variant="light" highlightFirst />
             <span className="mt-3 block">
               Transformer la complexité IT en performance. Révéler les talents qui la rendent possible.
             </span>

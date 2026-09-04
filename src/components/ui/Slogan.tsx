@@ -8,10 +8,13 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 export default function Slogan({
   variant = "dark",
   className,
+  highlightFirst = false,
 }: {
   /** Use "light" when the slogan sits on a dark background, "dark" on a light background. */
   variant?: "dark" | "light";
   className?: string;
+  /** Render the first word ("Apprendre") in bold with the light brand gradient. */
+  highlightFirst?: boolean;
 }) {
   const words = entreprise.slogan.split(", ");
   const gradient = variant === "light" ? GRADIENT_LIGHT : GRADIENT_DARK;
@@ -21,7 +24,11 @@ export default function Slogan({
       {words.map((word, index) => (
         <span key={word}>
           {index > 0 && <span className={`mx-1 font-bold sm:mx-2 ${gradient}`}>&gt;</span>}
-          {word}
+          {index === 0 && highlightFirst ? (
+            <span className={`font-bold ${GRADIENT_LIGHT}`}>{word}</span>
+          ) : (
+            word
+          )}
         </span>
       ))}
     </span>

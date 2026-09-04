@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import ContactForm from "@/components/ui/ContactForm";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Rejoignez-nous | Cycle Consulting",
-  description: "Consultants, techniciens, experts IT : rejoignez les équipes de Cycle Consulting.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Rejoignez-nous",
+  description:
+    "Consultants, techniciens et experts IT : Cycle Consulting recrute en permanence pour ses missions clients, quel que soit votre niveau d'expérience.",
+  path: "/rejoignez-nous",
+});
 
 export default function RejoignezNousPage() {
   return (

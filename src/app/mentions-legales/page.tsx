@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LegalDocument, { LegalSection } from "@/components/ui/LegalDocument";
 import { entreprise, mentionsLegales as m, hebergeur } from "@/data/entreprise";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Mentions légales | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "Mentions légales",
   description:
     "Mentions légales du site cycle-consulting.fr : éditeur, hébergeur, propriété intellectuelle et responsabilité.",
-  alternates: { canonical: "/mentions-legales" },
-};
+  path: "/mentions-legales",
+});
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (

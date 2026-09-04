@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GearIcon, HeadsetIcon, PackageIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
-import { serviceJsonLd } from "@/lib/site";
+import { serviceJsonLd, pageMetadata } from "@/lib/site";
 import { getPoleBySlug } from "@/data/poles";
 
 const pole = getPoleBySlug("centre-logistique")!;
@@ -15,11 +15,12 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 // Brand gradient, light variant — for accents on dark sections.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
-export const metadata: Metadata = {
-  title: "Centre Logistique | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "Centre Logistique",
   description:
-    "Stockage, livraison et expertises métiers : Cycle Consulting gère votre logistique IT de bout en bout.",
-};
+    "Réception, stockage, préparation, expédition et logistique retour : Cycle Consulting gère le cycle de vie de vos équipements IT, en France et à l'international.",
+  path: "/centre-logistique",
+});
 
 const DOMAINES = [
   {

@@ -31,14 +31,16 @@ export async function generateMetadata({
   const article = getArticleBySlug(slug);
   if (!article) return {};
   return {
-    title: article.metaTitle,
+    title: { absolute: article.metaTitle },
     description: article.metaDescription,
     alternates: { canonical: article.href },
     openGraph: {
       type: "article",
+      siteName: "Cycle Consulting",
       title: article.metaTitle,
       description: article.metaDescription,
       url: article.href,
+      publishedTime: article.dateISO,
       images: [{ url: article.image, alt: article.imageAlt ?? article.titre }],
     },
     twitter: {

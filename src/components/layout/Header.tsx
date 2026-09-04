@@ -112,7 +112,7 @@ export default function Header() {
                 isOpen={openDesktopKey === section.key}
                 onToggle={() => setOpenDesktopKey((current) => (current === section.key ? null : section.key))}
                 onOpen={() => setOpenDesktopKey(section.key)}
-                onClose={() => setOpenDesktopKey(null)}
+                onClose={() => setOpenDesktopKey((current) => (current === section.key ? null : current))}
                 isActive={isActive}
                 showGroupTitles={section.key !== "expertises"}
                 transparent={transparent}

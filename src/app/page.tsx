@@ -173,7 +173,7 @@ export default function Home() {
       </section>
       */}
 
-      <section className="bg-surface-alt py-20">
+      <section id="partenaires" className="scroll-mt-18 bg-surface-alt py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeading
@@ -216,7 +216,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeading
-              eyebrow={<span className={GRADIENT_DARK_DEEP}>Ressources</span>}
+              eyebrow={<span className={GRADIENT_DARK_DEEP}>Blog</span>}
               title="Comprendre les enjeux de votre IT"
               description="Analyses et retours d'expérience concrets sur les métiers de l'IT, écrits par les consultants qui les pratiquent."
               center

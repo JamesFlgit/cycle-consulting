@@ -4,11 +4,14 @@ import TestimonialCard from "@/components/ui/TestimonialCard";
 import PartnerLogo from "@/components/ui/PartnerLogo";
 import { temoignages } from "@/data/temoignages";
 import { clientsLivreOr } from "@/data/partenaires";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Livre d'or | Cycle Consulting",
-  description: "Retrouvez les témoignages des clients de Cycle Consulting.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Livre d'or",
+  description:
+    "Les témoignages des clients qui font confiance à Cycle Consulting pour accompagner la croissance et la transformation de leur système d'information.",
+  path: "/livre-or",
+});
 
 export default function LivreOrPage() {
   return (

@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, UsersThreeIcon, GearIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
-import { serviceJsonLd } from "@/lib/site";
+import { serviceJsonLd, pageMetadata } from "@/lib/site";
 import { getPoleBySlug } from "@/data/poles";
 
 const pole = getPoleBySlug("formations")!;
@@ -15,11 +15,12 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 // Brand gradient, light variant — for accents on dark sections.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
-export const metadata: Metadata = {
-  title: "Formations | Cycle Consulting",
+export const metadata: Metadata = pageMetadata({
+  title: "Formations",
   description:
-    "Montez en compétence sur les outils Microsoft (Office, O365) et les processus Cycle Forms avec les Consultants Cycle Consulting.",
-};
+    "Formations aux outils Microsoft (Word, Excel, Power BI, Teams) et aux certifications ITIL et PRINCE2, animées par des consultants praticiens.",
+  path: "/formations",
+});
 
 const PROGRAMMES = [
   {

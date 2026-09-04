@@ -38,10 +38,10 @@ export async function generateMetadata({
     ? [{ url: casClient.image, alt: casClient.imageAlt ?? casClient.navLabel }]
     : undefined;
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: casClient.href },
-    openGraph: { type: "article", title, description, url: casClient.href, images },
+    openGraph: { type: "article", siteName: "Cycle Consulting", title, description, url: casClient.href, images },
     twitter: { card: "summary_large_image", title, description },
   };
 }

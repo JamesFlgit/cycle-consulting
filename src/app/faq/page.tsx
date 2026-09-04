@@ -3,11 +3,14 @@ import PageHero from "@/components/ui/PageHero";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import Slogan from "@/components/ui/Slogan";
 import { faqThemes } from "@/data/faq";
+import { pageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Questions fréquentes | Cycle Consulting",
-  description: "Les réponses aux questions les plus fréquentes sur Cycle Consulting : nos missions, nos consultants, nos Services Managés et notre logistique IT.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Questions fréquentes",
+  description:
+    "Nos missions, nos consultants, nos modèles de prestation, nos services managés et notre logistique IT : les réponses aux questions que l'on nous pose le plus.",
+  path: "/faq",
+});
 
 export default function FaqPage() {
   return (

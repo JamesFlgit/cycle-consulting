@@ -53,6 +53,7 @@ const HUB_LINK_SECTIONS: Record<string, string> = {
  * still opens the sub-item list. */
 const DROPDOWN_HUB_HREF: Record<string, string> = {
   entreprise: "/a-propos",
+  ressources: "/ressources",
 };
 
 export function getRenderableSections(): RenderableSection[] {
@@ -63,11 +64,12 @@ export function getRenderableSections(): RenderableSection[] {
     }
 
     const visibleItems = section.items.filter((item) => item.visible && item.showInNav !== false);
+    const dropdownHubHref = DROPDOWN_HUB_HREF[section.key];
 
     if (visibleItems.length === 0) {
       return { key: section.key, label: section.label, mode: "hidden" };
     }
-    if (visibleItems.length === 1) {
+    if (visibleItems.length === 1 && !dropdownHubHref) {
       return { key: section.key, label: section.label, mode: "link", href: visibleItems[0].href };
     }
 
@@ -84,7 +86,7 @@ export function getRenderableSections(): RenderableSection[] {
       label: section.label,
       mode: "dropdown",
       groups: [...byCategory.entries()].map(([category, items]) => ({ category, items })),
-      hubHref: DROPDOWN_HUB_HREF[section.key],
+      hubHref: dropdownHubHref,
     };
   });
 }
