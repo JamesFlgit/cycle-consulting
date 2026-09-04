@@ -3,12 +3,15 @@ import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
+import ExpertiseCasClientTeaser from "@/components/ui/ExpertiseCasClientTeaser";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
 import { serviceJsonLd, pageMetadata } from "@/lib/site";
 import { getPoleBySlug } from "@/data/poles";
+import { getCasClientBySlug } from "@/data/cas-clients";
 
 const pole = getPoleBySlug("service-manage")!;
+const casClient = getCasClientBySlug("pilotage-service-delivery-retail")!;
 
 // Brand gradient, dark variant — for accents on light sections.
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
@@ -234,7 +237,7 @@ export default function ServiceManagePage() {
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-              Pourquoi choisir <span className={GRADIENT_LIGHT}>Cycle Consulting ?</span>
+              Pourquoi choisir <span className={GRADIENT_DARK}>Cycle Consulting ?</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-anthracite-soft">
               Choisir Cycle Consulting, c&apos;est faire le choix d&apos;un partenaire engagé dans la réussite de
@@ -245,25 +248,31 @@ export default function ServiceManagePage() {
               conditions, tout en garantissant la disponibilité, la sécurité et la performance de votre
               environnement informatique.
             </p>
+
+            <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {POURQUOI.map((raison) => (
+                <li
+                  key={raison}
+                  className="flex items-center gap-2.5 rounded-lg border border-border-subtle bg-surface px-4 py-3 text-sm font-medium text-anthracite-soft"
+                >
+                  <CheckMark />
+                  {raison}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {POURQUOI.map((raison) => (
-              <li
-                key={raison}
-                className="flex items-center gap-2.5 rounded-lg border border-border-subtle bg-surface px-4 py-3 text-sm font-medium text-anthracite-soft"
-              >
-                <CheckMark />
-                {raison}
-              </li>
-            ))}
-          </ul>
+
+          <ExpertiseCasClientTeaser
+            casClient={casClient}
+            intro="Découvrez comment un Service Delivery Manager Cycle Consulting a redressé la qualité de service d'un dispositif retail, jusqu'à 98–100 % de disponibilité."
+          />
         </div>
       </section>
 
       <section className="bg-callout-light">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-            Votre partenaire <span className={GRADIENT_LIGHT}>des services managés</span>
+            Votre partenaire <span className={GRADIENT_DARK}>des services managés</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite-soft">
             <p>

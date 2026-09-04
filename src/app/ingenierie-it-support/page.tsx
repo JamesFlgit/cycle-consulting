@@ -3,12 +3,15 @@ import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
+import ExpertiseCasClientTeaser from "@/components/ui/ExpertiseCasClientTeaser";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
 import { serviceJsonLd, pageMetadata } from "@/lib/site";
 import { getPoleBySlug } from "@/data/poles";
+import { getCasClientBySlug } from "@/data/cas-clients";
 
 const pole = getPoleBySlug("ingenierie-it-support")!;
+const casClient = getCasClientBySlug("support-n3-b2b-restauration-rapide")!;
 
 // Brand gradient, dark variant — for accents on light sections.
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
@@ -247,7 +250,7 @@ export default function IngenierieItSupportPage() {
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-              Pourquoi choisir <span className={GRADIENT_LIGHT}>Cycle Consulting ?</span>
+              Pourquoi choisir <span className={GRADIENT_DARK}>Cycle Consulting ?</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-anthracite-soft">
               Notre différence réside dans la combinaison de trois expertises complémentaires :
@@ -259,25 +262,31 @@ export default function IngenierieItSupportPage() {
               apportons une vision globale, capable d&apos;aligner les services numériques avec les ambitions
               stratégiques de votre entreprise.
             </p>
+
+            <ul className="mt-6 grid grid-cols-1 gap-3">
+              {POURQUOI.map((raison) => (
+                <li
+                  key={raison}
+                  className="flex items-center gap-2.5 rounded-lg border border-border-subtle bg-surface px-4 py-3 text-sm font-medium text-anthracite-soft"
+                >
+                  <CheckMark />
+                  {raison}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="grid grid-cols-1 gap-3">
-            {POURQUOI.map((raison) => (
-              <li
-                key={raison}
-                className="flex items-center gap-2.5 rounded-lg border border-border-subtle bg-surface px-4 py-3 text-sm font-medium text-anthracite-soft"
-              >
-                <CheckMark />
-                {raison}
-              </li>
-            ))}
-          </ul>
+
+          <ExpertiseCasClientTeaser
+            casClient={casClient}
+            intro="Découvrez comment nos équipes ont structuré un dispositif de Support N3 B2B pour des grands comptes de la restauration rapide, de l'infrastructure au maintien en conditions opérationnelles."
+          />
         </div>
       </section>
 
       <section className="bg-callout-light">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-            Le partenaire <span className={GRADIENT_LIGHT}>de vos opérations stratégiques</span>
+            Le partenaire <span className={GRADIENT_DARK}>de vos opérations stratégiques</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite-soft">
             <p>

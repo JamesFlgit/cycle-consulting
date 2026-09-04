@@ -259,7 +259,7 @@ export default function CentreLogistiquePage() {
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-              Qualité, traçabilité et <span className={GRADIENT_LIGHT}>excellence opérationnelle</span>
+              Qualité, traçabilité et <span className={GRADIENT_DARK}>excellence opérationnelle</span>
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-anthracite-soft">
               Chez Cycle Consulting, chaque équipement est suivi tout au long de son cycle de vie. Nos processus
@@ -287,7 +287,7 @@ export default function CentreLogistiquePage() {
       <section className="bg-callout-light">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite sm:text-3xl">
-            L&apos;excellence industrielle <span className={GRADIENT_LIGHT}>au service de votre IT</span>
+            L&apos;excellence industrielle <span className={GRADIENT_DARK}>au service de votre IT</span>
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-anthracite-soft">
             <p>
