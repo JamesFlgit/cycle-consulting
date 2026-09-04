@@ -216,9 +216,18 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <SectionHeading
-              eyebrow={<span className={GRADIENT_DARK_DEEP}>Blog</span>}
-              title="Comprendre les enjeux de votre IT"
-              description="Analyses et retours d'expérience concrets sur les métiers de l'IT, écrits par les consultants qui les pratiquent."
+              eyebrow={<span className={GRADIENT_DARK_DEEP}>Cycle News</span>}
+              title="Revues et Newsletter Cycle"
+              description={
+                <>
+                  Cycle décrypte l&apos;essentiel de l&apos;actualité IT, et partage l&apos;expérience et les
+                  retours terrain de ses consultants, pour vous aider à apprendre, comprendre et entreprendre les
+                  transitions numériques de demain.
+                  <br />
+                  <br />
+                  Par nous, pour vous.
+                </>
+              }
               center
             />
           </Reveal>

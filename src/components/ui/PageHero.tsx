@@ -17,6 +17,7 @@ export default function PageHero({
   captionColor = "amber",
   badges,
   cta,
+  mobileFullBleedPhoto,
 }: {
   eyebrow?: React.ReactNode;
   title: React.ReactNode;
@@ -47,6 +48,10 @@ export default function PageHero({
   /** Split hero only: primary CTA, placed under the copy (below the in-flow
    * photo on mobile). */
   cta?: React.ReactNode;
+  /** Split hero only: below xl, use the photo as a full-bleed background
+   * (darkened) behind the copy instead of the default in-flow, faded-edge
+   * illustration under the text. */
+  mobileFullBleedPhoto?: boolean;
 }) {
   const onPhoto = Boolean(image);
   const split = onPhoto && imageSide;
@@ -109,32 +114,47 @@ export default function PageHero({
           } as CSSProperties
         }
       >
-        {/* Left half: the copy, aligned to the page's max-width gutter. */}
-        <div className="flex flex-col justify-center px-6 py-12 sm:px-8 xl:min-h-(--hero-h) xl:py-9 xl:pr-10 xl:pl-[max(2rem,calc((100vw-80rem)/2+2rem))]">
+        {/* Below xl, full-bleed variant: the photo covers the whole hero,
+            darkened, behind the copy — no arc, no in-flow illustration. */}
+        {mobileFullBleedPhoto && (
+          <div className="absolute inset-0 xl:hidden">
+            <Image src={image!} alt={imageAlt} fill priority sizes="100vw" className="object-cover" />
+            <div className="absolute inset-0 bg-black/55" />
+          </div>
+        )}
+
+        {/* Left half: the copy, aligned to the page's max-width gutter. Explicit
+            z-index (not just DOM order) so it stays above the absolutely
+            positioned full-bleed photo above, regardless of stacking context. */}
+        <div className="relative z-10 flex flex-col justify-center px-6 py-12 sm:px-8 xl:min-h-(--hero-h) xl:py-9 xl:pr-10 xl:pl-[max(2rem,calc((100vw-80rem)/2+2rem))]">
           <div className="xl:max-w-lg">{copy}</div>
 
-          {/* Below xl: the illustration full-bleed, before the CTA — no arc,
-              top and bottom edges faded into the field. */}
-          <div className="relative -mx-6 mt-8 sm:-mx-8 xl:hidden">
-            <Image
-              src={image!}
-              alt={imageAlt}
-              width={1678}
-              height={937}
-              priority
-              sizes="100vw"
-              className="hero-photo-fade-y h-auto w-full"
-            />
-            {caption && (
-              <span
-                className="absolute top-3 right-4 text-[10px] font-semibold uppercase tracking-[0.4em]"
-                style={captionStyle}
-                aria-hidden="true"
-              >
-                {caption}
-              </span>
-            )}
-          </div>
+          {!mobileFullBleedPhoto && (
+            <>
+              {/* Below xl: the illustration full-bleed, before the CTA — no
+                  arc, top and bottom edges faded into the field. */}
+              <div className="relative -mx-6 mt-8 sm:-mx-8 xl:hidden">
+                <Image
+                  src={image!}
+                  alt={imageAlt}
+                  width={1678}
+                  height={937}
+                  priority
+                  sizes="100vw"
+                  className="hero-photo-fade-y h-auto w-full"
+                />
+                {caption && (
+                  <span
+                    className="absolute top-3 right-4 text-[10px] font-semibold uppercase tracking-[0.4em]"
+                    style={captionStyle}
+                    aria-hidden="true"
+                  >
+                    {caption}
+                  </span>
+                )}
+              </div>
+            </>
+          )}
 
           {cta && <div className="mt-8 xl:max-w-lg">{cta}</div>}
         </div>

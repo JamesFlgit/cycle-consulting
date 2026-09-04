@@ -30,8 +30,13 @@ export default function CasClientsPage() {
             </span>
           </>
         }
-        titleClassName="mt-3 max-w-3xl text-2xl font-bold text-white sm:text-4xl lg:max-w-5xl lg:text-5xl"
+        titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl lg:text-4xl xl:text-[1.9rem] xl:leading-[1.2]"
         description="Pour des raisons de confidentialité contractuelle, nos références sont présentées de façon anonymisée : les enjeux, l'intervention et les résultats décrits sont réels, seul le nom du client n'est pas communiqué."
+        image="/images/offres/cas-clients-dark.webp"
+        imageAlt=""
+        imageSide="right"
+        tint="#071633"
+        mobileFullBleedPhoto
       />
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

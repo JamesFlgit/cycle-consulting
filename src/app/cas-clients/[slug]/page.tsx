@@ -56,7 +56,17 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
 
   return (
     <>
-      <PageHero eyebrow={casClient.secteur} title={casClient.navLabel} description={casClient.resume}>
+      <PageHero
+        eyebrow={casClient.secteur}
+        title={casClient.navLabel}
+        titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
+        description={casClient.resume}
+        image={casClient.image}
+        imageAlt={casClient.imageAlt ?? ""}
+        imageSide="right"
+        tint="#0a1228"
+        mobileFullBleedPhoto
+      >
         {(casClient.environnement || casClient.expertise || casClient.profilMobilise) && (
           <dl className="mt-8 grid grid-cols-1 gap-6 border-t border-white/15 pt-6 sm:grid-cols-3">
             {casClient.environnement && <MetaItem label="Environnement" value={casClient.environnement} />}
@@ -218,7 +228,7 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
       {autresCas.length > 0 && (
         <section className="bg-surface-alt py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading eyebrow="À découvrir aussi" title="D'autres cas clients" center />
+            <SectionHeading eyebrow="À découvrir aussi" title="Nos autres réalisations" center />
             <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
               {autresCas.map((autre) => (
                 <CasClientCard key={autre.slug} casClient={autre} imageHeader />

@@ -27,9 +27,23 @@ export default function RessourcesPage() {
     <>
       <PageHero
         eyebrow={<span className={GRADIENT_LIGHT}>Ressources</span>}
-        title="Comprendre les enjeux de votre IT"
-        titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl xl:text-5xl"
-        description="Des analyses et des retours d'expérience concrets sur les métiers de l'IT, écrits par les consultants qui les pratiquent."
+        title="Revues et Newsletter Cycle"
+        titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
+        description={
+          <>
+            Cycle décrypte l&apos;essentiel de l&apos;actualité IT, et partage l&apos;expérience et les retours
+            terrain de ses consultants, pour vous aider à apprendre, comprendre et entreprendre les transitions
+            numériques de demain.
+            <br />
+            <br />
+            Par nous, pour vous.
+          </>
+        }
+        image="/images/offres/ressources-dark.webp"
+        imageAlt=""
+        imageSide="right"
+        tint="#581496"
+        mobileFullBleedPhoto
       >
         <div className="mt-8">
           <Breadcrumb

@@ -30,7 +30,7 @@ const navSections: NavSection[] = [
   { key: "expertises", label: "Expertises", items: poles },
   {
     key: "cas-clients",
-    label: "Cas clients",
+    label: "Nos réalisations",
     items: casClients.map((c) => ({
       slug: c.slug,
       href: c.href,

@@ -17,7 +17,7 @@ const RACCOURCIS = [
   { href: "/ingenierie-it-support", label: "Ingénierie & IT Support" },
   { href: "/centre-logistique", label: "Centre Logistique" },
   { href: "/formations", label: "Formations" },
-  { href: "/cas-clients", label: "Cas clients" },
+  { href: "/cas-clients", label: "Nos réalisations" },
   { href: "/contact", label: "Contact" },
 ];
 

@@ -13,6 +13,7 @@ export default function Header() {
   const [openDesktopKey, setOpenDesktopKey] = useState<string | null>(null);
   const [openMobileKey, setOpenMobileKey] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [tickerVisible, setTickerVisible] = useState(true);
   const pathname = usePathname();
   const sections = getRenderableSections();
   const mobileNavRef = useRef<HTMLElement>(null);
@@ -30,6 +31,17 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome]);
+
+  // Indicateur boursier mobile : visible à l'arrivée sur la page, masqué dès
+  // qu'on scrolle (toutes pages, pas seulement la home).
+  useEffect(() => {
+    function handleTickerScroll() {
+      setTickerVisible(window.scrollY <= 24);
+    }
+    handleTickerScroll();
+    window.addEventListener("scroll", handleTickerScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleTickerScroll);
+  }, []);
 
   function closeAll() {
     setOpen(false);
@@ -135,7 +147,13 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-2.5 lg:hidden">
-          <MarketTicker variant="compact" tone={transparent ? "light" : "dark"} />
+          <div
+            className={`overflow-hidden transition-all duration-300 ease-out ${
+              tickerVisible ? "max-w-32 opacity-100" : "max-w-0 opacity-0"
+            }`}
+          >
+            <MarketTicker variant="compact" tone={transparent ? "light" : "dark"} />
+          </div>
           <button
             ref={burgerBtnRef}
             type="button"

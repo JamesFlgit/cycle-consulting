@@ -8,7 +8,7 @@ export default function SectionHeading({
 }: {
   eyebrow?: ReactNode;
   title: ReactNode;
-  description?: string;
+  description?: ReactNode;
   center?: boolean;
 }) {
   return (
