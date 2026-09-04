@@ -1,17 +1,18 @@
 import Image from "next/image";
-import type { Temoignage } from "@/data/temoignages";
+import { hasCitation, type Temoignage } from "@/data/temoignages";
 
 export default function TestimonialCard({ temoignage }: { temoignage: Temoignage }) {
-  // Une citation encore a recueillir (marquee "[A COMPLETER ...]") ou vide : on
+  // Une citation encore a recueillir (marqueur "[A COMPLETER ...]") ou vide : on
   // affiche quand meme la carte (logo + nom), mais sans bloc de citation.
-  const citation =
-    temoignage.citation.trim() && !temoignage.citation.includes("À COMPLÉTER")
-      ? temoignage.citation
-      : null;
+  const citation = hasCitation(temoignage) ? temoignage.citation : null;
 
   return (
     <figure className="flex h-full flex-col rounded-xl border border-border-subtle bg-surface p-6 shadow-sm">
-      <div className="mx-auto flex h-32 w-full items-center justify-center rounded-lg bg-white p-2">
+      <div
+        className={`mx-auto flex w-full items-center justify-center rounded-lg bg-white p-2 ${
+          citation ? "h-32" : "flex-1"
+        }`}
+      >
         {temoignage.logo ? (
           <Image
             src={temoignage.logo}
@@ -27,9 +28,9 @@ export default function TestimonialCard({ temoignage }: { temoignage: Temoignage
           </span>
         )}
       </div>
-      <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-anthracite-soft">
-        {citation}
-      </blockquote>
+      {citation && (
+        <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-anthracite-soft">{citation}</blockquote>
+      )}
       <figcaption className="mt-4 border-t border-border-subtle pt-4 text-sm font-semibold text-anthracite">
         {temoignage.auteur}
       </figcaption>

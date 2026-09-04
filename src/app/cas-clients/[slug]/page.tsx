@@ -57,7 +57,7 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
   return (
     <>
       <PageHero
-        eyebrow={casClient.secteur}
+        eyebrow={<span className={GRADIENT_LIGHT}>{casClient.secteur}</span>}
         title={casClient.navLabel}
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description={casClient.resume}
@@ -99,10 +99,10 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
 
       {casClient.chiffresCles && casClient.chiffresCles.length > 0 && (
         <section className="bg-anthracite py-10">
-          <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-10 px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-4xl flex-wrap justify-start gap-10 px-4 sm:px-6 lg:px-8">
             {casClient.chiffresCles.map((chiffre) => (
-              <div key={chiffre.libelle} className="text-center">
-                <p className="text-4xl font-bold text-white sm:text-5xl">{chiffre.valeur}</p>
+              <div key={chiffre.libelle} className="text-left">
+                <p className={`text-4xl font-bold sm:text-5xl ${GRADIENT_LIGHT}`}>{chiffre.valeur}</p>
                 <p className="mt-2 max-w-[16rem] text-xs font-medium uppercase tracking-wide text-white/70 sm:text-sm">
                   {chiffre.libelle}
                 </p>

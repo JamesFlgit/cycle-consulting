@@ -5,6 +5,11 @@ export type Temoignage = {
   logoScale?: number;
 };
 
+/** Un avis reellement redige (pas vide, pas un marqueur "[A COMPLETER ...]"). */
+export function hasCitation(temoignage: Temoignage): boolean {
+  return Boolean(temoignage.citation.trim()) && !temoignage.citation.includes("À COMPLÉTER");
+}
+
 export const temoignages: Temoignage[] = [
   {
     auteur: "Burger King",
