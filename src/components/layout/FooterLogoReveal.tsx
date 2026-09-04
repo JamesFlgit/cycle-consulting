@@ -30,7 +30,16 @@ const WHITE = "#ffffff";
 
 type Phase = "pending" | "playing" | "done";
 
-export default function FooterLogoReveal({ className }: { className?: string }) {
+export default function FooterLogoReveal({
+  className,
+  tone = "brand",
+}: {
+  className?: string;
+  /** "brand" (default): rings/dot/dash in the pink/cyan brand gradient.
+   * "white": same animation, plain white mark — for a page with its own
+   * accent colour that shouldn't show blue. */
+  tone?: "brand" | "white";
+}) {
   const [phase, setPhase] = useState<Phase>("pending");
   const [elapsed, setElapsed] = useState(0);
   const svgRef = useRef<SVGSVGElement>(null);
@@ -111,6 +120,7 @@ export default function FooterLogoReveal({ className }: { className?: string }) 
 
   const ruleCx = (RULE_X1 + RULE_X2) / 2;
   const ruleHalfW = ((RULE_X2 - RULE_X1) / 2) * ruleT;
+  const markFill = tone === "white" ? WHITE : `url(#${gradId})`;
 
   return (
     <svg ref={svgRef} viewBox="-70 0 1596 1084" className={className} role="img" aria-label="Cycle Consulting" focusable="false">
@@ -137,22 +147,22 @@ export default function FooterLogoReveal({ className }: { className?: string }) 
       </defs>
       <g transform={MARK_TRANSFORM}>
         <g transform={`rotate(${ring1Rot} ${RING1.cx} ${RING1.cy})`}>
-          <path d={RING1.d} fill={`url(#${gradId})`} mask={`url(#${mask1Id})`} />
+          <path d={RING1.d} fill={markFill} mask={`url(#${mask1Id})`} />
         </g>
         <g transform={`rotate(${ring2Rot} ${RING2.cx} ${RING2.cy})`}>
-          <path d={RING2.d} fill={`url(#${gradId})`} mask={`url(#${mask2Id})`} />
+          <path d={RING2.d} fill={markFill} mask={`url(#${mask2Id})`} />
         </g>
         <g
           transform={`translate(${DOT_CENTER.x},${DOT_CENTER.y}) scale(${dotScale}) translate(${-DOT_CENTER.x},${-DOT_CENTER.y})`}
           opacity={dotP}
         >
-          <path d={LOGO_PATHS.DOT_D} fill={`url(#${gradId})`} />
+          <path d={LOGO_PATHS.DOT_D} fill={markFill} />
         </g>
         <g
           transform={`translate(${DASH_CENTER.x},${DASH_CENTER.y}) scale(${dashScale}) translate(${-DASH_CENTER.x},${-DASH_CENTER.y})`}
           opacity={dashP}
         >
-          <path d={LOGO_PATHS.DASH_D} fill={`url(#${gradId})`} />
+          <path d={LOGO_PATHS.DASH_D} fill={markFill} />
         </g>
       </g>
       {ruleT > 0 && (

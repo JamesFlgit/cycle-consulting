@@ -18,6 +18,8 @@ export default function PageHero({
   badges,
   cta,
   mobileFullBleedPhoto,
+  fieldColor,
+  eyebrowDotClassName = "bg-linear-to-r from-[#f77bf0] to-[#7ef0ff]",
 }: {
   eyebrow?: React.ReactNode;
   title: React.ReactNode;
@@ -52,6 +54,14 @@ export default function PageHero({
    * (darkened) behind the copy instead of the default in-flow, faded-edge
    * illustration under the text. */
   mobileFullBleedPhoto?: boolean;
+  /** Split hero only: overrides the field's base colour (defaults to the
+   * charte's navy) — for a page with its own accent colour that shouldn't
+   * blend through blue. */
+  fieldColor?: string;
+  /** Split hero only: the small dot in the eyebrow pill (defaults to the
+   * pink/cyan brand gradient) — override alongside `fieldColor` for a page
+   * with its own accent colour. */
+  eyebrowDotClassName?: string;
 }) {
   const onPhoto = Boolean(image);
   const split = onPhoto && imageSide;
@@ -75,7 +85,7 @@ export default function PageHero({
       {eyebrow &&
         (split ? (
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-white/15 sm:text-[13px]">
-            <span className="h-1.5 w-1.5 rounded-full bg-linear-to-r from-[#f77bf0] to-[#7ef0ff]" />
+            <span className={`h-1.5 w-1.5 rounded-full ${eyebrowDotClassName}`} />
             {eyebrow}
           </span>
         ) : (
@@ -107,6 +117,7 @@ export default function PageHero({
         style={
           {
             ...(tint ? { "--hero-tint": tint } : {}),
+            ...(fieldColor ? { "--hero-base": fieldColor } : {}),
             // From xl: the right half holds the 16:9 illustration, so the hero
             // height tracks the viewport width (half of it, at 16:9), clamped
             // so it never gets squat or too tall.

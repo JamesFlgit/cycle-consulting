@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { poles } from "@/data/poles";
 import { entrepriseNavItems } from "@/data/entreprise-nav";
 import { entreprise } from "@/data/entreprise";
@@ -8,15 +11,27 @@ import Slogan from "@/components/ui/Slogan";
 import { EmailIcon, GlobeIcon, MapPinIcon } from "@/components/icons/card-icons";
 
 // Brand gradient (light variant, for use on dark backgrounds) — matches the business card artwork.
-const GRADIENT_TEXT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+const GRADIENT_TEXT_BRAND = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+// CYCLE Foundation has its own or/noir identity — no blue anywhere on its page, footer included.
+const GRADIENT_TEXT_GOLD = "bg-gradient-to-r from-[#f8e3a3] via-[#d4af37] to-[#9c7a2c] bg-clip-text text-transparent";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isFondation = pathname?.startsWith("/cycle-fondation") ?? false;
+  const GRADIENT_TEXT = isFondation ? GRADIENT_TEXT_GOLD : GRADIENT_TEXT_BRAND;
+
   return (
-    <footer className="border-t border-[#16305e] bg-bleu-nuit text-white">
+    <footer
+      className={`border-t text-white ${isFondation ? "border-[#d4af37]/20 bg-black" : "border-[#16305e] bg-bleu-nuit"}`}
+    >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-6 lg:px-8">
         <div className="md:col-span-2">
-          <FooterLogoReveal className="h-24 w-auto" />
-          <Slogan variant="light" className="mt-4 text-base font-semibold text-white" />
+          <FooterLogoReveal className="h-24 w-auto" tone={isFondation ? "white" : "brand"} />
+          <Slogan
+            variant="light"
+            className="mt-4 text-base font-semibold text-white"
+            gradientClassName={isFondation ? GRADIENT_TEXT_GOLD : undefined}
+          />
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-white">
             ESN française spécialisée en formations, service managé, infogérance, business &amp; stratégie,
             ingénierie IT et logistique.

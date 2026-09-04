@@ -112,6 +112,22 @@
   text-wrap: pretty;
 }
 
+.labelStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+}
+
+.stepTitle {
+  letter-spacing: 0.03em;
+}
+
+.stepDescription {
+  font-size: 0.85em;
+  font-weight: 400;
+  color: var(--cc-muted);
+}
+
 @media (max-width: 30rem) {
   .chain {
     width: 12.5rem;
@@ -167,6 +183,69 @@
 .compact .label {
   padding: 0 2.25rem;
   font-size: 0.6875rem;
+}
+
+/* Rich — label + description per step (see BoucleStep): bigger rings and
+   rows so the extra text has room, instead of overflowing past the ring.
+   Chain width must equal loop width + loopRight offset (see .chain/.compact.chain
+   above) or the column renders narrower than its content and visually drifts
+   off-centre wherever it's centred (e.g. justify-center on mobile). */
+.rich.chain {
+  width: 26.8rem;
+}
+
+.rich .loop {
+  width: 22.5rem;
+  height: 22.5rem;
+}
+
+.rich .row {
+  height: 11.8rem;
+}
+
+.rich .row:last-child {
+  height: 22.5rem;
+}
+
+.rich .loopRight {
+  left: 4.3rem;
+}
+
+.rich .label {
+  padding: 0 5rem;
+  font-size: 0.8rem;
+}
+
+.rich .stepDescription {
+  font-size: 0.72em;
+}
+
+@media (max-width: 30rem) {
+  .rich.chain {
+    width: 16.6rem;
+  }
+
+  .rich .loop {
+    width: 14rem;
+    height: 14rem;
+  }
+
+  .rich .row {
+    height: 7.5rem;
+  }
+
+  .rich .row:last-child {
+    height: 14rem;
+  }
+
+  .rich .loopRight {
+    left: 2.6rem;
+  }
+
+  .rich .label {
+    padding: 0 1.75rem;
+    font-size: 0.72rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

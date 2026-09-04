@@ -92,11 +92,12 @@ body {
    (--hero-tint, set per page) so the docked photo blends into it. */
 .bg-expertise-hero {
   --hero-tint: #172533;
+  --hero-base: #07142e;
   background: linear-gradient(
     120deg,
-    #07142e 0%,
-    #07142e 45%,
-    color-mix(in srgb, var(--hero-tint) 55%, #07142e) 100%
+    var(--hero-base) 0%,
+    var(--hero-base) 45%,
+    color-mix(in srgb, var(--hero-tint) 55%, var(--hero-base)) 100%
   );
 }
 
