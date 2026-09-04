@@ -195,11 +195,7 @@ export default function Home() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionHeading
-              eyebrow={<span className={GRADIENT_DARK_DEEP}>Témoignages clients et références</span>}
-              title="Ce que nos clients disent de nous"
-              center
-            />
+            <SectionHeading title="Ils nous ont fait confiance" center />
           </Reveal>
         </div>
         <div className="mt-10">
