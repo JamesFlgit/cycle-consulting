@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
+import SectionHeading from "@/components/ui/SectionHeading";
 import ContactForm from "@/components/ui/ContactForm";
+import OffreEmploiCard from "@/components/ui/OffreEmploiCard";
 import { pageMetadata } from "@/lib/site";
 import { getEvenementsAVenir } from "@/data/evenements";
+import { getOffresEmploiVisibles } from "@/data/offres-emploi";
 
 export const metadata: Metadata = pageMetadata({
   title: "Rejoignez-nous",
@@ -15,6 +18,7 @@ export const metadata: Metadata = pageMetadata({
 export default function RejoignezNousPage() {
   const today = new Date().toISOString().slice(0, 10);
   const salonsRecrutement = getEvenementsAVenir(today).filter((e) => e.recrutement);
+  const offres = getOffresEmploiVisibles();
 
   return (
     <>
@@ -24,8 +28,29 @@ export default function RejoignezNousPage() {
         description="Cycle Consulting recrute en permanence des profils IT pour renforcer ses équipes et ses missions chez ses clients, quel que soit votre niveau d'expérience."
       />
 
-      <section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="space-y-4 text-sm leading-relaxed text-anthracite-soft">
+      {offres.length > 0 && (
+        <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Nos offres"
+            title="Les postes à pourvoir"
+            description="Chaque offre détaille le profil recherché, les compétences clés et la marche à suivre pour candidater."
+          />
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {offres.map((offre) => (
+              <OffreEmploiCard key={offre.slug} offre={offre} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section id="candidature" className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+        <SectionHeading
+          eyebrow="Candidature spontanée"
+          title={offres.length > 0 ? "Aucune offre ne correspond ?" : "Envoyez-nous votre candidature"}
+          description="Nous recrutons en continu, sur l'ensemble de nos pôles d'expertise et quel que soit votre niveau d'expérience."
+        />
+
+        <div className="mt-8 space-y-4 text-sm leading-relaxed text-anthracite-soft">
           <p>
             Que vous soyez consultant confirmé, technicien de proximité, ou en reconversion vers les
             métiers de l&apos;IT, Cycle Consulting vous accompagne dans vos missions et votre montée en

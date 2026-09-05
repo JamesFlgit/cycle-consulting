@@ -9,7 +9,16 @@ type Status = "idle" | "loading" | "success" | "error";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function ContactForm() {
+export default function ContactForm({
+  sujet,
+  messagePlaceholder,
+}: {
+  /** Quand renseigné, l'e-mail envoyé à Cycle Consulting porte cet objet
+   * (ex. "Candidature : Contract Manager") au lieu de l'objet générique. */
+  sujet?: string;
+  /** Placeholder du champ message (contextualise le formulaire selon la page). */
+  messagePlaceholder?: string;
+} = {}) {
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
   const [entrepriseNom, setEntrepriseNom] = useState("");
@@ -55,6 +64,7 @@ export default function ContactForm() {
           email,
           telephone,
           message,
+          sujet,
           website,
           a: challenge.a,
           b: challenge.b,
@@ -96,6 +106,12 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border-subtle bg-surface p-6 sm:p-8">
+      {sujet && (
+        <p className="rounded-md bg-surface-alt px-3 py-2 text-sm text-anthracite">
+          <span className="font-semibold">Objet :</span> {sujet}
+        </p>
+      )}
+
       {/* Honeypot: invisible to real visitors, off-screen and unreachable by tab — bots fill it, humans never do. */}
       <div className="absolute left-[-9999px] top-auto" aria-hidden="true">
         <label htmlFor="contact-website">Site web</label>
@@ -194,6 +210,7 @@ export default function ContactForm() {
           id="message"
           name="message"
           rows={5}
+          placeholder={messagePlaceholder}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="mt-1.5 block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"

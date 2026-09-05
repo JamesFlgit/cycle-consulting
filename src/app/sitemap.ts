@@ -3,6 +3,7 @@ import { SITE_URL } from "@/lib/site";
 import { poles } from "@/data/poles";
 import { articles } from "@/data/articles";
 import { casClients } from "@/data/cas-clients";
+import { offresEmploi } from "@/data/offres-emploi";
 
 type Entry = MetadataRoute.Sitemap[number];
 
@@ -42,5 +43,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((c) => c.visible)
     .map((c) => ({ url: abs(c.href), lastModified: now, changeFrequency: "yearly", priority: 0.6 }));
 
-  return [...staticEntries, ...poleEntries, ...articleEntries, ...casClientEntries];
+  const offreEmploiEntries: Entry[] = offresEmploi
+    .filter((o) => o.visible)
+    .map((o) => ({
+      url: abs(o.href),
+      lastModified: new Date(o.datePublication),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    }));
+
+  return [
+    ...staticEntries,
+    ...poleEntries,
+    ...articleEntries,
+    ...casClientEntries,
+    ...offreEmploiEntries,
+  ];
 }

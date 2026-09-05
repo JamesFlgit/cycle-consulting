@@ -20,6 +20,8 @@ type ContactPayload = {
   email: string;
   telephone: string;
   message: string;
+  /** Objet de la demande, ex. "Candidature : Contract Manager". Optionnel. */
+  sujet?: string;
 };
 
 export async function POST(request: Request) {
@@ -36,6 +38,9 @@ export async function POST(request: Request) {
   const email = str(body.email).toLowerCase();
   const telephone = str(body.telephone);
   const message = str(body.message);
+  // Objet optionnel (formulaire de candidature) : une seule ligne, borné, pour
+  // ne jamais laisser passer d'injection d'en-tête e-mail.
+  const sujet = str(body.sujet).replace(/[\r\n]+/g, " ").slice(0, 150);
   // Honeypot: a hidden field real visitors never see or fill. Any value = bot.
   const honeypot = str(body.website);
   const a = Number(body.a);
@@ -67,7 +72,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await sendContactEmail({ prenom, nom, entreprise: societe, email, telephone, message });
+    await sendContactEmail({ prenom, nom, entreprise: societe, email, telephone, message, sujet });
   } catch (err) {
     console.error("Failed to send contact email", err);
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
@@ -114,6 +119,7 @@ async function sendContactEmail(p: ContactPayload) {
   const transporter = nodemailer.createTransport({ host, port, secure, auth: { user, pass } });
 
   const rows: Array<[string, string]> = [
+    ...(p.sujet ? ([["Objet", p.sujet]] as Array<[string, string]>) : []),
     ["Prénom", p.prenom],
     ["Nom", p.nom],
     ["Entreprise", p.entreprise || "(non renseignée)"],
@@ -145,7 +151,9 @@ async function sendContactEmail(p: ContactPayload) {
     from: `"Site Cycle Consulting" <${from}>`,
     to,
     replyTo: `"${p.prenom} ${p.nom}" <${p.email}>`,
-    subject: `Nouvelle demande de contact : ${p.prenom} ${p.nom}`,
+    subject: p.sujet
+      ? `${p.sujet} (${p.prenom} ${p.nom})`
+      : `Nouvelle demande de contact : ${p.prenom} ${p.nom}`,
     text,
     html,
   });
