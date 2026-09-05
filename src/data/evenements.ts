@@ -1,6 +1,19 @@
 // Agenda des salons et événements où Cycle Consulting est présent. Source :
 // tableau de suivi transmis par Eric le 05/09/2026. Deux entrées corrigées par
 // rapport à la source brute (voir notes ci-dessous) — à faire valider par Eric.
+//
+// IMAGES (05/09/2026) : `image` reprend un visuel du site de l'évènement (ou du
+// lieu), récupéré via Playwright et recadré en 16/9 webp dans
+// public/images/evenements/ :
+//   - La Mêlée Numérique  → photo du lieu (Espaces Vanel, Toulouse)
+//   - Salon SME           → rendu officiel du salon (billboard tiers recadré hors champ)
+//   - Salon Solutions     → visuel 2026 officiel (même visuel pour CRM&BI et Serveurs&Applications)
+//   - Dîner Arts & Culture → visuel officiel (galerie des Glaces)
+//   - Salon Lille         → photo de La Cité des Échanges (citedesechanges.com)
+//   - Cycle Christmas     → visuel de marque fourni par Eric
+// Tous les évènements ont désormais un visuel ; le cadre dégradé de marque (avec
+// le symbole Cycle blanc) ne sert plus que de repli défensif. Usage "présence
+// salon" des visuels d'organisateurs / de lieux à faire valider par Eric côté droits.
 
 export type Evenement = {
   slug: string;
@@ -18,6 +31,14 @@ export type Evenement = {
   siteUrl?: string;
   /** Nature de la présence Cycle Consulting sur place. */
   presta: string;
+  /** Visuel 16/9 (webp, public/images/evenements/). Absent = cadre dégradé de marque. */
+  image?: string;
+  /** Texte alternatif de `image`. Vide si l'illustration est purement décorative. */
+  imageAlt?: string;
+  /** `object-position` du visuel dans son cadre (ex. "50% 70%"). Défaut : centre. */
+  imagePosition?: string;
+  /** Élargit la colonne image sur /evenements (visuel large à mettre en valeur, ex. Cycle Christmas). */
+  imageWide?: boolean;
   categorie: "salon" | "reception";
   /** Public étudiant / recrutement — sert à faire remonter l'évènement depuis /rejoignez-nous. */
   recrutement?: boolean;
@@ -35,6 +56,8 @@ export const evenements: Evenement[] = [
     ville: "Toulouse",
     siteUrl: "https://www.meleenumerique.com/",
     presta: "Stand",
+    image: "/images/evenements/melee-numerique-toulouse-2026.webp",
+    imageAlt: "Les Espaces Vanel à Toulouse, lieu de La Mêlée du numérique",
     categorie: "salon",
     description:
       "Cycle Consulting tient un stand à Toulouse à l'occasion de cet évènement dédié à l'écosystème numérique organisé par l'association Mêlée Numérique.",
@@ -52,6 +75,8 @@ export const evenements: Evenement[] = [
     // Ne jamais publier ce lien tel quel : redirige vers le domaine seul.
     siteUrl: "https://www.salon-smeonline.com/",
     presta: "Présence",
+    image: "/images/evenements/salon-sme-paris-2026.webp",
+    imageAlt: "Vue du Salon SME, visuel officiel de l'évènement",
     categorie: "salon",
     description: "Cycle Consulting assiste au Salon SME, au Palais des Congrès de Paris.",
     visible: true,
@@ -66,6 +91,8 @@ export const evenements: Evenement[] = [
     lieu: "Paris Expo Porte de Versailles",
     siteUrl: "https://salons-solutions.fr/",
     presta: "Stand",
+    image: "/images/evenements/salon-solutions-paris-2026.webp",
+    imageAlt: "Visuel 2026 du salon Solutions (ERP, CRM, dématérialisation, IA & data)",
     categorie: "salon",
     description:
       "Cycle Consulting tient un stand sur l'espace CRM & BI du salon Solutions, à Paris Expo Porte de Versailles.",
@@ -81,6 +108,8 @@ export const evenements: Evenement[] = [
     lieu: "Paris Expo Porte de Versailles",
     siteUrl: "https://salons-solutions.fr/",
     presta: "Présence",
+    image: "/images/evenements/salon-solutions-paris-2026.webp",
+    imageAlt: "Visuel 2026 du salon Solutions (ERP, CRM, dématérialisation, IA & data)",
     categorie: "salon",
     description:
       "Cycle Consulting est présent sur l'espace Serveurs & Applications du salon Solutions, à Paris Expo Porte de Versailles.",
@@ -96,6 +125,9 @@ export const evenements: Evenement[] = [
     lieu: "UNESCO",
     siteUrl: "https://diner-arts-culture.fr/",
     presta: "Présence & stand",
+    image: "/images/evenements/diner-arts-culture-paris-2026.webp",
+    imageAlt: "Galerie des Glaces, visuel du Dîner des Arts & de la Culture",
+    imagePosition: "50% 72%",
     categorie: "salon",
     description: "Cycle Consulting participe à cette soirée organisée au siège de l'UNESCO à Paris.",
     visible: true,
@@ -108,6 +140,10 @@ export const evenements: Evenement[] = [
     organisateur: "Cycle Consulting",
     ville: "Paris",
     presta: "Réception privée",
+    image: "/images/evenements/cycle-christmas-2026.webp",
+    imageAlt: "Visuel Cycle Christmas : le logo Cycle Consulting en habit de fête",
+    imageWide: true,
+    imagePosition: "50% 30%",
     categorie: "reception",
     description:
       "Réception de fin d'année organisée par Cycle Consulting pour ses clients et partenaires, sur invitation.",
@@ -128,6 +164,8 @@ export const evenements: Evenement[] = [
     siteUrl:
       "https://www.studyrama.com/salons/salon-studyrama-des-formations-du-numerique-de-lille-230",
     presta: "Stand",
+    image: "/images/evenements/salon-metiers-numerique-lille-2027.webp",
+    imageAlt: "La Cité des Échanges à Marcq-en-Barœul, lieu du salon",
     categorie: "salon",
     recrutement: true,
     description:

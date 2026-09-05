@@ -3,6 +3,7 @@ import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import BrochureCallout from "@/components/ui/BrochureCallout";
 import OffresCarousel from "@/components/ui/OffresCarousel";
+import EvenementsCarousel from "@/components/ui/EvenementsCarousel";
 import PartnerLogo from "@/components/ui/PartnerLogo";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import StatItem from "@/components/ui/StatItem";
@@ -20,6 +21,7 @@ import { temoignages } from "@/data/temoignages";
 import { entreprise } from "@/data/entreprise";
 import { chiffresCles } from "@/data/chiffres-cles";
 import { articles } from "@/data/articles";
+import { getEvenementsAVenir } from "@/data/evenements";
 // import { casClients } from "@/data/cas-clients"; // "Nos cas clients" section — see below
 import { faqThemes } from "@/data/faq";
 
@@ -49,6 +51,8 @@ const derniersArticles = articles
 
 export default function Home() {
   // const casClientsApercu = casClients.filter((c) => c.visible).slice(0, 3); // "Nos cas clients" section — see below
+  // Les prochains évènements, du plus proche au plus lointain, pour le carrousel.
+  const evenementsAVenir = getEvenementsAVenir(new Date().toISOString().slice(0, 10)).slice(0, 6);
 
   return (
     <>
@@ -141,6 +145,34 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {evenementsAVenir.length > 0 && (
+        <section id="evenements" className="mx-auto max-w-7xl scroll-mt-18 px-4 py-20 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Retrouvez-nous"
+              title={
+                <>
+                  Salons et évènements :{" "}
+                  <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>rencontrons-nous</span>
+                </>
+              }
+              description="Cycle Consulting va à la rencontre de ses clients, partenaires et futurs talents partout en France. Voici les prochaines dates."
+            />
+          </Reveal>
+          <Reveal className="mt-10">
+            <EvenementsCarousel evenements={evenementsAVenir} />
+          </Reveal>
+          <div className="mt-10 text-center">
+            <Link
+              href="/evenements"
+              className="text-sm font-semibold text-anthracite underline-offset-4 hover:underline"
+            >
+              Voir tous nos salons et évènements →
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* "Nos cas clients" section — removed from the homepage at the client's
           request, kept here (and the casClientsApercu/CasClientCard wiring

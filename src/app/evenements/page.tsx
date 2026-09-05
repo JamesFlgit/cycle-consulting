@@ -4,7 +4,7 @@ import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import EventCard from "@/components/ui/EventCard";
 import JsonLd from "@/components/seo/JsonLd";
-import { pageMetadata, SITE_URL } from "@/lib/site";
+import { pageMetadata, SITE_URL, absoluteUrl } from "@/lib/site";
 import { getEvenementsAVenir, getEvenementsPasses } from "@/data/evenements";
 
 // Brand gradient, light variant — for the eyebrow on the dark hero.
@@ -40,6 +40,7 @@ export default function EvenementsPage() {
         name: e.lieu ?? e.ville,
         address: e.adresse ?? e.ville,
       },
+      ...(e.image && { image: absoluteUrl(e.image) }),
       ...(e.organisateur && { organizer: { "@type": "Organization", name: e.organisateur } }),
       ...(e.siteUrl && { url: e.siteUrl }),
       performer: { "@type": "Organization", name: "Cycle Consulting", url: SITE_URL },
