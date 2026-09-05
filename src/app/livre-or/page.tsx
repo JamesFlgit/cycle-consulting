@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import TestimonialCard from "@/components/ui/TestimonialCard";
 import PartnerLogo from "@/components/ui/PartnerLogo";
-import { temoignages } from "@/data/temoignages";
+import { temoignages, hasCitation } from "@/data/temoignages";
 import { clientsLivreOr } from "@/data/partenaires";
 import { pageMetadata } from "@/lib/site";
 
@@ -35,8 +35,8 @@ export default function LivreOrPage() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {temoignages.map((t) => (
-            <TestimonialCard key={t.auteur} temoignage={t} />
+          {temoignages.filter(hasCitation).map((t) => (
+            <TestimonialCard key={t.ref} temoignage={t} />
           ))}
         </div>
       </section>

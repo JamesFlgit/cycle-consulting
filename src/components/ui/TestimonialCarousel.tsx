@@ -77,7 +77,7 @@ export default function TestimonialCarousel({ temoignages }: { temoignages: Temo
       >
         {temoignages.map((t, index) => (
           <div
-            key={t.auteur}
+            key={t.ref}
             ref={(el) => {
               cardRefs.current[index] = el;
             }}

@@ -17,7 +17,7 @@ import HeroSchemaVideo from "@/components/ui/HeroSchemaVideo";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import { poles } from "@/data/poles";
 import { partenaires } from "@/data/partenaires";
-import { temoignages } from "@/data/temoignages";
+import { temoignages, hasCitation } from "@/data/temoignages";
 import { entreprise } from "@/data/entreprise";
 import { chiffresCles } from "@/data/chiffres-cles";
 import { articles } from "@/data/articles";
@@ -227,11 +227,15 @@ export default function Home() {
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionHeading title="Ils nous ont fait confiance" center />
+            <SectionHeading
+              title="Ils nous ont fait confiance"
+              description="Retours de nos clients présentés par secteur d'activité, dans le respect de la confidentialité de nos engagements : immobilier, restauration, génie civil, santé et bien d'autres."
+              center
+            />
           </Reveal>
         </div>
         <div className="mt-10">
-          <TestimonialCarousel temoignages={temoignages} />
+          <TestimonialCarousel temoignages={temoignages.filter(hasCitation)} />
         </div>
 
         <div className="mt-10 text-center">
