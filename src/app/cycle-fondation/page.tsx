@@ -11,6 +11,12 @@ import { pageMetadata } from "@/lib/site";
 // gradient rose/bleu de CYCLE CONSULTING utilisé partout ailleurs sur le site.
 const GOLD_ON_DARK = "bg-gradient-to-r from-[#f8e3a3] via-[#d4af37] to-[#9c7a2c] bg-clip-text text-transparent";
 const GOLD_ON_LIGHT = "bg-gradient-to-r from-[#8a6a1f] via-[#b8952f] to-[#8a6a1f] bg-clip-text text-transparent";
+// Corps de texte en "or" (cf. demande client) : or foncé lisible sur les
+// sections à fond blanc, or clair sur les sections à fond sombre. Les gros
+// titres (h1/h2) gardent leur couleur (noir sur fond clair, blanc sur fond
+// sombre).
+const GOLD_TEXT_ON_LIGHT_BG = "text-[#8a6a1f]";
+const GOLD_TEXT_ON_DARK_BG = "text-[#ecd9a0]";
 const GOLD_RING_STOPS = [
   { offset: "0%", color: "#f8e3a3" },
   { offset: "45%", color: "#d4af37" },
@@ -110,15 +116,27 @@ export default function CycleFondationPage() {
   return (
     <>
       <PageHero
-        eyebrow={<span className={GOLD_ON_DARK}>L&apos;entreprise</span>}
-        title="Cycle Foundation"
-        description="Révéler les talents. Construire les opportunités. Préparer l'avenir."
+        title={
+          <Image
+            src="/images/cycle-fondation/logo.webp"
+            alt="Cycle Foundation"
+            width={1600}
+            height={1087}
+            priority
+            className="h-auto w-72 max-w-full mix-blend-screen sm:w-80 lg:w-96 xl:w-md"
+          />
+        }
+        titleClassName="mt-1"
+        description={
+          <span className={GOLD_TEXT_ON_DARK_BG}>
+            Révéler les talents. Construire les opportunités. Préparer l&apos;avenir.
+          </span>
+        }
         image="/images/cycle-fondation/hero.webp"
         imageAlt="Jeune eleve souriante devant un ordinateur, dans une salle de classe portant l'inscription Un meilleur avenir avec le numerique"
         imageSide="right"
         tint="#2a1f16"
-        fieldColor="#0a0a0a"
-        eyebrowDotClassName="bg-linear-to-r from-[#f8e3a3] to-[#9c7a2c]"
+        fieldColor="#000000"
         mobileFullBleedPhoto
       />
 
@@ -129,12 +147,12 @@ export default function CycleFondationPage() {
           titleClassName="text-neutral-900"
         />
         <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="space-y-4 text-sm leading-relaxed text-neutral-600">
+          <div className={`space-y-4 text-sm leading-relaxed ${GOLD_TEXT_ON_LIGHT_BG}`}>
             <p>
               Chez CYCLE Foundation, nous sommes convaincus que l&apos;accès à l&apos;éducation constitue l&apos;un
               des leviers les plus puissants du développement.
             </p>
-            <p className="font-semibold text-neutral-900">
+            <p className="font-semibold">
               Le talent est présent partout.
               <br />
               Les opportunités, elles, ne le sont pas toujours.
@@ -145,7 +163,7 @@ export default function CycleFondationPage() {
               poursuivre leur formation, développer leurs compétences et construire leur avenir professionnel dans
               les métiers de l&apos;IT.
             </p>
-            <p className="font-semibold text-neutral-900">
+            <p className="font-semibold">
               Notre ambition est simple : identifier les talents de demain et leur donner les moyens de réussir.
             </p>
           </div>
@@ -166,7 +184,7 @@ export default function CycleFondationPage() {
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
             Investir dans <span className={`whitespace-nowrap ${GOLD_ON_DARK}`}>les talents de demain</span>
           </h2>
-          <div className="mt-6 space-y-4 text-sm leading-relaxed text-white/80">
+          <div className={`mt-6 space-y-4 text-sm leading-relaxed ${GOLD_TEXT_ON_DARK_BG}`}>
             <p>
               Les métiers de l&apos;informatique évoluent rapidement et représentent un formidable levier de
               développement économique et social.
@@ -176,14 +194,14 @@ export default function CycleFondationPage() {
               toujours avoir accès aux mêmes opportunités de formation. CYCLE Foundation souhaite contribuer à
               changer cette réalité.
             </p>
-            <p className="text-white">Notre engagement consiste à soutenir prioritairement des étudiants souhaitant s&apos;orienter vers les métiers de :</p>
+            <p className="font-semibold">Notre engagement consiste à soutenir prioritairement des étudiants souhaitant s&apos;orienter vers les métiers de :</p>
           </div>
 
           <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {METIERS_IT.map((metier) => (
               <li
                 key={metier}
-                className="rounded-lg border border-[#d4af37]/25 bg-white/5 px-4 py-3 text-sm font-medium text-white"
+                className={`rounded-lg border border-[#d4af37]/25 bg-white/5 px-4 py-3 text-sm font-medium ${GOLD_TEXT_ON_DARK_BG}`}
               >
                 {metier}
               </li>
@@ -202,18 +220,14 @@ export default function CycleFondationPage() {
           title="Une action internationale"
           titleClassName="text-neutral-900"
         />
-        <div className="mt-8 space-y-4 text-sm leading-relaxed text-neutral-600">
+        <div className={`mt-8 space-y-4 text-sm leading-relaxed ${GOLD_TEXT_ON_LIGHT_BG}`}>
           <p>
             CYCLE Foundation souhaite développer son action au-delà des frontières et contribuer à l&apos;émergence
             d&apos;une nouvelle génération de professionnels de l&apos;IT sur le continent africain.
           </p>
           <p>
             Notre démarche s&apos;appuie notamment sur des partenariats avec des établissements et acteurs éducatifs
-            en{" "}
-            <span className="font-semibold text-neutral-900">
-              République démocratique du Congo, à Abidjan et au Sénégal
-            </span>
-            .
+            en <span className="font-semibold">République démocratique du Congo, à Abidjan et au Sénégal</span>.
           </p>
           <p>Ces partenariats ont vocation à permettre :</p>
         </div>
@@ -229,16 +243,16 @@ export default function CycleFondationPage() {
                     aria-hidden="true"
                   />
                 )}
-                <span className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-alt text-xs font-bold text-neutral-900">
+                <span className={`relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-alt text-xs font-bold ${GOLD_TEXT_ON_LIGHT_BG}`}>
                   {index + 1}
                 </span>
-                <span className="text-sm font-medium text-neutral-900">{etape}</span>
+                <span className={`text-sm font-medium ${GOLD_TEXT_ON_LIGHT_BG}`}>{etape}</span>
               </li>
             );
           })}
         </ol>
 
-        <p className="mt-8 text-sm leading-relaxed text-neutral-600">
+        <p className={`mt-8 text-sm leading-relaxed ${GOLD_TEXT_ON_LIGHT_BG}`}>
           Notre ambition est de construire progressivement un réseau permettant aux talents accompagnés de
           bénéficier d&apos;une ouverture internationale et de contribuer à leur tour au développement de leur
           environnement.
@@ -253,7 +267,7 @@ export default function CycleFondationPage() {
 
           <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
-              <div className="space-y-4 text-sm leading-relaxed text-white/80">
+              <div className={`space-y-4 text-sm leading-relaxed ${GOLD_TEXT_ON_DARK_BG}`}>
                 <p>
                   Nous croyons profondément à la capacité du continent africain à devenir un acteur majeur de
                   l&apos;économie numérique mondiale.
@@ -272,9 +286,9 @@ export default function CycleFondationPage() {
                 ))}
               </div>
 
-              <div className="mt-6 space-y-4 text-sm leading-relaxed text-white/80">
+              <div className={`mt-6 space-y-4 text-sm leading-relaxed ${GOLD_TEXT_ON_DARK_BG}`}>
                 <p>Mais cette transformation nécessite avant tout des femmes et des hommes capables de la porter.</p>
-                <p className="text-white">
+                <p className="font-semibold">
                   C&apos;est pourquoi nous voulons investir dans les compétences plutôt que simplement répondre aux
                   besoins immédiats.
                 </p>
@@ -285,7 +299,7 @@ export default function CycleFondationPage() {
                 {METIERS_DE_DEMAIN.map((metier) => (
                   <li
                     key={metier}
-                    className="rounded-full border border-[#d4af37]/40 bg-[#d4af37]/10 px-3.5 py-1.5 text-sm font-medium text-white"
+                    className={`rounded-full border border-[#d4af37]/40 bg-[#d4af37]/10 px-3.5 py-1.5 text-sm font-medium ${GOLD_TEXT_ON_DARK_BG}`}
                   >
                     {metier}
                   </li>
@@ -317,13 +331,13 @@ export default function CycleFondationPage() {
             <div className="flex justify-center">
               <BoucleVertueuse steps={VISION_STEPS} gradientStops={GOLD_RING_STOPS} />
             </div>
-            <div className="space-y-5 text-center text-sm leading-relaxed text-neutral-600 lg:text-left">
+            <div className={`space-y-5 text-center text-sm leading-relaxed lg:text-left ${GOLD_TEXT_ON_LIGHT_BG}`}>
               <p>Notre philosophie s&apos;inscrit naturellement dans l&apos;ADN de CYCLE.</p>
-              <p className="text-base font-semibold text-neutral-900">
+              <p className="text-base font-semibold">
                 Recevoir une opportunité. La transformer en réussite. Puis donner à son tour une opportunité à
                 quelqu&apos;un d&apos;autre.
               </p>
-              <p className="text-base font-semibold text-neutral-900">
+              <p className="text-base font-semibold">
                 C&apos;est le cycle que nous souhaitons construire.
               </p>
             </div>
@@ -337,10 +351,10 @@ export default function CycleFondationPage() {
           title="Cycle Foundation & Cycle Consulting"
           titleClassName="text-neutral-900"
         />
-        <div className="mt-8 space-y-4 text-sm leading-relaxed text-neutral-600">
+        <div className={`mt-8 space-y-4 text-sm leading-relaxed ${GOLD_TEXT_ON_LIGHT_BG}`}>
           <p>
             CYCLE Foundation est portée par une conviction partagée avec CYCLE CONSULTING :{" "}
-            <span className="font-semibold text-neutral-900">
+            <span className="font-semibold">
               la performance durable repose avant tout sur les femmes et les hommes qui la rendent possible
             </span>
             .
@@ -356,16 +370,16 @@ export default function CycleFondationPage() {
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-border-subtle bg-surface p-6">
             <p className={`text-sm font-bold uppercase tracking-wide ${GOLD_ON_LIGHT}`}>Cycle Consulting</p>
-            <p className="mt-2 text-base font-semibold text-neutral-900">Accompagner les entreprises.</p>
+            <p className={`mt-2 text-base font-semibold ${GOLD_TEXT_ON_LIGHT_BG}`}>Accompagner les entreprises.</p>
           </div>
           <div className="rounded-xl border border-border-subtle bg-surface p-6">
             <p className={`text-sm font-bold uppercase tracking-wide ${GOLD_ON_LIGHT}`}>Cycle Foundation</p>
-            <p className="mt-2 text-base font-semibold text-neutral-900">Accompagner les talents.</p>
+            <p className={`mt-2 text-base font-semibold ${GOLD_TEXT_ON_LIGHT_BG}`}>Accompagner les talents.</p>
           </div>
         </div>
 
         <div className="mt-8 rounded-xl border border-[#d4af37]/30 bg-surface-alt p-6 text-center">
-          <p className="text-xs font-semibold uppercase tracking-wide text-anthracite-mist">Une même ambition</p>
+          <p className={`text-xs font-semibold uppercase tracking-wide ${GOLD_TEXT_ON_LIGHT_BG}`}>Une même ambition</p>
           <p className={`mt-2 text-base font-semibold sm:text-lg ${GOLD_ON_LIGHT}`}>
             Créer de la valeur durable par la connaissance, la transmission et l&apos;engagement.
           </p>
@@ -373,22 +387,46 @@ export default function CycleFondationPage() {
       </section>
 
       <section className="py-16" style={DARK_SECTION_STYLE}>
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">Notre engagement</h2>
-          <div className="mx-auto mt-6 max-w-2xl space-y-4 text-center text-sm leading-relaxed text-white/80">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl md:text-left">Notre engagement</h2>
+
+          <div
+            className={`mx-auto mt-8 max-w-3xl space-y-5 text-center text-base leading-loose md:mx-0 md:text-left ${GOLD_TEXT_ON_DARK_BG}`}
+          >
             <p>Nous souhaitons inscrire notre action dans la durée.</p>
             <p>Notre objectif n&apos;est pas simplement de financer une année d&apos;études.</p>
             <p>Nous voulons progressivement construire un dispositif permettant de :</p>
+            <p>
+              Chaque étudiant soutenu doit pouvoir devenir demain un acteur de son propre développement et,
+              idéalement, un contributeur au développement des générations suivantes.
+            </p>
           </div>
-        </div>
 
-        <BoucleVertueuse steps={ENGAGEMENT_STEPS} gradientStops={GOLD_RING_STOPS} labelColor="#ffffff" compact />
-
-        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-sm leading-relaxed text-white/80">
-            Chaque étudiant soutenu doit pouvoir devenir demain un acteur de son propre développement et,
-            idéalement, un contributeur au développement des générations suivantes.
-          </p>
+          <ol className="mt-10 flex flex-col items-center gap-3 md:flex-row md:flex-wrap md:justify-start md:gap-x-2.5 md:gap-y-4">
+            {ENGAGEMENT_STEPS.map((step, index) => (
+              <li key={step} className="flex flex-col items-center gap-3 md:flex-row md:gap-2.5">
+                <span className="rounded-full border border-[#d4af37]/40 bg-[#d4af37]/10 px-3.5 py-2 text-sm font-semibold tracking-wide text-[#f3e4bb]">
+                  {step}
+                </span>
+                {index < ENGAGEMENT_STEPS.length - 1 && (
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 24 24"
+                    className="h-4 w-4 shrink-0 rotate-90 text-[#d4af37] md:rotate-0"
+                  >
+                    <path
+                      d="M4 12h13m0 0l-5-5m5 5l-5 5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                )}
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -397,14 +435,19 @@ export default function CycleFondationPage() {
           eyebrow={<span className={GOLD_ON_LIGHT}>Devenez acteur du Cycle</span>}
           title="Le développement des talents est une responsabilité collective"
           titleClassName="text-neutral-900"
-          description="Entreprises, écoles, professionnels de l'IT, associations et particuliers peuvent contribuer à cette dynamique."
+          description={
+            <span className={GOLD_TEXT_ON_LIGHT_BG}>
+              Entreprises, écoles, professionnels de l&apos;IT, associations et particuliers peuvent contribuer à
+              cette dynamique.
+            </span>
+          }
         />
 
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {ACTEURS_DU_CYCLE.map((acteur) => (
             <div key={acteur.audience} className="rounded-xl border border-border-subtle bg-surface p-6">
-              <p className="text-base font-bold text-neutral-900">{acteur.audience}</p>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-600">{acteur.reponse}</p>
+              <p className={`text-base font-bold ${GOLD_TEXT_ON_LIGHT_BG}`}>{acteur.audience}</p>
+              <p className={`mt-2 text-sm leading-relaxed ${GOLD_TEXT_ON_LIGHT_BG}`}>{acteur.reponse}</p>
             </div>
           ))}
         </div>
@@ -416,11 +459,11 @@ export default function CycleFondationPage() {
           <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
             Un talent ne devrait jamais être limité par l&apos;absence d&apos;opportunité.
           </h2>
-          <p className="mt-6 text-sm leading-relaxed text-white/80">
+          <p className={`mt-6 text-sm leading-relaxed ${GOLD_TEXT_ON_DARK_BG}`}>
             CYCLE Foundation souhaite contribuer, à son échelle, à faire de l&apos;éducation et de la technologie des
             leviers d&apos;émancipation, de développement et de coopération internationale.
           </p>
-          <p className="mt-6 text-base leading-relaxed font-semibold text-white">
+          <p className={`mt-6 text-base leading-relaxed font-semibold ${GOLD_TEXT_ON_DARK_BG}`}>
             Identifier les talents d&apos;aujourd&apos;hui.
             <br />
             Former les experts de demain.
@@ -428,13 +471,11 @@ export default function CycleFondationPage() {
             Construire ensemble l&apos;avenir numérique.
           </p>
 
-          <p className="mt-10 text-lg font-bold tracking-wide text-white">CYCLE FOUNDATION</p>
+          <p className={`mt-10 text-lg font-bold tracking-wide ${GOLD_TEXT_ON_DARK_BG}`}>CYCLE FOUNDATION</p>
           <p className="mt-2 text-sm font-semibold">
             <span className={GOLD_ON_DARK}>Apprendre</span>
             <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
             <span className={GOLD_ON_DARK}>Comprendre</span>
-            <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
-            <span className={GOLD_ON_DARK}>Entreprendre</span>
             <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
             <span className={GOLD_ON_DARK}>Transmettre</span>
           </p>
