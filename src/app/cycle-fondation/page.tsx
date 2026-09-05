@@ -131,14 +131,14 @@ export default function CycleFondationPage() {
     <>
       <PageHero
         title={
-          <span className="inline-flex flex-col items-center">
+          <span className="flex flex-col items-center xl:items-start">
             <Image
               src="/images/cycle-fondation/logo.webp"
               alt="Cycle Foundation"
               width={1600}
               height={1087}
               priority
-              className="h-auto w-72 max-w-full mix-blend-screen sm:w-80 lg:w-96 xl:w-md"
+              className="h-auto w-full mix-blend-screen sm:w-96 lg:w-md"
             />
             <FoundationSlogan className="mt-4 sm:text-base" />
           </span>
@@ -154,7 +154,6 @@ export default function CycleFondationPage() {
         imageSide="right"
         tint="#2a1f16"
         fieldColor="#000000"
-        mobileFullBleedPhoto
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">

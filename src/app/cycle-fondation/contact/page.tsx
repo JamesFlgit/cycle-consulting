@@ -32,15 +32,19 @@ const ACTEURS = [
 export default function CycleFondationContactPage() {
   return (
     <>
-      <FoundationChildHero
-        breadcrumbLabel="Contact"
-        title="Contacter CYCLE Foundation"
-        intro="Le développement des talents est une responsabilité collective. Dites-nous comment vous souhaitez contribuer, nous revenons vers vous."
-      />
+      <FoundationChildHero breadcrumbLabel="Contact" />
 
       <section className="bg-surface-alt">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-5 lg:gap-14">
+          <div className="max-w-2xl">
+            <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Contacter CYCLE Foundation</h1>
+            <p className={`mt-4 text-base leading-relaxed ${GOLD_TEXT_ON_LIGHT_BG}`}>
+              Le développement des talents est une responsabilité collective. Dites-nous comment vous
+              souhaitez contribuer, nous revenons vers vous.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-5 lg:gap-14">
             <div className="lg:col-span-2">
               <h2 className="text-xl font-bold text-neutral-900 sm:text-2xl">Comment contribuer</h2>
               <ul className="mt-5 space-y-4">

@@ -30,75 +30,37 @@ export function FoundationSlogan({ className = "" }: { className?: string }) {
 }
 
 /**
- * Hero des pages enfant : même principe que les heros "à arc" des pages
- * expertises (copie à gauche, visuel docké à droite dont le bord gauche est un
- * arc), mais habillé aux couleurs de la Foundation. À droite : le logo en grand,
- * le slogan juste en dessous.
+ * Hero des pages enfant (faire un don, contact) : fond noir, le logo occupe
+ * tout le hero, slogan juste en dessous. Le webp du logo a déjà un fond noir :
+ * sur `bg-black` il se fond sans artefact, à toutes les tailles d'écran.
+ * Le H1 / l'intro sont rendus par la page, en tête de sa section de contenu.
  */
-export function FoundationChildHero({
-  breadcrumbLabel,
-  title,
-  intro,
-}: {
-  breadcrumbLabel: string;
-  title: string;
-  intro: string;
-}) {
-  const logo = (
-    <Image
-      src="/images/cycle-fondation/logo.webp"
-      alt="Cycle Foundation"
-      width={1600}
-      height={1087}
-      priority
-      className="h-auto w-full max-w-full mix-blend-screen"
-    />
-  );
-
+export function FoundationChildHero({ breadcrumbLabel }: { breadcrumbLabel: string }) {
   return (
-    <section
-      className="relative overflow-hidden xl:grid xl:min-h-(--hero-h) xl:grid-cols-2"
-      style={
-        {
-          background:
-            "linear-gradient(115deg, #0a0a0a 0%, #0b0b0b 42%, #17130a 78%, #1e1710 100%)",
-          "--hero-h": "clamp(22rem, 26vw, 34rem)",
-        } as CSSProperties
-      }
-    >
-      <div className="pointer-events-none absolute inset-0" style={DARK_SECTION_STYLE} />
+    <section className="bg-black">
+      <div className="mx-auto max-w-5xl px-4 pt-8 pb-10 sm:px-6 sm:pb-14 lg:px-8">
+        <nav aria-label="Fil d'ariane" className="text-sm">
+          <ol className="flex flex-wrap items-center gap-2 text-[#ecd9a0]/55">
+            <li className="flex items-center gap-2">
+              <Link href="/cycle-fondation" className="transition-colors hover:text-[#ecd9a0]">
+                Cycle Foundation
+              </Link>
+              <span aria-hidden="true">›</span>
+            </li>
+            <li className="text-[#ecd9a0]">{breadcrumbLabel}</li>
+          </ol>
+        </nav>
 
-      {/* Colonne copie — alignée sur la gouttière de la grille du site. */}
-      <div className="relative z-10 flex flex-col justify-center px-6 py-12 sm:px-8 xl:min-h-(--hero-h) xl:py-10 xl:pr-10 xl:pl-[max(2rem,calc((100vw-80rem)/2+2rem))]">
-        <div className="xl:max-w-lg">
-          <nav aria-label="Fil d'ariane" className="text-sm">
-            <ol className="flex flex-wrap items-center gap-2 text-[#ecd9a0]/60">
-              <li className="flex items-center gap-2">
-                <Link href="/cycle-fondation" className="transition-colors hover:text-[#ecd9a0]">
-                  Cycle Foundation
-                </Link>
-                <span aria-hidden="true">›</span>
-              </li>
-              <li className="text-[#ecd9a0]">{breadcrumbLabel}</li>
-            </ol>
-          </nav>
-
-          <h1 className="mt-6 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">{title}</h1>
-          <p className={`mt-4 max-w-2xl text-base leading-relaxed ${GOLD_TEXT_ON_DARK_BG}`}>{intro}</p>
-        </div>
-
-        {/* Sous xl : logo + slogan sur un panneau noir, sous la copie. */}
-        <div className="mt-10 flex flex-col items-center gap-4 rounded-2xl bg-black px-6 py-6 xl:hidden">
-          <div className="w-60 max-w-full sm:w-72">{logo}</div>
-          <FoundationSlogan className="sm:text-base" />
-        </div>
-      </div>
-
-      {/* xl+ : panneau noir docké à droite, bord gauche en arc ; logo en grand + slogan dessous. */}
-      <div className="relative hidden xl:block">
-        <div className="hero-arc-photo absolute inset-0 flex flex-col items-center justify-center gap-6 bg-black px-14 py-10">
-          <div className="w-[68%] max-w-sm">{logo}</div>
-          <FoundationSlogan className="text-base" />
+        <div className="mt-6 flex flex-col items-center sm:mt-8">
+          <Image
+            src="/images/cycle-fondation/logo.webp"
+            alt="Cycle Foundation"
+            width={1600}
+            height={1087}
+            priority
+            className="h-auto w-full max-w-3xl"
+          />
+          <FoundationSlogan className="mt-3 sm:text-base" />
         </div>
       </div>
     </section>

@@ -20,15 +20,19 @@ const CE_QUE_FINANCE = [
 export default function FaireUnDonPage() {
   return (
     <>
-      <FoundationChildHero
-        breadcrumbLabel="Faire un don"
-        title="Faire un don à CYCLE Foundation"
-        intro="Chaque contribution participe directement au financement de parcours éducatifs et à l'émergence de nouvelles compétences dans les métiers de l'IT."
-      />
+      <FoundationChildHero breadcrumbLabel="Faire un don" />
 
       <section className="bg-surface-alt">
         <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-5 lg:gap-14">
+          <div className="max-w-2xl">
+            <h1 className="text-3xl font-bold text-neutral-900 sm:text-4xl">Faire un don à CYCLE Foundation</h1>
+            <p className={`mt-4 text-base leading-relaxed ${GOLD_TEXT_ON_LIGHT_BG}`}>
+              Chaque contribution participe directement au financement de parcours éducatifs et à
+              l&apos;émergence de nouvelles compétences dans les métiers de l&apos;IT.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-5 lg:gap-14">
             <div className="lg:col-span-2">
               <h2 className="text-xl font-bold text-neutral-900 sm:text-2xl">Ce que votre don finance</h2>
               <ul className="mt-5 space-y-3">
