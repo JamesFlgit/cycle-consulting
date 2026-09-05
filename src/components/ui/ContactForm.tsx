@@ -11,13 +11,19 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ContactForm({
   sujet,
+  sujetVisible = true,
   messagePlaceholder,
+  espace,
 }: {
-  /** Quand renseigné, l'e-mail envoyé à Cycle Consulting porte cet objet
-   * (ex. "Candidature : Contract Manager") au lieu de l'objet générique. */
+  /** Quand renseigné, l'e-mail envoyé porte cet objet (ex. "Candidature :
+   * Contract Manager" / "Faire un don : CYCLE Foundation") au lieu de l'objet générique. */
   sujet?: string;
+  /** Afficher le rappel "Objet : …" en haut du formulaire (l'objet reste envoyé quoi qu'il arrive). */
+  sujetVisible?: boolean;
   /** Placeholder du champ message (contextualise le formulaire selon la page). */
   messagePlaceholder?: string;
+  /** Espace émetteur transmis à l'API pour router l'e-mail. Valeur connue : "foundation". */
+  espace?: string;
 } = {}) {
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
@@ -65,6 +71,7 @@ export default function ContactForm({
           telephone,
           message,
           sujet,
+          espace,
           website,
           a: challenge.a,
           b: challenge.b,
@@ -98,7 +105,9 @@ export default function ContactForm({
       <div className="rounded-xl border border-border-subtle bg-surface-alt p-8 text-center">
         <p className="text-lg font-semibold text-anthracite">Merci pour votre message !</p>
         <p className="mt-2 text-sm text-anthracite-mist">
-          Un consultant Cycle Consulting reviendra vers vous dans les meilleurs délais.
+          {espace === "foundation"
+            ? "L'équipe Cycle Foundation reviendra vers vous dans les meilleurs délais."
+            : "Un consultant Cycle Consulting reviendra vers vous dans les meilleurs délais."}
         </p>
       </div>
     );
@@ -106,7 +115,7 @@ export default function ContactForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5 rounded-xl border border-border-subtle bg-surface p-6 sm:p-8">
-      {sujet && (
+      {sujet && sujetVisible && (
         <p className="rounded-md bg-surface-alt px-3 py-2 text-sm text-anthracite">
           <span className="font-semibold">Objet :</span> {sujet}
         </p>
@@ -189,17 +198,15 @@ export default function ContactForm({
         <label htmlFor="telephone" className="block text-sm font-medium text-anthracite">
           Téléphone
         </label>
-        <div className="mt-1.5">
-          <input
-            id="telephone"
-            name="telephone"
-            type="tel"
-            placeholder="06 12 34 56 78"
-            value={telephone}
-            onChange={(e) => setTelephone(e.target.value)}
-            className="block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"
-          />
-        </div>
+        <input
+          id="telephone"
+          name="telephone"
+          type="tel"
+          placeholder="06 12 34 56 78"
+          value={telephone}
+          onChange={(e) => setTelephone(e.target.value)}
+          className="mt-1.5 block w-full rounded-md border border-border-subtle bg-white px-3 py-2 text-sm text-anthracite outline-none focus:border-anthracite focus:ring-1 focus:ring-anthracite"
+        />
       </div>
 
       <div>
@@ -220,8 +227,11 @@ export default function ContactForm({
       {errorMessage && (
         <p className="text-sm text-red-600">
           {errorMessage}{" "}
-          <a href={`mailto:${entreprise.email}`} className="font-semibold underline">
-            {entreprise.email}
+          <a
+            href={`mailto:${espace === "foundation" ? entreprise.emailFoundation : entreprise.email}`}
+            className="font-semibold underline"
+          >
+            {espace === "foundation" ? entreprise.emailFoundation : entreprise.email}
           </a>
         </p>
       )}
@@ -229,7 +239,11 @@ export default function ContactForm({
       <button
         type="submit"
         disabled={status === "loading" || !challenge}
-        className="cta-primary cta-primary-on-light w-full rounded-md px-4 py-2.5 text-sm font-bold disabled:opacity-60 sm:w-auto"
+        className={
+          espace === "foundation"
+            ? "w-full rounded-md bg-gradient-to-r from-[#f8e3a3] via-[#d4af37] to-[#9c7a2c] px-4 py-2.5 text-sm font-bold text-[#241b0d] transition hover:brightness-110 disabled:opacity-60 sm:w-auto"
+            : "cta-primary cta-primary-on-light w-full rounded-md px-4 py-2.5 text-sm font-bold disabled:opacity-60 sm:w-auto"
+        }
       >
         {status === "loading" ? "Envoi…" : "Envoyer"}
       </button>

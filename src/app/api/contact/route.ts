@@ -22,6 +22,8 @@ type ContactPayload = {
   message: string;
   /** Objet de la demande, ex. "Candidature : Contract Manager". Optionnel. */
   sujet?: string;
+  /** Espace émetteur (route l'e-mail vers la bonne boîte). Valeur connue : "foundation". */
+  espace?: string;
 };
 
 export async function POST(request: Request) {
@@ -41,6 +43,7 @@ export async function POST(request: Request) {
   // Objet optionnel (formulaire de candidature) : une seule ligne, borné, pour
   // ne jamais laisser passer d'injection d'en-tête e-mail.
   const sujet = str(body.sujet).replace(/[\r\n]+/g, " ").slice(0, 150);
+  const espace = str(body.espace);
   // Honeypot: a hidden field real visitors never see or fill. Any value = bot.
   const honeypot = str(body.website);
   const a = Number(body.a);
@@ -72,7 +75,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await sendContactEmail({ prenom, nom, entreprise: societe, email, telephone, message, sujet });
+    await sendContactEmail({ prenom, nom, entreprise: societe, email, telephone, message, sujet, espace });
   } catch (err) {
     console.error("Failed to send contact email", err);
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
@@ -113,7 +116,13 @@ async function sendContactEmail(p: ContactPayload) {
   // secure=true for port 465 (implicit TLS), false for 587/25 (STARTTLS).
   const secure = process.env.SMTP_SECURE ? process.env.SMTP_SECURE === "true" : port === 465;
 
-  const to = process.env.CONTACT_TO || entreprise.email;
+  // "foundation" route vers la boîte dédiée Cycle Foundation ; sinon boîte de contact générale.
+  // On ne fait jamais confiance à une adresse fournie par le client (relais de spam) : seule une
+  // clé connue ("espace") sélectionne une destination configurée côté serveur.
+  const to =
+    p.espace === "foundation"
+      ? process.env.FOUNDATION_CONTACT_TO || entreprise.emailFoundation
+      : process.env.CONTACT_TO || entreprise.email;
   const from = process.env.CONTACT_FROM || user;
 
   const transporter = nodemailer.createTransport({ host, port, secure, auth: { user, pass } });

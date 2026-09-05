@@ -112,19 +112,36 @@ const ACTEURS_DU_CYCLE = [
   },
 ];
 
+// Slogan de la page (or sur fond sombre), repris dans le hero et dans la
+// section "Notre promesse" avant le footer.
+function FoundationSlogan({ className = "" }: { className?: string }) {
+  return (
+    <span className={`text-sm font-semibold ${className}`}>
+      <span className={GOLD_ON_DARK}>Apprendre</span>
+      <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
+      <span className={GOLD_ON_DARK}>Comprendre</span>
+      <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
+      <span className={GOLD_ON_DARK}>Transmettre</span>
+    </span>
+  );
+}
+
 export default function CycleFondationPage() {
   return (
     <>
       <PageHero
         title={
-          <Image
-            src="/images/cycle-fondation/logo.webp"
-            alt="Cycle Foundation"
-            width={1600}
-            height={1087}
-            priority
-            className="h-auto w-72 max-w-full mix-blend-screen sm:w-80 lg:w-96 xl:w-md"
-          />
+          <span className="inline-flex flex-col items-center">
+            <Image
+              src="/images/cycle-fondation/logo.webp"
+              alt="Cycle Foundation"
+              width={1600}
+              height={1087}
+              priority
+              className="h-auto w-72 max-w-full mix-blend-screen sm:w-80 lg:w-96 xl:w-md"
+            />
+            <FoundationSlogan className="mt-4 sm:text-base" />
+          </span>
         }
         titleClassName="mt-1"
         description={
@@ -472,20 +489,22 @@ export default function CycleFondationPage() {
           </p>
 
           <p className={`mt-10 text-lg font-bold tracking-wide ${GOLD_TEXT_ON_DARK_BG}`}>CYCLE FOUNDATION</p>
-          <p className="mt-2 text-sm font-semibold">
-            <span className={GOLD_ON_DARK}>Apprendre</span>
-            <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
-            <span className={GOLD_ON_DARK}>Comprendre</span>
-            <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
-            <span className={GOLD_ON_DARK}>Transmettre</span>
-          </p>
+          <FoundationSlogan className="mt-2 block" />
 
-          <Link
-            href="/contact"
-            className="mt-10 inline-block w-full rounded-md bg-gradient-to-r from-[#f8e3a3] via-[#d4af37] to-[#9c7a2c] px-6 py-3 text-center text-sm font-bold text-[#241b0d] transition hover:brightness-110 sm:w-auto"
-          >
-            Nous contacter
-          </Link>
+          <div className="mt-10 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
+            <Link
+              href="/cycle-fondation/faire-un-don"
+              className="inline-block rounded-md bg-gradient-to-r from-[#f8e3a3] via-[#d4af37] to-[#9c7a2c] px-6 py-3 text-center text-sm font-bold text-[#241b0d] transition hover:brightness-110"
+            >
+              Faire un don
+            </Link>
+            <Link
+              href="/cycle-fondation/contact"
+              className="inline-block rounded-md border border-[#d4af37]/50 px-6 py-3 text-center text-sm font-bold text-[#ecd9a0] transition hover:bg-[#d4af37]/10"
+            >
+              Nous contacter
+            </Link>
+          </div>
         </div>
       </section>
     </>

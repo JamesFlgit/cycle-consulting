@@ -6,6 +6,8 @@ export const entreprise = {
   codePostalVille: "75008 Paris",
   telephone: "07 66 44 40 51",
   email: "contact@cycle-consulting.fr",
+  /** Adresse dédiée à Cycle Foundation (dons + contact). Boîte à créer côté hébergeur : voir sandbox/suivi-cycle-consulting/FOUNDATION-EMAIL-SETUP.md */
+  emailFoundation: "foundation@cycle-consulting.fr",
   siteWeb: "www.cycle-consulting.fr",
   siren: "108 393 810",
 };
