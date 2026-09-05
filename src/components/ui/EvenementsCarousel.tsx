@@ -66,11 +66,17 @@ function transformForOffset(offset: number, g: (typeof GEOMETRY)[BreakpointKey])
   return { x, scale, opacity: 1, rotateY, zIndex: 40 - offset };
 }
 
+/** Cadence du défilement automatique en continu (ms entre deux cartes). */
+const AUTOPLAY_INTERVAL_MS = 3800;
+
 export default function EvenementsCarousel({ evenements }: { evenements: Evenement[] }) {
   // Start on the first card — the caller passes the list sorted by date, so
   // index 0 is the nearest upcoming event.
   const [activeIndex, setActiveIndex] = useState(0);
   const [breakpoint, setBreakpoint] = useState<BreakpointKey>("desktop");
+  // Le défilement auto se met en pause au survol, au focus clavier et pendant
+  // qu'on fait glisser une carte.
+  const [isPaused, setIsPaused] = useState(false);
   const geometry = GEOMETRY[breakpoint];
   const length = evenements.length;
 
@@ -81,6 +87,15 @@ export default function EvenementsCarousel({ evenements }: { evenements: Eveneme
     return () => window.removeEventListener("resize", updateBreakpoint);
   }, []);
 
+  // Défilement automatique en continu : on avance d'une carte à intervalle
+  // régulier, en boucle (getOffset gère le wrap). Respecte prefers-reduced-motion.
+  useEffect(() => {
+    if (isPaused || length <= 1) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setActiveIndex((current) => current + 1), AUTOPLAY_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [isPaused, length]);
+
   const goTo = useCallback((direction: 1 | -1) => {
     setActiveIndex((current) => current + direction);
   }, []);
@@ -90,6 +105,10 @@ export default function EvenementsCarousel({ evenements }: { evenements: Eveneme
   return (
     <div
       className="relative mx-auto max-w-6xl"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={() => setIsPaused(false)}
       onKeyDown={(event) => {
         if (event.key === "ArrowLeft") goTo(-1);
         if (event.key === "ArrowRight") goTo(1);
@@ -127,6 +146,7 @@ export default function EvenementsCarousel({ evenements }: { evenements: Eveneme
                 dragElastic={0.7}
                 dragConstraints={{ left: -geometry.cardWidth, right: geometry.stackStep }}
                 dragTransition={{ bounceStiffness: 400, bounceDamping: 40 }}
+                onDragStart={() => setIsPaused(true)}
                 onDragEnd={(_, info) => {
                   const threshold = geometry.cardWidth * 0.22;
                   if (info.offset.x < -threshold || info.velocity.x < -500) goTo(1);
