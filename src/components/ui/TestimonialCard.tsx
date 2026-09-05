@@ -8,11 +8,8 @@ export default function TestimonialCard({ temoignage }: { temoignage: Temoignage
 
   return (
     <figure className="flex h-full flex-col rounded-xl border border-border-subtle bg-surface p-6 shadow-sm">
-      <div
-        className={`mx-auto flex w-full items-center justify-center rounded-lg bg-white p-2 ${
-          citation ? "h-32" : "flex-1"
-        }`}
-      >
+      {!citation && <div className="flex-1" aria-hidden="true" />}
+      <div className="mx-auto flex h-36 w-full shrink-0 items-center justify-center rounded-lg bg-white p-4">
         {temoignage.logo ? (
           <Image
             src={temoignage.logo}
@@ -28,8 +25,10 @@ export default function TestimonialCard({ temoignage }: { temoignage: Temoignage
           </span>
         )}
       </div>
-      {citation && (
+      {citation ? (
         <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-anthracite-soft">{citation}</blockquote>
+      ) : (
+        <div className="flex-1" aria-hidden="true" />
       )}
       <figcaption className="mt-4 border-t border-border-subtle pt-4 text-sm font-semibold text-anthracite">
         {temoignage.auteur}

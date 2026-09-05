@@ -81,7 +81,7 @@ export default function TestimonialCarousel({ temoignages }: { temoignages: Temo
             ref={(el) => {
               cardRefs.current[index] = el;
             }}
-            className="h-80 shrink-0 grow-0 snap-start basis-full sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)]"
+            className="shrink-0 grow-0 snap-start basis-full sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)]"
           >
             <TestimonialCard temoignage={t} />
           </div>
