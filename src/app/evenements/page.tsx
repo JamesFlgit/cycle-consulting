@@ -52,6 +52,7 @@ export default function EvenementsPage() {
     <>
       <JsonLd data={eventsJsonLd} />
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Salons & événements" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>L&apos;entreprise</span>}
         title="Salons & événements"
         description="Cycle Consulting va à la rencontre de ses clients, partenaires et futurs talents partout en France. Retrouvez les prochains salons et évènements où l'équipe est présente."

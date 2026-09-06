@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { entreprise } from "@/data/entreprise";
+import { entreprise, mentionsLegales } from "@/data/entreprise";
 
 /** URL canonique de production. Sert de base a `metadataBase` et aux donnees structurees. */
 export const SITE_URL = "https://www.cycle-consulting.fr";
@@ -58,17 +58,30 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
 }
 
+/**
+ * Reseaux officiels de la marque (`sameAs` — desambiguisation d'entite).
+ * A completer par Eric : URL LinkedIn / autres profils verifies. Tant que le
+ * tableau est vide, la cle `sameAs` n'est pas emise.
+ */
+export const ORG_SAME_AS: string[] = [];
+
 /** Donnees structurees Organization — communes a tout le site. */
 export const organizationJsonLd: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: entreprise.nom,
+  legalName: mentionsLegales.raisonSociale,
   url: SITE_URL,
   logo: absoluteUrl("/cycle-consulting-logo-color.svg"),
   image: absoluteUrl(DEFAULT_OG_IMAGE),
   slogan: entreprise.slogan,
   email: entreprise.email,
   telephone: entreprise.telephone,
+  // Date d'immatriculation au RCS (extrait Kbis) — cf. data/entreprise.ts.
+  foundingDate: "2026-08-04",
+  vatID: mentionsLegales.numeroTva.replace(/\s+/g, ""),
+  taxID: mentionsLegales.siret.replace(/\s+/g, ""),
+  ...(ORG_SAME_AS.length > 0 ? { sameAs: ORG_SAME_AS } : {}),
   address: {
     "@type": "PostalAddress",
     streetAddress: entreprise.adresse,
@@ -76,7 +89,49 @@ export const organizationJsonLd: Record<string, unknown> = {
     addressLocality: entreprise.codePostalVille.split(" ").slice(1).join(" "),
     addressCountry: "FR",
   },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: entreprise.email,
+    telephone: entreprise.telephone,
+    areaServed: "FR",
+    availableLanguage: ["fr"],
+  },
+  areaServed: ["FR", "EU"],
 };
+
+/**
+ * Donnees structurees BreadcrumbList. `items` du plus general au plus
+ * specifique ; le dernier element = la page courante (sans `href`).
+ */
+export function breadcrumbJsonLd(items: { name: string; href?: string }[]): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      ...(item.href ? { item: absoluteUrl(item.href) } : {}),
+    })),
+  };
+}
+
+/**
+ * Donnees structurees FAQPage a partir d'une liste question / reponse.
+ * Le texte de `reponse` doit correspondre au texte visible sur la page.
+ */
+export function faqPageJsonLd(items: { question: string; reponse: string }[]): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.reponse },
+    })),
+  };
+}
 
 /** Donnees structurees Service — pour une page d'expertise. */
 export function serviceJsonLd(input: {
@@ -97,6 +152,23 @@ export function serviceJsonLd(input: {
     areaServed: "FR",
   };
 }
+
+/**
+ * Bloc `publisher` reutilisable pour les schemas `Article` (blog + cas clients).
+ * `logo` en `ImageObject` (attendu par le schema Article).
+ */
+export const PUBLISHER_ORG: Record<string, unknown> = {
+  "@type": "Organization",
+  name: SITE_NAME,
+  logo: { "@type": "ImageObject", url: absoluteUrl("/cycle-consulting-logo-color.svg") },
+};
+
+/** Bloc `author` reutilisable (redaction interne, non signee). */
+export const AUTHOR_ORG: Record<string, unknown> = {
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+};
 
 /** Donnees structurees WebSite. */
 export const websiteJsonLd: Record<string, unknown> = {

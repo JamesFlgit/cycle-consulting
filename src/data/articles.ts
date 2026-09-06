@@ -33,6 +33,8 @@ export type Article = {
   imageAlt?: string;
   dateLabel: string;
   dateISO: string;
+  /** Date de derniere mise a jour (ISO), si l'article a ete revu depuis sa publication. Alimente `dateModified` du JSON-LD ; a defaut = `dateISO`. */
+  dateModifiedISO?: string;
   tempsLecture: string;
   /** Chapô : paragraphe d'introduction affiché sous le titre. */
   chapo: string;

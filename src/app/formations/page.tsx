@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
-import Breadcrumb from "@/components/ui/Breadcrumb";
+import SloganPath from "@/components/ui/SloganPath";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { GraduationCapIcon, UsersThreeIcon, GearIcon } from "@/components/icons/card-icons";
 import JsonLd from "@/components/seo/JsonLd";
@@ -117,6 +117,7 @@ export default function FormationsPage() {
         })}
       />
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: pole.navLabel }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Formations</span>}
         title={<>Façonner les compétences qui <span className={GRADIENT_LIGHT}>accélèrent la transformation</span> des entreprises</>}
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
@@ -141,7 +142,7 @@ export default function FormationsPage() {
         }
       >
         <div className="mt-6">
-          <Breadcrumb
+          <SloganPath
             items={[<span key="a" className={`font-semibold ${GRADIENT_LIGHT}`}>Apprendre</span>, "Comprendre", "Entreprendre"]}
           />
         </div>

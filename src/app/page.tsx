@@ -104,9 +104,9 @@ export default function Home() {
               <Slogan variant="light" />
             </h2>
             <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white sm:mt-10 sm:text-base lg:text-lg 2xl:text-xl">
-              CYCLE CONSULTING accompagne les entreprises dans la transformation, le pilotage et
-              l&apos;exploitation de leurs environnements IT, en combinant expertise technologique,
-              excellence opérationnelle et proximité humaine.
+              CYCLE CONSULTING, ESN et société de conseil, accompagne les entreprises dans la
+              transformation, le pilotage et l&apos;exploitation de leurs environnements IT, en
+              combinant expertise technologique, excellence opérationnelle et proximité humaine.
             </p>
           </div>
 

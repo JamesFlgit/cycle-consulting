@@ -19,7 +19,12 @@ export default function LegalDocument({
 }) {
   return (
     <>
-      <PageHero eyebrow="Informations légales" title={title} description={description} />
+      <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: title }]}
+        eyebrow="Informations légales"
+        title={title}
+        description={description}
+      />
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <p className="text-xs text-anthracite-mist">Dernière mise à jour : {updatedOn}</p>
         <div className="mt-10 space-y-12">{children}</div>

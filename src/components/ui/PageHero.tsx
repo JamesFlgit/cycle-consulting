@@ -1,9 +1,11 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import Breadcrumb, { type Crumb } from "@/components/ui/Breadcrumb";
 
 const DEFAULT_TITLE_CLASSNAME = "mt-3 max-w-3xl text-3xl font-bold text-white sm:text-4xl lg:text-5xl xl:text-6xl";
 
 export default function PageHero({
+  breadcrumb,
   eyebrow,
   title,
   titleClassName = DEFAULT_TITLE_CLASSNAME,
@@ -21,6 +23,8 @@ export default function PageHero({
   fieldColor,
   eyebrowDotClassName = "bg-linear-to-r from-[#f77bf0] to-[#7ef0ff]",
 }: {
+  /** Fil d'Ariane navigable + BreadcrumbList JSON-LD, rendu au-dessus de l'eyebrow. Omettre sur la home. */
+  breadcrumb?: Crumb[];
   eyebrow?: React.ReactNode;
   title: React.ReactNode;
   /** Override the title's size/width — for a long title that wraps too many
@@ -80,6 +84,10 @@ export default function PageHero({
       ? { color: "#5cf2ab", textShadow: "0 0 12px rgba(92, 242, 171, 0.6)" }
       : { color: "#f9ba5c", textShadow: "0 0 12px rgba(249, 186, 92, 0.6)" };
 
+  // Fil d'Ariane : rendu SOUS le hero (tete du corps de page), pas dedans — le
+  // hero garde son focus pitch/conversion.
+  const breadcrumbBar = breadcrumb ? <Breadcrumb items={breadcrumb} /> : null;
+
   const copy = (
     <>
       {eyebrow &&
@@ -112,6 +120,7 @@ export default function PageHero({
 
   if (split) {
     return (
+      <>
       <section
         className="bg-expertise-hero relative overflow-hidden xl:grid xl:min-h-96 xl:grid-cols-2"
         style={
@@ -196,10 +205,13 @@ export default function PageHero({
           </div>
         </div>
       </section>
+      {breadcrumbBar}
+      </>
     );
   }
 
   return (
+    <>
     <section className="bg-page-hero bg-office-gradient relative overflow-hidden">
       {onPhoto && (
         <>
@@ -211,5 +223,7 @@ export default function PageHero({
         {copy}
       </div>
     </section>
+    {breadcrumbBar}
+    </>
   );
 }

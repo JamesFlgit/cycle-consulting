@@ -123,6 +123,7 @@ export default function AProposPage() {
   return (
     <>
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "À propos" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>L&apos;entreprise</span>}
         title="À propos de Cycle Consulting"
         description={

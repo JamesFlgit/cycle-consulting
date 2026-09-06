@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
-import Breadcrumb from "@/components/ui/Breadcrumb";
+import SloganPath from "@/components/ui/SloganPath";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import ExpertiseCasClientTeaser from "@/components/ui/ExpertiseCasClientTeaser";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
@@ -128,6 +128,7 @@ export default function IngenierieItSupportPage() {
         })}
       />
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: pole.navLabel }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Ingénierie &amp; IT Support</span>}
         title={<><span className={GRADIENT_LIGHT}>Piloter la performance</span> des services numériques avec une expertise de haut niveau</>}
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
@@ -153,7 +154,7 @@ export default function IngenierieItSupportPage() {
         }
       >
         <div className="mt-6">
-          <Breadcrumb
+          <SloganPath
             items={["Apprendre", "Comprendre", <span key="e" className={`font-semibold ${GRADIENT_LIGHT}`}>Entreprendre</span>]}
           />
         </div>

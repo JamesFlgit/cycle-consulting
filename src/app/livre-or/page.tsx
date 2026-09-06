@@ -20,6 +20,7 @@ export default function LivreOrPage() {
   return (
     <>
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Livre d'or" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Livre d&apos;or</span>}
         title="La confiance de nos clients, notre meilleure référence"
         titleClassName="mt-3 max-w-xl text-2xl font-bold text-balance text-white sm:text-3xl xl:text-4xl xl:leading-[1.15]"

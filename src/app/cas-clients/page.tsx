@@ -21,6 +21,7 @@ export default function CasClientsPage() {
   return (
     <>
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Nos réalisations" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Cas clients</span>}
         title={
           <>

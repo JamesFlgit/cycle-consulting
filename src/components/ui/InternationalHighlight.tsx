@@ -1,8 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { motion, useInView } from "framer-motion";
-import RotatingGlobe, { REGIONS, ACCENT } from "@/components/ui/RotatingGlobe";
+import { REGIONS, ACCENT } from "@/components/ui/rotating-globe-regions";
+
+// Three.js (~150 ko) n'est charge que cote client, quand ce composant est monte
+// (page /a-propos uniquement) — hors du bundle initial.
+const RotatingGlobe = dynamic(() => import("@/components/ui/RotatingGlobe"), {
+  ssr: false,
+  loading: () => <div className="mx-auto aspect-square w-full max-w-md" />,
+});
 
 const DWELL_MS = 4500;
 

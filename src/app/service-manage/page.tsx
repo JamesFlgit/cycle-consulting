@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
-import Breadcrumb from "@/components/ui/Breadcrumb";
+import SloganPath from "@/components/ui/SloganPath";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import ExpertiseCasClientTeaser from "@/components/ui/ExpertiseCasClientTeaser";
 import { GraduationCapIcon, GearIcon, HeadsetIcon } from "@/components/icons/card-icons";
@@ -117,6 +117,7 @@ export default function ServiceManagePage() {
         })}
       />
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: pole.navLabel }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Service Managé</span>}
         title={<>Des experts de proximité au service de <span className={GRADIENT_LIGHT}>votre performance</span> opérationnelle</>}
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
@@ -141,7 +142,7 @@ export default function ServiceManagePage() {
         }
       >
         <div className="mt-6">
-          <Breadcrumb
+          <SloganPath
             items={["Apprendre", <span key="c" className={`font-semibold ${GRADIENT_LIGHT}`}>Comprendre</span>, "Entreprendre"]}
           />
         </div>

@@ -21,6 +21,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Contact" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Contact</span>}
         title="Infos & Réservation"
         description="Une question, un projet, une demande de devis ? Notre équipe vous répond rapidement."

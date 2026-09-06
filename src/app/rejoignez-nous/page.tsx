@@ -26,6 +26,7 @@ export default function RejoignezNousPage() {
   return (
     <>
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Rejoignez-nous" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Rejoignez-nous</span>}
         title="Consultants, techniciens, experts IT : construisons la suite ensemble"
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[2rem] xl:leading-[1.2]"

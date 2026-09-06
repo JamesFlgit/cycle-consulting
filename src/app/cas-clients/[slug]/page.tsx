@@ -5,6 +5,8 @@ import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CasClientCard from "@/components/ui/CasClientCard";
 import BrochureCtaButton from "@/components/ui/BrochureCtaButton";
+import JsonLd from "@/components/seo/JsonLd";
+import { absoluteUrl, AUTHOR_ORG, PUBLISHER_ORG } from "@/lib/site";
 import {
   casClients,
   getAutresCasClients,
@@ -54,9 +56,28 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
   const autresCas = getAutresCasClients(casClient.slug, 3);
   const resultatsLabel = casClient.actions ? "Résultats" : "Entreprendre";
 
+  const caseStudyJsonLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: casClient.navLabel,
+    description: casClient.metaDescription ?? casClient.resume,
+    ...(casClient.image ? { image: absoluteUrl(casClient.image) } : {}),
+    inLanguage: "fr-FR",
+    about: casClient.secteur,
+    author: AUTHOR_ORG,
+    publisher: PUBLISHER_ORG,
+    mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(casClient.href) },
+  };
+
   return (
     <>
+      <JsonLd data={caseStudyJsonLd} />
       <PageHero
+        breadcrumb={[
+          { name: "Accueil", href: "/" },
+          { name: "Nos réalisations", href: "/cas-clients" },
+          { name: casClient.navLabel },
+        ]}
         eyebrow={<span className={GRADIENT_LIGHT}>{casClient.secteur}</span>}
         title={casClient.navLabel}
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"

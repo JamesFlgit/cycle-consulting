@@ -5,7 +5,7 @@ import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ArticleCard from "@/components/ui/ArticleCard";
 import JsonLd from "@/components/seo/JsonLd";
-import { SITE_URL, absoluteUrl } from "@/lib/site";
+import { SITE_URL, absoluteUrl, PUBLISHER_ORG, AUTHOR_ORG } from "@/lib/site";
 import {
   articles,
   getArticleBySlug,
@@ -66,16 +66,22 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     description: article.metaDescription,
     image: absoluteUrl(article.image),
     datePublished: article.dateISO,
+    dateModified: article.dateModifiedISO ?? article.dateISO,
     inLanguage: "fr-FR",
-    author: { "@type": "Organization", name: "Cycle Consulting" },
-    publisher: { "@type": "Organization", name: "Cycle Consulting" },
-    mainEntityOfPage: `${SITE_URL}${article.href}`,
+    author: AUTHOR_ORG,
+    publisher: PUBLISHER_ORG,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}${article.href}` },
   };
 
   return (
     <>
       <JsonLd data={articleJsonLd} />
       <PageHero
+        breadcrumb={[
+          { name: "Accueil", href: "/" },
+          { name: "Blog", href: "/ressources" },
+          { name: article.titre },
+        ]}
         eyebrow={<span className={GRADIENT_LIGHT}>{article.categorie}</span>}
         title={article.titre}
         titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl"

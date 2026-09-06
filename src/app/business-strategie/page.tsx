@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
-import Breadcrumb from "@/components/ui/Breadcrumb";
+import SloganPath from "@/components/ui/SloganPath";
 import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import ExpertiseCasClientTeaser from "@/components/ui/ExpertiseCasClientTeaser";
 import { GraduationCapIcon, UsersThreeIcon, GearIcon } from "@/components/icons/card-icons";
@@ -99,6 +99,7 @@ export default function BusinessStrategiePage() {
         })}
       />
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: pole.navLabel }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Business &amp; Stratégie</span>}
         title={<>Transformer les ambitions <span className={GRADIENT_LIGHT}>en résultats</span> durables</>}
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
@@ -122,7 +123,7 @@ export default function BusinessStrategiePage() {
         }
       >
         <div className="mt-6">
-          <Breadcrumb
+          <SloganPath
             items={["Apprendre", <span key="c" className={`font-semibold ${GRADIENT_LIGHT}`}>Comprendre</span>, "Entreprendre"]}
           />
         </div>

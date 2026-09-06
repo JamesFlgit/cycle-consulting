@@ -130,6 +130,7 @@ export default function CycleFondationPage() {
   return (
     <>
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Cycle Foundation" }]}
         title={
           <span className="flex flex-col items-center xl:items-start">
             <Image

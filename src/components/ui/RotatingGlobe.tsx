@@ -10,6 +10,9 @@ import {
   TEXTURE_EUROPE,
   TEXTURE_AFRICA,
 } from "@/data/world-texture-paths";
+import { ACCENT, REGIONS, type ContinentKey } from "@/components/ui/rotating-globe-regions";
+
+export { ACCENT, REGIONS, type ContinentKey };
 
 // A rich, distinctly blue "ocean" — deliberately lighter/more saturated than the
 // section's own bleu-nuit background so the sphere reads as its own object.
@@ -19,20 +22,10 @@ const OCEAN = "#101f47";
 const LAND_DEFAULT = "#0a0c14";
 const SELECTED_FILL = "#dce8ff";
 const SELECTED_GLOW = "rgba(255, 255, 255, 0.5)";
-// The line + badge for whichever continent is selected always use this same
-// dark blue, regardless of which one it is — only the globe's own shape/glow
-// changes between continents. Exported so the carousel badges below the globe
-// can match it exactly.
-export const ACCENT = "#132bdd";
+// The line + badge for whichever continent is selected always use the same
+// dark blue (ACCENT, imported above) — only the globe's own shape/glow changes
+// between continents.
 const FOCUS_EASE = 0.07;
-
-export type ContinentKey = "na" | "eu" | "af";
-
-export const REGIONS: { key: ContinentKey; label: string; location: [number, number] }[] = [
-  { key: "eu", label: "Europe", location: [50, 10] },
-  { key: "af", label: "Afrique", location: [5, 20] },
-  { key: "na", label: "Amérique du Nord", location: [45, -100] },
-];
 
 const TEXTURE_BY_KEY: Record<ContinentKey, string> = {
   na: TEXTURE_NORTH_AMERICA,

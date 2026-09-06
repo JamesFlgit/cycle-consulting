@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import Slogan from "@/components/ui/Slogan";
+import JsonLd from "@/components/seo/JsonLd";
 import { faqThemes } from "@/data/faq";
-import { pageMetadata } from "@/lib/site";
+import { pageMetadata, faqPageJsonLd } from "@/lib/site";
+
+// Toutes les questions de la page, a plat, pour le JSON-LD FAQPage.
+const faqJsonLd = faqPageJsonLd(
+  faqThemes.flatMap((theme) => theme.items).map(({ question, reponse }) => ({ question, reponse })),
+);
 
 // Brand gradient, light variant — for the eyebrow on the dark hero.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
@@ -18,7 +24,9 @@ export const metadata: Metadata = pageMetadata({
 export default function FaqPage() {
   return (
     <>
+      <JsonLd data={faqJsonLd} />
       <PageHero
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "FAQ" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>FAQ</span>}
         title="Questions fréquentes"
         description={

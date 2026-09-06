@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/ui/PageHero";
-import Breadcrumb from "@/components/ui/Breadcrumb";
+import SloganPath from "@/components/ui/SloganPath";
 import ArticleCard from "@/components/ui/ArticleCard";
 import { articles } from "@/data/articles";
 import { pageMetadata } from "@/lib/site";
@@ -26,7 +26,8 @@ export default function RessourcesPage() {
   return (
     <>
       <PageHero
-        eyebrow={<span className={GRADIENT_LIGHT}>Ressources</span>}
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Blog" }]}
+        eyebrow={<span className={GRADIENT_LIGHT}>Blog</span>}
         title="Revues et Newsletter Cycle"
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description={
@@ -46,7 +47,7 @@ export default function RessourcesPage() {
         mobileFullBleedPhoto
       >
         <div className="mt-8">
-          <Breadcrumb
+          <SloganPath
             items={["Apprendre", <span key="c" className={`font-semibold ${GRADIENT_LIGHT}`}>Comprendre</span>, "Entreprendre"]}
           />
         </div>

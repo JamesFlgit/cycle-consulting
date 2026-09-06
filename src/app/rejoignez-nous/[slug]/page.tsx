@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
-import Breadcrumb from "@/components/ui/Breadcrumb";
 import ContactForm from "@/components/ui/ContactForm";
 import OffreEmploiCard from "@/components/ui/OffreEmploiCard";
 import JsonLd from "@/components/seo/JsonLd";
@@ -104,24 +103,16 @@ export default async function OffreEmploiPage({ params }: { params: Promise<{ sl
     <>
       <JsonLd data={jobPostingJsonLd} />
       <PageHero
+        breadcrumb={[
+          { name: "Accueil", href: "/" },
+          { name: "Rejoignez-nous", href: "/rejoignez-nous" },
+          { name: offre.titre },
+        ]}
         eyebrow={<span className={GRADIENT_LIGHT}>Mission à pourvoir</span>}
         title={offre.intitulePoste}
         titleClassName="mt-3 max-w-4xl text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
         description={offre.accroche}
       >
-        <div className="mt-6">
-          <Breadcrumb
-            items={[
-              <Link key="home" href="/" className="hover:underline">
-                Accueil
-              </Link>,
-              <Link key="rejoignez" href="/rejoignez-nous" className="hover:underline">
-                Rejoignez-nous
-              </Link>,
-              offre.titre,
-            ]}
-          />
-        </div>
         <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 border-t border-white/15 pt-6 text-xs text-white/70 sm:text-sm">
           <span>{offre.lieu}</span>
           {offre.typeContrat && (

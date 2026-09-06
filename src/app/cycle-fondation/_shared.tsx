@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 // Identité CYCLE Foundation (or/noir) — partagée entre la page principale et ses
 // pages enfant (faire un don, contact).
@@ -37,21 +37,9 @@ export function FoundationSlogan({ className = "" }: { className?: string }) {
  */
 export function FoundationChildHero({ breadcrumbLabel }: { breadcrumbLabel: string }) {
   return (
-    <section className="bg-black">
-      <div className="mx-auto max-w-5xl px-4 pt-8 pb-10 sm:px-6 sm:pb-14 lg:px-8">
-        <nav aria-label="Fil d'ariane" className="text-sm">
-          <ol className="flex flex-wrap items-center gap-2 text-[#ecd9a0]/55">
-            <li className="flex items-center gap-2">
-              <Link href="/cycle-fondation" className="transition-colors hover:text-[#ecd9a0]">
-                Cycle Foundation
-              </Link>
-              <span aria-hidden="true">›</span>
-            </li>
-            <li className="text-[#ecd9a0]">{breadcrumbLabel}</li>
-          </ol>
-        </nav>
-
-        <div className="mt-6 flex flex-col items-center sm:mt-8">
+    <>
+      <section className="bg-black">
+        <div className="mx-auto flex max-w-5xl flex-col items-center px-4 pt-10 pb-10 sm:px-6 sm:pb-14 lg:px-8">
           <Image
             src="/images/cycle-fondation/logo.webp"
             alt="Cycle Foundation"
@@ -62,7 +50,14 @@ export function FoundationChildHero({ breadcrumbLabel }: { breadcrumbLabel: stri
           />
           <FoundationSlogan className="mt-3 sm:text-base" />
         </div>
-      </div>
-    </section>
+      </section>
+      <Breadcrumb
+        items={[
+          { name: "Accueil", href: "/" },
+          { name: "Cycle Foundation", href: "/cycle-fondation" },
+          { name: breadcrumbLabel },
+        ]}
+      />
+    </>
   );
 }

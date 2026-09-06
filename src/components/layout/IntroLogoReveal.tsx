@@ -30,11 +30,13 @@ const RULE_Y = CENTER.y + 52.5;
 const RULE_HALF_W = (MARK_W * FINAL_SCALE) / 2;
 const TEXT_Y = CENTER.y + 120;
 const SPIN_SPEED = 40;
-const DRAW_DUR = 1.3;
-const COMPOSE_DUR = 0.9;
-const HOLD_DUR = 0.6;
+// Durees resserrees : le premier rendu de session ne doit pas bloquer le hero
+// trop longtemps (LCP / INP). Total ~2 s + fondu.
+const DRAW_DUR = 0.95;
+const COMPOSE_DUR = 0.7;
+const HOLD_DUR = 0.35;
 const TOTAL_DUR = DRAW_DUR + COMPOSE_DUR + HOLD_DUR;
-const FADE_MS = 350;
+const FADE_MS = 300;
 const MARK_COLOR = "#2b2e33";
 
 const STORAGE_KEY = "cc-intro-played";
@@ -46,7 +48,10 @@ export default function IntroLogoReveal() {
   const startRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion || sessionStorage.getItem(STORAGE_KEY) === "1") {
+      // Mouvement reduit ou intro deja jouee : on ne rend rien du tout.
+      sessionStorage.setItem(STORAGE_KEY, "1");
       const id = window.setTimeout(() => setShow(false), 0);
       return () => window.clearTimeout(id);
     }
@@ -141,7 +146,7 @@ export default function IntroLogoReveal() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-white transition-opacity duration-[350ms] ease-out"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-white transition-opacity duration-300 ease-out"
       style={{ opacity: fadeOut ? 0 : 1 }}
       aria-hidden="true"
     >
