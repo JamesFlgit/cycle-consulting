@@ -149,8 +149,10 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-2.5 lg:hidden">
+          {/* Indicateur de marché : masqué sous 640px — la place manque à côté
+              du logo + burger sur un téléphone, et la pastille est décorative. */}
           <div
-            className={`overflow-hidden transition-all duration-300 ease-out ${
+            className={`hidden overflow-hidden transition-all duration-300 ease-out sm:block ${
               tickerVisible ? "max-w-32 opacity-100" : "max-w-0 opacity-0"
             }`}
           >

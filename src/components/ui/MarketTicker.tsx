@@ -99,7 +99,7 @@ export default function MarketTicker({
       ? "border-white/15 bg-white/10 text-white backdrop-blur-sm"
       : "border-border-subtle bg-surface-alt text-anthracite";
   const pad = variant === "compact" ? "gap-1 px-2 py-1" : "gap-2 px-3 py-1.5";
-  const base = `inline-flex items-center rounded-full border text-xs font-semibold ${shell} ${pad}`;
+  const base = `inline-flex items-center whitespace-nowrap rounded-full border text-xs font-semibold ${shell} ${pad}`;
 
   if (!quote) {
     const bar = tone === "light" ? "bg-white/20" : "bg-anthracite/10";

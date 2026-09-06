@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { entreprise } from "@/data/entreprise";
 
 // Brand gradient, dark variant — for the slogan on light backgrounds.
@@ -27,14 +28,19 @@ export default function Slogan({
   return (
     <span className={className}>
       {words.map((word, index) => (
-        <span key={word}>
-          {index > 0 && <span className={`mx-1 font-bold sm:mx-2 ${gradient}`}>&gt;</span>}
-          {index === 0 && highlightFirst ? (
-            <span className={`font-bold ${gradient}`}>{word}</span>
-          ) : (
-            word
-          )}
-        </span>
+        <Fragment key={word}>
+          {/* espace réel entre les segments : le chemin peut se replier sur les
+              petits écrans au lieu d'être rogné */}
+          {index > 0 && " "}
+          <span className="whitespace-nowrap">
+            {index > 0 && <span className={`mr-1 font-bold sm:mr-2 ${gradient}`}>&gt;</span>}
+            {index === 0 && highlightFirst ? (
+              <span className={`font-bold ${gradient}`}>{word}</span>
+            ) : (
+              word
+            )}
+          </span>
+        </Fragment>
       ))}
     </span>
   );

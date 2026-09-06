@@ -25,10 +25,8 @@ export default function CasClientsPage() {
         eyebrow={<span className={GRADIENT_LIGHT}>Cas clients</span>}
         title={
           <>
-            Ils nous font confiance{" "}
-            <span className="whitespace-nowrap">
-              sur <span className={GRADIENT_LIGHT}>des enjeux similaires aux vôtres</span>
-            </span>
+            Ils nous font confiance sur{" "}
+            <span className={GRADIENT_LIGHT}>des enjeux similaires aux vôtres</span>
           </>
         }
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl lg:text-4xl xl:text-[1.9rem] xl:leading-[1.2]"

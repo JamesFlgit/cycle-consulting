@@ -16,15 +16,19 @@ export const DARK_SECTION_STYLE: CSSProperties = {
     "radial-gradient(circle at 50% 15%, rgba(212,175,55,0.16) 0%, transparent 55%), linear-gradient(160deg, #141414 0%, #0d0d0d 45%, #060606 75%, #020202 100%)",
 };
 
-/** Slogan de la Foundation, or sur fond sombre. */
+/** Slogan de la Foundation, or sur fond sombre. Les segments sont séparés par
+ *  de vrais espaces : le chemin se replie sur les petits écrans au lieu d'être
+ *  rogné. */
 export function FoundationSlogan({ className = "" }: { className?: string }) {
   return (
     <span className={`text-sm font-semibold ${className}`}>
-      <span className={GOLD_ON_DARK}>Apprendre</span>
-      <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
-      <span className={GOLD_ON_DARK}>Comprendre</span>
-      <span className={`mx-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>
-      <span className={GOLD_ON_DARK}>Transmettre</span>
+      <span className={`whitespace-nowrap ${GOLD_ON_DARK}`}>Apprendre</span>{" "}
+      <span className={`whitespace-nowrap ${GOLD_ON_DARK}`}>
+        <span className={`mr-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>Comprendre
+      </span>{" "}
+      <span className={`whitespace-nowrap ${GOLD_ON_DARK}`}>
+        <span className={`mr-1.5 font-bold ${GOLD_ON_DARK}`}>&gt;</span>Transmettre
+      </span>
     </span>
   );
 }
