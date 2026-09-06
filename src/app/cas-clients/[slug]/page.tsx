@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CasClientCard from "@/components/ui/CasClientCard";
+import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import BrochureCtaButton from "@/components/ui/BrochureCtaButton";
 import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl, AUTHOR_ORG, PUBLISHER_ORG } from "@/lib/site";
@@ -258,6 +259,17 @@ export default async function CasClientPage({ params }: { params: Promise<{ slug
           </div>
         </section>
       )}
+
+      {/* Maillage interne : renvoie vers les pages d'expertise (pages business) — cf. audit SEO. */}
+      <RelatedExpertises
+        showCta={false}
+        title={
+          <>
+            Nos <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>pôles d&apos;expertise</span>
+          </>
+        }
+        description="Chaque mission mobilise un ou plusieurs de nos cinq pôles. Découvrez comment nous pouvons intervenir sur vos enjeux."
+      />
     </>
   );
 }

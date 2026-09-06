@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ArticleCard from "@/components/ui/ArticleCard";
+import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL, absoluteUrl, PUBLISHER_ORG, AUTHOR_ORG } from "@/lib/site";
 import {
@@ -182,6 +183,17 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </div>
         </section>
       )}
+
+      {/* Maillage interne : renvoie vers les pages d'expertise (pages business) — cf. audit SEO. */}
+      <RelatedExpertises
+        showCta={false}
+        title={
+          <>
+            Nos <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>pôles d&apos;expertise</span>
+          </>
+        }
+        description="Au-delà de la lecture, nos consultants interviennent chaque jour sur ces sujets. Cinq pôles complémentaires, du conseil stratégique au support opérationnel."
+      />
     </>
   );
 }

@@ -40,7 +40,7 @@ export default function RelatedExpertises({
   if (others.length === 0) return null;
 
   return (
-    <section className="bg-surface-alt">
+    <section className="border-t border-border-subtle bg-surface-alt">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <h2 className="text-center text-xl font-bold text-anthracite sm:text-2xl lg:text-3xl">
           {title ?? (
