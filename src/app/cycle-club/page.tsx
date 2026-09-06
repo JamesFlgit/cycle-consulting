@@ -13,7 +13,7 @@ const VIOLET_ON_DARK =
 export const metadata: Metadata = pageMetadata({
   title: "Cycle Club",
   description:
-    "Le club CYCLE réunit ses membres autour de la passion, de la relation et de l'émotion : réseau, spiritueux, sport, hippisme, évènements, économie, gastronomie.",
+    "Le club CYCLE réunit ses membres autour de la passion, de la relation et de l'émotion : réseau, spiritueux, sport, évènements, économie, gastronomie.",
   path: "/cycle-club",
 });
 
@@ -67,16 +67,6 @@ const CLUB_UNIVERS: { label: string; icon: ReactNode }[] = [
         <path d="M8 38l-2-5h7l1 5" />
         <path d="M52.5 44h7.5v-6h-4" />
         <path d="M27 33h9l-2 5" />
-      </svg>
-    ),
-  },
-  {
-    label: "Hippisme",
-    icon: (
-      <svg {...iconProps}>
-        {/* tête de cheval de profil, crinière en escalier façon cavalier d'échecs */}
-        <path d="M12 31 19 15 24 10 28 4 32 12 39 14 44 15 40 20 47 23 42 28 49 32 44 37 50 44 47 51 53 57 12 57 18 51 21 44 25 38 16 36 13 34Z" />
-        <path d="M19 25h.01" />
       </svg>
     ),
   },
