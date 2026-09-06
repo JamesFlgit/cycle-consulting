@@ -143,11 +143,7 @@ export default function MentionsLegalesPage() {
           Les présentes mentions légales sont régies par le droit français. En cas de litige et à défaut de
           résolution amiable, compétence est attribuée aux tribunaux français compétents.
         </p>
-        <p>
-          Les prestations de {m.raisonSociale} s&apos;adressent à des clients professionnels. Un client
-          consommateur peut recourir gratuitement à un médiateur de la consommation ; les coordonnées du
-          médiateur seront communiquées le cas échéant.
-        </p>
+        <p>Les prestations de {m.raisonSociale} s&apos;adressent à des clients professionnels.</p>
       </LegalSection>
     </LegalDocument>
   );
