@@ -49,21 +49,43 @@ function getOffset(index: number, activeIndex: number, length: number) {
   return diff;
 }
 
+// Ombre portée légère : juste un léger décollement du fond, sans bloc marqué
+// (les cartes sont fortement inclinées, une ombre lourde devient sale).
+const SHADOW_NONE = "0 0 0 rgba(0,0,0,0)";
+const SHADOW_ACTIVE = "0 10px 22px -14px rgba(7,20,46,0.22)";
+const SHADOW_STACK = "0 8px 18px -14px rgba(7,20,46,0.16)";
+
 function transformForOffset(offset: number, g: (typeof GEOMETRY)[BreakpointKey]) {
   const shift = -halfSpan(g); // centre the group around the track's midpoint
   // Cards already passed slide off to the left, hidden.
   if (offset < 0) {
-    return { x: shift - g.cardWidth * 1.15, scale: 0.92, opacity: 0, rotateY: 0, zIndex: 0 };
+    return { x: shift - g.cardWidth * 1.15, scale: 0.92, opacity: 0, rotateY: 0, zIndex: 0, boxShadow: SHADOW_NONE };
   }
   // Cards deep in the stack wait, hidden, at the far right.
   if (offset > g.maxVisibleDepth) {
-    return { x: shift + g.stackStep * (g.maxVisibleDepth + 1), scale: 0.6, opacity: 0, rotateY: -22, zIndex: 0 };
+    return {
+      x: shift + g.stackStep * (g.maxVisibleDepth + 1),
+      scale: 0.6,
+      opacity: 0,
+      rotateY: -52,
+      zIndex: 0,
+      boxShadow: SHADOW_NONE,
+    };
   }
-  // Visible cards: fully opaque, only scaled / shifted / angled.
+  // Visible cards: fully opaque, only scaled / shifted / angled. Les cartes de
+  // la pile (à droite de l'active) sont fortement inclinées, et de plus en plus
+  // à mesure qu'elles reculent.
   const x = shift + offset * g.stackStep;
   const scale = 1 - offset * 0.06;
-  const rotateY = offset === 0 ? 0 : -14;
-  return { x, scale, opacity: 1, rotateY, zIndex: 40 - offset };
+  const rotateY = offset === 0 ? 0 : -(42 + (offset - 1) * 6);
+  return {
+    x,
+    scale,
+    opacity: 1,
+    rotateY,
+    zIndex: 40 - offset,
+    boxShadow: offset === 0 ? SHADOW_ACTIVE : SHADOW_STACK,
+  };
 }
 
 /** Cadence du défilement automatique en continu (ms entre deux cartes). */
@@ -116,18 +138,19 @@ export default function EvenementsCarousel({ evenements }: { evenements: Eveneme
     >
       <div
         className="relative overflow-hidden"
-        style={{ height: geometry.cardHeight + 48, perspective: 1500 }}
+        style={{ height: geometry.cardHeight + 96, perspective: 1200 }}
       >
         {evenements.map((evenement, index) => {
           const offset = getOffset(index, activeIndex, length);
-          const { x, scale, opacity, rotateY, zIndex } = transformForOffset(offset, geometry);
+          const { x, scale, opacity, rotateY, zIndex, boxShadow } = transformForOffset(offset, geometry);
           const isActive = offset === 0;
           return (
             <div
               key={evenement.slug}
-              className="absolute top-6"
+              className="absolute top-1/2"
               style={{
                 left: "50%",
+                transform: "translateY(-50%)",
                 zIndex,
                 pointerEvents: offset < 0 || offset > geometry.maxVisibleDepth ? "none" : "auto",
                 transformStyle: "preserve-3d",
@@ -138,9 +161,10 @@ export default function EvenementsCarousel({ evenements }: { evenements: Eveneme
                 style={{
                   width: geometry.cardWidth,
                   height: geometry.cardHeight,
-                  transformOrigin: "left top",
+                  transformOrigin: "left center",
+                  borderRadius: "0.75rem",
                 }}
-                animate={{ x, scale, opacity, rotateY }}
+                animate={{ x, scale, opacity, rotateY, boxShadow }}
                 transition={{ type: "spring", stiffness: 240, damping: 30 }}
                 drag={isActive && length > 1 ? "x" : false}
                 dragElastic={0.7}
