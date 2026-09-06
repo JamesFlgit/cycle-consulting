@@ -221,12 +221,6 @@ export default function Home() {
                     >
                       Découvrir l&apos;entreprise →
                     </Link>
-                    <Link
-                      href="#offres"
-                      className="text-sm font-semibold text-anthracite underline-offset-4 hover:underline"
-                    >
-                      Nos pôles d&apos;expertise →
-                    </Link>
                   </div>
                 </div>
 
