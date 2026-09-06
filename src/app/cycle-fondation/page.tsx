@@ -412,10 +412,6 @@ export default function CycleFondationPage() {
             <p>Nous souhaitons inscrire notre action dans la durée.</p>
             <p>Notre objectif n&apos;est pas simplement de financer une année d&apos;études.</p>
             <p>Nous voulons progressivement construire un dispositif permettant de :</p>
-            <p>
-              Chaque étudiant soutenu doit pouvoir devenir demain un acteur de son propre développement et,
-              idéalement, un contributeur au développement des générations suivantes.
-            </p>
           </div>
 
           <ol className="mt-10 flex flex-col items-center gap-3 md:flex-row md:flex-wrap md:justify-start md:gap-x-2.5 md:gap-y-4">
@@ -443,6 +439,15 @@ export default function CycleFondationPage() {
               </li>
             ))}
           </ol>
+
+          <div
+            className={`mx-auto mt-10 max-w-3xl text-center text-base leading-loose md:mx-0 md:text-left ${GOLD_TEXT_ON_DARK_BG}`}
+          >
+            <p>
+              Chaque étudiant soutenu doit pouvoir devenir demain un acteur de son propre développement et,
+              idéalement, un contributeur au développement des générations suivantes.
+            </p>
+          </div>
         </div>
       </section>
 
