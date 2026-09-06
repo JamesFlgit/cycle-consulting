@@ -56,12 +56,14 @@ export default function NavFeatureCard({
         href={item.href}
         onClick={onClick}
         style={{ backgroundColor: card.background }}
-        className={`${containerBase} items-center gap-4 px-4 py-3.5 ring-white/10 hover:ring-white/30 ${className}`}
+        className={`${containerBase} items-center gap-2.5 px-3 py-3.5 ring-white/10 hover:ring-white/30 ${className}`}
       >
-        <span className="flex h-12 w-24 shrink-0 items-center justify-center">{logo}</span>
+        <span className="flex h-11 w-18 shrink-0 items-center justify-center">{logo}</span>
         <span className="flex min-w-0 flex-col">
           <span className="text-sm font-semibold text-white">{item.navLabel}</span>
-          <span className={`mt-0.5 whitespace-nowrap text-[0.7rem] font-medium tracking-wide ${accent}`}>
+          {/* Tagline sur une seule ligne : le slogan le plus long
+              (« Apprendre › Comprendre › Transmettre ») doit tenir dès ~360 px. */}
+          <span className={`mt-0.5 whitespace-nowrap text-[0.58rem] font-medium tracking-tight ${accent}`}>
             {card.tagline.join(" › ")}
           </span>
         </span>

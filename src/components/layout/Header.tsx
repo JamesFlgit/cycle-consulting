@@ -82,8 +82,10 @@ export default function Header() {
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="flex shrink-0 items-center gap-2.5" onClick={closeAll}>
           <NavLogoMark className="h-9 w-auto" variant={transparent ? "light" : "color"} />
+          {/* Sous 640px, le pictogramme seul : la place va à l'indicateur de
+              marché + burger. Le libellé revient dès la tablette. */}
           <span
-            className={`text-base uppercase tracking-wide transition-colors sm:text-lg ${transparent ? "text-white" : "text-anthracite"}`}
+            className={`hidden text-base uppercase tracking-wide transition-colors sm:inline sm:text-lg ${transparent ? "text-white" : "text-anthracite"}`}
             style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
           >
             Cycle Consulting
@@ -148,11 +150,12 @@ export default function Header() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-2.5 lg:hidden">
-          {/* Indicateur de marché : masqué sous 640px — la place manque à côté
-              du logo + burger sur un téléphone, et la pastille est décorative. */}
+        <div className="flex shrink-0 items-center gap-2 lg:hidden">
+          {/* Indicateur de marché : affiché à l'arrivée sur la page, replié
+              (largeur → 0) dès qu'on scrolle. Ne pousse jamais le burger : il
+              se replie dans son cadre `overflow-hidden` si la place manque. */}
           <div
-            className={`hidden overflow-hidden transition-all duration-300 ease-out sm:block ${
+            className={`min-w-0 overflow-hidden transition-all duration-300 ease-out ${
               tickerVisible ? "max-w-32 opacity-100" : "max-w-0 opacity-0"
             }`}
           >
@@ -164,7 +167,7 @@ export default function Header() {
             aria-label="Ouvrir le menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className={`flex h-10 w-10 items-center justify-center rounded-md border transition-colors ${
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md border transition-colors ${
               transparent ? "border-white/30 text-white" : "border-border-subtle text-anthracite"
             }`}
           >
