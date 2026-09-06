@@ -8,13 +8,11 @@ export const SITE_URL = "https://www.cycle-consulting.fr";
 export const SITE_NAME = "Cycle Consulting";
 
 /**
- * Autorise l'indexation par les moteurs. `false` tant que le site n'est pas
- * officiellement en ligne (evite l'indexation de l'URL *.vercel.app).
- *
- * MISE EN LIGNE — passer a `true` ici, ET retirer le bloc `headers()` de
- * `next.config.ts` (en-tete X-Robots-Tag). Ce sont les deux seuls interrupteurs.
+ * Autorise l'indexation par les moteurs. Passe a `true` a la mise en ligne
+ * (06/09/2026, branche `go-live`). Le second interrupteur — le bloc `headers()`
+ * X-Robots-Tag de `next.config.ts` — a ete retire dans le meme commit.
  */
-export const SITE_INDEXABLE = false;
+export const SITE_INDEXABLE = true;
 
 /** Image Open Graph par defaut (1200x630). */
 export const DEFAULT_OG_IMAGE = "/og/cycle-consulting-og.png";
