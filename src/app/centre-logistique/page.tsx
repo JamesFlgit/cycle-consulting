@@ -18,7 +18,7 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 export const metadata: Metadata = pageMetadata({
   title: "Centre Logistique",
   description:
-    "Réception, stockage, préparation, expédition et logistique retour : Cycle Consulting gère le cycle de vie de vos équipements IT, en France et à l'international.",
+    "Réception, stockage, préparation, expédition et retour : Cycle Consulting gère le cycle de vie de vos équipements IT, en France et à l'international.",
   path: "/centre-logistique",
 });
 

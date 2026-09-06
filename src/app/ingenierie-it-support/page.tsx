@@ -21,7 +21,7 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 export const metadata: Metadata = pageMetadata({
   title: "Ingénierie & IT Support",
   description:
-    "OSS, IT support et gouvernance des services : des consultants seniors pour renforcer vos équipes techniques, vos infrastructures et vos dispositifs d'infogérance.",
+    "Support sur site, IT support et gouvernance des services : des consultants seniors pour renforcer vos équipes techniques et vos dispositifs d'infogérance.",
   path: "/ingenierie-it-support",
 });
 

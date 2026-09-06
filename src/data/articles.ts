@@ -54,9 +54,9 @@ export const articles: Article[] = [
     titre: "Un service IT qui se dégrade : reconnaître les signes, comprendre les causes, reprendre le contrôle",
     extrait:
       "Backlog qui gonfle, incidents qui reviennent, utilisateurs qui contournent le support : les signes d'un service IT qui décroche, leurs causes réelles, et par où reprendre la main.",
-    metaTitle: "Service IT qui se dégrade : reprendre le contrôle | Cycle Consulting",
+    metaTitle: "Redresser un service IT qui se dégrade | Cycle Consulting",
     metaDescription:
-      "Backlog qui gonfle, incidents qui reviennent, utilisateurs qui se plaignent : les signes d'un service IT qui décroche, leurs causes réelles, et par où reprendre la main.",
+      "Backlog qui gonfle, incidents récurrents, utilisateurs mécontents : les signes d'un service IT qui décroche, ses causes, et par où reprendre la main.",
     dateLabel: "30 août 2026",
     dateISO: "2026-08-30",
     tempsLecture: "8 min de lecture",
@@ -210,9 +210,9 @@ export const articles: Article[] = [
     titre: "Gouvernance de l'IA en entreprise : cadrer l'usage sans bloquer les équipes",
     extrait:
       "Vos équipes utilisent déjà l'IA, souvent sans cadre. Comment poser une gouvernance utile : shadow AI, obligations de l'AI Act, politique d'usage et chantiers prioritaires.",
-    metaTitle: "Gouvernance de l'IA en entreprise : par où commencer | Cycle Consulting",
+    metaTitle: "Gouvernance de l'IA en entreprise | Cycle Consulting",
     metaDescription:
-      "Vos équipes utilisent déjà l'IA, souvent sans cadre. Comment poser une gouvernance de l'IA utile : shadow AI, obligations de l'AI Act, politique d'usage et chantiers prioritaires.",
+      "Vos équipes utilisent déjà l'IA, souvent sans cadre. Comment poser une gouvernance utile : shadow AI, AI Act, politique d'usage et chantiers prioritaires.",
     dateLabel: "30 août 2026",
     dateISO: "2026-08-30",
     tempsLecture: "8 min de lecture",
@@ -355,9 +355,9 @@ export const articles: Article[] = [
     titre: "Régie, forfait, centre de services ou engagement de résultat : quel modèle de prestation IT choisir",
     extrait:
       "Régie, forfait, centre de services, engagement de résultat : ce que chaque modèle transfère comme risque et comme responsabilité, et comment choisir selon votre contexte.",
-    metaTitle: "Régie, forfait ou centre de services : bien choisir | Cycle Consulting",
+    metaTitle: "Régie, forfait ou centre de services IT ? | Cycle Consulting",
     metaDescription:
-      "Régie, forfait, centre de services, engagement de résultat : ce que chaque modèle de prestation IT transfère comme risque et comme responsabilité, et comment choisir selon votre contexte.",
+      "Régie, forfait, centre de services ou engagement de résultat : le risque transféré par chaque modèle, et comment choisir selon votre contexte.",
     dateLabel: "30 août 2026",
     dateISO: "2026-08-30",
     tempsLecture: "8 min de lecture",
@@ -480,9 +480,9 @@ export const articles: Article[] = [
     titre: "Où héberger vos données en 2026 : souveraineté, interopérabilité, réversibilité",
     extrait:
       "Souveraineté, réglementation, dépendance à un fournisseur : les trois critères qui doivent guider le choix d'hébergement de vos données en 2026, et comment garder la réversibilité.",
-    metaTitle: "Où héberger vos données en 2026 : le guide de décision | Cycle Consulting",
+    metaTitle: "Où héberger vos données en 2026 ? | Cycle Consulting",
     metaDescription:
-      "Souveraineté, réglementation, dépendance à un fournisseur : les trois critères qui doivent guider le choix d'hébergement de vos données en 2026, et comment garder la réversibilité.",
+      "Souveraineté, réglementation, dépendance au fournisseur : les trois critères pour choisir où héberger vos données en 2026, sans perdre la réversibilité.",
     dateLabel: "30 août 2026",
     dateISO: "2026-08-30",
     tempsLecture: "9 min de lecture",

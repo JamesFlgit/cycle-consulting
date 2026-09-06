@@ -54,7 +54,7 @@ export const offresEmploi: OffreEmploi[] = [
     datePublication: "2026-09-05",
     metaTitle: "Contract Manager (H/F) | Cycle Consulting",
     metaDescription:
-      "Cycle Consulting recrute un Contract Manager pour piloter les contrats fournisseurs liés au déploiement des équipements informatiques : suivi contractuel, budgétaire et performance.",
+      "Cycle Consulting recrute un Contract Manager : contrats fournisseurs du déploiement des équipements IT, suivi contractuel, budgétaire et performance.",
     profilRecherche: [
       "Expérience confirmée en gestion de contrats fournisseurs dans un environnement IT",
       "Bonne connaissance des équipements informatiques (postes de travail, outils mobiles, etc.)",
@@ -117,7 +117,7 @@ export const offresEmploi: OffreEmploi[] = [
     datePublication: "2026-09-05",
     metaTitle: "PMO / Chef de projet IT (H/F) | Cycle Consulting",
     metaDescription:
-      "Cycle Consulting recrute des PMO / Chefs de projet IT pour piloter des projets à fort impact chez ses clients : méthodologies Agile / Scrum / SAFe, planning, budgets, risques et KPI.",
+      "Cycle Consulting recrute des PMO / Chefs de projet IT pour des projets à fort impact : Agile / Scrum / SAFe, planning, budgets, risques et KPI.",
     profilRecherche: [
       "Expérience confirmée en tant que PMO / Chef de projet IT",
       "Maîtrise des méthodologies Agile / Scrum / SAFe",

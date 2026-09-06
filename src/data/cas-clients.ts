@@ -58,7 +58,7 @@ export const casClients: CasClient[] = [
     environnement: "Centre de Services / IT Operations",
     expertise: "Transformation, gouvernance et performance opérationnelle",
     visible: true,
-    metaTitle: "Transformation d'un Centre de Services IT : cas client Industrie | Cycle Consulting",
+    metaTitle: "Industrialiser un Centre de Services IT | Cycle Consulting",
     metaDescription:
       "Comment Cycle Consulting a industrialisé et structuré le Centre de Services IT d'un acteur industriel en forte croissance.",
     resume:
@@ -161,7 +161,7 @@ export const casClients: CasClient[] = [
     profilMobilise: "Account Delivery Manager",
     enjeuxTags: ["Qualité de service", "Satisfaction client", "SLA / KPI", "Transformation opérationnelle"],
     visible: true,
-    metaTitle: "Redressement d'un Service Delivery Retail : cas client | Cycle Consulting",
+    metaTitle: "Redresser un Service Delivery (retail) | Cycle Consulting",
     metaDescription:
       "Comment Cycle Consulting a redressé la qualité de service et restauré la satisfaction client d'un dispositif Service Delivery Retail.",
     resume:
@@ -265,9 +265,9 @@ export const casClients: CasClient[] = [
     expertise: "Transformation IT & Program Management",
     enjeuxTags: ["Convergence IT", "Standardisation", "Migration", "Gouvernance", "Performance"],
     visible: true,
-    metaTitle: "Migration IT internationale : cas client Banque & Assurances | Cycle Consulting",
+    metaTitle: "Migration IT internationale (banque) | Cycle Consulting",
     metaDescription:
-      "Comment Cycle Consulting a piloté la convergence des infrastructures IT de filiales internationales vers les standards Groupe, en environnement bancaire réglementé.",
+      "Comment Cycle Consulting a piloté la convergence IT de filiales internationales vers les standards Groupe, en environnement bancaire réglementé.",
     resume:
       "Pilotage d'un programme de convergence et migration IT multi-pays, dans un environnement bancaire fortement réglementé.",
     resumeDefi:
@@ -357,14 +357,14 @@ export const casClients: CasClient[] = [
     slug: "support-n3-b2b-restauration-rapide",
     href: "/cas-clients/support-n3-b2b-restauration-rapide",
     navLabel: "Structuration d'un Support N3 B2B",
-    secteur: "QSR • Restauration rapide",
+    secteur: "Restauration rapide",
     image: "/images/cas-clients/support-n3-b2b-restauration-rapide.webp",
     imageAlt: "Pictogramme d'une bulle de conversation contenant un trace de monitoring, support N3 B2B",
     environnement: "Grands comptes • Support N3 • HO/HNO • Multi-niveaux",
     expertise: "IT Service Management & Support B2B",
     enjeuxTags: ["Continuité de service", "Expertise", "MCO", "Performance", "Montée en compétences"],
     visible: true,
-    metaTitle: "Structuration d'un Support N3 B2B : cas client QSR | Cycle Consulting",
+    metaTitle: "Structurer un support N3 B2B | Cycle Consulting",
     metaDescription:
       "Comment Cycle Consulting a structuré et professionnalisé un dispositif de Support N3 B2B pour des grands comptes du secteur de la restauration rapide.",
     resume:
@@ -479,7 +479,7 @@ export const casClients: CasClient[] = [
       "Partenariat Microsoft",
     ],
     visible: true,
-    metaTitle: "Pilotage Service Delivery sur un grand compte IT : cas client | Cycle Consulting",
+    metaTitle: "Piloter un Service Delivery grand compte | Cycle Consulting",
     metaDescription:
       "Comment un Service Delivery Manager Cycle Consulting pilote un dispositif IT complexe sur un grand compte, de l'infogérance à la relation DSI/RSSI.",
     resume:

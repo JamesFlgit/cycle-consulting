@@ -23,7 +23,7 @@ export default function ContactPage() {
       <PageHero
         breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Contact" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>Contact</span>}
-        title="Infos & Réservation"
+        title="Contactez Cycle Consulting"
         description="Une question, un projet, une demande de devis ? Notre équipe vous répond rapidement."
         image="/images/contact/hero.webp"
         imageAlt="Une consultante Cycle Consulting avec un casque répond au message d'un visiteur devant un panneau de contact lumineux"

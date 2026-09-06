@@ -65,7 +65,7 @@ export const poles: Pole[] = [
     },
     metaTitle: "Business & Stratégie | Cycle Consulting",
     metaDescription:
-      "Business Managers et consultants expérimentés pour accompagner votre développement et vos transformations : une relation de confiance et une culture du résultat.",
+      "Business Managers et consultants expérimentés pour accompagner votre développement et vos transformations, avec une culture du résultat.",
   },
   {
     slug: "ingenierie-it-support",
@@ -82,7 +82,7 @@ export const poles: Pole[] = [
     },
     metaTitle: "Ingénierie & IT Support | Cycle Consulting",
     metaDescription:
-      "OSS, IT support et gouvernance des services : des consultants seniors pour renforcer vos équipes techniques, vos infrastructures et vos dispositifs d'infogérance.",
+      "Support sur site, IT support et gouvernance des services : des consultants seniors pour renforcer vos équipes techniques et vos dispositifs d'infogérance.",
   },
   {
     slug: "centre-logistique",
@@ -99,7 +99,7 @@ export const poles: Pole[] = [
     },
     metaTitle: "Centre Logistique | Cycle Consulting",
     metaDescription:
-      "Réception, stockage, préparation, expédition et logistique retour : Cycle Consulting gère le cycle de vie de vos équipements IT, en France et à l'international.",
+      "Réception, stockage, préparation, expédition et retour : Cycle Consulting gère le cycle de vie de vos équipements IT, en France et à l'international.",
   },
 ];
 

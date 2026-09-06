@@ -14,7 +14,7 @@ export const entrepriseNavItems: NavItem[] = [
     navLabel: "Nos atouts et différences",
     visible: true,
   },
-  { slug: "evenements", href: "/evenements", navLabel: "Salons & événements", visible: true },
+  { slug: "evenements", href: "/evenements", navLabel: "Salons & évènements", visible: true },
   { slug: "rejoignez-nous", href: "/rejoignez-nous", navLabel: "Rejoignez-nous", visible: true },
   { slug: "faq", href: "/faq", navLabel: "FAQ", visible: true },
   {

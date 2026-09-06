@@ -21,7 +21,7 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 export const metadata: Metadata = pageMetadata({
   title: "Business & Stratégie",
   description:
-    "Business Managers et consultants expérimentés pour accompagner votre développement et vos transformations : une relation de confiance et une culture du résultat.",
+    "Business Managers et consultants expérimentés pour accompagner votre développement et vos transformations, avec une culture du résultat.",
   path: "/business-strategie",
 });
 

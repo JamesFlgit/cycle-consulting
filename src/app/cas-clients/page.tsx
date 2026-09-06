@@ -9,9 +9,9 @@ import { pageMetadata } from "@/lib/site";
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Cas clients",
+  title: "Nos réalisations",
   description:
-    "Transformation de centres de services, pilotage du service delivery, migration IT internationale, support N3 : les missions menées par Cycle Consulting.",
+    "Transformation de centres de services, pilotage du service delivery, migration IT internationale, support N3 : les cas clients de Cycle Consulting.",
   path: "/cas-clients",
 });
 

@@ -13,7 +13,7 @@ import { pageMetadata } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   title: "Politique de confidentialité",
   description:
-    "Comment Cycle Consulting collecte et traite vos données personnelles via le site cycle-consulting.fr : finalités, durées de conservation, destinataires et droits RGPD.",
+    "Comment Cycle Consulting traite vos données personnelles sur cycle-consulting.fr : finalités, durées de conservation, destinataires et droits RGPD.",
   path: "/politique-de-confidentialite",
 });
 

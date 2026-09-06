@@ -12,7 +12,7 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Blog",
+  title: "Ressources",
   description:
     "Analyses, retours d'expérience et repères concrets sur les métiers de l'IT, écrits par les consultants Cycle Consulting qui les pratiquent au quotidien.",
   path: "/ressources",
@@ -26,8 +26,8 @@ export default function RessourcesPage() {
   return (
     <>
       <PageHero
-        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Blog" }]}
-        eyebrow={<span className={GRADIENT_LIGHT}>Blog</span>}
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Ressources" }]}
+        eyebrow={<span className={GRADIENT_LIGHT}>Ressources</span>}
         title="Revues et Newsletter Cycle"
         titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[1.9rem] xl:leading-[1.2]"
         description={

@@ -4,9 +4,9 @@ import { pageMetadata } from "@/lib/site";
 import { GOLD_ON_LIGHT, GOLD_TEXT_ON_LIGHT_BG, FoundationChildHero } from "../_shared";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact",
+  title: "Contacter Cycle Foundation",
   description:
-    "Écoles, entreprises, professionnels de l'IT, associations ou particuliers : contactez CYCLE Foundation pour construire ensemble des dispositifs d'accompagnement des talents.",
+    "Écoles, entreprises, professionnels de l'IT, associations : contactez CYCLE Foundation pour construire des dispositifs d'accompagnement des talents.",
   path: "/cycle-fondation/contact",
 });
 

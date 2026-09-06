@@ -13,7 +13,7 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff] bg-clip-text text-transparent";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Salons & événements",
+  title: "Salons & évènements",
   description:
     "Retrouvez Cycle Consulting en salon professionnel ou étudiant partout en France : dates, villes et lieux des prochains évènements où l'équipe est présente.",
   path: "/evenements",
@@ -52,9 +52,9 @@ export default function EvenementsPage() {
     <>
       <JsonLd data={eventsJsonLd} />
       <PageHero
-        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Salons & événements" }]}
+        breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Salons & évènements" }]}
         eyebrow={<span className={GRADIENT_LIGHT}>L&apos;entreprise</span>}
-        title="Salons & événements"
+        title="Salons & évènements"
         description="Cycle Consulting va à la rencontre de ses clients, partenaires et futurs talents partout en France. Retrouvez les prochains salons et évènements où l'équipe est présente."
         image="/images/evenements/hero.webp"
         imageAlt="Deux membres de l'équipe Cycle Consulting accueillent un visiteur sur un stand de salon, cartes lumineuses en fond"

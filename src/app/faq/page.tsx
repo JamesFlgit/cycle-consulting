@@ -17,7 +17,7 @@ const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0f
 export const metadata: Metadata = pageMetadata({
   title: "Questions fréquentes",
   description:
-    "Nos missions, nos consultants, nos modèles de prestation, nos services managés et notre logistique IT : les réponses aux questions que l'on nous pose le plus.",
+    "Nos missions, nos consultants, nos modèles de prestation, nos services managés, notre logistique IT : les réponses aux questions les plus fréquentes.",
   path: "/faq",
 });
 

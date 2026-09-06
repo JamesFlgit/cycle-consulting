@@ -6,7 +6,7 @@ import { GOLD_ON_LIGHT, GOLD_TEXT_ON_LIGHT_BG, FoundationChildHero } from "../_s
 export const metadata: Metadata = pageMetadata({
   title: "Faire un don",
   description:
-    "Soutenez CYCLE Foundation : votre don finance des parcours d'études, du mentorat et l'accès aux métiers de l'IT pour de jeunes talents, en France et à l'international.",
+    "Soutenez CYCLE Foundation : votre don finance des parcours d'études, du mentorat et l'accès aux métiers de l'IT pour de jeunes talents.",
   path: "/cycle-fondation/faire-un-don",
 });
 
