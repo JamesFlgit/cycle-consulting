@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { entreprise } from "@/data/entreprise";
 
 type Challenge = { a: number; b: number; issuedAt: number; token: string };
@@ -25,6 +26,10 @@ export default function ContactForm({
   /** Espace émetteur transmis à l'API pour router l'e-mail. Valeurs connues : "foundation", "club". */
   espace?: string;
 } = {}) {
+  // Provenance : le chemin de la page qui affiche le formulaire, joint à l'envoi
+  // pour que l'e-mail reçu indique toujours d'où part la demande.
+  const pathname = usePathname();
+
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
   const [entrepriseNom, setEntrepriseNom] = useState("");
@@ -80,6 +85,7 @@ export default function ContactForm({
           message,
           sujet,
           espace,
+          source: pathname,
           website,
           a: challenge.a,
           b: challenge.b,

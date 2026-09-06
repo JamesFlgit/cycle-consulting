@@ -302,7 +302,7 @@ export default function IngenierieItSupportPage() {
             </p>
           </div>
           <Link
-            href="/contact"
+            href="/devis?prestation=ingenierie-it-support"
             className="cta-primary cta-primary-on-light mt-8 inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
           >
             Demander un devis

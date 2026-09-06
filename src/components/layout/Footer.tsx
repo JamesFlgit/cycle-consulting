@@ -103,6 +103,11 @@ export default function Footer() {
                 </li>
               ))}
             <li>
+              <Link href="/devis" className="text-sm text-white transition-colors hover:underline">
+                Demander un devis
+              </Link>
+            </li>
+            <li>
               <Link href="/contact" className="text-sm text-white transition-colors hover:underline">
                 Nous contacter
               </Link>

@@ -74,7 +74,7 @@ export default function RejoignezNousPage() {
         )}
 
         <div className="mt-10">
-          <ContactForm />
+          <ContactForm sujet="Candidature spontanée" sujetVisible={false} />
         </div>
       </section>
 

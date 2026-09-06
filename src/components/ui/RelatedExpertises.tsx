@@ -120,7 +120,7 @@ export default function RelatedExpertises({
         {showCta && (
           <div className="mt-12 text-center">
             <Link
-              href="/contact"
+              href={currentSlug ? `/devis?prestation=${currentSlug}` : "/devis"}
               className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
             >
               Demander un devis

@@ -57,7 +57,7 @@ export default function ContactPage() {
               Les champs marqués d&apos;un astérisque (*) sont obligatoires.
             </p>
             <div className="mt-6">
-              <ContactForm />
+              <ContactForm sujet="Demande de contact" sujetVisible={false} />
             </div>
           </div>
         </div>

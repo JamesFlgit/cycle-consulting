@@ -24,6 +24,9 @@ type ContactPayload = {
   sujet?: string;
   /** Espace émetteur (route l'e-mail vers la bonne boîte). Valeurs connues : "foundation", "club". */
   espace?: string;
+  /** Chemin de la page d'où part la demande (ex. "/contact"). Sert de repère
+   * de provenance dans l'e-mail, y compris si aucun `sujet` n'est fourni. */
+  source?: string;
 };
 
 export async function POST(request: Request) {
@@ -44,6 +47,8 @@ export async function POST(request: Request) {
   // ne jamais laisser passer d'injection d'en-tête e-mail.
   const sujet = str(body.sujet).replace(/[\r\n]+/g, " ").slice(0, 150);
   const espace = str(body.espace);
+  // Provenance : on borne à un chemin court, sans saut de ligne (anti-injection d'en-tête).
+  const source = str(body.source).replace(/[\r\n]+/g, " ").slice(0, 120);
   // Honeypot: a hidden field real visitors never see or fill. Any value = bot.
   const honeypot = str(body.website);
   const a = Number(body.a);
@@ -75,7 +80,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await sendContactEmail({ prenom, nom, entreprise: societe, email, telephone, message, sujet, espace });
+    await sendContactEmail({ prenom, nom, entreprise: societe, email, telephone, message, sujet, espace, source });
   } catch (err) {
     console.error("Failed to send contact email", err);
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
@@ -132,6 +137,7 @@ async function sendContactEmail(p: ContactPayload) {
 
   const rows: Array<[string, string]> = [
     ...(p.sujet ? ([["Objet", p.sujet]] as Array<[string, string]>) : []),
+    ...(p.source ? ([["Page", p.source]] as Array<[string, string]>) : []),
     ["Prénom", p.prenom],
     ["Nom", p.nom],
     ["Entreprise", p.entreprise || "(non renseignée)"],
@@ -165,7 +171,7 @@ async function sendContactEmail(p: ContactPayload) {
     replyTo: `"${p.prenom} ${p.nom}" <${p.email}>`,
     subject: p.sujet
       ? `${p.sujet} (${p.prenom} ${p.nom})`
-      : `Nouvelle demande de contact : ${p.prenom} ${p.nom}`,
+      : `Nouvelle demande de contact${p.source ? ` via ${p.source}` : ""} : ${p.prenom} ${p.nom}`,
     text,
     html,
   });

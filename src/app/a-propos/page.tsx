@@ -532,7 +532,7 @@ export default function AProposPage() {
             <Slogan variant="light" />
           </p>
           <Link
-            href="/contact"
+            href="/devis"
             className="cta-primary mt-8 inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
           >
             Demander un devis

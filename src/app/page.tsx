@@ -114,7 +114,7 @@ export default function Home() {
 
           <div className="hero-grid-cta flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <Link
-              href="/contact"
+              href="/devis"
               className="cta-primary w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto lg:px-8 lg:py-4 lg:text-base 2xl:px-10 2xl:py-5 2xl:text-lg"
             >
               Demander un devis
@@ -459,7 +459,7 @@ export default function Home() {
                 Les champs marqués d&apos;un astérisque (*) sont obligatoires.
               </p>
               <div className="mt-6">
-                <ContactForm />
+                <ContactForm sujet="Demande de contact : page d'accueil" sujetVisible={false} />
               </div>
             </Reveal>
           </div>

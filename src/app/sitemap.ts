@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: abs("/cas-clients"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: abs("/evenements"), lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: abs("/contact"), lastModified: now, changeFrequency: "yearly", priority: 0.7 },
+    { url: abs("/devis"), lastModified: now, changeFrequency: "yearly", priority: 0.8 },
     { url: abs("/faq"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: abs("/cycle-fondation"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: abs("/cycle-fondation/faire-un-don"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
