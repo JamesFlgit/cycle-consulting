@@ -7,6 +7,7 @@ import Slogan from "@/components/ui/Slogan";
 import DonutChart from "@/components/ui/DonutChart";
 import InternationalHighlight from "@/components/ui/InternationalHighlight";
 import BoucleVertueuse from "@/components/ui/BoucleVertueuse";
+import RelatedExpertises from "@/components/ui/RelatedExpertises";
 import { repartitionPractices, repartitionGenre } from "@/data/repartitions";
 import { pageMetadata } from "@/lib/site";
 
@@ -496,6 +497,16 @@ export default function AProposPage() {
           </div>
         </div>
       </section>
+
+      <RelatedExpertises
+        showCta={false}
+        title={
+          <>
+            Nos <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>pôles d&apos;expertise</span>
+          </>
+        }
+        description="Cinq pôles complémentaires, du conseil stratégique au support opérationnel, pour couvrir l'ensemble de votre chaîne de valeur IT."
+      />
 
       <section className="bg-chiffres-section">
         <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:px-8">

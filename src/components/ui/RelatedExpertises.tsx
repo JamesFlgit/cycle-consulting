@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { poles } from "@/data/poles";
@@ -20,10 +21,21 @@ const POLE_ICONS: Record<string, (props: { className?: string }) => React.JSX.El
   "centre-logistique": PackageIcon,
 };
 
-/** Maillage interne : renvoie vers les autres expertises depuis chaque page
- * d'expertise, juste avant le footer. Cartes reprenant le visuel de la homepage
- * (photo + bandeau icone/titre). */
-export default function RelatedExpertises({ currentSlug }: { currentSlug: string }) {
+/** Maillage interne : renvoie vers les pôles d'expertise, juste avant le footer.
+ * Cartes reprenant le visuel de la homepage (photo + bandeau icone/titre).
+ * Avec `currentSlug` : sur une page d'expertise, exclut le pôle courant et
+ * titre "autres expertises". Sans : liste les 5 pôles (page entreprise). */
+export default function RelatedExpertises({
+  currentSlug,
+  title,
+  description,
+  showCta = true,
+}: {
+  currentSlug?: string;
+  title?: ReactNode;
+  description?: string;
+  showCta?: boolean;
+}) {
   const others = poles.filter((pole) => pole.slug !== currentSlug && pole.visible);
   if (others.length === 0) return null;
 
@@ -31,14 +43,22 @@ export default function RelatedExpertises({ currentSlug }: { currentSlug: string
     <section className="bg-surface-alt">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <h2 className="text-center text-xl font-bold text-anthracite sm:text-2xl lg:text-3xl">
-          Explorer nos <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>autres expertises</span>
+          {title ?? (
+            <>
+              Explorer nos <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>autres expertises</span>
+            </>
+          )}
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-relaxed text-anthracite-mist sm:text-base">
-          Nos pôles se combinent pour couvrir l&apos;ensemble de votre chaîne de valeur, du conseil
-          au support opérationnel.
+          {description ??
+            "Nos pôles se combinent pour couvrir l'ensemble de votre chaîne de valeur, du conseil au support opérationnel."}
         </p>
 
-        <ul className="mx-auto mt-10 grid max-w-md grid-cols-1 gap-6 sm:max-w-3xl sm:grid-cols-2 lg:max-w-none lg:grid-cols-4">
+        <ul
+          className={`mx-auto mt-10 grid max-w-md grid-cols-1 gap-6 sm:max-w-3xl sm:grid-cols-2 lg:max-w-none ${
+            others.length === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4"
+          }`}
+        >
           {others.map((pole) => {
             const Icon = POLE_ICONS[pole.slug];
             return (
@@ -97,14 +117,16 @@ export default function RelatedExpertises({ currentSlug }: { currentSlug: string
           })}
         </ul>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/contact"
-            className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
-          >
-            Demander un devis
-          </Link>
-        </div>
+        {showCta && (
+          <div className="mt-12 text-center">
+            <Link
+              href="/contact"
+              className="cta-primary cta-primary-on-light inline-block w-full rounded-md px-6 py-3 text-center text-sm font-bold sm:w-auto"
+            >
+              Demander un devis
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
