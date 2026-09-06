@@ -18,6 +18,7 @@ export const entrepriseNavItems: NavItem[] = [
   { slug: "rejoignez-nous", href: "/rejoignez-nous", navLabel: "Rejoignez-nous", visible: true },
   { slug: "faq", href: "/faq", navLabel: "FAQ", visible: true },
   { slug: "cycle-fondation", href: "/cycle-fondation", navLabel: "Cycle Foundation", visible: true },
+  { slug: "cycle-club", href: "/cycle-club", navLabel: "Cycle Club", visible: true },
   { slug: "partenaires", href: "/#partenaires", navLabel: "Nos partenaires", visible: true, showInNav: false },
   { slug: "livre-or", href: "/livre-or", navLabel: "Livre d'or", visible: true, showInNav: false },
 ];

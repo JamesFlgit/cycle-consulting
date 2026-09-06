@@ -18,15 +18,25 @@ const GRADIENT_TEXT_GOLD = "bg-gradient-to-r from-[#f8e3a3] via-[#d4af37] to-[#9
 export default function Footer() {
   const pathname = usePathname();
   const isFondation = pathname?.startsWith("/cycle-fondation") ?? false;
+  // CYCLE Club a son propre fond sombre (proche du noir, comme son logo) et un
+  // logo Cycle Consulting en blanc dans le footer.
+  const isClub = pathname?.startsWith("/cycle-club") ?? false;
+  const isDark = isFondation || isClub;
   const GRADIENT_TEXT = isFondation ? GRADIENT_TEXT_GOLD : GRADIENT_TEXT_BRAND;
 
   return (
     <footer
-      className={`border-t text-white ${isFondation ? "border-[#d4af37]/20 bg-black" : "border-[#16305e] bg-bleu-nuit"}`}
+      className={`border-t text-white ${
+        isFondation
+          ? "border-[#d4af37]/20 bg-black"
+          : isClub
+            ? "border-white/10 bg-[#0c0b13]"
+            : "border-[#16305e] bg-bleu-nuit"
+      }`}
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-6 lg:px-8">
         <div className="md:col-span-2">
-          <FooterLogoReveal className="h-24 w-auto" tone={isFondation ? "white" : "brand"} />
+          <FooterLogoReveal className="h-24 w-auto" tone={isDark ? "white" : "brand"} />
           <Slogan
             variant="light"
             className="mt-4 text-base font-semibold text-white"

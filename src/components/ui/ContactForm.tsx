@@ -22,7 +22,7 @@ export default function ContactForm({
   sujetVisible?: boolean;
   /** Placeholder du champ message (contextualise le formulaire selon la page). */
   messagePlaceholder?: string;
-  /** Espace émetteur transmis à l'API pour router l'e-mail. Valeur connue : "foundation". */
+  /** Espace émetteur transmis à l'API pour router l'e-mail. Valeurs connues : "foundation", "club". */
   espace?: string;
 } = {}) {
   const [prenom, setPrenom] = useState("");
@@ -107,7 +107,9 @@ export default function ContactForm({
         <p className="mt-2 text-sm text-anthracite-mist">
           {espace === "foundation"
             ? "L'équipe Cycle Foundation reviendra vers vous dans les meilleurs délais."
-            : "Un consultant Cycle Consulting reviendra vers vous dans les meilleurs délais."}
+            : espace === "club"
+              ? "L'équipe du Cycle Club reviendra vers vous dans les meilleurs délais."
+              : "Un consultant Cycle Consulting reviendra vers vous dans les meilleurs délais."}
         </p>
       </div>
     );
@@ -242,7 +244,9 @@ export default function ContactForm({
         className={
           espace === "foundation"
             ? "w-full rounded-md bg-gradient-to-r from-[#f8e3a3] via-[#d4af37] to-[#9c7a2c] px-4 py-2.5 text-sm font-bold text-[#241b0d] transition hover:brightness-110 disabled:opacity-60 sm:w-auto"
-            : "cta-primary cta-primary-on-light w-full rounded-md px-4 py-2.5 text-sm font-bold disabled:opacity-60 sm:w-auto"
+            : espace === "club"
+              ? "w-full rounded-md bg-gradient-to-r from-[#a855f7] via-[#8b3bd8] to-[#6d28d9] px-4 py-2.5 text-sm font-bold text-white transition hover:brightness-110 disabled:opacity-60 sm:w-auto"
+              : "cta-primary cta-primary-on-light w-full rounded-md px-4 py-2.5 text-sm font-bold disabled:opacity-60 sm:w-auto"
         }
       >
         {status === "loading" ? "Envoi…" : "Envoyer"}

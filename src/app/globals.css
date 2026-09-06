@@ -376,3 +376,30 @@ body {
   }
 }
 
+/* Bandeau d'items en défilement continu (page CYCLE Club). La piste contient
+   deux jeux identiques ; -50% ramène pile au début du second jeu = boucle sans
+   couture. Chaque item porte sa propre largeur fixe (pas de gap flex) pour que
+   le -50% tombe juste. */
+@keyframes club-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.club-marquee-track {
+  animation: club-marquee 26s linear infinite;
+}
+
+.club-marquee:hover .club-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .club-marquee-track {
+    animation: none;
+  }
+}
+
