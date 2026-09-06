@@ -133,22 +133,22 @@ export default function CycleFondationPage() {
         breadcrumb={[{ name: "Accueil", href: "/" }, { name: "Cycle Foundation" }]}
         title={
           <span className="flex flex-col items-center xl:items-start">
-            <span className="sr-only">
-              Cycle Foundation : révéler les talents vers les métiers de l&apos;IT
-            </span>
             <Image
               src="/images/cycle-fondation/logo.webp"
-              alt=""
+              alt="Cycle Foundation"
               width={1600}
               height={1087}
               priority
               className="h-auto w-full mix-blend-screen sm:w-96 lg:w-md"
             />
             {/* Desktop (hero docké, logo aligné à gauche) : le visuel du logo a
-                une marge transparente interne de 12 %. On décale le slogan
+                une marge transparente interne de 12 %. On décale le texte
                 d'autant pour que son bord gauche tombe sous le "C" de CYCLE
                 (12 % de w-md = 3.36rem). */}
-            <FoundationSlogan className="mt-4 sm:text-base xl:ml-[3.36rem]" />
+            <span className={`mt-4 block text-base font-semibold sm:text-lg xl:ml-[3.36rem] ${GOLD_TEXT_ON_DARK_BG}`}>
+              Accompagner de jeunes talents vers les métiers de l&apos;IT
+            </span>
+            <FoundationSlogan className="mt-3 sm:text-base xl:ml-[3.36rem]" />
           </span>
         }
         titleClassName="mt-1"
