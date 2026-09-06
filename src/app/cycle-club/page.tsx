@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/site";
+import UniversBand from "./UniversBand";
 
 // CYCLE Club porte l'accent violet de son logo (dégradé pourpre sur noir) —
 // décliné ici en dégradé clair pour rester lisible sur la section sombre.
@@ -177,28 +178,7 @@ export default function CycleClubPage() {
         </div>
       </div>
 
-      {/* Bandeau d'univers du club, en défilement continu (une seule ligne),
-          borné à la largeur du corps de page. */}
-      <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-        <div className="club-marquee overflow-hidden mask-[linear-gradient(to_right,transparent,#000_6%,#000_94%,transparent)]">
-          <ul className="club-marquee-track flex w-max">
-            {[...CLUB_UNIVERS, ...CLUB_UNIVERS].map(({ label, icon }, index) => (
-              <li
-                key={index}
-                aria-hidden={index >= CLUB_UNIVERS.length}
-                className="flex w-36 shrink-0 flex-col items-center gap-3 sm:w-40"
-              >
-                <span className="text-[#d0b3f7] filter-[drop-shadow(0_0_10px_rgba(168,85,247,0.5))]">
-                  {icon}
-                </span>
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/80">
-                  {label}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <UniversBand items={CLUB_UNIVERS} />
     </section>
   );
 }
