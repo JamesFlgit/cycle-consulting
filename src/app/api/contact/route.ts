@@ -22,7 +22,7 @@ type ContactPayload = {
   message: string;
   /** Objet de la demande, ex. "Candidature : Contract Manager". Optionnel. */
   sujet?: string;
-  /** Espace émetteur (route l'e-mail vers la bonne boîte). Valeur connue : "foundation". */
+  /** Espace émetteur (route l'e-mail vers la bonne boîte). Valeurs connues : "foundation", "club". */
   espace?: string;
 };
 
@@ -104,9 +104,10 @@ function escapeHtml(value: string): string {
 
 /**
  * Sends the contact request to the company inbox over SMTP.
- * Configure the transport with env vars (see CONTACT-FORM-SETUP.md):
+ * Configure the transport with env vars (voir sandbox/cycle-consulting/suivi/formulaires.md) :
  *   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE (optional),
- *   CONTACT_TO (optional, defaults to entreprise.email), CONTACT_FROM (optional).
+ *   CONTACT_TO / FOUNDATION_CONTACT_TO / CLUB_CONTACT_TO (optional, defaults dans entreprise.ts),
+ *   CONTACT_FROM (optional).
  */
 async function sendContactEmail(p: ContactPayload) {
   const host = requiredEnv("SMTP_HOST");
@@ -116,13 +117,15 @@ async function sendContactEmail(p: ContactPayload) {
   // secure=true for port 465 (implicit TLS), false for 587/25 (STARTTLS).
   const secure = process.env.SMTP_SECURE ? process.env.SMTP_SECURE === "true" : port === 465;
 
-  // "foundation" route vers la boîte dédiée Cycle Foundation ; sinon boîte de contact générale.
+  // "foundation" / "club" routent vers leur boîte dédiée ; sinon boîte de contact générale.
   // On ne fait jamais confiance à une adresse fournie par le client (relais de spam) : seule une
   // clé connue ("espace") sélectionne une destination configurée côté serveur.
   const to =
     p.espace === "foundation"
       ? process.env.FOUNDATION_CONTACT_TO || entreprise.emailFoundation
-      : process.env.CONTACT_TO || entreprise.email;
+      : p.espace === "club"
+        ? process.env.CLUB_CONTACT_TO || entreprise.emailClub
+        : process.env.CONTACT_TO || entreprise.email;
   const from = process.env.CONTACT_FROM || user;
 
   const transporter = nodemailer.createTransport({ host, port, secure, auth: { user, pass } });

@@ -36,6 +36,14 @@ export default function ContactForm({
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Adresse de repli (lien mailto affiché si l'envoi échoue) — cohérente avec le routage serveur.
+  const fallbackEmail =
+    espace === "foundation"
+      ? entreprise.emailFoundation
+      : espace === "club"
+        ? entreprise.emailClub
+        : entreprise.email;
+
   function fetchChallenge() {
     fetch("/api/captcha")
       .then((res) => res.json())
@@ -230,10 +238,10 @@ export default function ContactForm({
         <p className="text-sm text-red-600">
           {errorMessage}{" "}
           <a
-            href={`mailto:${espace === "foundation" ? entreprise.emailFoundation : entreprise.email}`}
+            href={`mailto:${fallbackEmail}`}
             className="font-semibold underline"
           >
-            {espace === "foundation" ? entreprise.emailFoundation : entreprise.email}
+            {fallbackEmail}
           </a>
         </p>
       )}
