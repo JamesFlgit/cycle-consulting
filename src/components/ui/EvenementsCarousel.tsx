@@ -55,8 +55,7 @@ const SHADOW_NONE = "0 0 0 rgba(0,0,0,0)";
 const SHADOW_ACTIVE = "0 10px 22px -14px rgba(7,20,46,0.22)";
 const SHADOW_STACK = "0 8px 18px -14px rgba(7,20,46,0.16)";
 
-function transformForOffset(offset: number, g: (typeof GEOMETRY)[BreakpointKey]) {
-  const shift = -halfSpan(g); // centre the group around the track's midpoint
+function transformForOffset(offset: number, g: (typeof GEOMETRY)[BreakpointKey], shift: number) {
   // Cards already passed slide off to the left, hidden.
   if (offset < 0) {
     return { x: shift - g.cardWidth * 1.15, scale: 0.92, opacity: 0, rotateY: 0, zIndex: 0, boxShadow: SHADOW_NONE };
@@ -102,6 +101,14 @@ export default function EvenementsCarousel({ evenements }: { evenements: Eveneme
   const geometry = GEOMETRY[breakpoint];
   const length = evenements.length;
 
+  // Desktop : le groupe est centre dans la piste (place suffisante).
+  // Mobile / tablette : la carte active est calee a gauche avec une petite
+  // marge — le centrage faisait deborder le groupe (432 px) hors du viewport
+  // et rognait la carte active a gauche. La pile deborde a droite, clippee.
+  const isDesktop = breakpoint === "desktop";
+  const groupShift = isDesktop ? -halfSpan(geometry) : 16;
+  const cardLeft = isDesktop ? "50%" : "0px";
+
   useEffect(() => {
     const updateBreakpoint = () => setBreakpoint(getBreakpoint(window.innerWidth));
     updateBreakpoint();
@@ -142,14 +149,14 @@ export default function EvenementsCarousel({ evenements }: { evenements: Eveneme
       >
         {evenements.map((evenement, index) => {
           const offset = getOffset(index, activeIndex, length);
-          const { x, scale, opacity, rotateY, zIndex, boxShadow } = transformForOffset(offset, geometry);
+          const { x, scale, opacity, rotateY, zIndex, boxShadow } = transformForOffset(offset, geometry, groupShift);
           const isActive = offset === 0;
           return (
             <div
               key={evenement.slug}
               className="absolute top-1/2"
               style={{
-                left: "50%",
+                left: cardLeft,
                 transform: "translateY(-50%)",
                 zIndex,
                 pointerEvents: offset < 0 || offset > geometry.maxVisibleDepth ? "none" : "auto",

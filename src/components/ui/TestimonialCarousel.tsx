@@ -4,9 +4,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import TestimonialCard from "@/components/ui/TestimonialCard";
 import type { Temoignage } from "@/data/temoignages";
 
-const CARDS_PER_PAGE = 3;
-const AUTOPLAY_INTERVAL_MS = 5000;
+const AUTOPLAY_INTERVAL_MS = 5500;
 const SCROLL_SETTLE_DELAY_MS = 150;
+
+/** Nombre de cartes visibles = nombre de cartes qu'on avance à chaque pas.
+ * Doit refléter les classes `basis-*` de la piste (1 / 2 / 3). */
+function cardsPerView(width: number): number {
+  if (width < 640) return 1;
+  if (width < 1024) return 2;
+  return 3;
+}
 
 export default function TestimonialCarousel({ temoignages }: { temoignages: Temoignage[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -14,30 +21,48 @@ export default function TestimonialCarousel({ temoignages }: { temoignages: Temo
   const isProgrammaticScroll = useRef(false);
   const [activePage, setActivePage] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const pageCount = Math.ceil(temoignages.length / CARDS_PER_PAGE);
+  const [perView, setPerView] = useState(3);
 
-  const scrollToPage = useCallback((page: number) => {
-    const track = trackRef.current;
-    const target = cardRefs.current[page * CARDS_PER_PAGE];
-    if (!track || !target) return;
-    isProgrammaticScroll.current = true;
-    const targetLeft = target.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
-    track.scrollTo({ left: targetLeft, behavior: "smooth" });
+  const pageCount = Math.max(1, Math.ceil(temoignages.length / perView));
+  // Le nombre de pages change avec le breakpoint (resize) : on borne la page
+  // active a l'affichage plutot que via un setState dans un effet.
+  const currentPage = Math.min(activePage, pageCount - 1);
+
+  useEffect(() => {
+    const update = () => setPerView(cardsPerView(window.innerWidth));
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
+
+  const scrollToPage = useCallback(
+    (page: number) => {
+      const track = trackRef.current;
+      const target = cardRefs.current[page * perView];
+      if (!track || !target) return;
+      isProgrammaticScroll.current = true;
+      const targetLeft =
+        target.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      track.scrollTo({ left: targetLeft, behavior: reduce ? "auto" : "smooth" });
+    },
+    [perView],
+  );
 
   useEffect(() => {
     if (isPaused || pageCount <= 1) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => {
-      setActivePage((current) => (current + 1) % pageCount);
+      setActivePage((current) => (Math.min(current, pageCount - 1) + 1) % pageCount);
     }, AUTOPLAY_INTERVAL_MS);
     return () => clearInterval(id);
   }, [isPaused, pageCount]);
 
   useEffect(() => {
-    scrollToPage(activePage);
-  }, [activePage, scrollToPage]);
+    scrollToPage(currentPage);
+  }, [currentPage, scrollToPage]);
 
-  // Sync activePage after the user manually swipes/scrolls the track (only once the scroll settles).
+  // Après un swipe/scroll manuel, resynchronise `activePage` une fois le scroll stabilisé.
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -53,8 +78,8 @@ export default function TestimonialCarousel({ temoignages }: { temoignages: Temo
         const cardWidth = cardRefs.current[0]?.offsetWidth ?? track.clientWidth;
         const gap = 24;
         const nearestCardIndex = Math.round(track.scrollLeft / (cardWidth + gap));
-        const nearestPage = Math.min(Math.round(nearestCardIndex / CARDS_PER_PAGE), pageCount - 1);
-        setActivePage(nearestPage);
+        const nearestPage = Math.min(Math.round(nearestCardIndex / perView), pageCount - 1);
+        setActivePage(Math.max(0, nearestPage));
       }, SCROLL_SETTLE_DELAY_MS);
     };
 
@@ -63,7 +88,7 @@ export default function TestimonialCarousel({ temoignages }: { temoignages: Temo
       track.removeEventListener("scroll", handleScroll);
       clearTimeout(settleTimeout);
     };
-  }, [pageCount]);
+  }, [pageCount, perView]);
 
   return (
     <div
@@ -88,23 +113,22 @@ export default function TestimonialCarousel({ temoignages }: { temoignages: Temo
         ))}
       </div>
 
-      <div className="mt-6 flex justify-center gap-2">
-        {Array.from({ length: pageCount }, (_, page) => (
-          <button
-            key={page}
-            type="button"
-            aria-label={`Voir les témoignages ${page * CARDS_PER_PAGE + 1} à ${Math.min(
-              (page + 1) * CARDS_PER_PAGE,
-              temoignages.length,
-            )}`}
-            aria-current={page === activePage}
-            onClick={() => setActivePage(page)}
-            className={`h-2.5 w-2.5 rounded-full transition-colors ${
-              page === activePage ? "bg-anthracite" : "bg-border-subtle hover:bg-accent"
-            }`}
-          />
-        ))}
-      </div>
+      {pageCount > 1 && (
+        <div className="mt-6 flex justify-center gap-2">
+          {Array.from({ length: pageCount }, (_, page) => (
+            <button
+              key={page}
+              type="button"
+              aria-label={`Page de témoignages ${page + 1} sur ${pageCount}`}
+              aria-current={page === currentPage}
+              onClick={() => setActivePage(page)}
+              className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                page === currentPage ? "bg-anthracite" : "bg-border-subtle hover:bg-accent"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
