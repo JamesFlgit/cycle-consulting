@@ -7,6 +7,9 @@ import { entreprise } from "@/data/entreprise";
 import { EmailIcon } from "@/components/icons/card-icons";
 import { pageMetadata } from "@/lib/site";
 
+// Brand gradient, light variant — for the eyebrow on the dark hero.
+const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
@@ -18,9 +21,13 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
+        eyebrow={<span className={GRADIENT_LIGHT}>Contact</span>}
         title="Infos & Réservation"
         description="Une question, un projet, une demande de devis ? Notre équipe vous répond rapidement."
+        image="/images/contact/hero.webp"
+        imageAlt="Une consultante Cycle Consulting avec un casque répond au message d'un visiteur devant un panneau de contact lumineux"
+        imageSide="right"
+        tint="#1e2283"
       />
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

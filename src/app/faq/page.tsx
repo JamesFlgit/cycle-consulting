@@ -5,6 +5,9 @@ import Slogan from "@/components/ui/Slogan";
 import { faqThemes } from "@/data/faq";
 import { pageMetadata } from "@/lib/site";
 
+// Brand gradient, light variant — for the eyebrow on the dark hero.
+const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+
 export const metadata: Metadata = pageMetadata({
   title: "Questions fréquentes",
   description:
@@ -16,13 +19,20 @@ export default function FaqPage() {
   return (
     <>
       <PageHero
-        eyebrow="FAQ"
+        eyebrow={<span className={GRADIENT_LIGHT}>FAQ</span>}
         title="Questions fréquentes"
         description={
           <>
-            <Slogan variant="light" />. Les réponses aux questions que l&apos;on nous pose le plus souvent.
+            <Slogan variant="light" className="block" />
+            <span className="mt-2 block">
+              Les réponses aux questions que l&apos;on nous pose le plus souvent.
+            </span>
           </>
         }
+        image="/images/faq/hero.webp"
+        imageAlt="Une consultante Cycle Consulting répond aux questions d'un visiteur devant un panneau lumineux de questions fréquentes"
+        imageSide="right"
+        tint="#1e2082"
       />
 
       <section className="mx-auto max-w-4xl space-y-16 px-4 py-16 sm:px-6 lg:px-8">

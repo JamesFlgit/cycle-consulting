@@ -6,6 +6,9 @@ import { temoignages, hasCitation } from "@/data/temoignages";
 import { clientsLivreOr } from "@/data/partenaires";
 import { pageMetadata } from "@/lib/site";
 
+// Brand gradient, light variant — for the eyebrow on the dark hero.
+const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+
 export const metadata: Metadata = pageMetadata({
   title: "Livre d'or",
   description:
@@ -17,9 +20,14 @@ export default function LivreOrPage() {
   return (
     <>
       <PageHero
-        eyebrow="Livre d'or"
+        eyebrow={<span className={GRADIENT_LIGHT}>Livre d&apos;or</span>}
         title="La confiance de nos clients, notre meilleure référence"
+        titleClassName="mt-3 max-w-xl text-2xl font-bold text-balance text-white sm:text-3xl xl:text-4xl xl:leading-[1.15]"
         description="Ils nous font confiance pour accompagner la croissance et la transformation de leur entreprise."
+        image="/images/livre-or/hero.webp"
+        imageAlt="Deux consultants Cycle Consulting devant un livre d'or lumineux entouré d'avis clients cinq étoiles"
+        imageSide="right"
+        tint="#2b2875"
       />
 
       <section className="mx-auto max-w-7xl px-4 pt-16 sm:px-6 lg:px-8">
