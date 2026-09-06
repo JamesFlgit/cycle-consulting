@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import type { NavItemGroup } from "@/data/nav-sections";
+import type { NavItem, NavItemGroup } from "@/data/nav-sections";
+import NavFeatureCard from "@/components/layout/NavFeatureCard";
 
 export default function NavDropdown({
   label,
   href,
   groups,
+  featured = [],
   isOpen,
   onToggle,
   onOpen,
@@ -20,6 +22,8 @@ export default function NavDropdown({
   /** When set, the label itself links straight to this hub page — the chevron stays a separate toggle for the dropdown. */
   href?: string;
   groups: NavItemGroup[];
+  /** Items rendus en cartes visuelles dans une colonne à droite. */
+  featured?: NavItem[];
   isOpen: boolean;
   onToggle: () => void;
   onOpen: () => void;
@@ -101,31 +105,47 @@ export default function NavDropdown({
       </div>
 
       {isOpen && (
-        <div className="absolute left-0 top-full z-50 mt-2 w-72 rounded-xl border border-border-subtle bg-surface p-3 shadow-lg">
-          {groups.map((group) => {
-            const showTitle = showGroupTitles && Boolean(group.category);
-            return (
-              <div key={group.category || "_flat"} className={showTitle ? "py-2 first:pt-0 last:pb-0" : undefined}>
-                {showTitle && (
-                  <p className="px-3 text-xs font-semibold uppercase tracking-wide text-anthracite-mist">
-                    {group.category}
-                  </p>
-                )}
-                <div className={showTitle ? "mt-1" : undefined}>
-                  {group.items.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={onClose}
-                      className="block rounded-md px-3 py-2 text-sm text-anthracite-soft transition-colors hover:bg-surface-alt hover:text-anthracite"
-                    >
-                      {item.navLabel}
-                    </Link>
-                  ))}
+        <div
+          className={`absolute top-full z-50 mt-2 rounded-xl border border-border-subtle bg-surface p-3 shadow-lg ${
+            featured.length > 0
+              ? "right-0 flex w-160 gap-4 min-[1180px]:right-auto min-[1180px]:left-0"
+              : "left-0 w-72"
+          }`}
+        >
+          <div className={featured.length > 0 ? "flex-1" : undefined}>
+            {groups.map((group) => {
+              const showTitle = showGroupTitles && Boolean(group.category);
+              return (
+                <div key={group.category || "_flat"} className={showTitle ? "py-2 first:pt-0 last:pb-0" : undefined}>
+                  {showTitle && (
+                    <p className="px-3 text-xs font-semibold uppercase tracking-wide text-anthracite-mist">
+                      {group.category}
+                    </p>
+                  )}
+                  <div className={showTitle ? "mt-1" : undefined}>
+                    {group.items.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={onClose}
+                        className="block rounded-md px-3 py-2 text-sm text-anthracite-soft transition-colors hover:bg-surface-alt hover:text-anthracite"
+                      >
+                        {item.navLabel}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+
+          {featured.length > 0 && (
+            <div className="flex w-80 shrink-0 items-stretch gap-3 border-l border-border-subtle pl-4">
+              {featured.map((item) => (
+                <NavFeatureCard key={item.href} item={item} layout="tile" onClick={onClose} />
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

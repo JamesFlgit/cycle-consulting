@@ -137,7 +137,7 @@ const CLUB_UNIVERS: { label: string; icon: ReactNode }[] = [
 // détouré fourni par Eric) a un fond transparent et s'y fond sans halo.
 export default function CycleClubPage() {
   return (
-    <section className="flex min-h-[calc(100vh-4.5rem)] flex-col justify-center gap-16 overflow-hidden bg-[#0c0b13] py-16">
+    <section className="flex min-h-[calc(100vh-4.5rem)] flex-col justify-center gap-10 overflow-hidden bg-[#0c0b13] py-10 sm:gap-16 sm:py-16">
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <h1 className="sr-only">Cycle Club</h1>
 
@@ -147,10 +147,10 @@ export default function CycleClubPage() {
           width={1500}
           height={905}
           priority
-          className="mx-auto h-auto w-64 sm:w-80 lg:w-96"
+          className="mx-auto h-auto w-52 sm:w-80 lg:w-96"
         />
 
-        <p className="mt-8 text-lg font-semibold sm:text-xl">
+        <p className="mt-6 text-lg font-semibold sm:mt-8 sm:text-xl">
           <span className={VIOLET_ON_DARK}>Passion</span>
           <span className={`mx-2 font-bold ${VIOLET_ON_DARK}`}>&gt;</span>
           <span className={VIOLET_ON_DARK}>Relation</span>
@@ -158,11 +158,11 @@ export default function CycleClubPage() {
           <span className={VIOLET_ON_DARK}>Émotion</span>
         </p>
 
-        <p className="mx-auto mt-16 max-w-xl text-sm leading-relaxed text-white/75 sm:mt-20 sm:text-base">
+        <p className="mx-auto mt-10 max-w-xl text-sm leading-relaxed text-white/75 sm:mt-20 sm:text-base">
           Cet espace est réservé aux membres du club CYCLE.
         </p>
 
-        <div className="mt-8 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
+        <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-4">
           <Link
             href="/cycle-club/connexion"
             className="inline-block rounded-md bg-gradient-to-r from-[#a855f7] via-[#8b3bd8] to-[#6d28d9] px-6 py-3 text-center text-sm font-bold text-white transition hover:brightness-110"

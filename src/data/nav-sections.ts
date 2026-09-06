@@ -3,6 +3,25 @@ import { entrepriseNavItems } from "@/data/entreprise-nav";
 import { ressourcesNavItems } from "@/data/ressources-nav";
 import { casClients } from "@/data/cas-clients";
 
+/** Turns a nav item into a visual card (logo sur fond sombre) au lieu d'un simple lien texte. */
+export type NavCard = {
+  /** Logo détouré (fond transparent ou fond noir). */
+  logo: string;
+  /** Dimensions intrinsèques du logo, pour next/image. */
+  logoWidth: number;
+  logoHeight: number;
+  /** Facteur d'échelle du logo, pour équilibrer visuellement les marques entre elles. */
+  logoScale?: number;
+  /** Couleur de fond de la carte. */
+  background: string;
+  /** Mots-clés du slogan — un par ligne en desktop, séparés par un chevron. */
+  tagline: string[];
+  /** Classe Tailwind pour la couleur de l'accroche. */
+  accentClassName?: string;
+  /** Classe additionnelle sur le logo (ex. mix-blend-screen). */
+  logoClassName?: string;
+};
+
 export type NavItem = {
   slug: string;
   href: string;
@@ -11,6 +30,8 @@ export type NavItem = {
   visible: boolean;
   /** Set to false to keep an item out of the main nav while still showing it elsewhere (e.g. footer). Defaults to true. */
   showInNav?: boolean;
+  /** Quand défini, l'item est rendu en carte visuelle dans le méga-menu au lieu d'un lien texte. */
+  card?: NavCard;
 };
 
 export type NavSection = {
@@ -24,7 +45,15 @@ export type NavItemGroup = { category: string; items: NavItem[] };
 export type RenderableSection =
   | { key: string; label: string; mode: "hidden" }
   | { key: string; label: string; mode: "link"; href: string }
-  | { key: string; label: string; mode: "dropdown"; groups: NavItemGroup[]; hubHref?: string };
+  | {
+      key: string;
+      label: string;
+      mode: "dropdown";
+      groups: NavItemGroup[];
+      hubHref?: string;
+      /** Items marqués `card` — affichés en colonne de cartes à droite du méga-menu. */
+      featured: NavItem[];
+    };
 
 const navSections: NavSection[] = [
   { key: "expertises", label: "Expertises", items: poles },
@@ -73,9 +102,12 @@ export function getRenderableSections(): RenderableSection[] {
       return { key: section.key, label: section.label, mode: "link", href: visibleItems[0].href };
     }
 
-    const distinctCategories = new Set(visibleItems.map((item) => item.category).filter(Boolean));
+    const featured = visibleItems.filter((item) => item.card);
+    const listItems = visibleItems.filter((item) => !item.card);
+
+    const distinctCategories = new Set(listItems.map((item) => item.category).filter(Boolean));
     const byCategory = new Map<string, NavItem[]>();
-    for (const item of visibleItems) {
+    for (const item of listItems) {
       const key = distinctCategories.size >= 2 ? item.category ?? "" : "";
       if (!byCategory.has(key)) byCategory.set(key, []);
       byCategory.get(key)!.push(item);
@@ -87,6 +119,7 @@ export function getRenderableSections(): RenderableSection[] {
       mode: "dropdown",
       groups: [...byCategory.entries()].map(([category, items]) => ({ category, items })),
       hubHref: dropdownHubHref,
+      featured,
     };
   });
 }

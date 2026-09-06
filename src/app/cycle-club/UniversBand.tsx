@@ -30,7 +30,7 @@ export default function UniversBand({ items }: { items: Item[] }) {
   return (
     <div className="mx-auto w-full max-w-sm px-4">
       <div
-        className="border-t border-white/10 pt-8"
+        className="border-t border-white/10 pt-6 sm:pt-8"
         onMouseEnter={() => (paused.current = true)}
         onMouseLeave={() => (paused.current = false)}
       >
@@ -38,17 +38,17 @@ export default function UniversBand({ items }: { items: Item[] }) {
           Les univers du club
         </p>
 
-        <div className="relative mt-8 h-28 overflow-hidden">
+        <div className="relative mt-5 h-20 overflow-hidden sm:mt-8 sm:h-28">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
-              className="absolute inset-0 flex flex-col items-center justify-center gap-3.5"
+              className="absolute inset-0 flex flex-col items-center justify-center gap-2 sm:gap-3.5"
               initial={{ opacity: 0, x: slide }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -slide }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="text-[#c9a2f5] filter-[drop-shadow(0_0_18px_rgba(168,85,247,0.45))] [&_svg]:h-14 [&_svg]:w-14">
+              <span className="text-[#c9a2f5] filter-[drop-shadow(0_0_18px_rgba(168,85,247,0.45))] [&_svg]:h-11 [&_svg]:w-11 sm:[&_svg]:h-14 sm:[&_svg]:w-14">
                 {icon}
               </span>
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-white/80">{label}</span>

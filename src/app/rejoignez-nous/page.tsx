@@ -8,6 +8,9 @@ import { pageMetadata } from "@/lib/site";
 import { getEvenementsAVenir } from "@/data/evenements";
 import { getOffresEmploiVisibles } from "@/data/offres-emploi";
 
+// Brand gradient, light variant — for the eyebrow on the dark hero.
+const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+
 export const metadata: Metadata = pageMetadata({
   title: "Rejoignez-nous",
   description:
@@ -23,9 +26,14 @@ export default function RejoignezNousPage() {
   return (
     <>
       <PageHero
-        eyebrow="Rejoignez-nous"
+        eyebrow={<span className={GRADIENT_LIGHT}>Rejoignez-nous</span>}
         title="Consultants, techniciens, experts IT : construisons la suite ensemble"
+        titleClassName="mt-3 text-2xl font-bold text-balance text-white sm:text-3xl xl:text-[2rem] xl:leading-[1.2]"
         description="Cycle Consulting recrute en permanence des profils IT pour renforcer ses équipes et ses missions chez ses clients, quel que soit votre niveau d'expérience."
+        image="/images/rejoignez-nous/hero.webp"
+        imageAlt="Un consultant Cycle Consulting et une nouvelle recrue se serrent la main devant un tableau de profils lumineux"
+        imageSide="right"
+        tint="#3133a0"
       />
 
       <section id="candidature" className="mx-auto max-w-4xl px-4 pt-16 pb-12 sm:px-6 lg:px-8">

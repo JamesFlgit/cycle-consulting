@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { getRenderableSections } from "@/data/nav-sections";
 import NavLogoMark from "@/components/layout/NavLogoMark";
 import NavDropdown from "@/components/layout/NavDropdown";
+import NavFeatureCard from "@/components/layout/NavFeatureCard";
 import MarketTicker from "@/components/ui/MarketTicker";
 
 export default function Header() {
@@ -121,6 +122,7 @@ export default function Header() {
                 label={section.label}
                 href={section.hubHref}
                 groups={section.groups}
+                featured={section.featured}
                 isOpen={openDesktopKey === section.key}
                 onToggle={() => setOpenDesktopKey((current) => (current === section.key ? null : section.key))}
                 onOpen={() => setOpenDesktopKey(section.key)}
@@ -278,6 +280,13 @@ export default function Header() {
                           </div>
                         );
                       })}
+                      {section.featured.length > 0 && (
+                        <div className="flex flex-col gap-2 px-3 pt-2 pb-1">
+                          {section.featured.map((item) => (
+                            <NavFeatureCard key={item.href} item={item} layout="wide" onClick={closeAll} />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </li>

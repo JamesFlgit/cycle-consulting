@@ -55,6 +55,10 @@ export default function EvenementsPage() {
         eyebrow={<span className={GRADIENT_LIGHT}>L&apos;entreprise</span>}
         title="Salons & événements"
         description="Cycle Consulting va à la rencontre de ses clients, partenaires et futurs talents partout en France. Retrouvez les prochains salons et évènements où l'équipe est présente."
+        image="/images/evenements/hero.webp"
+        imageAlt="Deux membres de l'équipe Cycle Consulting accueillent un visiteur sur un stand de salon, cartes lumineuses en fond"
+        imageSide="right"
+        tint="#241f7a"
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">

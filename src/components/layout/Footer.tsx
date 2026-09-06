@@ -4,8 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { poles } from "@/data/poles";
 import { entrepriseNavItems } from "@/data/entreprise-nav";
+import type { NavItem } from "@/data/nav-sections";
 import { entreprise } from "@/data/entreprise";
 import FooterLogoReveal from "@/components/layout/FooterLogoReveal";
+import NavFeatureCard from "@/components/layout/NavFeatureCard";
 import ManageConsentButton from "@/components/analytics/ManageConsentButton";
 import Slogan from "@/components/ui/Slogan";
 import { EmailIcon, GlobeIcon, MapPinIcon } from "@/components/icons/card-icons";
@@ -15,6 +17,24 @@ const GRADIENT_TEXT_BRAND = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#
 // CYCLE Foundation has its own or/noir identity — no blue anywhere on its page, footer included.
 const GRADIENT_TEXT_GOLD = "bg-gradient-to-r from-[#f8e3a3] via-[#d4af37] to-[#9c7a2c] bg-clip-text text-transparent";
 
+// Carte Cycle Consulting (marque mère) — présente dans la rangée de cartes du
+// footer sur tout le site : repère de navigation constant vers l'accueil.
+const cycleConsultingCard: NavItem = {
+  slug: "accueil",
+  href: "/",
+  navLabel: "Cycle Consulting",
+  visible: true,
+  card: {
+    // Lockup complet (marque + "CYCLE CONSULTING") en dégradé clair pour fond sombre.
+    logo: "/cycle-consulting-logo-light.svg",
+    logoWidth: 1596,
+    logoHeight: 1084,
+    background: "#07142e",
+    tagline: entreprise.slogan.split(", "),
+    accentClassName: "text-white/70",
+  },
+};
+
 export default function Footer() {
   const pathname = usePathname();
   const isFondation = pathname?.startsWith("/cycle-fondation") ?? false;
@@ -23,6 +43,13 @@ export default function Footer() {
   const isClub = pathname?.startsWith("/cycle-club") ?? false;
   const isDark = isFondation || isClub;
   const GRADIENT_TEXT = isFondation ? GRADIENT_TEXT_GOLD : GRADIENT_TEXT_BRAND;
+
+  // Rangée de cartes de marque du footer, sur tout le site : Cycle Consulting
+  // (retour accueil) puis Cycle Foundation et Cycle Club.
+  const brandCards: NavItem[] = [
+    cycleConsultingCard,
+    ...entrepriseNavItems.filter((item) => item.visible && item.card),
+  ];
 
   return (
     <footer
@@ -67,7 +94,7 @@ export default function Footer() {
           <h3 className={`text-sm font-semibold uppercase tracking-wide ${GRADIENT_TEXT}`}>Entreprise</h3>
           <ul className="mt-4 space-y-2">
             {entrepriseNavItems
-              .filter((item) => item.visible)
+              .filter((item) => item.visible && !item.card)
               .map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="text-sm text-white transition-colors hover:underline">
@@ -102,6 +129,14 @@ export default function Footer() {
               <GlobeIcon className="h-4 w-4 shrink-0" />
               <p className="whitespace-nowrap">{entreprise.siteWeb}</p>
             </div>
+          </div>
+        </div>
+
+        <div className="col-span-full mt-2 border-t border-white/10 pt-8">
+          <div className="flex flex-col gap-3 lg:flex-row">
+            {brandCards.map((item) => (
+              <NavFeatureCard key={item.href} item={item} layout="wide" className="lg:flex-1" />
+            ))}
           </div>
         </div>
       </div>

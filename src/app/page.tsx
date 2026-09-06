@@ -37,6 +37,25 @@ const GRADIENT_DARK = "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff
 // that need more contrast against a light background.
 const GRADIENT_DARK_DEEP = "bg-gradient-to-r from-[#af0cad] via-[#0d1e9b] to-[#0890b3] bg-clip-text text-transparent";
 
+// Trois repères pour situer Cycle Consulting, en regard du bloc "écosystème"
+// qui suit les chiffres sur la home.
+const consultingPiliers = [
+  {
+    titre: "Cinq pôles d'expertise",
+    texte:
+      "Business & Stratégie, Service Managé, Ingénierie & IT Support, Centre Logistique et Formations.",
+  },
+  {
+    titre: "Un modèle humain",
+    texte:
+      "Révéler les talents, revaloriser les profils atypiques et accompagner chaque parcours sur la durée.",
+  },
+  {
+    titre: "Une vision internationale",
+    texte: "Un ancrage en France et en Europe, des missions en Amérique du Nord et en Afrique.",
+  },
+];
+
 const satisfaction: (typeof chiffresCles)[number] = {
   valeur: "98",
   suffix: "%",
@@ -143,6 +162,130 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Juste après les chiffres : présentation du groupe. Cycle Consulting
+          (l'ESN) occupe le bloc principal ; Cycle Foundation (l'engagement
+          éducatif) suit en bloc secondaire, avec son identité or/noir. Cycle
+          Club, plus confidentiel, n'y figure pas. */}
+      <section className="bg-surface-alt py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeading
+              eyebrow={<span className={GRADIENT_DARK_DEEP}>Notre écosystème</span>}
+              title={
+                <>
+                  Une entreprise, <span className={`whitespace-nowrap ${GRADIENT_DARK}`}>un engagement</span>
+                </>
+              }
+              description="La performance durable repose avant tout sur les femmes et les hommes qui la rendent possible. Cette conviction fonde l'action de Cycle Consulting comme celle de Cycle Foundation."
+              center
+            />
+          </Reveal>
+
+          {/* Bloc principal : Cycle Consulting */}
+          <Reveal className="mt-12">
+            <div className="rounded-2xl border border-border-subtle bg-surface p-6 sm:p-10">
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+                <div>
+                  <div className="flex h-16 items-center justify-center sm:h-24 sm:justify-start">
+                    <Image
+                      src="/cycle-consulting-logo-wordmark.svg"
+                      alt="Cycle Consulting"
+                      width={241}
+                      height={164}
+                      className="h-full w-auto object-contain"
+                    />
+                  </div>
+                  <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-anthracite-mist">
+                    L&apos;entreprise
+                  </p>
+                  <div className="mt-3 space-y-4 text-sm leading-relaxed text-anthracite-soft">
+                    <p>
+                      ESN et société de conseil, Cycle Consulting est née d&apos;une conviction : l&apos;IT
+                      doit avant tout être un levier de performance, de simplicité et de confiance. Nous
+                      accompagnons nos clients dans la transformation, le pilotage et l&apos;exploitation de
+                      leurs environnements numériques.
+                    </p>
+                    <p>
+                      Notre modèle place l&apos;humain au cœur de la réussite des missions : des consultants
+                      reconnus et responsabilisés, une relation de proximité avec nos clients, et une vision
+                      résolument internationale, de la France à l&apos;Amérique du Nord et l&apos;Afrique.
+                    </p>
+                  </div>
+                  <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                    <Link
+                      href="/a-propos"
+                      className="text-sm font-semibold text-anthracite underline-offset-4 hover:underline"
+                    >
+                      Découvrir l&apos;entreprise →
+                    </Link>
+                    <Link
+                      href="#offres"
+                      className="text-sm font-semibold text-anthracite underline-offset-4 hover:underline"
+                    >
+                      Nos pôles d&apos;expertise →
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-4">
+                  {consultingPiliers.map((pilier) => (
+                    <div
+                      key={pilier.titre}
+                      className="rounded-xl border border-border-subtle bg-surface-alt p-5"
+                    >
+                      <p className={`text-sm font-bold ${GRADIENT_DARK}`}>{pilier.titre}</p>
+                      <p className="mt-1.5 text-sm leading-relaxed text-anthracite-mist">{pilier.texte}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Bloc secondaire : Cycle Foundation — identité or/noir */}
+          <Reveal className="mt-6" delay={0.1}>
+            <div
+              className="rounded-2xl border border-[#d4af37]/30 p-6 sm:p-10"
+              style={{ backgroundColor: "#050505" }}
+            >
+              <div className="grid grid-cols-1 items-center gap-8 sm:grid-cols-[16rem_1fr] sm:gap-10 lg:gap-14">
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/images/cycle-fondation/logo.webp"
+                    alt="Cycle Foundation"
+                    width={1600}
+                    height={1087}
+                    className="h-36 w-auto object-contain mix-blend-screen sm:h-40"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a94e]">
+                    L&apos;engagement
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-[#ecd9a0]">
+                    Cycle Foundation prolonge cet engagement au-delà de l&apos;entreprise : elle accompagne
+                    de jeunes talents vers les métiers de l&apos;IT et développe son action à
+                    l&apos;international, notamment en République démocratique du Congo, à Abidjan et au
+                    Sénégal.
+                  </p>
+                  <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2">
+                    <span className="text-xs font-semibold tracking-wide text-[#c9a94e]">
+                      Apprendre &rsaquo; Comprendre &rsaquo; Transmettre
+                    </span>
+                    <Link
+                      href="/cycle-fondation"
+                      className="text-sm font-semibold text-[#ecd9a0] underline-offset-4 hover:underline"
+                    >
+                      Découvrir Cycle Foundation →
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
