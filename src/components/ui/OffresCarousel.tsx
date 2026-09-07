@@ -19,9 +19,9 @@ const GEOMETRY: Record<
     edgeGutter: number;
   }
 > = {
-  mobile: { cardWidth: 280, activeScale: 1.1, height: 520, offset1: 190, offset2: 300, maxVisibleDepth: 1, edgeGutter: 4 },
-  tablet: { cardWidth: 280, activeScale: 1.22, height: 520, offset1: 240, offset2: 380, maxVisibleDepth: 2, edgeGutter: 0 },
-  desktop: { cardWidth: 280, activeScale: 1.22, height: 520, offset1: 250, offset2: 400, maxVisibleDepth: 2, edgeGutter: 0 },
+  mobile: { cardWidth: 280, activeScale: 1.1, height: 460, offset1: 190, offset2: 300, maxVisibleDepth: 1, edgeGutter: 4 },
+  tablet: { cardWidth: 280, activeScale: 1.22, height: 490, offset1: 240, offset2: 380, maxVisibleDepth: 2, edgeGutter: 0 },
+  desktop: { cardWidth: 280, activeScale: 1.22, height: 490, offset1: 250, offset2: 400, maxVisibleDepth: 2, edgeGutter: 0 },
 };
 
 function getBreakpoint(width: number): BreakpointKey {

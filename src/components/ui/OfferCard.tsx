@@ -25,7 +25,10 @@ export default function OfferCard({ pole, active = true }: { pole: Pole; active?
         active ? "bg-gradient-to-r from-[#fa11f7] via-[#132bdd] to-[#0bceff]" : "bg-border-subtle"
       }`}
     >
-      <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(0.75rem-1px)] bg-surface transition-shadow hover:shadow-md">
+      {/* Hauteur plancher commune : les cartes plus courtes (accroche brève, pas
+          de mention « À partir de ») gardent le même gabarit que la carte
+          Formations, l'espace libre se plaçant entre le texte et le bouton. */}
+      <div className="relative flex h-full min-h-98 flex-col overflow-hidden rounded-[calc(0.75rem-1px)] bg-surface transition-shadow hover:shadow-md">
         <div className="relative aspect-video">
           <Image
             src={pole.image}
@@ -49,14 +52,24 @@ export default function OfferCard({ pole, active = true }: { pole: Pole; active?
         </div>
         <div className="flex flex-1 flex-col p-6">
           <p className="flex-1 text-xs leading-relaxed text-anthracite-mist">{pole.teaser.accroche}</p>
-          <div className="mt-6 border-t border-border-subtle pt-4">
-            {/* Le bloc « À partir de » n'est affiché que pour les Formations ;
-                ailleurs il reste dans le flux (invisible) pour garder une hauteur
-                de carte identique. */}
-            <div className={`mb-4 ${pole.slug === "formations" ? "" : "invisible"}`} aria-hidden={pole.slug !== "formations"}>
-              <p className="text-[11px] uppercase tracking-wide text-anthracite-mist">À partir de</p>
-              <p className="text-xs font-semibold text-anthracite">{pole.teaser.apartirde}</p>
-            </div>
+          <div
+            className={`mt-4 border-t pt-3 ${
+              pole.slug === "formations" ? "border-border-subtle" : "border-transparent"
+            }`}
+          >
+            {/* Mention « À partir de » : texte visible uniquement sur la carte
+                Formations. Ailleurs, le paragraphe (et le filet gris, passé en
+                transparent) restent dans le flux mais invisibles, pour garder
+                exactement la même hauteur de carte. */}
+            <p
+              className={`mb-2 text-[10px] uppercase tracking-wide text-anthracite-mist ${
+                pole.slug === "formations" ? "" : "invisible"
+              }`}
+              aria-hidden={pole.slug !== "formations"}
+            >
+              À partir de{" "}
+              <span className="font-semibold normal-case text-anthracite">{pole.teaser.apartirde}</span>
+            </p>
             <Link
               href={pole.href}
               tabIndex={active ? 0 : -1}
