@@ -366,7 +366,7 @@ export default function Home() {
           <Reveal>
             <SectionHeading
               title="Ils nous ont fait confiance"
-              description="Retours de nos clients présentés par secteur d'activité, dans le respect de la confidentialité de nos engagements : immobilier, restauration, génie civil, santé et bien d'autres."
+              description="Retours de nos clients présentés par secteur d'activité, dans le respect de la confidentialité de nos engagements : immobilier, QSR, génie civil, santé et bien d'autres."
               center
             />
           </Reveal>

@@ -15,14 +15,8 @@ export function hasCitation(temoignage: Temoignage): boolean {
 export const temoignages: Temoignage[] = [
   {
     ref: "Burger King",
-    secteur: "Restauration",
+    secteur: "QSR",
     citation: "Nous avons bénéficié des services de Cycle et nous sommes ravis de cette collaboration.",
-  },
-  {
-    ref: "Afro Délice",
-    secteur: "Restauration",
-    citation:
-      "Nous avons travaillé avec Cycle pour la consolidation de notre site suite à une recommandation, c'était à la hauteur de la réputation ! On adore.",
   },
   {
     ref: "DS Immo Consulting",
@@ -39,6 +33,12 @@ export const temoignages: Temoignage[] = [
     ref: "HHMA",
     secteur: "Architecture & construction",
     citation: "Cycle est devenu un partenaire incontournable pour nos besoins IT. Nous recommandons vivement.",
+  },
+  {
+    ref: "Afro Délice",
+    secteur: "QSR",
+    citation:
+      "Nous avons travaillé avec Cycle pour la consolidation de notre site suite à une recommandation, c'était à la hauteur de la réputation ! On adore.",
   },
   {
     ref: "Equans",
