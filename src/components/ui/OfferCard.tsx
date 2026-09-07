@@ -50,7 +50,10 @@ export default function OfferCard({ pole, active = true }: { pole: Pole; active?
         <div className="flex flex-1 flex-col p-6">
           <p className="flex-1 text-xs leading-relaxed text-anthracite-mist">{pole.teaser.accroche}</p>
           <div className="mt-6 border-t border-border-subtle pt-4">
-            <div className="mb-4">
+            {/* Le bloc « À partir de » n'est affiché que pour les Formations ;
+                ailleurs il reste dans le flux (invisible) pour garder une hauteur
+                de carte identique. */}
+            <div className={`mb-4 ${pole.slug === "formations" ? "" : "invisible"}`} aria-hidden={pole.slug !== "formations"}>
               <p className="text-[11px] uppercase tracking-wide text-anthracite-mist">À partir de</p>
               <p className="text-xs font-semibold text-anthracite">{pole.teaser.apartirde}</p>
             </div>
