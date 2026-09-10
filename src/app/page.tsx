@@ -17,7 +17,7 @@ import HeroSchemaVideo from "@/components/ui/HeroSchemaVideo";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import { poles } from "@/data/poles";
 import { partenaires } from "@/data/partenaires";
-import { temoignages, hasCitation } from "@/data/temoignages";
+import { temoignages, isDisplayable } from "@/data/temoignages";
 import { entreprise } from "@/data/entreprise";
 import { chiffresCles } from "@/data/chiffres-cles";
 import { articles } from "@/data/articles";
@@ -366,13 +366,13 @@ export default function Home() {
           <Reveal>
             <SectionHeading
               title="Ils nous ont fait confiance"
-              description="Retours de nos clients présentés par secteur d'activité, dans le respect de la confidentialité de nos engagements : immobilier, QSR, génie civil, santé et bien d'autres."
+              description="Retours de nos clients présentés par secteur d'activité, dans le respect de la confidentialité de nos engagements : immobilier, QSR, génie civil, santé et bien d'autres. Les logos affichés le sont avec l'accord des clients concernés."
               center
             />
           </Reveal>
         </div>
         <div className="mt-10">
-          <TestimonialCarousel temoignages={temoignages.filter(hasCitation)} />
+          <TestimonialCarousel temoignages={temoignages.filter(isDisplayable)} />
         </div>
 
         <div className="mt-10 text-center">

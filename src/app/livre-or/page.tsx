@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/ui/PageHero";
 import TestimonialCard from "@/components/ui/TestimonialCard";
-import PartnerLogo from "@/components/ui/PartnerLogo";
-import { temoignages, hasCitation } from "@/data/temoignages";
-import { clientsLivreOr } from "@/data/partenaires";
+import { temoignages, isDisplayable, type Temoignage } from "@/data/temoignages";
 import { pageMetadata } from "@/lib/site";
 
 // Brand gradient, light variant — for the eyebrow on the dark hero.
 const GRADIENT_LIGHT = "bg-gradient-to-r from-[#f77bf0] via-[#6f8cf5] to-[#7ef0ff] bg-clip-text text-transparent";
+
+// Bandeau de logos : on le derive des temoignages pour qu'il ne puisse afficher
+// que des clients ayant donne leur accord (seuls ceux-la portent un `logo`).
+const clientsAutorises = temoignages.filter(
+  (t): t is Temoignage & { logo: string } => Boolean(t.logo),
+);
 
 export const metadata: Metadata = pageMetadata({
   title: "Livre d'or",
@@ -35,16 +40,28 @@ export default function LivreOrPage() {
         <p className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-anthracite-mist">
           Ils nous font confiance
         </p>
-        <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
-          {clientsLivreOr.map((c) => (
-            <PartnerLogo key={c.nom} nom={c.nom} />
+        <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
+          {clientsAutorises.map((c) => (
+            <div
+              key={c.ref}
+              className="flex h-24 items-center justify-center rounded-xl border border-border-subtle bg-surface p-4 shadow-sm"
+            >
+              <Image
+                src={c.logo}
+                alt={`Logo ${c.ref}`}
+                width={240}
+                height={96}
+                sizes="(min-width: 640px) 240px, 90vw"
+                className="h-full w-full object-contain"
+              />
+            </div>
           ))}
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {temoignages.filter(hasCitation).map((t) => (
+          {temoignages.filter(isDisplayable).map((t) => (
             <TestimonialCard key={t.ref} temoignage={t} />
           ))}
         </div>

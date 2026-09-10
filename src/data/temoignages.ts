@@ -1,15 +1,25 @@
 export type Temoignage = {
-  /** Référence interne (jamais affichée) : les noms et logos clients sont
-   *  soumis à autorisation, on n'expose que le secteur d'activité + la citation. */
+  /** Référence interne. Les noms clients sont soumis à autorisation : elle ne
+   *  sort du fichier que pour l'attribut alt du logo, donc uniquement pour les
+   *  clients qui ont donné leur accord d'affichage (cf. `logo`). */
   ref: string;
-  /** Secteur d'activité affiché à la place du nom / logo du client. */
+  /** Secteur d'activité affiché à la place du nom du client. */
   secteur: string;
   citation: string;
+  /** Logo client, réservé aux SEULS clients ayant donné leur accord d'affichage.
+   *  Sans accord, pas de logo : la carte reste identifiée par son seul secteur. */
+  logo?: string;
 };
 
 /** Un avis reellement redige (pas vide, pas un marqueur "[A COMPLETER ...]"). */
 export function hasCitation(temoignage: Temoignage): boolean {
   return Boolean(temoignage.citation.trim()) && !temoignage.citation.includes("À COMPLÉTER");
+}
+
+/** Carte affichable : soit un avis rédigé, soit, à défaut, un logo autorisé
+ *  (carte logo seul, pour un client qui accepte d'être cité sans témoignage). */
+export function isDisplayable(temoignage: Temoignage): boolean {
+  return hasCitation(temoignage) || Boolean(temoignage.logo);
 }
 
 export const temoignages: Temoignage[] = [
@@ -23,11 +33,19 @@ export const temoignages: Temoignage[] = [
     secteur: "Immobilier",
     citation:
       "Nous avons aimé travailler avec Cycle Consulting. Une équipe disponible, un service de proximité impeccable qui comprend nos enjeux et nos besoins.",
+    logo: "/logos-clients/ds-immo-consulting.webp",
   },
   {
     ref: "Lemon Juice",
     secteur: "Communication & évènementiel",
     citation: "Un soutien sans faille. Un grand merci à Cycle pour leur professionnalisme.",
+  },
+  {
+    // Accord d'affichage donné sans témoignage écrit : carte logo seul.
+    ref: "Prix des Arts & de la Culture",
+    secteur: "Culture & évènementiel",
+    citation: "",
+    logo: "/logos-clients/prix-des-arts-culture.webp",
   },
   {
     ref: "HHMA",
@@ -72,5 +90,6 @@ export const temoignages: Temoignage[] = [
     secteur: "Santé",
     citation:
       "Cycle nous a aidés à consolider un outil interne de coordination de service et de formation de nos équipes médicales. Nous avons considérablement augmenté notre productivité depuis cette mise en place. Encore merci !",
+    logo: "/logos-clients/merveilles-alice.webp",
   },
 ];
