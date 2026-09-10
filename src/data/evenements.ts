@@ -11,6 +11,10 @@
 //   - Dîner Arts & Culture → visuel officiel (galerie des Glaces)
 //   - Salon Lille         → photo de La Cité des Échanges (citedesechanges.com)
 //   - Cycle Christmas     → visuel de marque fourni par Eric
+//   - 20 ans de Positiv   → affiche officielle de l'évènement (positiv.ngo, visuel
+//     « Save the date » vertical), recadrée sur le bloc « La Bellevilloise / 24 septembre »
+//     en 9/10 — seul visuel non 16/9 : ce format garde le texte lisible dans la
+//     vignette de /evenements ; `imagePosition` cale la bande du carrousel en haut.
 // Tous les évènements ont désormais un visuel ; le cadre dégradé de marque (avec
 // le symbole Cycle blanc) ne sert plus que de repli défensif. Usage "présence
 // salon" des visuels d'organisateurs / de lieux à faire valider par Eric côté droits.
@@ -47,6 +51,25 @@ export type Evenement = {
 };
 
 export const evenements: Evenement[] = [
+  {
+    slug: "positiv-20-ans-paris-2026",
+    nom: "20 ans de Positiv",
+    dateISO: "2026-09-24",
+    dateLabel: "24 septembre 2026",
+    organisateur: "Positiv",
+    ville: "Paris",
+    lieu: "La Bellevilloise",
+    adresse: "19 rue Boyer, 75020 Paris",
+    siteUrl: "https://positiv.ngo/a-lorigine-positiv-celebre-ses-20-ans/",
+    presta: "Présence",
+    image: "/images/evenements/positiv-20-ans-paris-2026.webp",
+    imageAlt: "Affiche officielle des 20 ans de Positiv à La Bellevilloise, Paris 20e",
+    imagePosition: "50% 0%",
+    categorie: "salon",
+    description:
+      "Cycle Consulting assiste aux 20 ans de Positiv, association qui accompagne la création d'entreprise dans les quartiers populaires, lors d'une soirée gratuite ouverte à tous à La Bellevilloise.",
+    visible: true,
+  },
   {
     slug: "melee-numerique-toulouse-2026",
     nom: "La Mêlée du numérique",
