@@ -25,7 +25,7 @@ export function isDisplayable(temoignage: Temoignage): boolean {
 export const temoignages: Temoignage[] = [
   {
     ref: "Burger King",
-    secteur: "QSR",
+    secteur: "QSR Grand compte",
     citation: "Nous avons bénéficié des services de Cycle et nous sommes ravis de cette collaboration.",
   },
   {
@@ -54,7 +54,7 @@ export const temoignages: Temoignage[] = [
   },
   {
     ref: "Afro Délice",
-    secteur: "QSR",
+    secteur: "QSR Grand compte",
     citation:
       "Nous avons travaillé avec Cycle pour la consolidation de notre site suite à une recommandation, c'était à la hauteur de la réputation ! On adore.",
   },
